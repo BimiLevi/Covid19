@@ -97,4 +97,9 @@ def data_toCsvs(countries, continents):
 	print('Continents csv was successfully created.')
 
 if __name__ == '__main__':
-	pass
+	from Utilities.db import continent_data_toDB, country_data_toDB
+	url = "https://www.worldometers.info/coronavirus"
+	data = get_data(url)
+	continents, countries = data_to_dfs(data)
+	continent_data_toDB(continents), country_data_toDB(countries)
+	data_toCsvs(countries, continents)

@@ -3,7 +3,7 @@ from Utilities.files_function import *
 
 """
 This script creates a uniq id for each county / continent, based on the scraped data.
-Therefore this script should only be executed once - The first time scraping the data and. 
+Therefore this script should only be executed once - The first time scraping the data. 
 """
 
 if __name__ == '__main__':

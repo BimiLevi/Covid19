@@ -6,11 +6,11 @@ parent = os.path.dirname(path) + "\\"
 def check_dir(path):
     dir_name = os.path.basename(os.path.normpath(path))
     if os.path.isdir(path):
-        print("Directory {} already exists.".format(dir_name))
+        # print("Directory {} already exists.".format(dir_name))
         return None
 
     else:
-        print("Directory {} dose not exists.".format(dir_name))
+        # print("Directory {} dose not exists.".format(dir_name))
         return dir_name
 
 def creat_directory(path):

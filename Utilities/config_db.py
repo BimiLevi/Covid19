@@ -1,5 +1,5 @@
 
-database = 'COVID19'
-user = 'postgres'
-password = 'A123456789'
-port = 5432
+database = '<databasename>'
+user = '<user>'
+password = '<your password>'
+port = 5432 #default port

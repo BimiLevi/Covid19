@@ -1,7 +1,6 @@
 import numpy as np
 import pandas as pd
 import time
-
 from datetime import date, datetime
 from progressbar import progressbar
 from tqdm import tqdm
@@ -64,8 +63,13 @@ def data_to_dfs(data):
 	df['scrap_date'] = scrap_date
 	df['scrap_time'] = scrap_time
 
-	drop_cols = ['1 Caseevery X ppl', '1 Deathevery X ppl', '1 Testevery X ppl']
-	df = df.drop(columns = drop_cols)
+	try:
+		drop_cols = ['1 Caseevery X ppl', '1 Deathevery X ppl', '1 Testevery X ppl']
+		df = df.drop(columns = drop_cols)
+
+	except FileNotFoundError as e:
+		print('The columns you asked for where not found.')
+		raise e
 
 	from processing import creat_continentDF, creat_countryDF
 	continent_df = creat_continentDF(df)
@@ -76,7 +80,6 @@ def data_to_dfs(data):
 def data_toCsvs(countries, continents):
 	from processing import creat_paths
 	dir_paths = creat_paths()
-
 	from Utilities.directories import creat_directory
 	for path in dir_paths:
 		creat_directory(path)
@@ -96,10 +99,10 @@ def data_toCsvs(countries, continents):
 	continents.to_csv(files_list[1], index=False)
 	print('Continents csv was successfully created.')
 
-if __name__ == '__main__':
-	from Utilities.db import continent_data_toDB, country_data_toDB
-	url = "https://www.worldometers.info/coronavirus"
-	data = get_data(url)
-	continents, countries = data_to_dfs(data)
-	continent_data_toDB(continents), country_data_toDB(countries)
-	data_toCsvs(countries, continents)
+# if __name__ == '__main__':
+# 	from Utilities.db import continent_data_toDB, country_data_toDB
+# 	url = "https://www.worldometers.info/coronavirus"
+# 	data = get_data(url)
+# 	continents, countries = data_to_dfs(data)
+# 	continent_data_toDB(continents), country_data_toDB(countries)
+# 	data_toCsvs(countries, continents)

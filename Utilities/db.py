@@ -1,12 +1,10 @@
 # -*- coding: utf-8 -*-
 from sqlalchemy import create_engine
-from world_meter_scraper import get_data, data_to_dfs
+from Utilities.config_db import azureParm
 
-connection = None
-
-from Utilities.config_db import *
-db_string = 'postgresql+psycopg2://' + user + ':' + password + '@localhost:' + str(port) + '/' + database
-engine = create_engine(db_string)
+dbStr = 'postgresql+psycopg2://{}:{}@{}:{}/{}'.format(azureParm.username, azureParm.password,
+                                                      azureParm.host, azureParm.port, azureParm.dbname)
+engine = create_engine(dbStr)
 
 def country_data_toDB(countries_df):
 	try:

@@ -1,6 +1,8 @@
 from Utilities.files_function import load_json
 from datetime import date, datetime
 
+'''Before lunching the program for the first time, dont forget to check that paths below are correct.'''
+
 country_path = r'C:\Users\talle\PycharmProjects\covid 19\Utilities\countries id'
 continent_path = r'C:\Users\talle\PycharmProjects\covid 19\Utilities\continent id'
 

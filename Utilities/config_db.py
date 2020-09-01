@@ -7,10 +7,10 @@ class Db:
 		self.port = port
 
 # Localhost DB
-localHost = Db('postgres', 'A123465789', 'COVID19', 'localhost')
+localHost = Db('username1', 'password1', 'dbname1', 'localhost')
 
 # Azure
-azureParm = Db('TalLevi@postgresql12', 'Bimidb6285!', 'Covid19', 'postgresql12.postgres.database.azure.com')
+azureParm = Db('username2', 'password2', 'dbname2', 'host')
 
 
 

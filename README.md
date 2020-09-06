@@ -18,8 +18,8 @@ Finally, the data that was gathered is been analyzed using different Ml algorith
 
 #### Project Status:
 The project is currently in stage 4, during the time it takes to gather the data, the following actions will take place:
-ERD creation for countries and continents tables.
-Optimizing the code.
-Creating an Analysis work plan.
+* ERD creation for countries and continents tables.
+* Optimizing the code.
+* Creating an Analysis work plan.
 
 # This project is still work in progress. 

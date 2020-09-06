@@ -1,28 +1,29 @@
 from world_meter_scraper import get_data, data_to_dfs, data_toCsvs
-from Utilities.db import continent_data_toDB, country_data_toDB
-
+from DB.db_func import continent_data_toDB, country_data_toDB
 import time
+import timeit
 import schedule
 
 
 def main():
     try:
+        start = time.time()
+
         url = "https://www.worldometers.info/coronavirus"
         data = get_data(url)
         continents, countries = data_to_dfs(data)
-        continent_data_toDB(continents), country_data_toDB(countries)
         data_toCsvs(countries, continents)
+        continent_data_toDB(continents), country_data_toDB(countries)
 
-        t = time.localtime()
-        current_time = time.strftime("%H:%M:%S", t)
-        print('The process executed successfully, time finished: {}'.format(current_time))
+        end = time.time()
+        execution_time = (end - start)
+        print('The process executed successfully,the time it took is: {:.3f} seconds.'.format(execution_time))
 
     except:
         print('An Error has occurred.')
 
 if __name__ == '__main__':
-    schedule.every().day.at("11:00").do(main)
-    schedule.every().day.at("23:00").do(main)
+    schedule.every().day.at("23:30").do(main)
 
     while True:
         schedule.run_pending()

@@ -26,34 +26,39 @@ def get_data(url):
 
 	# Iterating the data, and creating df.
 	records = []
+	counter = 0
+	while counter != 3:
+		try:
+			with tqdm(total = 232, desc= 'Getting the data') as pbar:
+				for idy, row in enumerate(table.find_all('tr')):
+					time.sleep(0.02)
+					pbar.update(1)
 
-	try:
-		with tqdm(total = 232, desc= 'Getting the data') as pbar:
-			for idy, row in enumerate(table.find_all('tr')):
-				time.sleep(0.02)
-				pbar.update(1)
+					if idy == 0:
+						continue
+					cols = row.findAll('td')
+					record = {}
 
-				if idy == 0:
-					continue
-				cols = row.findAll('td')
-				record = {}
+					for idx, col in enumerate(cols):
+						col_text = col.text.strip()
 
-				for idx, col in enumerate(cols):
-					col_text = col.text.strip()
+						if (col_text == 'N/A') or (col_text == ''): # Filing missing values in the data with numpy nan type.
+							record[header_list[idx]] = np.nan
 
-					if (col_text == 'N/A') or (col_text == ''):  # Filing missing values in the data with numpy nan object.
-						record[header_list[idx]] = np.nan
+						else:
+							record[header_list[idx]] = col.text.strip()
 
-					else:
-						record[header_list[idx]] = col.text.strip()
+					records.append(record)
 
-				records.append(record)
+			bot.driver.quit()
 
-		bot.driver.quit()
-		return records
+			return records
 
-	except IndexError as e:
-		print(e)
+		except IndexError as e:
+			print(e)
+			# Three tries before continuing.
+			counter += 1
+			time.sleep(3)
 
 def data_to_dfs(data):
 	df = pd.DataFrame.from_dict(data)
@@ -69,16 +74,16 @@ def data_to_dfs(data):
 
 	except FileNotFoundError as e:
 		print('The columns you asked for where not found.')
-		raise e
+		print(e)
 
-	from processing import creat_continentDF, creat_countryDF
+	from process import creat_continentDF, creat_countryDF
 	continent_df = creat_continentDF(df)
 	country_df = creat_countryDF(df)
 
 	return continent_df, country_df
 
 def data_toCsvs(countries, continents):
-	from processing import creat_paths
+	from process import creat_paths
 	dir_paths = creat_paths()
 	from Utilities.directories import creat_directory
 	for path in dir_paths:
@@ -99,10 +104,20 @@ def data_toCsvs(countries, continents):
 	continents.to_csv(files_list[1], index=False)
 	print('Continents csv was successfully created.')
 
-# if __name__ == '__main__':
-# 	from Utilities.db import continent_data_toDB, country_data_toDB
-# 	url = "https://www.worldometers.info/coronavirus"
-# 	data = get_data(url)
-# 	continents, countries = data_to_dfs(data)
-# 	continent_data_toDB(continents), country_data_toDB(countries)
-# 	data_toCsvs(countries, continents)
+if __name__ == '__main__':
+	from DB.db_func import *
+	start = time.time()
+
+	url = "https://www.worldometers.info/coronavirus"
+	data = get_data(url)
+	continents, countries = data_to_dfs(data)
+	data_toCsvs(countries, continents)
+	continent_data_toDB(continents), country_data_toDB(countries)
+	end = time.time()
+
+	execution_time = (end - start)
+	print('The process executed successfully,the time it took is: {:.3f} seconds.'.format(execution_time))
+
+
+
+

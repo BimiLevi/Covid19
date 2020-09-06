@@ -3,8 +3,8 @@ from datetime import date, datetime
 
 '''Before lunching the program for the first time, dont forget to check that paths below are correct.'''
 
-country_path = r'C:\Users\talle\PycharmProjects\covid 19\Utilities\countries id'
-continent_path = r'C:\Users\talle\PycharmProjects\covid 19\Utilities\continent id'
+country_path = r'C:\Users\talle\PycharmProjects\Covid19\Utilities\countries id'
+continent_path = r'C:\Users\talle\PycharmProjects\Covid19\Utilities\continent id'
 
 possible_continents = load_json(continent_path)
 possible_countries = load_json(country_path)
@@ -44,7 +44,8 @@ def creat_countryDF(df):
 		country_df['#'] = country_df['Country,Other'].map(possible_countries)
 		country_df['Continent'] = country_df['Continent'].map(possible_continents)
 		country_df = country_df.rename(columns = {'Country,Other': 'Country', '#': 'Country_id',
-		                                          'Continent': 'Continent_id'})
+		                                          'Continent': 'Continent_id',
+		                                          'Tests/\n1M pop': 'Tests_1M_pop'})
 
 		desired_cols = country_df.iloc[:, 2:].drop(columns= ['Population']).columns.tolist()
 		col_titles = ['Country_id', 'Country', 'Population'] + desired_cols

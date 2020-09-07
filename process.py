@@ -45,7 +45,7 @@ def creat_countryDF(df):
 		country_df['Continent'] = country_df['Continent'].map(possible_continents)
 		country_df = country_df.rename(columns = {'Country,Other': 'Country', '#': 'Country_id',
 		                                          'Continent': 'Continent_id',
-		                                          'Tests/\n1M pop': 'Tests_1M_pop'})
+		                                          'Tests/\n1M pop\n': 'Tests_1M_pop'})
 
 		desired_cols = country_df.iloc[:, 2:].drop(columns= ['Population']).columns.tolist()
 		col_titles = ['Country_id', 'Country', 'Population'] + desired_cols

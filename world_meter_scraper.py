@@ -2,7 +2,6 @@ import numpy as np
 import pandas as pd
 import time
 from datetime import date, datetime
-from progressbar import progressbar
 from tqdm import tqdm
 
 
@@ -10,25 +9,25 @@ def get_data(url):
 	from web_driver import Driver
 	from bs4 import BeautifulSoup
 
-	bot = Driver()
-	bot.driver.get(url)
-	content = bot.driver.page_source
-
-	soup = BeautifulSoup(content, 'html5lib')
-	table = soup.find('table')
-
-	# Getting the headers for table columns.
-	print('Getting the headers.\n')
-	table_headers = table.find('tr').findAll('th')
-	header_list = []
-	for header in table_headers:
-		header_list.append(header.get_text())
-
-	# Iterating the data, and creating df.
-	records = []
 	counter = 0
-	while counter != 3:
+	while counter <= 3:
 		try:
+			bot = Driver()
+			bot.driver.get(url)
+			content = bot.driver.page_source
+
+			soup = BeautifulSoup(content, 'html5lib')
+			table = soup.find('table')
+
+			# Getting the headers for table columns.
+			print('Getting the headers.\n')
+			table_headers = table.find('tr').findAll('th')
+			header_list = []
+			for header in table_headers:
+				header_list.append(header.get_text())
+
+			# Iterating the data, and creating df.
+			records = []
 			with tqdm(total = 232, desc= 'Getting the data') as pbar:
 				for idy, row in enumerate(table.find_all('tr')):
 					time.sleep(0.02)
@@ -55,10 +54,14 @@ def get_data(url):
 			return records
 
 		except IndexError as e:
-			print(e)
+			print(e, '\n')
 			# Three tries before continuing.
+			print('The process will start again in 10 seconds.\n This is the {} attempt out of 3.\n'.format(str(
+					counter+1)))
 			counter += 1
-			time.sleep(3)
+			time.sleep(10)
+
+	print("The data couldn't be scraped.")
 
 def data_to_dfs(data):
 	df = pd.DataFrame.from_dict(data)
@@ -85,6 +88,7 @@ def data_to_dfs(data):
 def data_toCsvs(countries, continents):
 	from process import creat_paths
 	dir_paths = creat_paths()
+
 	from Utilities.directories import creat_directory
 	for path in dir_paths:
 		creat_directory(path)
@@ -104,19 +108,21 @@ def data_toCsvs(countries, continents):
 	continents.to_csv(files_list[1], index=False)
 	print('Continents csv was successfully created.')
 
-if __name__ == '__main__':
-	from DB.db_func import *
-	start = time.time()
+def update_main_csvs(countries, continents):
+	try:
+		all_countriesDF = pd.read_csv(r'C:\Users\talle\PycharmProjects\Covid19\all data csvs\all_data_countries.csv')
+		all_continentsDF = pd.read_csv(r'C:\Users\talle\PycharmProjects\Covid19\all data csvs\all_data_continents.csv')
 
-	url = "https://www.worldometers.info/coronavirus"
-	data = get_data(url)
-	continents, countries = data_to_dfs(data)
-	data_toCsvs(countries, continents)
-	continent_data_toDB(continents), country_data_toDB(countries)
-	end = time.time()
+		all_countriesDF = pd.concat([all_countriesDF, countries], axis=0, ignore_index=True)
+		all_countriesDF.to_csv(r'C:\Users\talle\PycharmProjects\Covid19\all data csvs\all_data_countries.csv', index=False)
+		print('Countries entire data csv has been updated.')
 
-	execution_time = (end - start)
-	print('The process executed successfully,the time it took is: {:.3f} seconds.'.format(execution_time))
+		all_continentsDF = pd.concat([all_continentsDF, continents], axis=0, ignore_index=True)
+		all_continentsDF.to_csv(r'C:\Users\talle\PycharmProjects\Covid19\all data csvs\all_data_continents.csv', index=False)
+		print('Continents entire data csv has been updated.')
+	except Exception as e:
+		print(e)
+
 
 
 

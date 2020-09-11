@@ -1,4 +1,4 @@
-from DB.engine import engine
+from db.engine import engine
 
 def country_data_toDB(countries_df):
 	try:
@@ -23,3 +23,7 @@ def continent_data_toDB(continent_df):
 	except ConnectionError as e:
 		print('An error has occurred when trying to update continents DB.')
 		raise e
+
+def load_backup_toDB():
+	import pandas as pd
+	country_df = pd.read_csv()

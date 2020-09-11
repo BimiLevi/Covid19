@@ -1,5 +1,5 @@
 from world_meter_scraper import get_data, data_to_dfs
-from Utilities.files_function import *
+from utilities.files_function import *
 
 """
 This script creates a uniq id for each county / continent, based on the scraped data.

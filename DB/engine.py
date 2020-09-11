@@ -1,15 +1,15 @@
 # -*- coding: utf-8 -*-
 from sqlalchemy import create_engine
-from DB.config_db import azureParm, localHost
+from db.config_db import  localHost
 
 
 # dbStr = 'postgresql+psycopg2://{}:{}@{}:{}/{}' \
 #         ''.format(localHost.username, localHost.password, localHost.host, localHost.port, localHost.dbname)
 
 dbStr = 'postgresql+psycopg2://{}:{}@{}:{}/{}' \
-        ''.format(azureParm.username, azureParm.password, azureParm.host, azureParm.port, azureParm.dbname)
+        ''.format(localHost.username, localHost.password, localHost.host, localHost.port, localHost.dbname)
 
-engine = create_engine(dbStr)
+engine = create_engine(dbStr, client_encoding='UTF8')
 
 
 

@@ -1,4 +1,4 @@
-from Utilities.files_function import load_json
+from utilities.files_function import load_json
 from datetime import date, datetime
 
 '''Before lunching the program for the first time, dont forget to check that paths below are correct.'''
@@ -66,7 +66,7 @@ def creat_paths():
 	day, month, year = get_date_parm()
 
 	# Crating directories to save the scraped data in them.
-	from Utilities.directories import path
+	from utilities.directories import path
 	#  Crating path for each directory.
 	world_path = path + '/' + "World Meter Data"
 	dateYea_path = world_path + '/' + year

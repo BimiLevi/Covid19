@@ -28,15 +28,3 @@ def creat_directory(path):
 
             else:
                 print("Successfully created the directory %s." % dir_name)
-
-
-
-
-
-
-
-
-
-
-
-

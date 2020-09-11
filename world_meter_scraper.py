@@ -89,7 +89,7 @@ def data_toCsvs(countries, continents):
 	from process import creat_paths
 	dir_paths = creat_paths()
 
-	from Utilities.directories import creat_directory
+	from utilities.directories import creat_directory
 	for path in dir_paths:
 		creat_directory(path)
 
@@ -122,8 +122,3 @@ def update_main_csvs(countries, continents):
 		print('Continents entire data csv has been updated.')
 	except Exception as e:
 		print(e)
-
-
-
-
-

@@ -1,3 +1,5 @@
+# -*- coding: utf-8 -*-
+
 import time
 import timeit
 import schedule
@@ -8,7 +10,7 @@ from datetime import date, datetime
 from tqdm import tqdm
 
 from sqlalchemy import create_engine
-from DB.config_db import azureParm, localHost
+from db.config_db import azureParm, localHost
 
 ''' This scrip is used to test the program. all of the functions that are required in order for the program to work 
 are located in this script. furthermore when testing the program the data is written into localhost DB and not azure! 
@@ -48,10 +50,11 @@ def get_data(url):
 
 					for idx, col in enumerate(cols):
 						col_text = col.text.strip()
-
-						if (col_text == 'N/A') or (
-								col_text == ''):  # Filing missing values in the data with numpy nan type.
-							record[header_list[idx]] = np.nan
+						#
+						# if (col_text == 'N/A') or (col_text == ''):  # Filing missing values in the data with numpy nan type.
+						# 	record[header_list[idx]] = np.nan
+						if col_text == 'N/A':  # Filing missing values in the data with numpy nan type.
+							record[header_list[idx]] = (col_text == '')
 
 						else:
 							record[header_list[idx]] = col.text.strip()
@@ -85,8 +88,9 @@ def data_to_dfs(data):
 		df = df.drop(columns = drop_cols)
 
 	except FileNotFoundError as e:
-		print('The columns you asked for where not found.')
 		print(e)
+		print('The columns you asked for where not found.')
+
 
 	from process import creat_continentDF, creat_countryDF
 	continent_df = creat_continentDF(df)
@@ -98,7 +102,7 @@ def add_data_toCsv(countries, continents):
 	all_countriesDF = pd.read_csv(r'C:\Users\talle\PycharmProjects\Covid19\all data csvs\all_data_countries.csv')
 	all_continentsDF = pd.read_csv(r'C:\Users\talle\PycharmProjects\Covid19\all data csvs\all_data_continents.csv')
 
-	all_countriesDF = pd.concat([all_countriesDF, countries],axis=0, ignore_index=True)
+	all_countriesDF = pd.concat([all_countriesDF, countries], axis=0, ignore_index=True)
 	all_countriesDF.to_csv(r'C:\Users\talle\PycharmProjects\Covid19\all data csvs\all_data_countries.csv', index=False)
 	print('Countries entire data csv has been updated.')
 
@@ -110,7 +114,7 @@ def data_toCsvs(countries, continents):
 	from process import creat_paths
 	dir_paths = creat_paths()
 
-	from Utilities.directories import creat_directory
+	from utilities.directories import creat_directory
 	for path in dir_paths:
 		creat_directory(path)
 
@@ -129,10 +133,10 @@ def data_toCsvs(countries, continents):
 	continents.to_csv(files_list[1], index = False)
 	print('Continents csv was successfully created.')
 
-dbStr = 'postgresql+psycopg2://{}:{}@{}:{}/{}' \
-        ''.format(localHost.username, localHost.password, localHost.host, localHost.port, localHost.dbname)
+dbStr = 'postgresql+psycopg2://{}:{}@{}:{}/{}?client_encoding=utf8"' \
+        ''.format(localHost.username, localHost.password, localHost.host, localHost.port, 'covid_test')
 
-engine = create_engine(dbStr)
+engine = create_engine(dbStr, encoding='utf8')
 
 def country_data_toDB(countries_df):
 	try:
@@ -165,17 +169,19 @@ if __name__ == '__main__':
 	# continent_data_toDB(df)
 
 
-	start = time.time()
+	# start = time.time()
+	#
+	# url = "https://www.worldometers.info/coronavirus"
+	# data = get_data(url)
+	# continents, countries = data_to_dfs(data)
+	# data_toCsvs(countries, continents)
+	# continent_data_toDB(continents)
+	# country_data_toDB(countries)
+	# end = time.time()
+	#
+	# execution_time = (end - start) / 60
+	# print('The process executed successfully,the time it took is: {:.3f} minutes.'.format(execution_time))
 
-	url = "https://www.worldometers.info/coronavirus"
-	data = get_data(url)
-	continents, countries = data_to_dfs(data)
-	data_toCsvs(countries, continents)
-	continent_data_toDB(continents)
-	country_data_toDB(countries)
-	end = time.time()
-
-	execution_time = (end - start) / 60
-	print('The process executed successfully,the time it took is: {:.3f} minutes.'.format(execution_time))
-
-
+	with engine.connect() as connection:
+		result = connection.execute("select * from information_schema.tables")
+		print(result)

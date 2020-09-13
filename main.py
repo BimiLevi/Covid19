@@ -1,7 +1,6 @@
 from world_meter_scraper import get_data, data_to_dfs, update_main_csvs, data_toCsvs
 from db.db_func import continent_data_toDB, country_data_toDB
 import time
-import timeit
 import schedule
 
 
@@ -38,16 +37,21 @@ def main():
         print('An Error has occurred.')
 
 def data_to_db():
-    import pandas as pd
     try:
-        countries = pd.read_csv(r'C:\Users\talle\PycharmProjects\Covid19\all data csvs\all_data_countries.csv')
-        continents = pd.read_csv(r'C:\Users\talle\PycharmProjects\Covid19\all data csvs\all_data_continents.csv')
+        import pandas as pd
+        from paths import allCountries_path, allContinents_path
+        countries = pd.read_csv(allCountries_path)
+        continents = pd.read_csv(allContinents_path)
 
     except FileNotFoundError as e:
         raise e
 
-    country_data_toDB(countries)
-    continent_data_toDB(continents)
+    try:
+        country_data_toDB(countries)
+        continent_data_toDB(continents)
+
+    except KeyError as e:
+        raise(e)
 
 if __name__ == '__main__':
     # data_to_db()

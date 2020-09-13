@@ -41,7 +41,7 @@ def get_data(url):
 					for idx, col in enumerate(cols):
 						col_text = col.text.strip()
 
-						if (col_text == 'N/A') or (col_text == ''): # Filing missing values in the data with numpy nan type.
+						if (col_text == 'N/A') or (col_text == ''):  # Filing missing values in the data with numpy nan type.
 							record[header_list[idx]] = np.nan
 
 						else:
@@ -86,8 +86,8 @@ def data_to_dfs(data):
 	return continent_df, country_df
 
 def data_toCsvs(countries, continents):
-	from process import creat_paths
-	dir_paths = creat_paths()
+	import process
+	dir_paths = process.creat_paths()
 
 	from utilities.directories import creat_directory
 	for path in dir_paths:
@@ -110,15 +110,17 @@ def data_toCsvs(countries, continents):
 
 def update_main_csvs(countries, continents):
 	try:
-		all_countriesDF = pd.read_csv(r'C:\Users\talle\PycharmProjects\Covid19\all data csvs\all_data_countries.csv')
-		all_continentsDF = pd.read_csv(r'C:\Users\talle\PycharmProjects\Covid19\all data csvs\all_data_continents.csv')
+		from paths import allContinents_path, allCountries_path
+		all_countriesDF = pd.read_csv(allCountries_path)
+		all_continentsDF = pd.read_csv(allContinents_path)
 
 		all_countriesDF = pd.concat([all_countriesDF, countries], axis=0, ignore_index=True)
-		all_countriesDF.to_csv(r'C:\Users\talle\PycharmProjects\Covid19\all data csvs\all_data_countries.csv', index=False)
+		all_countriesDF.to_csv(allCountries_path, index=False)
 		print('Countries entire data csv has been updated.')
 
 		all_continentsDF = pd.concat([all_continentsDF, continents], axis=0, ignore_index=True)
-		all_continentsDF.to_csv(r'C:\Users\talle\PycharmProjects\Covid19\all data csvs\all_data_continents.csv', index=False)
+		all_continentsDF.to_csv(allContinents_path, index=False)
 		print('Continents entire data csv has been updated.')
+
 	except Exception as e:
 		print(e)

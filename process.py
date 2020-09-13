@@ -1,11 +1,11 @@
-from utilities.files_function import load_json
-from datetime import date, datetime
 
 '''Before lunching the program for the first time, dont forget to check that paths below are correct.'''
 
-country_path = r'C:\Users\talle\PycharmProjects\Covid19\Utilities\countries id'
-continent_path = r'C:\Users\talle\PycharmProjects\Covid19\Utilities\continent id'
+from paths import countriesID_path, continentsID_path
+country_path = countriesID_path
+continent_path = continentsID_path
 
+from utilities.files_function import load_json
 possible_continents = load_json(continent_path)
 possible_countries = load_json(country_path)
 
@@ -57,6 +57,7 @@ def creat_countryDF(df):
 		raise e
 
 def get_date_parm():
+	from datetime import datetime
 	year = datetime.now().strftime("%Y")
 	month = datetime.now().strftime("%B")
 	day = datetime.now().strftime("%d")

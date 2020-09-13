@@ -1,16 +1,12 @@
 # -*- coding: utf-8 -*-
 
-import time
-import timeit
-import schedule
-import numpy as np
+from paths import allContinents_path, allCountries_path
 import pandas as pd
 import time
 from datetime import date, datetime
 from tqdm import tqdm
-
 from sqlalchemy import create_engine
-from db.config_db import azureParm, localHost
+from db.config_db import localTest
 
 ''' This scrip is used to test the program. all of the functions that are required in order for the program to work 
 are located in this script. furthermore when testing the program the data is written into localhost DB and not azure! 
@@ -99,15 +95,15 @@ def data_to_dfs(data):
 	return continent_df, country_df
 
 def add_data_toCsv(countries, continents):
-	all_countriesDF = pd.read_csv(r'C:\Users\talle\PycharmProjects\Covid19\all data csvs\all_data_countries.csv')
-	all_continentsDF = pd.read_csv(r'C:\Users\talle\PycharmProjects\Covid19\all data csvs\all_data_continents.csv')
+	all_countriesDF = pd.read_csv(allCountries_path)
+	all_continentsDF = pd.read_csv(allContinents_path)
 
 	all_countriesDF = pd.concat([all_countriesDF, countries], axis=0, ignore_index=True)
-	all_countriesDF.to_csv(r'C:\Users\talle\PycharmProjects\Covid19\all data csvs\all_data_countries.csv', index=False)
+	all_countriesDF.to_csv(allCountries_path, index=False)
 	print('Countries entire data csv has been updated.')
 
 	all_continentsDF = pd.concat([all_continentsDF, continents], axis=0, ignore_index=True)
-	all_continentsDF.to_csv(r'C:\Users\talle\PycharmProjects\Covid19\all data csvs\all_data_continents.csv', index=False)
+	all_continentsDF.to_csv(allContinents_path, index=False)
 	print('Continents entire data csv has been updated.')
 
 def data_toCsvs(countries, continents):
@@ -133,10 +129,10 @@ def data_toCsvs(countries, continents):
 	continents.to_csv(files_list[1], index = False)
 	print('Continents csv was successfully created.')
 
-dbStr = 'postgresql+psycopg2://{}:{}@{}:{}/{}?client_encoding=utf8"' \
-        ''.format(localHost.username, localHost.password, localHost.host, localHost.port, 'covid_test')
+localTest_str = 'postgresql+psycopg2://{}:{}@{}:{}/{}' \
+        ''.format(localTest.username, localTest.password, localTest.host, localTest.port, localTest.dbname)
 
-engine = create_engine(dbStr, encoding='utf8')
+engine = create_engine(localTest_str, encoding='utf8')
 
 def country_data_toDB(countries_df):
 	try:
@@ -144,7 +140,7 @@ def country_data_toDB(countries_df):
 		for country in countries_list:
 			countryDF = countries_df[countries_df['Country'] == '{}'.format(country)]
 			countryDF.to_sql('{}'.format(country), con = engine, if_exists = 'append', index = False)
-		print('Countries DB was successfully added.')
+		print('Countries DB was successfully updated.')
 
 	except ConnectionError as e:
 		print('An error has occurred when trying to update countries DB.')
@@ -156,7 +152,7 @@ def continent_data_toDB(continent_df):
 		for continent in continent_list:
 			continentDF = continent_df[continent_df['Continent'] == '{}'.format(continent)]
 			continentDF.to_sql('{}'.format(continent), con = engine, if_exists = 'append', index = False)
-		print('Continents DB was successfully added.')
+		print('Continents DB was successfully updated.')
 
 	except ConnectionError as e:
 		print('An error has occurred when trying to update continents DB.')
@@ -164,24 +160,19 @@ def continent_data_toDB(continent_df):
 
 
 if __name__ == '__main__':
-	# country_data_toDB(pd.read_csv(r'C:\Users\talle\PycharmProjects\Covid19\old_scripts\all_countries.csv'))
-	# df = pd.read_csv(r'C:\Users\talle\PycharmProjects\Covid19\old_scripts\all_continents.csv')
-	# continent_data_toDB(df)
+	country_data_toDB(pd.read_csv(allCountries_path))
+	continent_data_toDB(pd.read_csv(allContinents_path))
 
+	start = time.time()
 
-	# start = time.time()
-	#
-	# url = "https://www.worldometers.info/coronavirus"
-	# data = get_data(url)
-	# continents, countries = data_to_dfs(data)
-	# data_toCsvs(countries, continents)
-	# continent_data_toDB(continents)
-	# country_data_toDB(countries)
-	# end = time.time()
-	#
-	# execution_time = (end - start) / 60
-	# print('The process executed successfully,the time it took is: {:.3f} minutes.'.format(execution_time))
+	url = "https://www.worldometers.info/coronavirus"
+	data = get_data(url)
+	continents, countries = data_to_dfs(data)
+	data_toCsvs(countries, continents)
+	continent_data_toDB(continents)
+	country_data_toDB(countries)
+	end = time.time()
 
-	with engine.connect() as connection:
-		result = connection.execute("select * from information_schema.tables")
-		print(result)
+	execution_time = (end - start) / 60
+	print('The process executed successfully,the time it took is: {:.3f} minutes.'.format(execution_time))
+

@@ -1,7 +1,6 @@
 import os
 
 path = os.getcwd()
-parent = os.path.dirname(path) + "\\"
 
 def check_dir(path):
     dir_name = os.path.basename(os.path.normpath(path))

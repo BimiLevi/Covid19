@@ -1,3 +1,4 @@
+sep=,
 Continent_id,Continent,TotalCases,NewCases,TotalDeaths,NewDeaths,TotalRecovered,NewRecovered,ActiveCases,"Serious,Critical",scrap_date,scrap_time
 1,North America,"5,613,323","24,565","221,496",968,"2,895,525","6,854","2,496,302","26,059",02.08.20,
 2,South America,"4,192,732","2,004","145,644",103,"2,839,117","2,913","1,207,971","14,322",02.08.20,

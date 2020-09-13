@@ -1,3 +1,4 @@
+sep=,
 Country_id,Country,Population,TotalCases,NewCases,TotalDeaths,NewDeaths,TotalRecovered,NewRecovered,ActiveCases,"Serious,Critical",Tot Cases/1M pop,Deaths/1M pop,TotalTests,Tests_1M_pop,Continent_id,scrap_date,scrap_time
 1,USA,"331,171,664","4,778,177","13,859","158,039",141,"2,363,229",326,"2,256,909","18,720","14,428",477,"59,259,593","178,939",1,02.08.20,
 2,Brazil,"212,690,082","2,708,876",,"93,616",,"1,884,051",,"731,209","8,318","12,736",440,"13,096,132","61,574",2,02.08.20,

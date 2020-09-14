@@ -46,9 +46,6 @@ def get_data(url):
 
 					for idx, col in enumerate(cols):
 						col_text = col.text.strip()
-						#
-						# if (col_text == 'N/A') or (col_text == ''):  # Filing missing values in the data with numpy nan type.
-						# 	record[header_list[idx]] = np.nan
 						if col_text == 'N/A':  # Filing missing values in the data with numpy nan type.
 							record[header_list[idx]] = (col_text == '')
 
@@ -160,8 +157,8 @@ def continent_data_toDB(continent_df):
 
 
 if __name__ == '__main__':
-	country_data_toDB(pd.read_csv(allCountries_path))
-	continent_data_toDB(pd.read_csv(allContinents_path))
+	# country_data_toDB(pd.read_csv(allCountries_path))
+	# continent_data_toDB(pd.read_csv(allContinents_path))
 
 	start = time.time()
 

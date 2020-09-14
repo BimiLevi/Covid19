@@ -33,8 +33,8 @@ def main():
         execution_time = (end - start) / 60
         print('The process executed successfully,the time it took is: {:.3f} minutes.'.format(execution_time))
 
-    except:
-        print('An Error has occurred.')
+    except Exception as e:
+        print(e)
 
 def data_to_db():
     try:
@@ -56,7 +56,7 @@ def data_to_db():
 if __name__ == '__main__':
     # data_to_db()
 
-    schedule.every().day.at("22:00").do(main)
+    schedule.every().day.at("14:53").do(main)
 
     while True:
         schedule.run_pending()

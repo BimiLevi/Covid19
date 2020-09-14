@@ -20,7 +20,7 @@ def get_data(url):
 			table = soup.find('table')
 
 			# Getting the headers for table columns.
-			print('Getting the headers.\n')
+			print('Getting the headers.')
 			table_headers = table.find('tr').findAll('th')
 			header_list = []
 			for header in table_headers:
@@ -54,6 +54,7 @@ def get_data(url):
 			return records
 
 		except IndexError as e:
+			bot.driver.quit()
 			print(e, '\n')
 			# Three tries before continuing.
 			print('The process will start again in 10 seconds.\n This is the {} attempt out of 3.\n'.format(str(
@@ -103,24 +104,42 @@ def data_toCsvs(countries, continents):
 	              dateDay_path + '/' + 'Continents {}.csv'.format(str(today))]
 
 	countries.to_csv(files_list[0], index=False)
-	print('Countries csv was successfully created.')
+	print('Countries {} csv was successfully created.'.format(str(today)))
 
 	continents.to_csv(files_list[1], index=False)
-	print('Continents csv was successfully created.')
+	print('Continents {} csv was successfully created.'.format(str(today)))
 
 def update_main_csvs(countries, continents):
 	try:
 		from paths import allContinents_path, allCountries_path
-		all_countriesDF = pd.read_csv(allCountries_path)
-		all_continentsDF = pd.read_csv(allContinents_path)
 
-		all_countriesDF = pd.concat([all_countriesDF, countries], axis=0, ignore_index=True)
-		all_countriesDF.to_csv(allCountries_path, index=False)
-		print('Countries entire data csv has been updated.')
+		try:
+			all_countriesDF = pd.read_csv(allCountries_path)
+			if not countries.empty:
+				all_countriesDF = pd.concat([all_countriesDF, countries], axis = 0, ignore_index = True)
+				all_countriesDF.to_csv(allCountries_path, index = False)
+				print('Countries main data csv has been updated.')
 
-		all_continentsDF = pd.concat([all_continentsDF, continents], axis=0, ignore_index=True)
-		all_continentsDF.to_csv(allContinents_path, index=False)
-		print('Continents entire data csv has been updated.')
+		except OSError as e:
+			print("The main csv's did not updated the following Error has occurred: \n {}".format(e))
+			print('Countries main file, dose not exists.')
+			countries.to_csv(allCountries_path, index=False)
+			print('Countries main csv has been created.')
+
+		try:
+			all_continentsDF = pd.read_csv(allContinents_path)
+			if not countries.empty:
+				all_continentsDF = pd.concat([all_continentsDF, continents], axis=0, ignore_index=True)
+				all_continentsDF.to_csv(allContinents_path, index=False)
+				print('Continents main csv has been updated.')
+
+		except OSError as e:
+			print("The main csv's did not updated the following Error has occurred: \n {}".format(e))
+			continents.to_csv(allContinents_path, index = False)
+			print('Continents main csv has been created.')
 
 	except Exception as e:
-		print(e)
+		print("The main csv's did not updated the following Error has occurred: \n {}".format(e))
+		print("There is no main csv's files.")
+
+

@@ -9,8 +9,13 @@ from utilities.files_function import load_json
 possible_continents = load_json(continent_path)
 possible_countries = load_json(country_path)
 
-
+'''
+    OR: Python functions should be lower cased. "create_continent_df(df)"
+'''
 def creat_continentDF(df):
+    '''
+    OR: try-except too long
+    '''
 	try:
 		continents_list = possible_continents.keys()
 		continent_df = df[df['Country,Other'].isin(continents_list)]
@@ -35,6 +40,9 @@ def creat_continentDF(df):
 
 def creat_countryDF(df):
 	try:
+		'''
+		OR: Too many operations in 1 function. maybe sub-functions? split the responsability
+		'''
 		country_first_idx = df[df['#'] == str(1)].index.tolist()[0]  # Getting the starting index' in order
 		# To slice the df.
 		country_df = df[country_first_idx:]
@@ -57,6 +65,9 @@ def creat_countryDF(df):
 		raise e
 
 def get_date_parm():
+    '''
+    OR: Why not use extrenal import? (from the top of the script)
+    '''
 	from datetime import datetime
 	year = datetime.now().strftime("%Y")
 	month = datetime.now().strftime("%B")

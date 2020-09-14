@@ -10,6 +10,9 @@ if __name__ == '__main__':
 	countries_keys = load_json('countries id')
 	continents_keys = load_json('continent id')
 
+	'''
+    OR: Enviornment Variables OR const
+    '''
 	url = "https://www.worldometers.info/coronavirus"
 
 	data = get_data(url)

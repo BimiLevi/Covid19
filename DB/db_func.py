@@ -1,5 +1,9 @@
 from db.engine import engine
 
+'''
+    OR: country_data_to_db (lower case!)
+'''
+
 def country_data_toDB(countries_df):
 	try:
 		countries_list = countries_df['Country'].drop_duplicates().tolist()
@@ -21,6 +25,9 @@ def continent_data_toDB(continent_df):
 		print('Continents DB was successfully Updated.')
 
 	except ConnectionError as e:
+		'''
+		OR: The "raise" keyword is tricky, where do you "catch" it when it happen?
+		'''
 		print('An error has occurred when trying to update continents DB.')
 		raise e
 

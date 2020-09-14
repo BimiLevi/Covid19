@@ -4,6 +4,9 @@ import os
  after downloading the webdriver add the path in this script.
  '''
 
+'''
+OR: Use Enviornment Variables
+'''
 webDriver_path = 'C:\web_driver\chromedriver.exe'
 
 current_dir = os.getcwd()

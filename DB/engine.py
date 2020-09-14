@@ -2,7 +2,9 @@
 from sqlalchemy import create_engine
 from db.config_db import localHost, localTest
 
-
+'''
+    OR: Enviornment Variables
+'''
 localHost_str = 'postgresql+psycopg2://{}:{}@{}:{}/{}' \
         ''.format(localHost.username, localHost.password, localHost.host, localHost.port, localHost.dbname)
 

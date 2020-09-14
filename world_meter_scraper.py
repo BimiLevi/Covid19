@@ -4,7 +4,9 @@ import time
 from datetime import date, datetime
 from tqdm import tqdm
 
-
+'''
+    OR: Too messy, you should split to sub-functions and split the resposnabilities.
+'''
 def get_data(url):
 	from web_driver import Driver
 	from bs4 import BeautifulSoup

@@ -5,11 +5,25 @@ import schedule
 
 
 def main():
+    '''
+    OR: The try is too long. There is no possible to understand where the "crush" can happen.
+    maybe:
+
+    try: 
+        ** ONE OPERATION, such as: fetch URL **
+    except:
+        print("Cannot fetch the given url")
+    '''
     try:
         start = time.time()
 
         url = "https://www.worldometers.info/coronavirus"
+    	
 
+        '''
+        OR: If your functions names make sense, you dont need to write comments. 
+        For example: update_main_csvs, is pretty clear what the method do.
+        '''
         # Getting the data out of the website, inserting the data into a dict and returns the dict.
         data = get_data(url)
 
@@ -37,6 +51,9 @@ def main():
         print('An Error has occurred.')
 
 def data_to_db():
+    '''
+    OR: You dont know if the "crush" will be from the import or from the "read_csv"
+    '''
     try:
         import pandas as pd
         from paths import allCountries_path, allContinents_path
@@ -57,7 +74,9 @@ if __name__ == '__main__':
     # data_to_db()
 
     schedule.every().day.at("22:00").do(main)
-
+    '''
+    OR: Great, but maybe there is another way. lets talk about that.
+    '''
     while True:
         schedule.run_pending()
         time.sleep(60)  # Wait one minute

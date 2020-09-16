@@ -56,7 +56,7 @@ def data_to_db():
 if __name__ == '__main__':
     # data_to_db()
 
-    schedule.every().day.at("14:53").do(main)
+    schedule.every().day.at("21:00").do(main)
 
     while True:
         schedule.run_pending()

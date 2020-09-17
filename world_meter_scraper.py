@@ -6,6 +6,7 @@ from tqdm import tqdm
 
 
 def get_data(url):
+	global bot
 	from web_driver import Driver
 	from bs4 import BeautifulSoup
 
@@ -45,6 +46,8 @@ def get_data(url):
 							record[header_list[idx]] = np.nan
 
 						else:
+							if ',' in col_text:
+								pass
 							record[header_list[idx]] = col.text.strip()
 
 					records.append(record)
@@ -67,7 +70,7 @@ def get_data(url):
 def data_to_dfs(data):
 	df = pd.DataFrame.from_dict(data)
 
-	scrap_date = datetime.now().strftime('%d.%m.%y')
+	scrap_date = datetime.now().strftime('%Y-%m-%d')
 	scrap_time = datetime.now().strftime('%H:%M')
 	df['scrap_date'] = scrap_date
 	df['scrap_time'] = scrap_time
@@ -80,15 +83,15 @@ def data_to_dfs(data):
 		print('The columns you asked for where not found.')
 		print(e)
 
-	from process import creat_continentDF, creat_countryDF
+	from process_func import creat_continentDF, creat_countryDF
 	continent_df = creat_continentDF(df)
 	country_df = creat_countryDF(df)
 
 	return continent_df, country_df
 
 def data_toCsvs(countries, continents):
-	import process
-	dir_paths = process.creat_paths()
+	import process_func
+	dir_paths = process_func.creat_paths()
 
 	from utilities.directories import creat_directory
 	for path in dir_paths:

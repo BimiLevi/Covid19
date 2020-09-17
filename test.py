@@ -50,7 +50,13 @@ def get_data(url):
 							record[header_list[idx]] = (col_text == '')
 
 						else:
-							record[header_list[idx]] = col.text.strip()
+							if ',' in col_text:
+								col_text = col_text.replace(',', '')
+
+							if '+' in col_text:
+								col_text = col_text.replace('+','')
+
+							record[header_list[idx]] = col_text
 
 					records.append(record)
 
@@ -85,7 +91,7 @@ def data_to_dfs(data):
 		print('The columns you asked for where not found.')
 
 
-	from process import creat_continentDF, creat_countryDF
+	from process_func import creat_continentDF, creat_countryDF
 	continent_df = creat_continentDF(df)
 	country_df = creat_countryDF(df)
 
@@ -104,7 +110,7 @@ def add_data_toCsv(countries, continents):
 	print('Continents entire data csv has been updated.')
 
 def data_toCsvs(countries, continents):
-	from process import creat_paths
+	from process_func import creat_paths
 	dir_paths = creat_paths()
 
 	from utilities.directories import creat_directory

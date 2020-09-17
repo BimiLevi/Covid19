@@ -50,6 +50,7 @@ def creat_countryDF(df):
 		desired_cols = country_df.iloc[:, 2:].drop(columns= ['Population']).columns.tolist()
 		col_titles = ['Country_id', 'Country', 'Population'] + desired_cols
 		country_df = country_df.reindex(columns = col_titles)
+		country_df
 
 		return country_df
 

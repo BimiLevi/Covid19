@@ -9,7 +9,7 @@ localHost_str = 'postgresql+psycopg2://{}:{}@{}:{}/{}' \
 localTest_str = 'postgresql+psycopg2://{}:{}@{}:{}/{}' \
         ''.format(localTest.username, localTest.password, localTest.host, localTest.port, localTest.dbname)
 
-engine = create_engine(localHost_str, client_encoding='UTF8')
+engine = create_engine(localHost_str, encoding = 'utf-8')
 
 
 

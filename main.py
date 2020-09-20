@@ -37,11 +37,14 @@ def main():
         print(e)
 
 def data_to_db():
+
     try:
+        start = time.time()
+
         import pandas as pd
-        from paths import allCountries_path, allContinents_path
-        countries = pd.read_csv(allCountries_path)
-        continents = pd.read_csv(allContinents_path)
+        from paths import mainCountries_path, mainContinents_path
+        countries = pd.read_csv(mainCountries_path)
+        continents = pd.read_csv(mainContinents_path)
 
     except FileNotFoundError as e:
         raise e
@@ -50,14 +53,20 @@ def data_to_db():
         country_data_toDB(countries)
         continent_data_toDB(continents)
 
+        end = time.time()
+        execution_time = (end - start) / 60
+        print('The process executed successfully,the time it took is: {:.3f} minutes.'.format(execution_time))
+
     except KeyError as e:
-        raise(e)
+        raise e
+
+
 
 if __name__ == '__main__':
-    # data_to_db()
+    data_to_db()
 
-    schedule.every().day.at("14:53").do(main)
-
-    while True:
-        schedule.run_pending()
-        time.sleep(60)  # Wait one minute
+    # schedule.every().day.at("11:57").do(main)
+    #
+    # while True:
+    #     schedule.run_pending()
+    #     time.sleep(60)  # Wait one minute

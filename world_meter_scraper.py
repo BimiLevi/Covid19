@@ -41,14 +41,17 @@ def get_data(url):
 
 					for idx, col in enumerate(cols):
 						col_text = col.text.strip()
-
-						if (col_text == 'N/A') or (col_text == ''):  # Filing missing values in the data with numpy nan type.
-							record[header_list[idx]] = np.nan
+						if col_text == 'N/A':  # Filing missing values in the data with numpy nan type.
+							record[header_list[idx]] = None
 
 						else:
 							if ',' in col_text:
-								pass
-							record[header_list[idx]] = col.text.strip()
+								col_text = col_text.replace(',', '')
+
+							if '+' in col_text:
+								col_text = col_text.replace('+', '')
+
+							record[header_list[idx]] = col_text
 
 					records.append(record)
 
@@ -114,31 +117,31 @@ def data_toCsvs(countries, continents):
 
 def update_main_csvs(countries, continents):
 	try:
-		from paths import allContinents_path, allCountries_path
+		from paths import mainContinents_path, mainCountries_path
 
 		try:
-			all_countriesDF = pd.read_csv(allCountries_path)
+			all_countriesDF = pd.read_csv(mainCountries_path)
 			if not countries.empty:
 				all_countriesDF = pd.concat([all_countriesDF, countries], axis = 0, ignore_index = True)
-				all_countriesDF.to_csv(allCountries_path, index = False)
+				all_countriesDF.to_csv(mainCountries_path, index = False)
 				print('Countries main data csv has been updated.')
 
 		except OSError as e:
 			print("The main csv's did not updated the following Error has occurred: \n {}".format(e))
 			print('Countries main file, dose not exists.')
-			countries.to_csv(allCountries_path, index=False)
+			countries.to_csv(mainCountries_path, index=False)
 			print('Countries main csv has been created.')
 
 		try:
-			all_continentsDF = pd.read_csv(allContinents_path)
+			all_continentsDF = pd.read_csv(mainContinents_path)
 			if not countries.empty:
 				all_continentsDF = pd.concat([all_continentsDF, continents], axis=0, ignore_index=True)
-				all_continentsDF.to_csv(allContinents_path, index=False)
+				all_continentsDF.to_csv(mainContinents_path, index=False)
 				print('Continents main csv has been updated.')
 
 		except OSError as e:
 			print("The main csv's did not updated the following Error has occurred: \n {}".format(e))
-			continents.to_csv(allContinents_path, index = False)
+			continents.to_csv(mainContinents_path, index = False)
 			print('Continents main csv has been created.')
 
 	except Exception as e:

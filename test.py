@@ -1,6 +1,6 @@
 # -*- coding: utf-8 -*-
 
-from paths import allContinents_path, allCountries_path
+from paths import mainContinents_path, mainCountries_path
 import pandas as pd
 import time
 from datetime import date, datetime
@@ -54,7 +54,7 @@ def get_data(url):
 								col_text = col_text.replace(',', '')
 
 							if '+' in col_text:
-								col_text = col_text.replace('+','')
+								col_text = col_text.replace('+', '')
 
 							record[header_list[idx]] = col_text
 
@@ -98,15 +98,15 @@ def data_to_dfs(data):
 	return continent_df, country_df
 
 def add_data_toCsv(countries, continents):
-	all_countriesDF = pd.read_csv(allCountries_path)
-	all_continentsDF = pd.read_csv(allContinents_path)
+	all_countriesDF = pd.read_csv(mainCountries_path)
+	all_continentsDF = pd.read_csv(mainContinents_path)
 
 	all_countriesDF = pd.concat([all_countriesDF, countries], axis=0, ignore_index=True)
-	all_countriesDF.to_csv(allCountries_path, index=False)
+	all_countriesDF.to_csv(mainCountries_path, index=False)
 	print('Countries entire data csv has been updated.')
 
 	all_continentsDF = pd.concat([all_continentsDF, continents], axis=0, ignore_index=True)
-	all_continentsDF.to_csv(allContinents_path, index=False)
+	all_continentsDF.to_csv(mainContinents_path, index=False)
 	print('Continents entire data csv has been updated.')
 
 def data_toCsvs(countries, continents):

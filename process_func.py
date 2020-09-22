@@ -1,6 +1,3 @@
-
-'''Before lunching the program for the first time, dont forget to check that paths below are correct.'''
-
 from paths import countriesID_path, continentsID_path
 country_path = countriesID_path
 continent_path = continentsID_path
@@ -22,11 +19,11 @@ def creat_continentDF(df):
 		# Giving each continent a uniq id parm.
 		continent_df['Continent_id'] = continent_df['Continent'].map(possible_continents)
 
-		column_titles = ['Continent_id', 'Continent', 'TotalCases', 'NewCases', 'TotalDeaths', 'NewDeaths',
-		                 'TotalRecovered', 'NewRecovered', 'ActiveCases', 'Serious,Critical', 'scrap_date',
-		                 'scrap_time']
 
-		continent_df = continent_df.reindex(columns = column_titles)
+		col_list = ['scrap_date', 'scrap_time', 'Continent_id', 'Continent', 'TotalCases', 'NewCases',
+		            'TotalDeaths', 'NewDeaths', 'TotalRecovered', 'NewRecovered', 'ActiveCases', 'Serious,Critical']
+
+		continent_df = continent_df.reindex(columns = col_list)
 
 		return continent_df
 
@@ -48,9 +45,13 @@ def creat_countryDF(df):
 		                                          'Tests/\n1M pop\n': 'Tests_1M_pop',
 		                                         'Tot\xa0Cases/1M pop': 'Tot_Cases_1M_pop'})
 
-		desired_cols = country_df.iloc[:, 2:].drop(columns= ['Population']).columns.tolist()
-		col_titles = ['Country_id', 'Country', 'Population'] + desired_cols
-		country_df = country_df.reindex(columns = col_titles)
+
+		col_list = ['scrap_date', 'scrap_time', 'Country_id', 'Country', 'Population', 'TotalCases', 'NewCases',
+		            'TotalDeaths', 'NewDeaths', 'TotalRecovered', 'NewRecovered', 'ActiveCases', 'Serious,Critical',
+		            'Tot_Cases_1M_pop', 'Deaths/1M pop', 'TotalTests', 'Tests_1M_pop', 'Continent_id']
+
+		df = df.reindex(columns = col_list)
+		country_df = country_df.reindex(columns = col_list)
 		country_df
 
 		return country_df
@@ -65,17 +66,3 @@ def get_date_parm():
 	day = datetime.now().strftime("%d")
 	return day, month, year
 
-def creat_paths():
-	day, month, year = get_date_parm()
-
-	# Crating directories to save the scraped data in them.
-	from utilities.directories import path
-	#  Crating path for each directory.
-	world_path = path + '/' + "World Meter Data"
-	dateYea_path = world_path + '/' + year
-	dateMon_path = dateYea_path + '/' + month
-	dateDay_path = dateMon_path + '/' + day
-
-	dir_paths = [world_path, dateYea_path, dateMon_path, dateDay_path]
-
-	return dir_paths

@@ -1,7 +1,5 @@
 import os
 
-path = os.getcwd()
-
 def check_dir(path):
     dir_name = os.path.basename(os.path.normpath(path))
     if os.path.isdir(path):

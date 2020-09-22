@@ -41,7 +41,7 @@ def get_data(url):
 
 					for idx, col in enumerate(cols):
 						col_text = col.text.strip()
-						if col_text == 'N/A':  # Filing missing values in the data with numpy nan type.
+						if (col_text == 'N/A') or (col_text == ''):  # Filing missing values in the data with None
 							record[header_list[idx]] = None
 
 						else:
@@ -93,8 +93,8 @@ def data_to_dfs(data):
 	return continent_df, country_df
 
 def data_toCsvs(countries, continents):
-	import process_func
-	dir_paths = process_func.creat_paths()
+	from paths import creat_paths
+	dir_paths = creat_paths()
 
 	from utilities.directories import creat_directory
 	for path in dir_paths:

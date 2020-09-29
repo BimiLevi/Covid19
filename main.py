@@ -1,5 +1,6 @@
-from world_meter_scraper import get_data, data_to_dfs, update_main_csvs, data_toCsvs
-from db.db_func import continent_data_toDB, country_data_toDB,  load_backup
+from scraper.world_meter_scraper import get_data, data_to_dfs, data_to_csvs
+from db.db_func import load_backup, df_to_db, table_exists
+from resources.tables_func import *
 import time
 import schedule
 
@@ -8,7 +9,16 @@ def main():
     try:
         start = time.time()
 
-        url = "https://www.worldometers.info/coronavirus"
+        if not table_exists('Countries'):
+            print('Creating Countries main table')
+            countries_table()
+
+        if not table_exists('Continents'):
+            print('Creating Continents main table')
+            continents_table()
+
+        from resources.paths import site_url
+        url = site_url
 
         # Getting the data out of the website, inserting the data into a dict and returns the dict.
         data = get_data(url)
@@ -16,18 +26,13 @@ def main():
         # Crating a panda's object out of the data, and manipulating it. returns two dataframes.
         continents, countries = data_to_dfs(data)
 
-        # Updating the two main csv that contain the entire data.
-        update_main_csvs(countries, continents)
-
         # Creates csv from the newly scraped data, and saves it by date inside the project directory.
-        data_toCsvs(countries, continents)
+        data_to_csvs(countries, continents)
 
-        # Writing the data into azure PostgresSQL DB.
-        # Countries df is written for each country separately!
-        continent_data_toDB(continents)
-
-        # Continents df is written for each continent separately!
-        country_data_toDB(countries)
+        #  Writing the data into azure PostgresSQL DB.
+        df_dict = {'Country': countries, 'Continent': continents}
+        for col in df_dict.keys():
+            df_to_db(col, df_dict[col])
 
         end = time.time()
         execution_time = (end - start) / 60
@@ -37,10 +42,14 @@ def main():
         print(e)
 
 if __name__ == '__main__':
-    load_backup()
+    main()
 
-    schedule.every().day.at("21:00").do(main)
+    # load_backup()
+    #
+    # schedule.every().day.at("22:00").do(main)
+    #
+    # while True:
+    #     schedule.run_pending()
+    #     time.sleep(60)  # Wait one minute
 
-    while True:
-        schedule.run_pending()
-        time.sleep(60)  # Wait one minute
+

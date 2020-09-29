@@ -1,5 +1,5 @@
 from selenium import webdriver
-from paths import webDriver_path
+from resources.paths import webDriver_path
 
 
 class Driver:

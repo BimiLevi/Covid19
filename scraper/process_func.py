@@ -1,11 +1,8 @@
-from paths import countriesID_path, continentsID_path
-country_path = countriesID_path
-continent_path = continentsID_path
-
+from resources.paths import continents_path, countries_id
 from utilities.files_function import load_json
-possible_continents = load_json(continent_path)
-possible_countries = load_json(country_path)
 
+possible_continents = load_json(continents_path)
+countryId_dict = load_json(countries_id)
 
 def creat_continentDF(df):
 	try:
@@ -38,8 +35,10 @@ def creat_countryDF(df):
 		country_df = country_df[country_df['Country,Other'] != 'Total:'].reset_index(drop = True)
 
 		# Giving each country an uniq id parm.
-		country_df['#'] = country_df['Country,Other'].map(possible_countries)
+		country_df['#'] = country_df['Country,Other'].map(countryId_dict)
+
 		country_df['Continent'] = country_df['Continent'].map(possible_continents)
+
 		country_df = country_df.rename(columns = {'Country,Other': 'Country', '#': 'Country_id',
 		                                          'Continent': 'Continent_id',
 		                                          'Tests/\n1M pop\n': 'Tests_1M_pop',

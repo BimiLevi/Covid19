@@ -1,13 +1,11 @@
-import numpy as np
 import pandas as pd
 import time
 from datetime import date, datetime
 from tqdm import tqdm
 
-
 def get_data(url):
 	global bot
-	from web_driver import Driver
+	from scraper.web_driver import Driver
 	from bs4 import BeautifulSoup
 
 	counter = 0
@@ -29,6 +27,7 @@ def get_data(url):
 
 			# Iterating the data, and creating df.
 			records = []
+			total_data = 1
 			with tqdm(total = 232, desc= 'Getting the data') as pbar:
 				for idy, row in enumerate(table.find_all('tr')):
 					time.sleep(0.02)
@@ -50,16 +49,20 @@ def get_data(url):
 
 							if '+' in col_text:
 								col_text = col_text.replace('+', '')
-
 							record[header_list[idx]] = col_text
 
+					total_data += 1
 					records.append(record)
 
 			bot.driver.quit()
 
+			if total_data != 232:
+				raise ValueError('The data was not scraped completely.\n ')
+
+
 			return records
 
-		except IndexError as e:
+		except Exception as e:
 			bot.driver.quit()
 			print(e, '\n')
 			# Three tries before continuing.
@@ -86,14 +89,14 @@ def data_to_dfs(data):
 		print('The columns you asked for where not found.')
 		print(e)
 
-	from process_func import creat_continentDF, creat_countryDF
+	from scraper.process_func import creat_continentDF, creat_countryDF
 	continent_df = creat_continentDF(df)
 	country_df = creat_countryDF(df)
 
 	return continent_df, country_df
 
-def data_toCsvs(countries, continents):
-	from paths import creat_paths
+def data_to_csvs(countries, continents):
+	from resources.paths import creat_paths
 	dir_paths = creat_paths()
 
 	from utilities.directories import creat_directory
@@ -114,38 +117,5 @@ def data_toCsvs(countries, continents):
 
 	continents.to_csv(files_list[1], index=False)
 	print('Continents {} csv was successfully created.'.format(str(today)))
-
-def update_main_csvs(countries, continents):
-	try:
-		from paths import mainContinents_path, mainCountries_path
-
-		try:
-			all_countriesDF = pd.read_csv(mainCountries_path)
-			if not countries.empty:
-				all_countriesDF = pd.concat([all_countriesDF, countries], axis = 0, ignore_index = True)
-				all_countriesDF.to_csv(mainCountries_path, index = False)
-				print('Countries main data csv has been updated.')
-
-		except OSError as e:
-			print("The main csv's did not updated the following Error has occurred: \n {}".format(e))
-			print('Countries main file, dose not exists.')
-			countries.to_csv(mainCountries_path, index=False)
-			print('Countries main csv has been created.')
-
-		try:
-			all_continentsDF = pd.read_csv(mainContinents_path)
-			if not countries.empty:
-				all_continentsDF = pd.concat([all_continentsDF, continents], axis=0, ignore_index=True)
-				all_continentsDF.to_csv(mainContinents_path, index=False)
-				print('Continents main csv has been updated.')
-
-		except OSError as e:
-			print("The main csv's did not updated the following Error has occurred: \n {}".format(e))
-			continents.to_csv(mainContinents_path, index = False)
-			print('Continents main csv has been created.')
-
-	except Exception as e:
-		print("The main csv's did not updated the following Error has occurred: \n {}".format(e))
-		print("There is no main csv's files.")
 
 

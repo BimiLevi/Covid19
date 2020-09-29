@@ -25,3 +25,6 @@ def creat_directory(path):
 
             else:
                 print("Successfully created the directory %s." % dir_name)
+
+project_root = os.path.dirname(os.path.dirname(__file__))
+

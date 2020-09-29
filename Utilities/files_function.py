@@ -14,6 +14,7 @@ def load_json(file_name):
 		with open(('{}.json'.format(file_name)), 'r') as f:
 			data = json.load(f)
 			return data
+
 	except Exception as e:
 		print(e)
 

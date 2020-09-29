@@ -29,7 +29,7 @@ def load_backup():
 
 		end = time.time()
 		execution_time = (end - start) / 60
-		print('The process executed successfully,the time it took is: {:.3f} minutes.'.format(execution_time))
+		print('The process executed successfully,the time it took is: {:.3f} minutes.\n'.format(execution_time))
 
 	except Exception as e:
 		print('The following Exception as occurred:\n{}'.format(e))
@@ -60,8 +60,10 @@ def df_to_db(col, df):
 			temp_df = df[df[col] == '{}'.format(header)]
 			temp_df.to_sql('{}'.format(header), con = engine, if_exists = 'append', index = False)
 
-		print('{} DB was successfully Updated.'.format(col))
+		print('{} DB was successfully Updated.\n'.format(col))
 
+	# TODO: think of an operation that happens in this except.
 	except ConnectionError as e:
 		print('An error has occurred when trying to update continents DB.')
+
 		raise e

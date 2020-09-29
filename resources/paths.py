@@ -3,7 +3,7 @@ import os
  after downloading the webdriver add the path in this script.
  '''
 
-webDriver_path = 'C:\Web_drivers\Chromewebdriver\chromedriver.exe'
+webDriver_path = os.environ.get('web_driver_path')
 site_url = "https://www.worldometers.info/coronavirus"
 
 
@@ -31,4 +31,5 @@ def creat_paths():
 	dir_paths = [world_path, dateYea_path, dateMon_path, dateDay_path]
 
 	return dir_paths
+
 

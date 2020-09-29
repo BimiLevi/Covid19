@@ -89,9 +89,9 @@ def data_to_dfs(data):
 		print('The columns you asked for where not found.')
 		print(e)
 
-	from scraper.process_func import creat_continentDF, creat_countryDF
-	continent_df = creat_continentDF(df)
-	country_df = creat_countryDF(df)
+	from scraper.process_func import creat_continent_df, creat_country_df
+	continent_df = creat_continent_df(df)
+	country_df = creat_country_df(df)
 
 	return continent_df, country_df
 

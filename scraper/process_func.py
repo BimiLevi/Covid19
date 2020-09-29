@@ -4,7 +4,7 @@ from utilities.files_function import load_json
 possible_continents = load_json(continents_path)
 countryId_dict = load_json(countries_id)
 
-def creat_continentDF(df):
+def creat_continent_df(df):
 	try:
 		continents_list = possible_continents.keys()
 		continent_df = df[df['Country,Other'].isin(continents_list)]
@@ -27,7 +27,7 @@ def creat_continentDF(df):
 	except KeyError as e:
 		raise e
 
-def creat_countryDF(df):
+def creat_country_df(df):
 	try:
 		country_first_idx = df[df['#'] == str(1)].index.tolist()[0]  # Getting the starting index' in order
 		# To slice the df.

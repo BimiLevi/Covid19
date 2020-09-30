@@ -60,7 +60,7 @@ def df_to_db(col, df):
 			temp_df = df[df[col] == '{}'.format(header)]
 			temp_df.to_sql('{}'.format(header), con = engine, if_exists = 'append', index = False)
 
-		print('{} DB was successfully Updated.\n'.format(col))
+		print('{} DB was successfully Updated.'.format(col))
 
 	# TODO: think of an operation that happens in this except.
 	except ConnectionError as e:

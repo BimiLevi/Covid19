@@ -25,7 +25,6 @@ def main():
         from resources.paths import site_url
         url = site_url
 
-        # Getting the data out of the website, inserting the data into a dict and returns the dict.
         data = get_data(url)
 
     except Exception as e:
@@ -33,7 +32,6 @@ def main():
         raise e
 
     try:
-        # Crating a panda's object out of the data, and manipulating it. returns two dataframes.
         continents, countries = data_to_dfs(data)
 
     except Exception as e:
@@ -41,7 +39,6 @@ def main():
         raise e
 
     try:
-        # Creates csv from the newly scraped data, and saves it by date inside the project directory.
         data_to_csvs(countries, continents)
 
     except Exception as e:
@@ -49,8 +46,9 @@ def main():
         raise e
 
     try:
-        #  Writing the data into azure PostgresSQL DB.
         df_dict = {'Country': countries, 'Continent': continents}
+
+        #  Writing the data into azure PostgresSQL DB.
         for col in df_dict.keys():
             df_to_db(col, df_dict[col])
 
@@ -66,12 +64,10 @@ def main():
 if __name__ == '__main__':
     pass
     # load_backup()
+    schedule.every().day.at("22:00").do(main)
 
-    #
-    # schedule.every().day.at("22:00").do(main)
-    #
-    # while True:
-    #     schedule.run_pending()
-    #     time.sleep(60)  # Wait one minute
+    while True:
+        schedule.run_pending()
+        time.sleep(60)  # Wait one minute
 
 

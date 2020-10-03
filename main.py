@@ -66,7 +66,7 @@ def main():
 if __name__ == '__main__':
     load_backup()
 
-    schedule.every().day.at("22:00").do(main)
+    schedule.every().day.at("22:35").do(main)
 
     while True:
         schedule.run_pending()

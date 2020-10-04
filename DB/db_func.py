@@ -62,8 +62,6 @@ def df_to_db(col, df):
 
 		print('{} DB was successfully Updated.'.format(col))
 
-	# TODO: think of an operation that happens in this except.
 	except ConnectionError as e:
-		print('An error has occurred when trying to update continents DB.')
-
+		print('Unable to connect to DB.')
 		raise e

@@ -8,8 +8,8 @@ def get_data(url):
 	from scraper.web_driver import Driver
 	from bs4 import BeautifulSoup
 
-	counter = 0
-	while counter < 3:
+	counter = 1
+	while counter <= 3:
 		try:
 			bot = Driver()
 			bot.driver.get(url)
@@ -66,7 +66,7 @@ def get_data(url):
 
 		except Exception as e:
 			bot.driver.quit()
-			print(e, '\n')
+			print("The error that occurred is:\n{}\n".format(e))
 			# Three tries before continuing.
 			print('The process will start again in 10 seconds.\n This is the {} attempt out of 3.\n'.format(str(
 					counter+1)))
@@ -88,8 +88,10 @@ def data_to_dfs(data):
 		df = df.drop(columns = drop_cols)
 
 	except FileNotFoundError as e:
-		print('The columns you asked for where not found.')
-		print(e)
+		print('The columns you asked for where not found.'
+		      'The requested columns are:\n{]'.format(drop_cols))
+		print("The error that occurred is:\n{}".format(e))
+
 
 	from scraper.process_func import creat_continent_df, creat_country_df
 	continent_df = creat_continent_df(df)

@@ -3,12 +3,10 @@ import os
  after downloading the webdriver add the path in this script.
  '''
 
+project_path = os.path.dirname(os.path.dirname(__file__))
+
 webDriver_path = os.environ.get('web_driver_path')
 site_url = "https://www.worldometers.info/coronavirus"
-
-
-project_path = os.path.dirname(os.path.dirname(__file__))
-# project_path = os.path.join(project_root, 'Covid19')
 
 world_path = os.path.join(project_path, 'World Meter Data')
 utilities_path = os.path.join(project_path, 'utilities')

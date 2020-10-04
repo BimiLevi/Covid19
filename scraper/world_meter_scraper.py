@@ -9,7 +9,7 @@ def get_data(url):
 	from bs4 import BeautifulSoup
 
 	counter = 0
-	while counter <= 3:
+	while counter < 3:
 		try:
 			bot = Driver()
 			bot.driver.get(url)
@@ -20,7 +20,9 @@ def get_data(url):
 
 			# Getting the headers for table columns.
 			print('Getting the headers.')
+			table_len = len(table.findAll('tr'))
 			table_headers = table.find('tr').findAll('th')
+
 			header_list = []
 			for header in table_headers:
 				header_list.append(header.get_text())
@@ -28,7 +30,7 @@ def get_data(url):
 			# Iterating the data, and creating df.
 			records = []
 			total_data = 1
-			with tqdm(total = 232, desc= 'Getting the data') as pbar:
+			with tqdm(total = table_len, desc= 'Getting the data') as pbar:
 				for idy, row in enumerate(table.find_all('tr')):
 					time.sleep(0.02)
 					pbar.update(1)
@@ -56,7 +58,7 @@ def get_data(url):
 
 			bot.driver.quit()
 
-			if total_data != 232:
+			if total_data != table_len:
 				raise ValueError('The data was not scraped completely.\n ')
 
 

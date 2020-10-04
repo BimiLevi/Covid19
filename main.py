@@ -19,7 +19,7 @@ def main():
 
     except Exception as e:
         print('Cannot creat the base tables.')
-        raise e
+        print("The error that occurred is:\n{}".format(e))
 
     try:
         from resources.paths import site_url
@@ -30,7 +30,7 @@ def main():
 
     except Exception as e:
         print('Cannot fetch the data from the website.')
-        raise e
+        print("The error that occurred is:\n{}".format(e))
 
     try:
         # Crating a panda's object out of the data, and manipulating it. returns two dataframes.
@@ -38,7 +38,7 @@ def main():
 
     except Exception as e:
         print("Couldn't convert the data into pandas df object.")
-        raise e
+        print("The error that occurred is:\n{}".format(e))
 
     try:
         # Creates csv from the newly scraped data, and saves it by date inside the project directory.
@@ -46,7 +46,7 @@ def main():
 
     except Exception as e:
         print("An error has occurred when trying to save the data to csv's")
-        raise e
+        print("The error that occurred is:\n{}".format(e))
 
     try:
         #  Writing the data into azure PostgresSQL DB.
@@ -56,7 +56,7 @@ def main():
 
     except Exception as e:
         print("Couldn't writ the data onto the DB.")
-        raise e
+        print("The error that occurred is:\n{}".format(e))
 
     end = time.time()
     execution_time = (end - start) / 60
@@ -66,7 +66,7 @@ def main():
 if __name__ == '__main__':
     load_backup()
 
-    schedule.every().day.at("22:35").do(main)
+    schedule.every().day.at("22:00").do(main)
 
     while True:
         schedule.run_pending()

@@ -1,4 +1,6 @@
 from db.engine import engine
+import sqlalchemy as sa
+import  pandas as pd
 
 def load_backup():
 	import time
@@ -65,3 +67,34 @@ def df_to_db(col, df):
 	except ConnectionError as e:
 		print('Unable to connect to DB.')
 		raise e
+
+	except Exception as e:
+		print("Couldn't dump tha data in to DB.")
+		print("The error that occurred is:\n{}".format(e))
+
+def get_country(countryName):
+	if not countryName[0].isupper():
+		countryName = countryName.capitalize()
+
+	country = sa.Table(countryName, sa.MetaData(), autoload_with = engine)
+	query = country.select()
+	result = engine.execute(query).fetchall()
+	print(result)
+	return result
+
+	# with engine.connect() as con:
+	# 	res = con.execute("SELECT * FROM information_schema.tables WHERE table_schema='public'")
+	# 	tables = res.fetchall()
+	# 	for table in tables:
+	# 		pass
+
+		# return 1
+
+
+
+
+# israel = get_country('israel')
+temp = pd.read_sql('Israel',con = engine)
+print(type(israel))
+# print(israel)
+print(temp)

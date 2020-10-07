@@ -1,22 +1,14 @@
 from db.engine import engine
-import sqlalchemy as sa
 import pandas as pd
+import psycopg2
 
 def load_backup():
 	import time
 	import os
 	from glob import glob
-	import pandas as pd
 	from resources.paths import world_path
-	from resources.tables_func import  countries_table,continents_table
 	try:
 		start = time.time()
-
-		print('Creating Countries main table')
-		countries_table()
-
-		print('Creating Continents main table')
-		continents_table()
 
 		# Complexity time O(n^3)
 		ext_list = ["*Countries*", '*Continents*']
@@ -76,11 +68,29 @@ def df_to_db(col, df):
 		raise e
 
 	except Exception as e:
-		print("Couldn't dump tha data in to DB.")
+		print("Couldn't dump the data in to DB.")
 		print("The error that occurred is:\n{}".format(e))
 
-def get_country(countryName):
-	pass
+# This func returns pandas object.
+def get_table(table):
+	try:
+		if type(table) == str:
+			if not table[0].isupper():
+				table = table.capitalize()
+
+			if table_exists(table):
+				table = pd.read_sql(table, con = engine)
+				return table
+
+			else:
+				return "The table that you requested doesn't exists in the DB."
+
+		else:
+			return 'The input must be of str type.'
+
+	except psycopg2.Error as e:
+		print("The error that occurred is:\n{}".format(e))
+		raise ValueError("Unable to connect to DB.")
 
 
 

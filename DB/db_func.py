@@ -1,6 +1,6 @@
 from db.engine import engine
 import sqlalchemy as sa
-import  pandas as pd
+import pandas as pd
 
 def load_backup():
 	import time
@@ -8,8 +8,15 @@ def load_backup():
 	from glob import glob
 	import pandas as pd
 	from resources.paths import world_path
+	from resources.tables_func import  countries_table,continents_table
 	try:
 		start = time.time()
+
+		print('Creating Countries main table')
+		countries_table()
+
+		print('Creating Continents main table')
+		continents_table()
 
 		# Complexity time O(n^3)
 		ext_list = ["*Countries*", '*Continents*']
@@ -73,28 +80,7 @@ def df_to_db(col, df):
 		print("The error that occurred is:\n{}".format(e))
 
 def get_country(countryName):
-	if not countryName[0].isupper():
-		countryName = countryName.capitalize()
-
-	country = sa.Table(countryName, sa.MetaData(), autoload_with = engine)
-	query = country.select()
-	result = engine.execute(query).fetchall()
-	print(result)
-	return result
-
-	# with engine.connect() as con:
-	# 	res = con.execute("SELECT * FROM information_schema.tables WHERE table_schema='public'")
-	# 	tables = res.fetchall()
-	# 	for table in tables:
-	# 		pass
-
-		# return 1
+	pass
 
 
 
-
-# israel = get_country('israel')
-temp = pd.read_sql('Israel',con = engine)
-print(type(israel))
-# print(israel)
-print(temp)

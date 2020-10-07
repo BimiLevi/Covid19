@@ -10,7 +10,7 @@ def continents_table():
 	print('Continents table has been successfully created.\n')
 
 def countries_table():
-	# countries = pd.read_json(countries_path + '.json', orient = 'columns')
+	countries = pd.read_json(countries_path + '.json', orient = 'columns')
 	countries.to_sql('Countries', con = engine, index = False)
 	print('Countries table has been successfully created.\n')
 

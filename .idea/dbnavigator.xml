@@ -25,7 +25,7 @@
     <show-object-properties value="true" />
     <loaded-nodes>
       <connection connection-id="9d205377-cc57-4886-8439-e903502f8b08">
-        <schema name="public" object-types="view, table" />
+        <schema name="public" object-types="column, constraint, table, dataset trigger, view" />
       </connection>
     </loaded-nodes>
   </component>
@@ -36,7 +36,9 @@ from  "public"."Africa""]]></console>
     </connection>
   </component>
   <component name="DBNavigator.Project.DatabaseFileManager">
-    <open-files />
+    <open-files>
+      <object connection-id="9d205377-cc57-4886-8439-e903502f8b08" object-ref="schemas/public/views/alltables" />
+    </open-files>
   </component>
   <component name="DBNavigator.Project.DatabaseSessionManager">
     <connection id="9d205377-cc57-4886-8439-e903502f8b08" />
@@ -119,7 +121,7 @@ from  "public"."Africa""]]></console>
           <max-connection-pool-size value="7" />
           <alternative-statement-delimiter value="" />
         </details>
-        <object-filters hide-empty-schemas="false" hide-pseudo-columns="false">
+        <object-filters hide-empty-schemas="false" hide-pseudo-columns="true">
           <object-type-filter use-master-settings="true">
             <object-type name="SCHEMA" enabled="true" />
             <object-type name="USER" enabled="true" />

@@ -1,4 +1,5 @@
 from db.engine import engine
+from resources.tables_func import *
 import pandas as pd
 import psycopg2
 
@@ -9,6 +10,12 @@ def load_backup():
 	from resources.paths import world_path
 	try:
 		start = time.time()
+
+		print('Creating Countries main table')
+		countries_table()
+
+		print('Creating Continents main table')
+		continents_table()
 
 		# Complexity time O(n^3)
 		ext_list = ["*Countries*", '*Continents*']
@@ -70,7 +77,6 @@ def df_to_db(col, df):
 	except Exception as e:
 		print("Couldn't dump the data in to DB.")
 		print("The error that occurred is:\n{}".format(e))
-
 # This func returns pandas object.
 def get_table(table):
 	try:
@@ -93,4 +99,5 @@ def get_table(table):
 		raise ValueError("Unable to connect to DB.")
 
 
-
+if __name__ == '__main__':
+    load_backup()

@@ -74,7 +74,6 @@ if __name__ == '__main__':
     """If you would like to use schedule model you can use the code below."""
     import schedule
     # schedule.every().day.at("22:00").do(main)
-    #
     # while True:
     #     schedule.run_pending()
     #     time.sleep(60)  # Wait one minute

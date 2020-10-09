@@ -14,4 +14,3 @@ def countries_table():
 	countries.to_sql('Countries', con = engine, index = False)
 	print('Countries table has been successfully created.\n')
 
-

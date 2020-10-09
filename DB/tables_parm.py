@@ -1,0 +1,33 @@
+import sqlalchemy as sa
+
+countries_parm = {'scrap_date': sa.DateTime(),
+                  'scrap_time': sa.DateTime(),
+                  'Country_id': sa.Integer(),
+                  'Country': sa.String(),
+                  'Population':  sa.Integer(),
+                  'TotalCases':  sa.Integer(),
+                  'NewCases':  sa.Integer(),
+                  'TotalDeaths':  sa.Integer(),
+                  'NewDeaths':  sa.Integer(),
+                  'TotalRecovered':  sa.Integer(),
+                  'NewRecovered':  sa.Integer(),
+                  'ActiveCases':  sa.Integer(),
+                  'Serious,Critical':  sa.Integer(),
+                  'Tot_Cases_1M_pop':  sa.Integer(),
+                  'Deaths/1M pop': sa.Float(),
+                  'TotalTests':  sa.Integer(),
+                  'Tests_1M_pop':  sa.Integer(),
+                  'Continent_id':  sa.Integer()}
+
+continents_parm = {'scrap_date': sa.DateTime(),
+                   'scrap_time': sa.DateTime(),
+                   'Continent_id': sa.Integer(),
+                   'Continent': sa.String(),
+                   'TotalCases': sa.Integer(),
+                   'NewCases': sa.Integer(),
+                   'TotalDeaths': sa.Integer(),
+                   'NewDeaths': sa.Integer(),
+                   'TotalRecovered': sa.Integer(),
+                   'NewRecovered': sa.Integer(),
+                   'ActiveCases': sa.Integer(),
+				   'Serious,Critical': sa.Integer()}

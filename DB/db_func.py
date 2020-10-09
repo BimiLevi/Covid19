@@ -42,7 +42,7 @@ def load_backup():
 	except Exception as e:
 		print('The following Exception as occurred:\n{}'.format(e))
 
-def get_all_tables():
+def get_tables_names():
 	tables_list = []
 	with engine.connect() as con:
 		res = con.execute("SELECT table_name FROM information_schema.tables WHERE table_schema='public'")
@@ -53,7 +53,7 @@ def get_all_tables():
 	return tables_list
 
 def table_exists(table):
-	tables_list = get_all_tables()
+	tables_list = get_tables_names()
 
 	if table in tables_list:
 		return True
@@ -63,6 +63,14 @@ def table_exists(table):
 
 def df_to_db(col, df):
 	try:
+		from db.tables_parm import countries_parm, continents_parm
+		parm = None
+		if col == 'Country':
+			parm = countries_parm
+
+		elif col == 'Continent':
+			parm = continents_parm
+
 		headers_list = df[col].drop_duplicates().tolist()
 		for header in headers_list:
 			temp_df = df[df[col] == '{}'.format(header)]
@@ -98,6 +106,3 @@ def get_table(table):
 		print("The error that occurred is:\n{}".format(e))
 		raise ValueError("Unable to connect to DB.")
 
-
-if __name__ == '__main__':
-    load_backup()

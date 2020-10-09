@@ -1,7 +1,9 @@
 from scraper.world_meter_scraper import get_data, data_to_dfs, data_to_csvs
 from db.db_func import load_backup, df_to_db, table_exists
 from resources.tables_func import *
+from db.engine import engine
 import time
+import schedule
 
 def main():
     start = time.time()
@@ -12,18 +14,12 @@ def main():
             print('Creating Countries main table')
             countries_table()
 
-    except Exception as e:
-        print("Couldn't create Countries base table.")
-        print("The error that occurred is:\n{}".format(e))
-
-    try:
-
         if not table_exists('Continents'):
             print('Creating Continents main table')
             continents_table()
 
     except Exception as e:
-        print('Cannot creat the Continents base table.')
+        print('Cannot creat the base tables.')
         print("The error that occurred is:\n{}".format(e))
 
     try:
@@ -60,8 +56,21 @@ def main():
             df_to_db(col, df_dict[col])
 
     except Exception as e:
-        print("Couldn't writ the data onto the DB.")
+        print("Couldn't write the data onto the DB.")
         print("The error that occurred is:\n{}".format(e))
+
+    # Creating a table for countries and continents that contain only the latest data.
+    try:
+        continents.to_sql('Latest Update Continents',con = engine, if_exists = 'replace', index = False)
+        print('Latest Update Continents table was successfully created.')
+
+        countries.to_sql('Latest Update Countries', con = engine, if_exists = 'replace', index = False)
+        print('Latest Update Countries table was successfully created.')
+
+    except Exception as e:
+        print("Couldn't write the data onto the DB.")
+        print("The error that occurred is:\n{}".format(e))
+
 
     end = time.time()
     execution_time = (end - start) / 60
@@ -69,10 +78,10 @@ def main():
 
 
 if __name__ == '__main__':
+    load_backup()
+
     main()
 
-    """If you would like to use schedule model you can use the code below."""
-    import schedule
     # schedule.every().day.at("22:00").do(main)
     # while True:
     #     schedule.run_pending()

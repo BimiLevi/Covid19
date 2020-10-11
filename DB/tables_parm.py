@@ -1,7 +1,7 @@
 import sqlalchemy as sa
 
-countries_parm = {'scrap_date': sa.DateTime(),
-                  'scrap_time': sa.DateTime(),
+countries_parm = {'scrap_date': sa.Date(),
+                  'scrap_time': sa.Time(),
                   'Country_id': sa.Integer(),
                   'Country': sa.String(),
                   'Population':  sa.Integer(),
@@ -19,8 +19,8 @@ countries_parm = {'scrap_date': sa.DateTime(),
                   'Tests_1M_pop':  sa.Integer(),
                   'Continent_id':  sa.Integer()}
 
-continents_parm = {'scrap_date': sa.DateTime(),
-                   'scrap_time': sa.DateTime(),
+continents_parm = {'scrap_date': sa.Date(),
+                   'scrap_time': sa.Time(),
                    'Continent_id': sa.Integer(),
                    'Continent': sa.String(),
                    'TotalCases': sa.Integer(),

@@ -13,9 +13,15 @@ def main():
             print('Creating Countries main table')
             countries_table()
 
+        else:
+            pass
+
         if not table_exists('Continents'):
             print('Creating Continents main table')
             continents_table()
+
+        else:
+            pass
 
     except Exception as e:
         print('Cannot creat the base tables.')
@@ -77,9 +83,9 @@ def main():
 
 
 if __name__ == '__main__':
-    # load_backup()
+    load_backup()
 
-    main()
+    # main()
 
     import schedule
     # schedule.every().day.at("22:00").do(main)

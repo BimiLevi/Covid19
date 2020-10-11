@@ -13,7 +13,7 @@ def continents_to_json(continent_df):
 	for idx, continent in enumerate(continents_list, start = 1):
 		continents_table[continent] = idx
 
-	json_save(continents_table, 'Continents table ')
+	save_json(continents_table, 'Continents table ')
 
 def countries_to_json(countries_df):
 	countries_list = countries_df['Country'].to_list()
@@ -22,7 +22,7 @@ def countries_to_json(countries_df):
 	for idx, country in enumerate(countries_list, start = 1):
 		countries_ids[country] = idx
 
-	json_save(countries_ids, 'Countries id')
+	save_json(countries_ids, 'Countries id')
 
 	countriesDict = countries_ids.fromkeys(countries_ids)
 	countries_table = pd.Series(countriesDict).reset_index()
@@ -33,7 +33,7 @@ def countries_to_json(countries_df):
 	countries_df = countries_df[['Country_id', 'Continent_id']]
 	countries_table = countries_table.merge(countries_df, on = 'Country_id')
 
-	json_save(countries_table, 'Countries table')
+	save_json(countries_table, 'Countries table')
 
 def creat_base_tables():
 	from resources.paths import site_url

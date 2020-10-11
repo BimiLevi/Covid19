@@ -1,7 +1,13 @@
 from db.engine import engine
+from db.tables_parm import countries_parm, continents_parm
 from resources.tables_func import *
 import pandas as pd
 import psycopg2
+
+def get_latest_data(df):
+	df = df[df['scrap_date'].max() == df['scrap_date']]
+	df = df.sort_values(by =['TotalCases'], ascending = False)
+	return df
 
 def load_backup():
 	import time
@@ -31,9 +37,13 @@ def load_backup():
 
 			if ext == "*Countries*":
 				df_to_db('Country', frame)
+				late_data = get_latest_data(frame)
+				late_data.to_sql('Latest Update Countries', con = engine, if_exists = 'replace', index = False, dtype = countries_parm)
 
 			elif ext == '*Continents*':
 				df_to_db('Continent', frame)
+				late_data = get_latest_data(frame)
+				late_data.to_sql('Latest Update Continents', con = engine, if_exists = 'replace', index = False, dtype = continents_parm)
 
 		end = time.time()
 		execution_time = (end - start) / 60
@@ -63,18 +73,17 @@ def table_exists(table):
 
 def df_to_db(col, df):
 	try:
-		from db.tables_parm import countries_parm, continents_parm
-		parm = None
+		dtype_parm = None
 		if col == 'Country':
-			parm = countries_parm
+			dtype_parm = countries_parm
 
 		elif col == 'Continent':
-			parm = continents_parm
+			dtype_parm = continents_parm
 
 		headers_list = df[col].drop_duplicates().tolist()
 		for header in headers_list:
 			temp_df = df[df[col] == '{}'.format(header)]
-			temp_df.to_sql('{}'.format(header), con = engine, if_exists = 'append', index = False)
+			temp_df.to_sql('{}'.format(header), con = engine, if_exists = 'append', index = False, dtype = dtype_parm)
 
 		print('{} DB was successfully Updated.'.format(col))
 

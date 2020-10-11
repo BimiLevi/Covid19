@@ -3,7 +3,6 @@ from db.db_func import load_backup, df_to_db, table_exists
 from resources.tables_func import *
 from db.engine import engine
 import time
-import schedule
 
 def main():
     start = time.time()
@@ -61,7 +60,7 @@ def main():
 
     # Creating a table for countries and continents that contain only the latest data.
     try:
-        continents.to_sql('Latest Update Continents',con = engine, if_exists = 'replace', index = False)
+        continents.to_sql('Latest Update Continents', con = engine, if_exists = 'replace', index = False)
         print('Latest Update Continents table was successfully created.')
 
         countries.to_sql('Latest Update Countries', con = engine, if_exists = 'replace', index = False)
@@ -78,10 +77,11 @@ def main():
 
 
 if __name__ == '__main__':
-    load_backup()
+    # load_backup()
 
     main()
 
+    import schedule
     # schedule.every().day.at("22:00").do(main)
     # while True:
     #     schedule.run_pending()

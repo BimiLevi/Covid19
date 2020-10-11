@@ -106,3 +106,5 @@ def get_table(table):
 		print("The error that occurred is:\n{}".format(e))
 		raise ValueError("Unable to connect to DB.")
 
+
+

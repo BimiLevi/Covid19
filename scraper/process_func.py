@@ -2,10 +2,15 @@ from resources.paths import continents_path, countries_id
 from utilities.files_function import load_json
 from datetime import datetime
 
-possible_continents = load_json(continents_path)
-countryId_dict = load_json(countries_id)
 
 def creat_continent_df(df):
+	try:
+		possible_continents = load_json(continents_path)
+
+	except Exception as e:
+		print("Unable to load continents json file.")
+		print("The error that occurred is:\n{}".format(e))
+
 	try:
 		continents_list = possible_continents.keys()
 		continent_df = df[df['Country,Other'].isin(continents_list)]
@@ -50,6 +55,13 @@ def creat_continent_df(df):
 
 def creat_country_df(df):
 	try:
+		countryId_dict = load_json(countries_id)
+
+	except Exception as e:
+		print("Unable to load countries id json file.")
+		print("The error that occurred is:\n{}".format(e))
+
+	try:
 		country_df = df[df[df['#'] == str(1)].index.tolist()[0]:]
 		country_df = country_df[country_df['Country,Other'] != 'Total:'].reset_index(drop = True)
 
@@ -60,7 +72,12 @@ def creat_country_df(df):
 	try:
 		# Giving each country an uniq id parm.
 		country_df['#'] = country_df['Country,Other'].map(countryId_dict)
-		country_df['Continent'] = country_df['Continent'].map(possible_continents)
+
+		import pandas as pd
+		from resources.paths import countries_path
+		countriesTable = pd.read_json(countries_path + '.json')
+		country_df['Continent'] = country_df['Country,Other'].map(countriesTable.set_index('Country')['Continent_id'])
+
 
 	except Exception as e:
 		print("Couldn't map tha data, during processing stage.")

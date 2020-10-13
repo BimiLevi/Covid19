@@ -1,79 +1,35 @@
+from datetime import date
+
 import pandas as pd
-import time
-from datetime import date, datetime
-from tqdm import tqdm
 
-def get_data(url):
-	global bot
-	from scraper.web_driver import Driver
-	from bs4 import BeautifulSoup
+from scraper.process_func import *
 
+
+def run_scraper():
+	start = time.time()
 	counter = 1
 	while counter <= 3:
 		try:
-			bot = Driver()
-			bot.driver.get(url)
-			content = bot.driver.page_source
+			html = get_html()
+			table = get_table(html)
+			data = process_table(table)
+			break
 
-			soup = BeautifulSoup(content, 'html5lib')
-			table = soup.find('table')
-
-			# Getting the headers for table columns.
-			print('Getting the headers.')
-			table_len = len(table.findAll('tr'))
-			table_headers = table.find('tr').findAll('th')
-
-			header_list = []
-			for header in table_headers:
-				header_list.append(header.get_text())
-
-			# Iterating the data, and creating df.
-			records = []
-			total_data = 1
-			with tqdm(total = table_len, desc= 'Getting the data') as pbar:
-				for idy, row in enumerate(table.find_all('tr')):
-					time.sleep(0.02)
-					pbar.update(1)
-
-					if idy == 0:
-						continue
-					cols = row.findAll('td')
-					record = {}
-
-					for idx, col in enumerate(cols):
-						col_text = col.text.strip()
-						if (col_text == 'N/A') or (col_text == ''):  # Filing missing values in the data with None
-							record[header_list[idx]] = None
-
-						else:
-							if ',' in col_text:
-								col_text = col_text.replace(',', '')
-
-							if '+' in col_text:
-								col_text = col_text.replace('+', '')
-							record[header_list[idx]] = col_text
-
-					total_data += 1
-					records.append(record)
-
-			bot.driver.quit()
-
-			if total_data != table_len:
-				raise ValueError('The data was not scraped completely.\n ')
-
-
-			return records
-
-		except Exception as e:
-			bot.driver.quit()
-			print("The error that occurred is:\n{}\n".format(e))
-			# Three tries before continuing.
-			print('The process will start again in 10 seconds.\n This is the {} attempt out of 3.\n'.format(str(
-					counter+1)))
+		except IndexError as ie:
 			counter += 1
-			time.sleep(10)
+			print('Unable to process the data due to IndexError.')
+			print("The error that occurred is:\n{}\n".format(ie))
 
-	print("The data couldn't be scraped.")
+			# Three tries before continuing.
+			print('The process will start again in 30 seconds.\n This is the {} attempt out of 3.\n'.format(str(
+					counter)))
+			time.sleep(30)
+
+	end = time.time()
+	execution_time = (end - start) / 60
+	print('The process executed successfully.\nthe time it took to scrape the data is: {:.3f} minutes.'.format(
+			execution_time))
+	return data
 
 def data_to_dfs(data):
 	df = pd.DataFrame.from_dict(data)
@@ -93,7 +49,6 @@ def data_to_dfs(data):
 		print("The error that occurred is:\n{}".format(e))
 
 
-	from scraper.process_func import creat_continent_df, creat_country_df
 	continent_df = creat_continent_df(df)
 	country_df = creat_country_df(df)
 
@@ -121,3 +76,4 @@ def data_to_csvs(countries, continents):
 
 	continents.to_csv(files_list[1], index=False)
 	print('Continents {} csv was successfully created.'.format(str(today)))
+

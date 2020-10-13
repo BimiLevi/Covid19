@@ -1,7 +1,73 @@
-from resources.paths import continents_path, countries_id
-from utilities.files_function import load_json
+import time
 from datetime import datetime
 
+import requests as req
+from bs4 import BeautifulSoup
+from tqdm import tqdm
+
+from resources.paths import continents_path, countries_id, site_url
+from utilities.files_function import load_json
+
+
+def get_html(url = site_url):
+	try:
+		print('Getting html page')
+		html_page = req.get(url)
+		print('Html page retrieved.\n')
+
+		return html_page
+
+	except req.exceptions.RequestException as e:
+		print('Unable to get html page.')
+		print("The error that occurred is:\n{}\n".format(e))
+
+def get_table(html_page):
+	print('Finding the table wth the data.')
+	soup = BeautifulSoup(html_page.content, 'html5lib')
+	table = soup.find('table')
+	print('Table found.\n')
+	return table
+
+def process_table(table):
+	print('Starting to processes the table.')
+	def get_headers_list(table_headers):
+		header_list = []
+		for header in table_headers:
+			header_list.append(header.get_text())
+		return header_list
+
+	headers_list = get_headers_list(table.find('tr').findAll('th'))
+	rows = table.findAll('tr')
+
+	# Iterating the data, and creating df.
+	records = []
+	total_data = 0
+	with tqdm(total = len(rows), desc = 'Processing the data') as pbar:
+		for idy, row in enumerate(rows):
+			time.sleep(0.02)
+			pbar.update(1)
+
+			cols = row.findAll('td')
+			record = {}
+
+			for idx, col in enumerate(cols):
+				col_text = col.text.strip()
+				if (col_text == 'N/A') or (col_text == ''):  # Filing missing values in the data with None
+					record[headers_list[idx]] = None
+
+				else:
+					if ',' in col_text:
+						col_text = col_text.replace(',', '')
+
+					if '+' in col_text:
+						col_text = col_text.replace('+', '')
+					record[headers_list[idx]] = col_text
+
+			total_data += 1
+			records.append(record)
+
+	print('The data was extracted from the table.\n')
+	return records
 
 def creat_continent_df(df):
 	try:

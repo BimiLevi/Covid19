@@ -1,11 +1,7 @@
 import os
-''' In order to use selenium, you need to download webdriver from: https://www.selenium.dev/downloads/,
- after downloading the webdriver add the path in this script.
- '''
 
 project_path = os.path.dirname(os.path.dirname(__file__))
 
-webDriver_path = os.environ.get('web_driver_path')
 site_url = "https://www.worldometers.info/coronavirus"
 
 world_path = os.path.join(project_path, 'World Meter Data')

@@ -1,7 +1,7 @@
 # Covid19 - WorldMeter Web Scraper 
 In this project, the goal is to scrape data regarding the Covid19 virus from the WorldMeter website.
-The data is scraped once a day, then the data is manipulated using the panda's package. After the is manipulated it's been written onto a  cloud (Azure) database(Postergsql).
-Finally, the data that was gathered is been analyzed using different Ml algorithms. 
+The data is scraped once a day, then the data is manipulated using the panda's package.the next step is to dump the data onto a cloud (Azure) database(Postergsql).
+Finally, the data that was gathered is been analyzed using different analysis techniques and Ml algorithms. 
 
 ##  Project Goals:
 * Scrape data from the web using Requests and Beautifulsoup models.

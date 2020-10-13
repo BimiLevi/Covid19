@@ -114,6 +114,3 @@ def get_table(table):
 	except psycopg2.Error as e:
 		print("The error that occurred is:\n{}".format(e))
 		raise ValueError("Unable to connect to DB.")
-
-
-

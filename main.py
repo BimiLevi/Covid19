@@ -83,9 +83,9 @@ def main():
 
 
 if __name__ == '__main__':
-    load_backup()
+    # load_backup()
 
-    # main()
+    main()
 
     import schedule
     # schedule.every().day.at("22:00").do(main)

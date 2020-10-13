@@ -1,8 +1,6 @@
-from scraper.world_meter_scraper import get_data, data_to_dfs, data_to_csvs
-from db.db_func import load_backup, df_to_db, table_exists
+from db.db_func import df_to_db, table_exists
 from resources.tables_func import *
-from db.engine import engine
-import time
+from scraper.world_meter_scraper import *
 
 def main():
     start = time.time()
@@ -27,11 +25,8 @@ def main():
         print("The error that occurred is:\n{}".format(e))
 
     try:
-        from resources.paths import site_url
-        url = site_url
-
         # Getting the data out of the website, inserting the data into a dict and returns the dict.
-        data = get_data(url)
+        data = run_scraper()
 
     except Exception as e:
         print('Cannot fetch the data from the website.')
@@ -86,10 +81,7 @@ if __name__ == '__main__':
 
     main()
 
-    import schedule
     # schedule.every().day.at("22:00").do(main)
     # while True:
     #     schedule.run_pending()
     #     time.sleep(60)  # Wait one minute
-
-

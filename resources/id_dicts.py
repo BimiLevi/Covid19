@@ -1,6 +1,7 @@
-from scraper.world_meter_scraper import get_data, data_to_dfs
-from utilities.files_function import *
 import pandas as pd
+
+from scraper.world_meter_scraper import run_scraper, data_to_dfs
+from utilities.files_function import *
 
 """
 This script creates a uniq id for each county / continent, based on the scraped data.
@@ -36,12 +37,8 @@ def countries_to_json(countries_df):
 	save_json(countries_table, 'Countries table')
 
 def creat_base_tables():
-	from resources.paths import site_url
 
-	url = site_url
-
-	data = get_data(url)
-
+	data = run_scraper()
 	continents, countries = data_to_dfs(data)
 
 	continents_to_json(continents)

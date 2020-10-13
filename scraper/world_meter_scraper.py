@@ -121,5 +121,3 @@ def data_to_csvs(countries, continents):
 
 	continents.to_csv(files_list[1], index=False)
 	print('Continents {} csv was successfully created.'.format(str(today)))
-
-

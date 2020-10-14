@@ -1,9 +1,9 @@
 # -*- coding: utf-8 -*-
-from db.engine import engine
+from db.db_config import current_db
 
 class DBConnection:
     def __init__(self):
-        self.db_engine = engine
+        self.db_engine = current_db.get_engine()
         self.db_engine.connect()
 
     def read(self, statement):
@@ -21,6 +21,7 @@ class DBConnection:
                 results[row_number][row.keys()[column_number]] = value
 
         return results
+
 dbCon = DBConnection()
 
 

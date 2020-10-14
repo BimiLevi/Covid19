@@ -1,21 +1,23 @@
-from db.db_func import df_to_db, table_exists
+from db.db_config import current_db
 from resources.tables_func import *
 from scraper.world_meter_scraper import *
+
+db = current_db
 
 def main():
     start = time.time()
     try:
 
-        if not table_exists('Countries'):
+        if not db.table_exists('Countries'):
             print('Creating Countries main table')
-            countries_table()
+            countries_table(db.get_engine())
 
         else:
             pass
 
-        if not table_exists('Continents'):
+        if not db.table_exists('Continents'):
             print('Creating Continents main table')
-            continents_table()
+            continents_table(db.get_engine())
 
         else:
             pass
@@ -52,7 +54,7 @@ def main():
         #  Writing the data into azure PostgresSQL DB.
         df_dict = {'Country': countries, 'Continent': continents}
         for col in df_dict.keys():
-            df_to_db(col, df_dict[col])
+            db.df_to_db(col, df_dict[col])
 
     except Exception as e:
         print("Couldn't write the data onto the DB.")
@@ -60,10 +62,10 @@ def main():
 
     # Creating a table for countries and continents that contain only the latest data.
     try:
-        continents.to_sql('Latest Update Continents', con = engine, if_exists = 'replace', index = False)
+        continents.to_sql('Latest Update Continents', con = db.get_engine(), if_exists = 'replace', index = False)
         print('Latest Update Continents table was successfully created.')
 
-        countries.to_sql('Latest Update Countries', con = engine, if_exists = 'replace', index = False)
+        countries.to_sql('Latest Update Countries', con = db.get_engine(), if_exists = 'replace', index = False)
         print('Latest Update Countries table was successfully created.')
 
     except Exception as e:
@@ -77,7 +79,7 @@ def main():
 
 
 if __name__ == '__main__':
-    # load_backup()
+    db.load_backup()
 
     main()
 

@@ -62,11 +62,11 @@ def main():
 
     # Creating a table for countries and continents that contain only the latest data.
     try:
-        continents.to_sql('Latest Update Continents', con = db.get_engine(), if_exists = 'replace', index = False)
-        print('Latest Update Continents table was successfully created.')
+        continents.to_sql('All continents updated', con = db.get_engine(), if_exists = 'replace', index = False)
+        print('"All continents updated" table was successfully created.')
 
-        countries.to_sql('Latest Update Countries', con = db.get_engine(), if_exists = 'replace', index = False)
-        print('Latest Update Countries table was successfully created.')
+        countries.to_sql('All countries updated', con = db.get_engine(), if_exists = 'replace', index = False)
+        print('"All countries updated" table was successfully created.')
 
     except Exception as e:
         print("Couldn't write the data onto the DB.")
@@ -79,7 +79,7 @@ def main():
 
 
 if __name__ == '__main__':
-    db.load_backup()
+    # db.load_backup()
 
     main()
 

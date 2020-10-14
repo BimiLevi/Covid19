@@ -138,13 +138,13 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 				if ext == "*Countries*":
 					self.df_to_db('Country', frame)
 					late_data = self.get_latest_data(frame)
-					late_data.to_sql('Latest Update Countries', con = self.engine, if_exists = 'replace', index = False,
+					late_data.to_sql('All countries updated', con = self.engine, if_exists = 'replace', index = False,
 					                 dtype = countries_parm)
 
 				elif ext == '*Continents*':
 					self.df_to_db('Continent', frame)
 					late_data = self.get_latest_data(frame)
-					late_data.to_sql('Latest Update Continents', con = self.engine, if_exists = 'replace', index = False,
+					late_data.to_sql('All continents updated', con = self.engine, if_exists = 'replace', index = False,
 					                 dtype = continents_parm)
 
 			end = time.time()

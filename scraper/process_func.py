@@ -11,7 +11,7 @@ from utilities.files_function import load_json
 
 def get_html(url = site_url):
 	try:
-		print('Getting html page')
+		print('Getting html page.')
 		html_page = req.get(url)
 		print('Html page retrieved.\n')
 
@@ -22,7 +22,7 @@ def get_html(url = site_url):
 		print("The error that occurred is:\n{}\n".format(e))
 
 def get_table(html_page):
-	print('Finding the table wth the data.')
+	print('Finding the table with the data.')
 	soup = BeautifulSoup(html_page.content, 'html5lib')
 	table = soup.find('table')
 	print('Table found.\n')

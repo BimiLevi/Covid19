@@ -1,6 +1,6 @@
 from db.db_config import current_db
 from resources.tables_func import *
-from scraper.world_meter_scraper import *
+from scraper.scraper import *
 
 db = current_db
 

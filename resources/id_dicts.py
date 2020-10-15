@@ -1,6 +1,6 @@
 import pandas as pd
 
-from scraper.world_meter_scraper import run_scraper, data_to_dfs
+from scraper.scraper import run_scraper, data_to_dfs
 from utilities.files_function import *
 
 """

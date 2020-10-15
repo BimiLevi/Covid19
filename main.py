@@ -28,7 +28,7 @@ def main():
 
     try:
         # Getting the data out of the website, inserting the data into a dict and returns the dict.
-        data = run_scraper()
+        data, update_date, update_time = run_scraper()
 
     except Exception as e:
         print('Cannot fetch the data from the website.')
@@ -36,7 +36,7 @@ def main():
 
     try:
         # Crating a panda's object out of the data, and manipulating it. returns two dataframes.
-        continents, countries = data_to_dfs(data)
+        continents, countries = data_to_dfs(data, update_date, update_time)
 
     except Exception as e:
         print("Couldn't convert the data into pandas df object.")

@@ -11,7 +11,9 @@ def run_scraper():
 	while counter <= 3:
 		try:
 			html = get_html()
-			table = get_table(html)
+			soup = html_parser(html)
+			update_date, update_time = latest_update(soup)
+			table = get_table(soup)
 			data = process_table(table)
 			break
 
@@ -29,15 +31,18 @@ def run_scraper():
 	execution_time = (end - start) / 60
 	print('The process executed successfully.\nthe time it took to scrape the data is: {:.3f} minutes.'.format(
 			execution_time))
-	return data
+	return data, update_date, update_time
 
-def data_to_dfs(data):
+def data_to_dfs(data, update_date, update_time):
 	df = pd.DataFrame.from_dict(data)
 
 	scrap_date = datetime.now().strftime('%Y-%m-%d')
 	scrap_time = datetime.now().strftime('%H:%M')
 	df['scrap_date'] = scrap_date
 	df['scrap_time'] = scrap_time
+
+	df['update date'] = update_date
+	df['update time-GMT'] = update_time
 
 	try:
 		drop_cols = ['1 Caseevery X ppl', '1 Deathevery X ppl', '1 Testevery X ppl']
@@ -76,3 +81,5 @@ def data_to_csvs(countries, continents):
 
 	continents.to_csv(files_list[1], index=False)
 	print('Continents {} csv was successfully created.'.format(str(today)))
+
+

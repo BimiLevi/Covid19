@@ -21,15 +21,40 @@ def get_html(url = site_url):
 		print('Unable to get html page.')
 		print("The error that occurred is:\n{}\n".format(e))
 
-def get_table(html_page):
+def html_parser(html_page):
+	try:
+		soup = BeautifulSoup(html_page.content, 'html5lib')
+		return soup
+
+	except Exception as e:
+		print('Unable to parse the html page.')
+		print("The error that occurred is:\n{}\n".format(e))
+
+def get_table(soup_obj):
 	print('Finding the table with the data.')
-	soup = BeautifulSoup(html_page.content, 'html5lib')
-	table = soup.find('table')
+	table = soup_obj.find('table')
 	print('Table found.\n')
 	return table
 
+def latest_update(soup_obj):
+	import re
+
+	last_updated = soup_obj.find("div", text = re.compile('Last updated')).text.strip().split(" ")
+
+	from datetime import datetime
+	month = last_updated[2]
+	day = last_updated[3].replace(',', '')
+	year = last_updated[4].replace(',', '')
+
+	s = year + ' ' + month + ' ' + day
+
+	date = datetime.strptime(s, "%Y %B %d").date()
+	time = last_updated[5]
+
+	return date, time
+
 def process_table(table):
-	print('Starting to processes the table.')
+	print('Starting to process the data from the table.')
 	def get_headers_list(table_headers):
 		header_list = []
 		for header in table_headers:
@@ -108,8 +133,9 @@ def creat_continent_df(df):
 		print("The error that occurred is:\n{}".format(e))
 
 	try:
-		col_list = ['scrap_date', 'scrap_time', 'Continent_id', 'Continent', 'TotalCases', 'NewCases',
-		            'TotalDeaths', 'NewDeaths', 'TotalRecovered', 'NewRecovered', 'ActiveCases', 'Serious,Critical']
+		col_list = ['scrap_date', 'scrap_time', 'update date', 'update time-GMT', 'Continent_id', 'Continent',
+		            'TotalCases', 'NewCases','TotalDeaths', 'NewDeaths', 'TotalRecovered',
+		            'NewRecovered', 'ActiveCases', 'Serious,Critical']
 
 		continent_df = continent_df.reindex(columns = col_list)
 
@@ -156,8 +182,8 @@ def creat_country_df(df):
 		                                         'Tot\xa0Cases/1M pop': 'Tot_Cases_1M_pop'})
 
 
-		col_list = ['scrap_date', 'scrap_time', 'Country_id', 'Country', 'Population', 'TotalCases', 'NewCases',
-		            'TotalDeaths', 'NewDeaths', 'TotalRecovered', 'NewRecovered', 'ActiveCases', 'Serious,Critical',
+		col_list = ['scrap_date', 'scrap_time', 'update date', 'update time-GMT', 'Country_id', 'Country', \
+		            'Population', 'TotalCases', 'NewCases', 'TotalDeaths', 'NewDeaths', 'TotalRecovered', 'NewRecovered', 'ActiveCases', 'Serious,Critical',
 		            'Tot_Cases_1M_pop', 'Deaths/1M pop', 'TotalTests', 'Tests_1M_pop', 'Continent_id']
 
 		country_df = country_df.reindex(columns = col_list)

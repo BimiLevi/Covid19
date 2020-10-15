@@ -2,6 +2,8 @@ import sqlalchemy as sa
 
 countries_parm = {'scrap_date': sa.Date(),
                   'scrap_time': sa.Time(),
+                  'update date': sa.Date(),
+                  'update time-GMT': sa.Time(),
                   'Country_id': sa.Integer(),
                   'Country': sa.String(),
                   'Population':  sa.Integer(),
@@ -21,6 +23,8 @@ countries_parm = {'scrap_date': sa.Date(),
 
 continents_parm = {'scrap_date': sa.Date(),
                    'scrap_time': sa.Time(),
+                   'update date': sa.Date(),
+                   'update time-GMT': sa.Time(),
                    'Continent_id': sa.Integer(),
                    'Continent': sa.String(),
                    'TotalCases': sa.Integer(),

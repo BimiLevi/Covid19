@@ -17,8 +17,8 @@ class Db:
 		self.dbname = dbname
 		self.host = host
 		self.port = port
-		self.url = 'postgresql+psycopg2://{}:{}@{}:{}/{}'.format(self.username, self.password, self.host, self.port,
-		                                                      self.dbname)
+
+		self.url = self.set_url()
 		self.engine = self.set_engine(self.url)
 
 	def __str__(self):
@@ -29,6 +29,10 @@ db name: {}
 host/server: {}
 port: {}
 url: {}'''.format(self.username, self.password, self.dbname, self.host, self.port, self.url)
+
+	def set_url(self):
+		url = 'postgresql+psycopg2://{}:{}@{}:{}/{}'.format(self.username,self.password,self.host,self.port,self.dbname)
+		return url
 
 	@staticmethod
 	def set_engine(url):
@@ -153,7 +157,6 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 
 		except Exception as e:
 			print('The following Exception as occurred:\n{}'.format(e))
-
 
 
 

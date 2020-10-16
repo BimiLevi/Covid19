@@ -1,4 +1,5 @@
-# Introduction
+# Covid19 - WorldMeter Web Scraper and Analysis
+## Introduction
 The goal of this project is to conduct a full ETL process and finally analyzing the gathered data using different analysis technics, visualizations, and implement various ML algorithms.
 
 ##  Motivation and Data

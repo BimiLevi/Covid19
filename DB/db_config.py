@@ -1,6 +1,6 @@
 import os
 
-from db.db import Db
+from db import Db
 
 localHost_parm = {
 	'host': os.environ.get('host_local'),
@@ -34,3 +34,5 @@ localTest = Db(localHost_parm['user'], localHost_parm['password'], localTest_par
 azure = Db(azureHost_parm['user'], azureHost_parm['password'], azureHost_parm['database'], azureHost_parm['host'])
 
 current_db = localHost
+
+

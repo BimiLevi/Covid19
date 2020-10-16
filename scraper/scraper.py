@@ -2,7 +2,9 @@ from datetime import date
 
 import pandas as pd
 
-from scraper.process_func import *
+from process_func import *
+from resources.paths import creat_paths
+from utilities.directories import creat_directory
 
 
 def run_scraper():
@@ -60,10 +62,8 @@ def data_to_dfs(data, update_date, update_time):
 	return continent_df, country_df
 
 def data_to_csvs(countries, continents):
-	from resources.paths import creat_paths
 	dir_paths = creat_paths()
 
-	from utilities.directories import creat_directory
 	for path in dir_paths:
 		creat_directory(path)
 

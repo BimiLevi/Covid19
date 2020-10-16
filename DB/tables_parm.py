@@ -1,5 +1,4 @@
 import sqlalchemy as sa
-
 countries_parm = {'scrap_date': sa.Date(),
                   'scrap_time': sa.Time(),
                   'update date': sa.Date(),
@@ -20,7 +19,6 @@ countries_parm = {'scrap_date': sa.Date(),
                   'TotalTests':  sa.Integer(),
                   'Tests_1M_pop':  sa.Integer(),
                   'Continent_id':  sa.Integer()}
-
 continents_parm = {'scrap_date': sa.Date(),
                    'scrap_time': sa.Time(),
                    'update date': sa.Date(),

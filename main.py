@@ -1,6 +1,8 @@
-from db.db_config import current_db
+import time
+
+from db_config import current_db
 from resources.tables_func import *
-from scraper.scraper import *
+from scraper import *
 
 db = current_db
 
@@ -9,14 +11,14 @@ def main():
     try:
 
         if not db.table_exists('Countries'):
-            print('Creating Countries main table')
+            print('Creating Countries main table.')
             countries_table(db.get_engine())
 
         else:
             pass
 
         if not db.table_exists('Continents'):
-            print('Creating Continents main table')
+            print('Creating Continents main table.')
             continents_table(db.get_engine())
 
         else:

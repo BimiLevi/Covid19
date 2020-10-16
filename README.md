@@ -10,7 +10,7 @@ The data that is in use in this project has been scraped out of ["World Meter"](
 
 ## Project Description:
 This project is written in python. 
-1.ETL - Complete
+1. ETL - Complete
 -Extraction:
 Scarping the data from the website HTML page, using requests and Beutifullsoup models.
 -Transformation:

@@ -5,9 +5,9 @@ from glob import glob
 import psycopg2
 from sqlalchemy import create_engine
 
-from db.tables_parm import countries_parm, continents_parm
 from resources.paths import world_path
 from resources.tables_func import *
+from tables_parm import countries_parm, continents_parm
 
 
 class Db:
@@ -157,6 +157,15 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 
 		except Exception as e:
 			print('The following Exception as occurred:\n{}'.format(e))
+
+	def tables_to_csv(self):
+		from datetime import datetime
+		tables_list = self.get_tables_names()
+		for table in tables_list:
+			temp_table = self.get_table(table)
+			date = datetime.today().strftime('%Y-%m-%d')
+			path = world_path + r'\tables\{} {}.csv'.format(table, date)
+			temp_table.to_csv(path, index = False)
 
 
 

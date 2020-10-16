@@ -20,7 +20,7 @@ This project is written in python.
   * Removing unwanted columns and header's name change.
   * Mapping Countries to continents. 
 - Load:
-Dumping the transformed data into Microsoft Azure cloud service PostgreSQL Database, Sqlalchemy is used to establish a connection with the DB.
+  Dumping the transformed data into Microsoft Azure cloud service PostgreSQL Database, Sqlalchemy is used to establish a connection with the DB.
 The data is loaded for each country and continent, furthermore, an extra four tables are created:
   * "All countries updated" - this table shows the most recent information for each country.
   * "All continents updated" - this table shows the most recent information for each continent.

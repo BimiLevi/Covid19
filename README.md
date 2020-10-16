@@ -9,7 +9,7 @@ Covid 19 pandemic has come to the world attention on Dec. 31, 2019, when authori
 The data that is in use in this project has been scraped out of ["World Meter"](https://www.worldometers.info/coronavirus/) website.
 
 ## Project Description:
-This project is written in python. 
+This project is written in python.
 1. ETL
 - Extraction:
   * Scarping the data from the website HTML page, using requests and Beutifullsoup models.
@@ -29,7 +29,7 @@ The data is loaded for each country and continent, furthermore, an extra four ta
   
   The first two tables give a view of the world's situation and the last two tables are used to simplify the connection between continents and countries.
   
-  ## Database Schema
+  **Database Schema**
 ![Alt text](https://github.com/BimiLevi/Covid19/blob/master/Covid%2019%20-%20db%20schema.png) 
 
 2. Analysis 

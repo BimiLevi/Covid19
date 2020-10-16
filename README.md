@@ -26,17 +26,16 @@ The data is loaded for each country and continent, furthermore, an extra four ta
   * "All Countries" - this table contains the country's names, countries ID's, and the relevant continent ID.
   * "All Continents" - this table contains the continent's names and continents ids.
   
-  
-<br/>The first two tables give a view of the world's situation and the last two tables are used to simplify the connection between continents and countries.
+  <br/>The first two tables give a view of the world's situation and the last two tables are used to simplify the connection between continents and countries.
 
 
 2. Analysis - Under work
-Performing SQL queries.
+* Performing SQL queries.
 
 ## Currently under work:
-Data visualization using Matplotlib and Tableau.
-Preprocessing the data for Ml analysis.
-Preforming Ml analysis using Scikitlearn.  
+* Data visualization using Matplotlib and Tableau.
+* Preprocessing the data for Ml analysis.
+* Preforming Ml analysis using Scikitlearn.  
 
 
 

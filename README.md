@@ -12,13 +12,13 @@ The data that is in use in this project has been scraped out of ["World Meter"](
 This project is written in python. 
 1. ETL - Complete
 - Extraction:
-* Scarping the data from the website HTML page, using requests and Beutifullsoup models.
+  * Scarping the data from the website HTML page, using requests and Beutifullsoup models.
 - Transformation:
-* Cleaning the data.
-* Inserting the data into pandas DF and splitting it to countries and continents.
-* Creation of a unique ID for each country and continent.
-* Removing unwanted columns and header's name change.
-* Mapping Countries to continents. 
+  * Cleaning the data.
+  * Inserting the data into pandas DF and splitting it to countries and continents.
+  * Creation of a unique ID for each country and continent.
+  * Removing unwanted columns and header's name change.
+  * Mapping Countries to continents. 
 - Load:
 Dumping the transformed data into Microsoft Azure cloud service PostgreSQL Database, Sqlalchemy is used to establish a connection with the DB.
 The data is loaded for each country and continent, furthermore, an extra four tables are created:

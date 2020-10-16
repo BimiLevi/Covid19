@@ -22,10 +22,10 @@ This project is written in python.
 - Load:
 Dumping the transformed data into Microsoft Azure cloud service PostgreSQL Database, Sqlalchemy is used to establish a connection with the DB.
 The data is loaded for each country and continent, furthermore, an extra four tables are created:
-"All countries updated" - this table shows the most recent information for each country.
-"All continents updated" - this table shows the most recent information for each continent.
-"All Countries" - this table contains the country's names, countries ID's, and the relevant continent ID.
-"All Continents" - this table contains the continent's names and continents ids.
+* "All countries updated" - this table shows the most recent information for each country.
+* "All continents updated" - this table shows the most recent information for each continent.
+* "All Countries" - this table contains the country's names, countries ID's, and the relevant continent ID.
+* "All Continents" - this table contains the continent's names and continents ids.
 The first two tables give a view of the world's situation and the last two tables are used to simplify the connection between continents and countries.
 
 

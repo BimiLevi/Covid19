@@ -38,6 +38,6 @@ The data is loaded for each country and continent, furthermore, an extra four ta
   * Preforming Ml analysis using Scikitlearn.  
   
 ## Database Schema
-![Alt text](https://github.com/BimiLevi/Covid19/blob/master/Covid%2019%20-%20%20Database%20schema.png) 
+![Alt text](https://github.com/BimiLevi/Covid19/blob/master/Covid%2019%20-%20db%20schema.png) 
 
 

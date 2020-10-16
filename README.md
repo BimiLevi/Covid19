@@ -6,7 +6,7 @@ The goal of this project is to conduct a full ETL process and finally analyzing 
 Covid 19 pandemic has come to the world attention on Dec. 31, 2019, when authorities alerted the World Health Organization of pneumonia cases in Wuhan City, Hubei province, China. This pandemic has been changing the world since its first outbreak, thousands of countries around the world are trying to fight the virus. Thie virus has a great impact on all our lives, it's effects are felt in numerous different aspects of it such as financially, socially, healthcare, and more.
 "World meter" website shows real-time live world statistics, this website that its credibility is fairly high presenting data on Covid19 in 214 countries and territories around the world.
 
-The data that is in use in this project has been scraped out of "World Meter" website.
+The data that is in use in this project has been scraped out of ["World Meter"](https://www.worldometers.info/coronavirus/) website.
 
 ## Project Description:
 This project is written in python. 

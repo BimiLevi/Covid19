@@ -1,23 +1,41 @@
-# Covid19 - WorldMeter Web Scraper 
-In this project, the goal is to scrape data regarding the Covid19 virus from the WorldMeter website.
-The data is scraped once a day, then the data is manipulated using the panda's package.the next step is to dump the data onto a cloud (Azure) database(Postergsql).
-Finally, the data that was gathered is been analyzed using different analysis techniques and Ml algorithms. 
+# Introduction
+The goal of this project is to conduct a full ETL process and finally analyzing the gathered data using different analysis technics, visualizations, and implement various ML algorithms.
 
-##  Project Goals:
-* Scrape data from the web using Requests and Beautifulsoup models.
-* Creation of a cloud (Azure) database (Postgresql), and dumpimg the data into it.
-* Analyze the extracted data using pandas and matplotlib and other packages.
+##  Motivation and Data
+Covid 19 pandemic has come to the world attention on Dec. 31, 2019, when authorities alerted the World Health Organization of pneumonia cases in Wuhan City, Hubei province, China. This pandemic has been changing the world since its first outbreak, thousands of countries around the world are trying to fight the virus. Thie virus has a great impact on all our lives, it's effects are felt in numerous different aspects of it such as financially, socially, healthcare, and more.
+"World meter" website shows real-time live world statistics, this website that its credibility is fairly high presenting data on Covid19 in 214 countries and territories around the world.
 
-## Project Stages:
-1. Scarping the data into panda's dataframe.
-2. Manipulate the raw data, so it will fit the desired pattern.
-3. Creation of Azure Database for PostgreSQL server. 
-4. Gathering data for future analysis. 
-5. Analyzing and Visualizing the data.
-6. Writing a comprehensive report. 
+The data that is in use in this project has been scraped out of "World Meter" website.
 
-## Project Status:
-The project is currently in stage 4, during the time it takes to gather the data, the following actions will take place:
-* Creating an Analysis work plan.
+## Project Description:
+This project is written in python. 
+1.ETL - Complete
+-Extraction:
+Scarping the data from the website HTML page, using requests and Beutifullsoup models.
+-Transformation:
+Cleaning the data.
+Inserting the data into pandas DF and splitting it to countries and continents.
+Creation of a unique ID for each country and continent.
+Removing unwanted columns and header's name change.
+Mapping Countries to continents. 
+-Load:
+Dumping the transformed data into Microsoft Azure cloud service PostgreSQL Database, Sqlalchemy is used to establish a connection with the DB.
+The data is loaded for each country and continent, furthermore, an extra four tables are created:
+"All countries updated" - this table shows the most recent information for each country.
+"All continents updated" - this table shows the most recent information for each continent.
+"All Countries" - this table contains the country's names, countries ID's, and the relevant continent ID.
+"All Continents" - this table contains the continent's names and continents ids.
+The first two tables give a view of the world's situation and the last two tables are used to simplify the connection between continents and countries.
 
-# This project is still work in progress. 
+
+2. Analysis - Under work
+Performing SQL queries.
+
+## Currently under work:
+Data visualization using Matplotlib and Tableau.
+Preprocessing the data for Ml analysis.
+Preforming Ml analysis using Scikitlearn.  
+
+
+
+

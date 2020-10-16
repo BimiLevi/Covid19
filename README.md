@@ -10,7 +10,7 @@ The data that is in use in this project has been scraped out of ["World Meter"](
 
 ## Project Description:
 This project is written in python. 
-1. ETL - Complete
+1. ETL
 - Extraction:
   * Scarping the data from the website HTML page, using requests and Beutifullsoup models.
 - Transformation:
@@ -28,8 +28,11 @@ The data is loaded for each country and continent, furthermore, an extra four ta
   * "All Continents" - this table contains the continent's names and continents ids. <br/>
   
   The first two tables give a view of the world's situation and the last two tables are used to simplify the connection between continents and countries.
+  
+  ## Database Schema
+![Alt text](https://github.com/BimiLevi/Covid19/blob/master/Covid%2019%20-%20db%20schema.png) 
 
-2. Analysis - Under work
+2. Analysis 
   * Performing SQL queries.
 
 ## Currently under work:
@@ -37,7 +40,6 @@ The data is loaded for each country and continent, furthermore, an extra four ta
   * Preprocessing the data for Ml analysis.
   * Preforming Ml analysis using Scikitlearn.  
   
-## Database Schema
-![Alt text](https://github.com/BimiLevi/Covid19/blob/master/Covid%2019%20-%20db%20schema.png) 
+
 
 

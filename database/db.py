@@ -6,7 +6,7 @@ import psycopg2
 from sqlalchemy import create_engine
 
 from database.tables_parm import *
-from resources.paths import world_path
+from resources.paths import Ddate_path
 from resources.tables_func import *
 
 
@@ -131,7 +131,7 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 		ext_list = ["*Countries*", '*Continents*']
 		for ext in ext_list:
 			all_csv_files = []
-			for path, subdir, files in os.walk(world_path):
+			for path, subdir, files in os.walk(Ddate_path):
 				for csv_path in glob(os.path.join(path, ext)):
 					df = pd.read_csv(csv_path, index_col = None, header = 0)
 					all_csv_files.append(df)
@@ -163,7 +163,7 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 		tables_list = self.get_tables_names()
 		for table in tables_list:
 			date = datetime.today().strftime('%Y-%m-%d')
-			path = world_path + r'\tables\{} {}.csv'.format(table, date)
+			path = Ddate_path + r'\tables\{} {}.csv'.format(table, date)
 
 			temp_table = self.get_table(table)
 			temp_table.to_csv(path, index = False)

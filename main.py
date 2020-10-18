@@ -1,5 +1,3 @@
-import time
-
 from database.db_config import current_db
 from resources.tables_func import *
 from scraper.scraper import *
@@ -81,9 +79,9 @@ def main():
 
 
 if __name__ == '__main__':
-    # db.load_backup()
+    db.load_backup()
 
-    main()
+    # main()
 
     # schedule.every().day.at("22:00").do(main)
     # while True:

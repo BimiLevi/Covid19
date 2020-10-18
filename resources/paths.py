@@ -4,7 +4,10 @@ project_path = os.path.dirname(os.path.dirname(__file__))
 
 site_url = "https://www.worldometers.info/coronavirus"
 
-world_path = os.path.join(project_path, 'World Meter Data')
+data_path = os.path.join(project_path, 'data')
+Dtables_path = os.path.join(data_path, 'tables')
+Ddate_path = os.path.join(data_path, 'date')
+
 utilities_path = os.path.join(project_path, 'utilities')
 resources_path = os.path.join(project_path, 'resources')
 
@@ -19,11 +22,11 @@ def creat_paths():
 
 	# Crating directories to save the scraped data in them.
 	#  Crating path for each directory.
-	dateYea_path = world_path + '/' + year
+	dateYea_path = Ddate_path + '/' + year
 	dateMon_path = dateYea_path + '/' + month
 	dateDay_path = dateMon_path + '/' + day
 
-	dir_paths = [world_path, dateYea_path, dateMon_path, dateDay_path]
+	dir_paths = [Ddate_path, dateYea_path, dateMon_path, dateDay_path]
 
 	return dir_paths
 

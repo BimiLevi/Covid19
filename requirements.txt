@@ -18,3 +18,5 @@ urllib3>=1.25.10
 six>=1.15.0
 webencodings>=0.5.1
 prettytable>=1.0.1
+matplotlib>=3.3.2
+selenium>=3.141.0

@@ -35,4 +35,3 @@ azure = Db(azureHost_parm['user'], azureHost_parm['password'], azureHost_parm['d
 
 current_db = localHost
 
-

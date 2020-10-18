@@ -72,6 +72,14 @@ def main():
         print("Couldn't write the data onto the DB.")
         print("The error that occurred is:\n{}".format(e))
 
+    try:
+        current_db.tables_to_csv()
+        print('Tables have been updated locally.')
+
+    except Exception as e:
+        print("Unable to updated the data tables locally.")
+        print("The error that occurred is:\n{}".format(e))
+
 
     end = time.time()
     execution_time = (end - start) / 60
@@ -79,9 +87,9 @@ def main():
 
 
 if __name__ == '__main__':
-    db.load_backup()
+    # db.load_backup()
 
-    # main()
+    main()
 
     # schedule.every().day.at("22:00").do(main)
     # while True:

@@ -6,7 +6,7 @@ import psycopg2
 from sqlalchemy import create_engine
 
 from database.tables_parm import *
-from resources.paths import Ddate_path
+from resources.paths import Ddate_path, Dtables_path
 from resources.tables_func import *
 
 
@@ -163,10 +163,11 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 		tables_list = self.get_tables_names()
 		for table in tables_list:
 			date = datetime.today().strftime('%Y-%m-%d')
-			path = Ddate_path + r'\tables\{} {}.csv'.format(table, date)
+			path = Dtables_path + r'\{} {}.csv'.format(table, date)
 
 			temp_table = self.get_table(table)
 			temp_table.to_csv(path, index = False)
+
 
 
 

@@ -1,7 +1,7 @@
 # -*- coding: utf-8 -*-
 from prettytable import PrettyTable
 
-from db.db_config import current_db
+from database.db_config import current_db
 
 
 class DBConnection:
@@ -60,6 +60,15 @@ country_high_perContinent = dbCon.read('SELECT "Country","Continent","maxCases" 
                                        '(SELECT  MAX("TotalCases")  FROM "All countries updated" GROUP BY "Continent_id")) AS t2 '
                                        'USING("Continent_id") ORDER BY "maxCases" DESC')
 
+# Top 5 countries with active cases.
+top5_countries_active = dbCon.read('SELECT "Country","ActiveCases" FROM "All countries updated" WHERE "ActiveCases" '
+                                   'IS NOT NULL ORDER BY "ActiveCases" DESC LIMIT 5;')
+
+# The date that israel had the highest value of new cases.
+israel_newCases_date = dbCon.read('SELECT "update date" as "max new cases date" FROM "Israel" WHERE "NewCases" = (Select MAX("NewCases") FROM "Israel" )')
+
+# Ranking each continent by its active cases.
+continent_active_rank = dbCon.read('SELECT "Country","Continent_id","TotalCases","ActiveCases",RANK() OVER (PARTITION BY "Continent_id" ORDER BY "ActiveCases" DESC) AS "Ranking_inContinent" FROM "All countries updated"')
 
 print(countries_minMax)
 print(continents_minMax)
@@ -67,3 +76,6 @@ print(top15_totalCases)
 print(oceania_countries)
 print(countries_perContinent)
 print(country_high_perContinent)
+print(top5_countries_active)
+print(israel_newCases_date)
+print(continent_active_rank)

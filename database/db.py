@@ -112,7 +112,7 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 
 	@staticmethod
 	def get_latest_data(df):
-		df = df.tail(1)
+		df = df[df['scrap_date'].max() == df['scrap_date']]
 		df = df.sort_values(by = ['TotalCases'], ascending = False)
 		return df
 

@@ -34,6 +34,9 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 		url = 'postgresql+psycopg2://{}:{}@{}:{}/{}'.format(self.username,self.password,self.host,self.port,self.dbname)
 		return url
 
+	def set_port(self, port):
+		self.port = port
+
 	@staticmethod
 	def set_engine(url):
 		engine = create_engine(url, encoding = 'utf-8')

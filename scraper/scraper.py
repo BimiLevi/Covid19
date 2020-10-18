@@ -2,8 +2,8 @@ from datetime import date
 
 import pandas as pd
 
-from process_func import *
 from resources.paths import creat_paths
+from scraper.process_func import *
 from utilities.directories import creat_directory
 
 

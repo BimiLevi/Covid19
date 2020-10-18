@@ -1,8 +1,8 @@
 import time
 
-from db_config import current_db
+from database.db_config import current_db
 from resources.tables_func import *
-from scraper import *
+from scraper.scraper import *
 
 db = current_db
 

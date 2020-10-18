@@ -13,7 +13,8 @@ continents_path = os.path.join(resources_path, 'Continents table')
 countries_id = os.path.join(resources_path, 'Countries id')
 
 def creat_paths():
-	from process_func import get_date_parm
+	from scraper.process_func import get_date_parm
+
 	day, month, year = get_date_parm()
 
 	# Crating directories to save the scraped data in them.

@@ -69,6 +69,8 @@ israel_newCases_date = dbCon.read('SELECT "update date" as "max new cases date" 
 
 # Ranking each continent by its active cases.
 continent_active_rank = dbCon.read('SELECT "Country","Continent_id","TotalCases","ActiveCases",RANK() OVER (PARTITION BY "Continent_id" ORDER BY "ActiveCases" DESC) AS "Ranking_inContinent" FROM "All countries updated"')
+israel_minMax_dates = dbCon.read('SELECT MIN("update date") as "Earliest Date",MAX("update date") as "Latest Date" '
+                                 'FROM "Israel"')
 
 print(countries_minMax)
 print(continents_minMax)
@@ -79,3 +81,4 @@ print(country_high_perContinent)
 print(top5_countries_active)
 print(israel_newCases_date)
 print(continent_active_rank)
+print(israel_minMax_dates)

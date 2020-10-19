@@ -14,7 +14,7 @@ def run_scraper():
 		try:
 			html = get_html()
 			soup = html_parser(html)
-			update_date, update_time = latest_update(soup)
+			update_time = latest_update(soup)
 			table = get_table(soup)
 			data = process_table(table)
 			break
@@ -33,9 +33,9 @@ def run_scraper():
 	execution_time = (end - start) / 60
 	print('The process executed successfully.\nthe time it took to scrape the data is: {:.3f} minutes.'.format(
 			execution_time))
-	return data, update_date, update_time
+	return data, update_time
 
-def data_to_dfs(data, update_date, update_time):
+def data_to_dfs(data, update_time):
 	df = pd.DataFrame.from_dict(data)
 
 	scrap_date = datetime.now().strftime('%Y-%m-%d')
@@ -43,8 +43,7 @@ def data_to_dfs(data, update_date, update_time):
 	df['scrap_date'] = scrap_date
 	df['scrap_time'] = scrap_time
 
-	df['update date'] = update_date
-	df['update time-GMT'] = update_time
+	df['update_time_GMT'] = update_time
 
 	try:
 		drop_cols = ['1 Caseevery X ppl', '1 Deathevery X ppl', '1 Testevery X ppl']

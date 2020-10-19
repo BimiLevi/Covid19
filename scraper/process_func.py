@@ -40,18 +40,9 @@ def latest_update(soup_obj):
 	import re
 
 	last_updated = soup_obj.find("div", text = re.compile('Last updated')).text.strip().split(" ")
-
-	from datetime import datetime
-	month = last_updated[2]
-	day = last_updated[3].replace(',', '')
-	year = last_updated[4].replace(',', '')
-
-	s = year + ' ' + month + ' ' + day
-
-	date = datetime.strptime(s, "%Y %B %d").date()
 	time = last_updated[5]
 
-	return date, time
+	return time
 
 def process_table(table):
 	print('Starting to process the data from the table.')
@@ -133,9 +124,10 @@ def creat_continent_df(df):
 		print("The error that occurred is:\n{}".format(e))
 
 	try:
-		col_list = ['scrap_date', 'scrap_time', 'update date', 'update time-GMT', 'Continent_id', 'Continent',
-		            'TotalCases', 'NewCases','TotalDeaths', 'NewDeaths', 'TotalRecovered',
-		            'NewRecovered', 'ActiveCases', 'Serious,Critical']
+		continent_df = continent_df.rename(columns = {'Serious,Critical': 'SeriousCritical',})
+		col_list = ['scrap_date', 'scrap_time', 'update_time_GMT', 'Continent_id', 'Continent',
+		            'TotalCases', 'NewCases', 'TotalDeaths', 'NewDeaths', 'TotalRecovered',
+		            'NewRecovered', 'ActiveCases', 'SeriousCritical']
 
 		continent_df = continent_df.reindex(columns = col_list)
 
@@ -165,11 +157,6 @@ def creat_country_df(df):
 		# Giving each country an uniq id parm.
 		country_df['#'] = country_df['Country,Other'].map(countryId_dict)
 
-		import pandas as pd
-		from resources.paths import countries_path
-		countriesTable = pd.read_json(countries_path + '.json')
-		country_df['Continent'] = country_df['Country,Other'].map(countriesTable.set_index('Country')['Continent_id'])
-
 
 	except Exception as e:
 		print("Couldn't map tha data, during processing stage.")
@@ -177,14 +164,15 @@ def creat_country_df(df):
 
 	try:
 		country_df = country_df.rename(columns = {'Country,Other': 'Country', '#': 'Country_id',
-		                                          'Continent': 'Continent_id',
-		                                          'Tests/\n1M pop\n': 'Tests_1M_pop',
-		                                         'Tot\xa0Cases/1M pop': 'Tot_Cases_1M_pop'})
+		                                          'Tests/\n1M pop\n': 'Tests_1Mpop',
+		                                         'Tot\xa0Cases/1M pop': 'Tot_Cases_1Mpop',
+		                                          'Deaths/1M pop': 'Deaths_1Mpop',
+		                                          'Serious,Critical': 'SeriousCritical'})
 
 
-		col_list = ['scrap_date', 'scrap_time', 'update date', 'update time-GMT', 'Country_id', 'Country', \
-		            'Population', 'TotalCases', 'NewCases', 'TotalDeaths', 'NewDeaths', 'TotalRecovered', 'NewRecovered', 'ActiveCases', 'Serious,Critical',
-		            'Tot_Cases_1M_pop', 'Deaths/1M pop', 'TotalTests', 'Tests_1M_pop', 'Continent_id']
+		col_list = ['scrap_date', 'scrap_time', 'update_time_GMT', 'Country_id', 'Country',\
+		            'Population', 'TotalCases', 'NewCases', 'TotalDeaths', 'NewDeaths', 'TotalRecovered', 'NewRecovered', 'ActiveCases', 'SeriousCritical',
+		            'Tot_Cases_1Mpop', 'Deaths_1Mpop', 'TotalTests', 'Tests_1Mpop']
 
 		country_df = country_df.reindex(columns = col_list)
 

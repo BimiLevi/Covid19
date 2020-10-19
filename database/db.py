@@ -162,16 +162,12 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 		# 	print('The following Exception as occurred:\n{}'.format(e))
 
 	def tables_to_csv(self):
-		from datetime import datetime
 		tables_list = self.get_tables_names()
 		for table in tables_list:
-			date = datetime.today().strftime('%Y-%m-%d')
-			path = Dtables_path + r'\{} {}.csv'.format(table, date)
+			path = Dtables_path + r'\{}.csv'.format(table)
 
 			temp_table = self.get_table(table)
 			temp_table.to_csv(path, index = False)
-
-
 
 
 

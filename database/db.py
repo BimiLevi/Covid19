@@ -121,45 +121,45 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 
 	def load_backup(self):
 		import os
-		# try:
-		start = time.time()
+		try:
+			start = time.time()
 
-		print('Creating Countries main table.')
-		countries_table(self.engine)
+			print('Creating Countries main table.')
+			countries_table(self.engine)
 
-		print('Creating Continents main table.')
-		continents_table(self.engine)
+			print('Creating Continents main table.')
+			continents_table(self.engine)
 
-		# Complexity time O(n^3)
-		ext_list = ["*Countries*", '*Continents*']
-		for ext in ext_list:
-			all_csv_files = []
-			for path, subdir, files in os.walk(Ddate_path):
-				for csv_path in glob(os.path.join(path, ext)):
-					df = pd.read_csv(csv_path, index_col = None, header = 0)
-					all_csv_files.append(df)
+			# Complexity time O(n^3)
+			ext_list = ["*Countries*", '*Continents*']
+			for ext in ext_list:
+				all_csv_files = []
+				for path, subdir, files in os.walk(Ddate_path):
+					for csv_path in glob(os.path.join(path, ext)):
+						df = pd.read_csv(csv_path, index_col = None, header = 0)
+						all_csv_files.append(df)
 
-			frame = pd.concat(all_csv_files, axis = 0, ignore_index = True)
-			frame = frame.sort_values('scrap_date')
+				frame = pd.concat(all_csv_files, axis = 0, ignore_index = True)
+				frame = frame.sort_values('scrap_date')
 
-			if ext == "*Countries*":
-				self.df_to_db('Country', frame)
-				late_data = self.get_latest_data(frame)
-				late_data.to_sql('All countries updated', con = self.engine, if_exists = 'replace', index = False,
-				                 dtype = countries_parm)
+				if ext == "*Countries*":
+					self.df_to_db('Country', frame)
+					late_data = self.get_latest_data(frame)
+					late_data.to_sql('All countries updated', con = self.engine, if_exists = 'replace', index = False,
+					                 dtype = countries_parm)
 
-			elif ext == '*Continents*':
-				self.df_to_db('Continent', frame)
-				late_data = self.get_latest_data(frame)
-				late_data.to_sql('All continents updated', con = self.engine, if_exists = 'replace', index = False,
-				                 dtype = continents_parm)
+				elif ext == '*Continents*':
+					self.df_to_db('Continent', frame)
+					late_data = self.get_latest_data(frame)
+					late_data.to_sql('All continents updated', con = self.engine, if_exists = 'replace', index = False,
+					                 dtype = continents_parm)
 
-		end = time.time()
-		execution_time = (end - start) / 60
-		print('The process executed successfully,the time it took is: {:.3f} minutes.\n'.format(execution_time))
+			end = time.time()
+			execution_time = (end - start) / 60
+			print('The process executed successfully,the time it took is: {:.3f} minutes.\n'.format(execution_time))
 
-		# except Exception as e:
-		# 	print('The following Exception as occurred:\n{}'.format(e))
+		except Exception as e:
+			print('The following Exception as occurred:\n{}'.format(e))
 
 	def tables_to_csv(self):
 		tables_list = self.get_tables_names()

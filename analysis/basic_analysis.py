@@ -2,9 +2,12 @@ import matplotlib.pyplot as plt
 import pandas as pd
 
 from database.db_config import current_db
+from resources.paths import plots_path
 
 plt.style.use('classic')
 plt.rcParams['font.sans-serif'] = 'SimSun'
+plt.rcParams['savefig.dpi'] = 600
+plt.rcParams["figure.dpi"] = 100
 plt.rcParams.update({'axes.spines.top': False, 'axes.spines.right': False})
 color_palette = {'black': '#3D3D3D', 'blue': '#3F5E99', 'yellow': '#EBCA88', 'red': '#F04A6B', 'green': '#3AB08B'}
 
@@ -61,21 +64,51 @@ def color_minmax(df, col):
     return colors
 
 israel = pd.read_sql('Israel', con = db.get_engine())
-# print(israel.columns.tolist)
-# print(country_parm('Israel'))
-# print(get_minmax(israel, 'NewCases'))
 
-def bar_plot(df,colors):
-	plot = df.plot(kind = 'bar', edgecolor= 'black',color=colors, rot=0,)
+def bar_plot(df, col, month = None, startDate = None, endDate = None, save = False):
+
+	if month is not None:
+		data = data_by_month(df, month)
+		data = data[['scrap_date', col]]
+
+
+
+	elif (startDate is not None) and (endDate is not None):
+		data = data_range_date(df, startDate, endDate)
+
+	else:
+		"""return the the avg of each month since the start """
+		return -1
+
+	data = data[data[col].notna()]
+	x = data['scrap_date'].dt.day
+	y = data[col]
+
+	fig = plt.figure(figsize=(19.20, 10.80), edgecolor = 'b')
+	colors = color_minmax(df, col)
+
+	plot = plt.bar(x, y, color=colors, align='center', width = 0.5, figure = fig)
+
+	plt.tick_params(right = False, top = False)
+	plt.xticks(range(len(x.index)), x.values.tolist())
+	plt.xlim(left = x.min()-1, right = x.max()+1)
+
+	plt.xlabel('Date', figure = fig)
+	plt.ylabel(col, figure = fig)
+	plt.title('temp', figure = fig)
+
+
+	if save:
+		file_format = 'svg'
+		fname = 'temp.{}'.format(file_format)
+		plt.savefig(plots_path + r'\{}'.format(fname), format=file_format, edgecolor='b',bbox_inches='tight')
+
 
 	return plot
 
-df = data_by_month(israel, 10)
-df['scrap_date'] = df['scrap_date'].dt.day
-df = df[['scrap_date', 'NewCases']].set_index('scrap_date')
-colors = color_minmax(df, 'NewCases')
 
-temp = bar_plot(df, colors)
 
-# df.plot(kind='bar')
+# bar_plot(israel, 'NewCases', startDate = '2020-08-02', endDate= '2020-09-21', save = True)
+bar_plot(israel, 'NewCases', month = 10, save = True)
 plt.show()
+

@@ -1,9 +1,11 @@
 import calendar
 import re
 
+import matplotlib.dates as mdates
 import matplotlib.patches as mpatches
 import matplotlib.pyplot as plt
 import numpy as np
+import pandas as pd
 
 from resources.paths import plots_path
 
@@ -12,24 +14,24 @@ plt.rcParams['font.sans-serif'] = 'Constantia'
 plt.rcParams['savefig.dpi'] = 600
 plt.rcParams["figure.dpi"] = 100
 plt.rcParams.update({'axes.spines.top': False, 'axes.spines.right': False})
-color_palette = {'black': '#3D3D3D', 'blue': '#3F5E99', 'yellow': '#EBCA88', 'red': '#F04A6B', 'green': '#3AB08B'}
+color_palette = {'black': '#3D3D3D', 'blue': '#3F5E99', 'red': '#F04A6B', 'green': '#3AB08B'}
+
 
 def color_minmax(df, col):
-    colors = []
-    min_val = df[col].min()
-    max_val = df[col].max()
+	colors = []
+	min_val = df[col].min()
+	max_val = df[col].max()
 
-    for val in df[col]:
-        if val == max_val:
-            colors.append(color_palette['green'])
-        elif val == min_val:
-            colors.append(color_palette['red'])
-        else:
-            colors.append(color_palette['blue'])
-    return colors
+	for val in df[col]:
+		if val == max_val:
+			colors.append(color_palette['green'])
+		elif val == min_val:
+			colors.append(color_palette['red'])
+		else:
+			colors.append(color_palette['blue'])
+	return colors
 
 def month_bar_plot(df, col, cname, month, save = False):
-
 	from analysis.analysis_func import data_by_month
 
 	if month is not None:
@@ -41,10 +43,10 @@ def month_bar_plot(df, col, cname, month, save = False):
 	data = data[['scrap_date', col]]
 	data = data[data[col].notna()]
 
-	fig = plt.figure(figsize=(19.20, 10.80), edgecolor = 'b')
+	fig = plt.figure(figsize = (19.20, 10.80), edgecolor = 'b')
 	colors = color_minmax(data, col)
 
-	plot = data[col].plot(kind='bar', rot=0, color=colors, figure=fig)
+	plot = data[col].plot(kind = 'bar', rot = 0, color = colors, figure = fig)
 
 	plt.tick_params(right = False, top = False)
 
@@ -62,13 +64,88 @@ def month_bar_plot(df, col, cname, month, save = False):
 	min_patch = mpatches.Patch(color = '#F04A6B', label = 'Min of ' + title + ' ' + str(data[col].min()))
 	max_patch = mpatches.Patch(color = '#3AB08B', label = 'Max of ' + title + ' ' + str(data[col].max()))
 
-	plt.legend(handles=[max_patch, min_patch], bbox_to_anchor=(1.05, 1), loc= "best", frameon = True, edgecolor=
-	'black',
-	           fontsize = 11)
+	plt.legend(handles = [max_patch, min_patch], bbox_to_anchor = (1.05, 1), loc = "best", frameon = True, edgecolor =
+	'black', fontsize = 11)
 
 	if save:
 		file_format = 'svg'
 		fname = '{} in {} during {}.{}'.format(title, cname, monthName, file_format)
-		plt.savefig(plots_path + r'\{}'.format(fname), format=file_format, edgecolor='b', bbox_inches='tight')
+		plt.savefig(plots_path + r'\{}'.format(fname), format = file_format, edgecolor = 'b', bbox_inches = 'tight')
 
 	return plot
+
+def countries_plot(xcol, ycol, countries, title, save = False):
+	if len(countries) == 0:
+		return 'You need to enter a country or a list of countries.'
+
+	countriesList = countries
+
+	fig = plt.figure(figsize = (19.20, 10.80), tight_layout=True)
+	ax = fig.add_subplot()
+
+	for country in countriesList:
+		countryName = str(country['Country'].unique()[0])
+
+		ax.plot(country[xcol], country[ycol], label=countryName, linewidth=3)
+
+		handles, labels = ax.get_legend_handles_labels()
+		ax.legend(handles, labels, bbox_to_anchor = (1.001, 1), loc = "best", frameon = True, edgecolor ='black',
+		          fontsize = 13)
+
+
+	if xcol == 'scrap_date':
+
+		ax.xaxis.set_minor_locator(mdates.WeekdayLocator(byweekday = 6, interval = 1))
+		ax.xaxis.set_minor_formatter(mdates.DateFormatter('%d\n%a'))
+
+		ax.xaxis.grid(True, which = "minor")
+		ax.yaxis.grid()
+		ax.xaxis.set_major_locator(mdates.MonthLocator())
+		ax.xaxis.set_major_formatter(mdates.DateFormatter('\n\n\n%b\n%Y'))
+
+
+		xcol = 'Date'
+
+
+	elif ycol == 'scrap_date':
+		ycol = 'Date'
+
+
+	xtitle = " ".join(re.findall('[A-Z][^A-Z]*', xcol))
+	ytitle = " ".join(re.findall('[A-Z][^A-Z]*', ycol))
+
+	ax.set_xlabel(xtitle, fontsize = 15, fontweight = 'bold')
+	ax.set_ylabel(ytitle, fontsize = 15, fontweight = 'bold')
+	ax.set_title('{}\n{} by {}'.format(title, ytitle, xtitle), fontsize = 17, fontweight = 'bold')
+
+
+	for axis in ['bottom', 'left']:
+		ax.spines[axis].set_linewidth(2)
+
+	"""Background color"""
+	ax.patch.set_facecolor('gray')
+	ax.patch.set_alpha(0.1)
+
+
+	plt.tick_params(right = False, top = False)
+	plt.grid(b=True, linewidth=1)
+
+
+
+	if save:
+		file_format = 'svg'
+		fname = '{}.{}'.format(title, file_format)
+		plt.savefig(plots_path + r'\{}'.format(fname), format = file_format, edgecolor = 'b', bbox_inches = 'tight')
+
+	return ax
+
+
+if __name__ == '__main__':
+
+	from database.db_config import current_db
+	db = current_db
+	israel = pd.read_sql('Israel', con = db.get_engine())
+	us = pd.read_sql('USA', con = db.get_engine())
+	uk = pd.read_sql('UK', con = db.get_engine())
+	countries_plot('scrap_date', 'ActiveCases', [israel, us, uk], save = True)
+	plt.show()

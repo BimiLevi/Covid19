@@ -1,13 +1,23 @@
-from database.db_config import current_db as db
+import matplotlib.pyplot as plt
+import pandas as pd
 
-israel = db.get_table('Israel')
-us = db.get_table('USA')
-uk = db.get_table('UK')
+from analysis.visualization_func import *
 
-print(uk.columns.tolist())
-# temp_list = ['TotalCases', 'NewCases', 'TotalDeaths', 'NewDeaths','TotalRecovered','NewRecovered','ActiveCases',
-#              'SeriousCritical']
-# for col in temp_list:
-# 	month_bar_plot(israel, col, 'Israel', month = 9, save = True)
-# 	plt.show()
+pd.set_option('display.max_rows', None)
+pd.set_option('display.max_columns', 15)
+
+"""Getting the latest data"""
+count_update = db.get_table('All countries updated').drop(columns = ['scrap_time'])
+conti_update = db.get_table('All continents updated').drop(columns = ['scrap_time'])
+
+top10_activeCases = count_update[['Country', 'ActiveCases']].sort_values('ActiveCases', ascending = False).head(
+		10).reset_index(drop=True)
+
+mylist = []
+for country in top10_activeCases['Country'].tolist():
+		df = db.get_table(country)
+		mylist.append(df)
+
+plot = countries_plot('scrap_date', 'ActiveCases', mylist, 'Top countries with active cases', save = True)
+plt.show()
 

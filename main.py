@@ -1,8 +1,7 @@
-from database.db_config import current_db
+from database.db_config import current_db as db
 from resources.tables_func import *
 from scraper.scraper import *
 
-db = current_db
 
 def main():
     start = time.time()
@@ -73,7 +72,7 @@ def main():
         print("The error that occurred is:\n{}".format(e))
 
     try:
-        current_db.tables_to_csv()
+        db.tables_to_csv()
         print('Tables have been updated locally.')
 
     except Exception as e:

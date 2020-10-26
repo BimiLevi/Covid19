@@ -1,13 +1,10 @@
-import pandas as pd
+from database.db_config import current_db as db
 
-from database.db_config import current_db
+israel = db.get_table('Israel')
+us = db.get_table('USA')
+uk = db.get_table('UK')
 
-db = current_db
-
-
-
-israel = pd.read_sql('Israel', con = db.get_engine())
-
+print(uk.columns.tolist())
 # temp_list = ['TotalCases', 'NewCases', 'TotalDeaths', 'NewDeaths','TotalRecovered','NewRecovered','ActiveCases',
 #              'SeriousCritical']
 # for col in temp_list:

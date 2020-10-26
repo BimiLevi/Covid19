@@ -1,12 +1,12 @@
 # -*- coding: utf-8 -*-
 from prettytable import PrettyTable
 
-from database.db_config import current_db
+from database.db_config import current_db as db
 
 
 class DBConnection:
     def __init__(self):
-        self.db_engine = current_db.get_engine()
+        self.db_engine = db.get_engine()
         self.db_engine.connect()
 
 

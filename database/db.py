@@ -2,6 +2,7 @@
 import time
 from glob import glob
 
+import numpy as np
 import psycopg2
 from sqlalchemy import create_engine
 
@@ -76,6 +77,14 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 
 				if self.table_exists(table):
 					table = pd.read_sql(table, con = self.engine)
+					table = table.fillna(-1)
+
+					"""Changing columns types"""
+					for col in table.columns.tolist():
+						table[col] = table[col].astype(general_parm[col], errors = 'ignore')
+
+					table = table.replace(-1, np.nan)
+
 					return table
 
 				else:

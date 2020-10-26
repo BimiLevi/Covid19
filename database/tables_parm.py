@@ -1,9 +1,9 @@
 import sqlalchemy as sa
 
+# Types for PostgresSQL db - dumping.
 countries_parm = {'scrap_date': sa.Date(),
                   'scrap_time': sa.Time(),
-                  'update date': sa.Date(),
-                  'update time-GMT': sa.Time(),
+                  'update_time_GMT': sa.Time(),
                   'Country_id': sa.Integer(),
                   'Country': sa.String(),
                   'Population':  sa.Integer(),
@@ -22,8 +22,7 @@ countries_parm = {'scrap_date': sa.Date(),
                   'Continent_id':  sa.Integer()}
 continents_parm = {'scrap_date': sa.Date(),
                    'scrap_time': sa.Time(),
-                   'update date': sa.Date(),
-                   'update time-GMT': sa.Time(),
+                   'update_time_GMT': sa.Time(),
                    'Continent_id': sa.Integer(),
                    'Continent': sa.String(),
                    'TotalCases': sa.Integer(),
@@ -34,3 +33,28 @@ continents_parm = {'scrap_date': sa.Date(),
                    'NewRecovered': sa.Integer(),
                    'ActiveCases': sa.Integer(),
 				   'Serious,Critical': sa.Integer()}
+
+# For loading the table from the DB to pandas DF.
+general_parm = {'scrap_date': 'datetime64[ns]',
+                  'scrap_time': 'datetime64[ns]',
+                  'update date': 'datetime64[ns]',
+                  'update_time_GMT': 'datetime64[ns]',
+                  'Country_id': 'int64',
+                  'Country': 'object',
+                  'Population':  'int64',
+                  'TotalCases':  'int64',
+                  'NewCases':  'int64',
+                  'TotalDeaths':  'int64',
+                  'NewDeaths':  'int64',
+                  'TotalRecovered':  'int64',
+                  'NewRecovered':  'int64',
+                  'ActiveCases':  'int64',
+                  'SeriousCritical':  'int64',
+                  'Tot_Cases_1Mpop':  'int64',
+                  'Deaths_1Mpop': 'float64',
+                  'TotalTests':  'int64',
+                  'Tests_1Mpop':  'int64',
+                  'Continent_id':  'int64',
+                   'Continent': 'object'}
+
+

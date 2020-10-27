@@ -10,27 +10,28 @@ conti_update = db.get_table('All continents updated').drop(columns = ['scrap_tim
 
 cols = ['TotalCases', 'TotalDeaths', 'TotalRecovered', 'ActiveCases', 'SeriousCritical', 'TotalTests']
 
-"""
-Top ten countries by different criteria.
-"""
+if __name__ == '__main__':
 
-for col in cols:
-	top = get_top(count_update, col)
-	count_list = top['Country'].to_list()
+	"""
+	Top ten countries by different criteria.
+	"""
 
-	df_list = get_table_list(count_list)
-	date_plot(col, df_list, save = False, title = 'Top ten countries {}'.format(col))
+	for col in cols:
+		top = get_top(count_update, col)
+		count_list = top['Country'].to_list()
 
-"""
-Top  continents by different criteria.
-"""
+		df_list = get_table_list(count_list)
+		date_plot(col, df_list, save = False, title = 'Top ten countries {}'.format(col))
 
-for col in cols:
-	top = get_top(conti_update, col)
-	count_list = top['Continent'].to_list()
+	"""
+	Top  continents by different criteria.
+	"""
 
-	df_list = get_table_list(count_list)
-	date_plot(col, df_list, save = False, title = 'Top continents {}'.format(col))
+	for col in cols:
+		top = get_top(conti_update, col)
+		count_list = top['Continent'].to_list()
 
-plt.show()
+		df_list = get_table_list(count_list)
+		date_plot(col, df_list, save = False, title = 'Top continents {}'.format(col))
 
+	plt.show()

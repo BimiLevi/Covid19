@@ -1,11 +1,11 @@
 import calendar
 import re
 
+import matplotlib._color_data as mcd
 import matplotlib.dates as mdates
 import matplotlib.patches as mpatches
 import matplotlib.pyplot as plt
 import numpy as np
-import pandas as pd
 
 from resources.paths import plots_path
 
@@ -16,6 +16,13 @@ plt.rcParams["figure.dpi"] = 100
 plt.rcParams.update({'axes.spines.top': False, 'axes.spines.right': False})
 color_palette = {'black': '#3D3D3D', 'blue': '#3F5E99', 'red': '#F04A6B', 'green': '#3AB08B'}
 
+def tableau_colors():
+	tab_colors = {}
+
+	for color in mcd.TABLEAU_COLORS:
+		tab_colors[color] = mcd.TABLEAU_COLORS[color]
+
+	return tab_colors
 
 def color_minmax(df, col):
 	colors = []
@@ -74,44 +81,40 @@ def month_bar_plot(df, col, cname, month, save = False):
 
 	return plot
 
-def countries_plot(xcol, ycol, countries, title, save = False):
-	if len(countries) == 0:
+def date_plot(ycol, dfs_list, title=None, save = False):
+	if len(dfs_list) == 0:
 		return 'You need to enter a country or a list of countries.'
-
-	countriesList = countries
 
 	fig = plt.figure(figsize = (19.20, 10.80), tight_layout=True)
 	ax = fig.add_subplot()
 
-	for country in countriesList:
-		countryName = str(country['Country'].unique()[0])
+	colors = tableau_colors()
+	colors_list = list(colors.keys())
 
-		ax.plot(country[xcol], country[ycol], label=countryName, linewidth=3)
+	for df in dfs_list:
+		if 'Country' in df.columns.tolist():
+			name = str(df['Country'].unique()[0])
+
+		else:
+			name = str(df['Continent'].unique()[0])
+
+		color = colors_list.pop()
+		ax.plot(df['scrap_date'], df[ycol], label=name, linewidth=3, color=colors[color])
 
 		handles, labels = ax.get_legend_handles_labels()
 		ax.legend(handles, labels, bbox_to_anchor = (1.001, 1), loc = "best", frameon = True, edgecolor ='black',
 		          fontsize = 13)
 
 
-	if xcol == 'scrap_date':
+	ax.xaxis.set_minor_locator(mdates.WeekdayLocator(byweekday = 6, interval = 1))
+	ax.xaxis.set_minor_formatter(mdates.DateFormatter('%d\n%a'))
 
-		ax.xaxis.set_minor_locator(mdates.WeekdayLocator(byweekday = 6, interval = 1))
-		ax.xaxis.set_minor_formatter(mdates.DateFormatter('%d\n%a'))
+	ax.xaxis.grid(True, which = "minor")
+	ax.yaxis.grid()
+	ax.xaxis.set_major_locator(mdates.MonthLocator())
+	ax.xaxis.set_major_formatter(mdates.DateFormatter('\n\n\n%b\n%Y'))
 
-		ax.xaxis.grid(True, which = "minor")
-		ax.yaxis.grid()
-		ax.xaxis.set_major_locator(mdates.MonthLocator())
-		ax.xaxis.set_major_formatter(mdates.DateFormatter('\n\n\n%b\n%Y'))
-
-
-		xcol = 'Date'
-
-
-	elif ycol == 'scrap_date':
-		ycol = 'Date'
-
-
-	xtitle = " ".join(re.findall('[A-Z][^A-Z]*', xcol))
+	xtitle = 'Date'
 	ytitle = " ".join(re.findall('[A-Z][^A-Z]*', ycol))
 
 	ax.set_xlabel(xtitle, fontsize = 15, fontweight = 'bold')
@@ -141,11 +144,4 @@ def countries_plot(xcol, ycol, countries, title, save = False):
 
 
 if __name__ == '__main__':
-
-	from database.db_config import current_db
-	db = current_db
-	israel = pd.read_sql('Israel', con = db.get_engine())
-	us = pd.read_sql('USA', con = db.get_engine())
-	uk = pd.read_sql('UK', con = db.get_engine())
-	countries_plot('scrap_date', 'ActiveCases', [israel, us, uk], save = True)
-	plt.show()
+	pass

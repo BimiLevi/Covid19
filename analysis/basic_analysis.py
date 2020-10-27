@@ -1,6 +1,4 @@
-import matplotlib.pyplot as plt
-import pandas as pd
-
+from analysis.analysis_func import *
 from analysis.visualization_func import *
 
 pd.set_option('display.max_rows', None)
@@ -10,14 +8,29 @@ pd.set_option('display.max_columns', 15)
 count_update = db.get_table('All countries updated').drop(columns = ['scrap_time'])
 conti_update = db.get_table('All continents updated').drop(columns = ['scrap_time'])
 
-top10_activeCases = count_update[['Country', 'ActiveCases']].sort_values('ActiveCases', ascending = False).head(
-		10).reset_index(drop=True)
+cols = ['TotalCases', 'TotalDeaths', 'TotalRecovered', 'ActiveCases', 'SeriousCritical', 'TotalTests']
 
-mylist = []
-for country in top10_activeCases['Country'].tolist():
-		df = db.get_table(country)
-		mylist.append(df)
+"""
+Top ten countries by different criteria.
+"""
 
-plot = countries_plot('scrap_date', 'ActiveCases', mylist, 'Top countries with active cases', save = True)
+for col in cols:
+	top = get_top(count_update, col)
+	count_list = top['Country'].to_list()
+
+	df_list = get_table_list(count_list)
+	date_plot(col, df_list, save = False, title = 'Top ten countries {}'.format(col))
+
+"""
+Top  continents by different criteria.
+"""
+
+for col in cols:
+	top = get_top(conti_update, col)
+	count_list = top['Continent'].to_list()
+
+	df_list = get_table_list(count_list)
+	date_plot(col, df_list, save = False, title = 'Top continents {}'.format(col))
+
 plt.show()
 

@@ -19,8 +19,8 @@ class Db:
 		self.host = host
 		self.port = port
 
-		self.url = self.set_url()
-		self.engine = self.set_engine(self.url)
+		self.url = self.create_url()
+		self.engine = self.create_engine()
 
 	def __str__(self):
 		return '''
@@ -31,17 +31,24 @@ host/server: {}
 port: {}
 url: {}'''.format(self.username, self.password, self.dbname, self.host, self.port, self.url)
 
-	def set_url(self):
-		url = 'postgresql+psycopg2://{}:{}@{}:{}/{}'.format(self.username,self.password,self.host,self.port,self.dbname)
+	def create_url(self):
+		url = 'postgresql+psycopg2://{}:{}@{}:{}/{}'.format(self.username, self.password, self.host, self.port,
+		                                                    self.dbname)
 		return url
 
 	def set_port(self, port):
 		self.port = port
 
-	@staticmethod
-	def set_engine(url):
-		engine = create_engine(url, encoding = 'utf-8')
+	def create_engine(self):
+		engine = create_engine(self.url, encoding = 'utf-8')
 		return engine
+
+	def set_url(self, url):
+		self.url = url
+		print('Dont forget to creat new engine with the url.')
+
+	def set_engine(self):
+		self.engine = self.create_engine()
 
 	def get_engine(self):
 		return self.engine
@@ -180,10 +187,11 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 
 	def sql_query(self, statement):
 		"""Executes a read query and returns a Prettytable object."""
-		data = self.engine.connect().execute(statement)
-		headers = data.keys()
+		self.engine.connect()
 
-		data = self.engine.connect().execute(statement).fetchall()
+		res = self.engine.execute(statement)
+		headers = res.keys()
+		data = res.fetchall()
 
 		if len(data) == 0:
 			return False

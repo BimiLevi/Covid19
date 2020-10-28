@@ -4,9 +4,9 @@ from glob import glob
 
 import numpy as np
 import psycopg2
+from prettytable import PrettyTable
 from sqlalchemy import create_engine
 
-from database.tables_parm import *
 from resources.paths import Ddate_path, Dtables_path
 from resources.tables_func import *
 
@@ -177,6 +177,24 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 
 			temp_table = self.get_table(table)
 			temp_table.to_csv(path, index = False)
+
+	def sql_query(self, statement):
+		"""Executes a read query and returns a Prettytable object."""
+		data = self.engine.connect().execute(statement)
+		headers = data.keys()
+
+		data = self.engine.connect().execute(statement).fetchall()
+
+		if len(data) == 0:
+			return False
+
+		table = PrettyTable(headers)
+
+		for row in data:
+			table.add_row(row)
+
+		return table
+
 
 
 

@@ -1,76 +1,42 @@
 # -*- coding: utf-8 -*-
-from prettytable import PrettyTable
 
 from database.db_config import current_db as db
 
 
-class DBConnection:
-    def __init__(self):
-        self.db_engine = db.get_engine()
-        self.db_engine.connect()
-
-
-    def read(self, statement):
-        """Executes a read query and returns a Prettytable object."""
-        data = self.db_engine.execute(statement)
-        headers = data.keys()
-
-        data = self.db_engine.execute(statement).fetchall()
-
-        if len(data) == 0:
-            return False
-
-        table = PrettyTable(headers)
-
-        for row in data:
-            table.add_row(row)
-
-        return table
-
-dbCon = DBConnection()
-
 # TotalCases Min and Max by country.
-countries_minMax = dbCon.read('SELECT "Country", "TotalCases" FROM "All countries updated" '
+countries_minMax = db.sql_query('SELECT "Country", "TotalCases" FROM "All countries updated" '
                               'WHERE "TotalCases" IN ((SELECT MAX("TotalCases") FROM "All countries updated"),'
                               '(SELECT MIN("TotalCases") FROM "All countries updated"))')
 
 # TotalCases Min and Max by a continent.
-continents_minMax = dbCon.read('SELECT "Continent", "TotalCases" FROM "All continents updated" '
+continents_minMax = db.sql_query('SELECT "Continent", "TotalCases" FROM "All continents updated" '
                               'WHERE "TotalCases" IN ((SELECT MAX("TotalCases") FROM "All continents updated" WHERE "Continent" <>  \'World\'),'
                               '(SELECT MIN("TotalCases") FROM "All continents updated")) ')
 
 # Top 15 countries with the highest number of cases.
-top15_totalCases = dbCon.read('SELECT "Country","Country_id","Continent_id","TotalCases", RANK() OVER('
-                              'ORDER BY "TotalCases" DESC) AS "TotalCases rank","ActiveCases",''"Serious,Critical" FROM "All '
-                              'countries ' 'updated" as ''t1 JOIN ''(SELECT "Continent", "Continent_id" FROM "All continents updated") as t2 '
-                             'USING("Continent_id") LIMIT 15')
+top15_totalCases = db.sql_query('SELECT "Country","Continent","TotalCases",RANK() OVER(PARTITION BY "Continent" ORDER BY "TotalCases" DESC) AS "Continent_rank_by_TotalCases","ActiveCases","SeriousCritical" FROM (SELECT "Country_id","Continent_id" FROM "All Countries") AS t1 JOIN  (SELECT * FROM "All Continents") AS t2 USING("Continent_id") JOIN  (SELECT "Country","Country_id","TotalCases","ActiveCases","SeriousCritical"  FROM "All countries updated" LIMIT 15) AS t3 USING("Country_id")')
 
 # Countries that are located in Oceania continent.
-oceania_countries = dbCon.read('SELECT "Country" FROM "All countries updated" WHERE "Continent_id" = 6')
+oceania_countries = db.sql_query('SELECT "Country" FROM "All Countries" WHERE "Continent_id" IN (SELECT '
+                                 '"Continent_id" FROM "All Continents" WHERE "Continent" = \'Oceania\')')
 
 # The count of countries in each continent.
-countries_perContinent = dbCon.read('SELECT "Continent", "Countries count" '
-                                    'FROM (SELECT "Continent_id",COUNT(*) as "Countries count" FROM "All countries updated" GROUP BY "Continent_id") AS t1 '
-                                    'JOIN (SELECT "Continent", "Continent_id"FROM "All Continents") AS t2 USING("Continent_id") ORDER BY "Countries count" DESC')
+countries_perContinent = db.sql_query('SELECT "Continent","Countires_count" FROM (SELECT * FROM "All Continents") AS ''t1 JOIN (SELECT "Continent_id", COUNT("Country") AS "Countires_count" FROM "All Countries" GROUP BY "Continent_id") AS t2 USING("Continent_id") ORDER BY "Countires_count" DESC')
 
 # The country with the highest "TotalCases" in each continent.
-country_high_perContinent = dbCon.read('SELECT "Country","Continent","maxCases" FROM (SELECT "Continent_id",'
-                                       '"Continent" FROM "All Continents") AS t1 JOIN (SELECT "Country",'
-                                       '"Continent_id", "TotalCases" AS "maxCases"  FROM "All countries updated" WHERE "TotalCases" IN '
-                                       '(SELECT  MAX("TotalCases")  FROM "All countries updated" GROUP BY "Continent_id")) AS t2 '
-                                       'USING("Continent_id") ORDER BY "maxCases" DESC')
+country_high_perContinent = db.sql_query('SELECT "Country","Continent","TotalCases" FROM (SELECT "Country","Continent","TotalCases" ,RANK() OVER(PARTITION BY "Continent" ORDER BY "TotalCases" DESC) AS "rank" FROM (SELECT "Country","Country_id","TotalCases" FROM "All countries updated" ) AS t1  JOIN (SELECT "Country_id", "Continent_id" FROM "All Countries") AS t2 USING("Country_id")  JOIN (SELECT "Continent_id","Continent" FROM "All Continents") AS t3 USING("Continent_id")) AS t4 WHERE "rank" =1;')
 
 # Top 5 countries with active cases.
-top5_countries_active = dbCon.read('SELECT "Country","ActiveCases" FROM "All countries updated" WHERE "ActiveCases" '
+top5_countries_active = db.sql_query('SELECT "Country","ActiveCases" FROM "All countries updated" WHERE "ActiveCases" '
                                    'IS NOT NULL ORDER BY "ActiveCases" DESC LIMIT 5;')
 
 # The date that israel had the highest value of new cases.
-israel_newCases_date = dbCon.read('SELECT "update date" as "max new cases date" FROM "Israel" WHERE "NewCases" = (Select MAX("NewCases") FROM "Israel" )')
+israel_newCases_date = db.sql_query('SELECT "scrap_date" AS "max_NewCases_date" FROM "Israel" WHERE "NewCases" = (Select MAX("NewCases") FROM "Israel")')
 
 # Ranking each continent by its active cases.
-continent_active_rank = dbCon.read('SELECT "Country","Continent_id","TotalCases","ActiveCases",RANK() OVER (PARTITION BY "Continent_id" ORDER BY "ActiveCases" DESC) AS "Ranking_inContinent" FROM "All countries updated"')
-israel_minMax_dates = dbCon.read('SELECT MIN("update date") as "Earliest Date",MAX("update date") as "Latest Date" '
-                                 'FROM "Israel"')
+continent_active_rank = db.sql_query('SELECT "Continent","ActiveCases", RANK() OVER(ORDER BY "ActiveCases" DESC) FROM "All continents updated" WHERE "Continent" <> \'World\'')
+
+israel_minMax_dates = db.sql_query('SELECT MIN("scrap_date") as "Earliest Date",MAX("scrap_date") as "Latest Date" FROM "Israel"')
 
 print(countries_minMax)
 print(continents_minMax)

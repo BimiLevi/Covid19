@@ -9,6 +9,7 @@ from utilities.directories import creat_directory
 
 def run_scraper():
 	start = time.time()
+
 	counter = 1
 	while counter <= 3:
 		try:
@@ -33,6 +34,7 @@ def run_scraper():
 	execution_time = (end - start) / 60
 	print('The process executed successfully.\nthe time it took to scrape the data is: {:.3f} minutes.'.format(
 			execution_time))
+
 	return data, update_time
 
 def data_to_dfs(data, update_time):
@@ -57,6 +59,25 @@ def data_to_dfs(data, update_time):
 
 	continent_df = creat_continent_df(df)
 	country_df = creat_country_df(df)
+
+	""" Calculating the differences between measures by dates"""
+	from scraper.calculations import make_calc
+
+	for country in country_df['Country'].tolist():
+		row = country_df[country_df['Country'] == country]
+		idx = row.index.values
+
+		processed_row = make_calc(row, country)
+		country_df.iloc[idx] = processed_row
+
+
+	for continent in continent_df['Continent'].tolist():
+		row = continent_df[continent_df['Continent'] == continent]
+		i = row.index.values
+
+		processed_row = make_calc(row, continent)
+		continent_df.iloc[i] = processed_row
+
 
 	return continent_df, country_df
 

@@ -7,7 +7,7 @@ import psycopg2
 from prettytable import PrettyTable
 from sqlalchemy import create_engine
 
-from resources.paths import Ddate_path, Dtables_path
+from resources.paths import *
 from resources.tables_func import *
 
 
@@ -104,7 +104,7 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 			print("The error that occurred is:\n{}".format(e))
 			raise ValueError("Unable to connect to DB.")
 
-	def df_to_db(self, col, df):
+	def df_to_db(self, col, df, calc = False):
 		try:
 			dtype_parm = None
 			if col == 'Country':
@@ -114,8 +114,28 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 				dtype_parm = continents_parm
 
 			headers_list = df[col].drop_duplicates().tolist()
+
+			if not calc:
+				"""This part is used when loading the prepared data that was scraped."""
+				for header in headers_list:
+					temp_df = df[df[col] == '{}'.format(header)]
+					temp_df.to_sql('{}'.format(header), con = self.engine, if_exists = 'append', index = False,
+					               dtype = dtype_parm)
+
+				print('{} DB was successfully Updated.'.format(col))
+
+			else:
+				"""Making calculations before loading the data to db - used when loading data from backup"""
+				pd.options.mode.chained_assignment = None  # default='warn'
+
+
 			for header in headers_list:
 				temp_df = df[df[col] == '{}'.format(header)]
+
+				temp_df['NewCases'] = temp_df['TotalCases'].diff()
+				temp_df['NewDeaths'] = temp_df['TotalDeaths'].diff()
+				temp_df['NewRecovered'] = temp_df['TotalRecovered'].diff()
+
 				temp_df.to_sql('{}'.format(header), con = self.engine, if_exists = 'append', index = False,
 				               dtype = dtype_parm)
 
@@ -159,13 +179,13 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 				frame = frame.sort_values('scrap_date')
 
 				if ext == "*Countries*":
-					self.df_to_db('Country', frame)
+					self.df_to_db('Country', frame, calc = True)
 					late_data = self.get_latest_data(frame)
 					late_data.to_sql('All countries updated', con = self.engine, if_exists = 'replace', index = False,
 					                 dtype = countries_parm)
 
 				elif ext == '*Continents*':
-					self.df_to_db('Continent', frame)
+					self.df_to_db('Continent', frame, calc = True)
 					late_data = self.get_latest_data(frame)
 					late_data.to_sql('All continents updated', con = self.engine, if_exists = 'replace', index = False,
 					                 dtype = continents_parm)
@@ -202,6 +222,12 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 			table.add_row(row)
 
 		return table
+
+
+
+
+
+
 
 
 

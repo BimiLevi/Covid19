@@ -130,6 +130,7 @@ def creat_continent_df(df):
 		            'NewRecovered', 'ActiveCases', 'SeriousCritical']
 
 		continent_df = continent_df.reindex(columns = col_list)
+		continent_df = continent_df.reset_index(drop = True)
 
 	except Exception as e:
 		print("Couldn't rename columns names.")
@@ -176,6 +177,7 @@ def creat_country_df(df):
 
 		country_df = country_df.reindex(columns = col_list)
 
+
 	except Exception as e:
 		print("Couldn't rename / reorder DF columns.")
 		print("The error that occurred is:\n{}".format(e))
@@ -187,4 +189,5 @@ def get_date_parm():
 	month = datetime.now().strftime("%B")
 	day = datetime.now().strftime("%d")
 	return day, month, year
+
 

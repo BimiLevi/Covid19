@@ -35,7 +35,7 @@ def main():
 
     try:
         # Crating a panda's object out of the data, and manipulating it. returns two dataframes.
-        continents, countries = data_to_dfs(data,update_time)
+        continents, countries = data_to_dfs(data, update_time)
 
     except Exception as e:
         print("Couldn't convert the data into pandas df object.")

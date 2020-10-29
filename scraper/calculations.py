@@ -1,3 +1,4 @@
+import numpy as np
 import pandas as pd
 
 from database.db_config import current_db as db
@@ -47,7 +48,7 @@ def calc_new_recovered(df):
 		return series
 
 def make_calc(df, tableName):
-	# try:
+	try:
 		pd.options.mode.chained_assignment = None  # default='warn'
 
 		last_row = get_last_row(tableName)
@@ -61,7 +62,13 @@ def make_calc(df, tableName):
 		df['NewDeaths'] = calc_new_deaths(tempdf)
 		df['NewRecovered'] = calc_new_recovered(tempdf)
 
-		return df
 
-	# except Exception as e:
-	# 	print(e)
+	except Exception as e:
+		print(e)
+		df['NewCases'] = np.nan
+		df['NewDeaths'] = np.nan
+		df['NewRecovered'] = np.nan
+
+	finally:
+
+		return df

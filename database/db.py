@@ -129,17 +129,17 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 				pd.options.mode.chained_assignment = None  # default='warn'
 
 
-			for header in headers_list:
-				temp_df = df[df[col] == '{}'.format(header)]
+				for header in headers_list:
+					temp_df = df[df[col] == '{}'.format(header)]
 
-				temp_df['NewCases'] = temp_df['TotalCases'].diff()
-				temp_df['NewDeaths'] = temp_df['TotalDeaths'].diff()
-				temp_df['NewRecovered'] = temp_df['TotalRecovered'].diff()
+					temp_df['NewCases'] = temp_df['TotalCases'].diff()
+					temp_df['NewDeaths'] = temp_df['TotalDeaths'].diff()
+					temp_df['NewRecovered'] = temp_df['TotalRecovered'].diff()
 
-				temp_df.to_sql('{}'.format(header), con = self.engine, if_exists = 'append', index = False,
-				               dtype = dtype_parm)
+					temp_df.to_sql('{}'.format(header), con = self.engine, if_exists = 'append', index = False,
+					               dtype = dtype_parm)
 
-			print('{} DB was successfully Updated.'.format(col))
+				print('{} DB was successfully Updated.'.format(col))
 
 		except ConnectionError as e:
 			print('Unable to connect to DB.')

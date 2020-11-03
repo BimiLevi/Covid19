@@ -75,6 +75,7 @@ def main():
         db.tables_to_csv()
         print('Tables have been updated locally.')
 
+
     except Exception as e:
         print("Unable to updated the data tables locally.")
         print("The error that occurred is:\n{}".format(e))

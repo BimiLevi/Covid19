@@ -14,7 +14,11 @@ plt.rcParams['font.sans-serif'] = 'Constantia'
 plt.rcParams['savefig.dpi'] = 600
 plt.rcParams["figure.dpi"] = 100
 plt.rcParams.update({'axes.spines.top': False, 'axes.spines.right': False})
-color_palette = {'black': '#3D3D3D', 'blue': '#3F5E99', 'red': '#F04A6B', 'green': '#3AB08B'}
+color_dict = {'black': '#3D3D3D', 'blue': '#3F5E99', 'red': '#F04A6B', 'green': '#3AB08B'}
+color_palette = ['gold', 'yellowgreen', 'lightcoral', 'lightskyblue', '#3AB08B', '#F04A6B', '#3F5E99', '#3D3D3D']
+
+week_days = {'Sunday': 1, 'Monday': 2, 'Tuesday': 3, 'Wednesday': 4, 'Thursday': 5, 'Friday': 6, 'Saturday': 7}
+
 
 def tableau_colors():
 	tab_colors = {}
@@ -24,6 +28,7 @@ def tableau_colors():
 
 	return tab_colors
 
+
 def color_minmax(df, col):
 	colors = []
 	min_val = df[col].min()
@@ -31,12 +36,13 @@ def color_minmax(df, col):
 
 	for val in df[col]:
 		if val == max_val:
-			colors.append(color_palette['green'])
+			colors.append(color_dict['green'])
 		elif val == min_val:
-			colors.append(color_palette['red'])
+			colors.append(color_dict['red'])
 		else:
-			colors.append(color_palette['blue'])
+			colors.append(color_dict['blue'])
 	return colors
+
 
 def month_bar_plot(df, col, cname, month, save = False):
 	from analysis.analysis_func import data_by_month
@@ -81,11 +87,15 @@ def month_bar_plot(df, col, cname, month, save = False):
 
 	return plot
 
-def date_plot(ycol, dfs_list, title=None, save = False):
+
+def date_plot(ycol, dfs_list, title = None, save = False):
 	if len(dfs_list) == 0:
 		return 'You need to enter a country or a list of countries.'
 
-	fig = plt.figure(figsize = (19.20, 10.80), tight_layout=True)
+	if type(dfs_list) != list:
+		raise TypeError('Must be a list type')
+
+	fig = plt.figure(figsize = (19.20, 10.80), tight_layout = True)
 	ax = fig.add_subplot()
 
 	colors = tableau_colors()
@@ -99,12 +109,11 @@ def date_plot(ycol, dfs_list, title=None, save = False):
 			name = str(df['Continent'].unique()[0])
 
 		color = colors_list.pop()
-		ax.plot(df['scrap_date'], df[ycol], label=name, linewidth=3, color=colors[color])
+		ax.plot(df['scrap_date'], df[ycol], label = name, linewidth = 3, color = colors[color])
 
 		handles, labels = ax.get_legend_handles_labels()
-		ax.legend(handles, labels, bbox_to_anchor = (1.001, 1), loc = "best", frameon = True, edgecolor ='black',
+		ax.legend(handles, labels, bbox_to_anchor = (1.001, 1), loc = "best", frameon = True, edgecolor = 'black',
 		          fontsize = 13)
-
 
 	ax.xaxis.set_minor_locator(mdates.WeekdayLocator(byweekday = 6, interval = 1))
 	ax.xaxis.set_minor_formatter(mdates.DateFormatter('%d\n%a'))
@@ -121,7 +130,6 @@ def date_plot(ycol, dfs_list, title=None, save = False):
 	ax.set_ylabel(ytitle, fontsize = 15, fontweight = 'bold')
 	ax.set_title('{}\n{} by {}'.format(title, ytitle, xtitle), fontsize = 17, fontweight = 'bold')
 
-
 	for axis in ['bottom', 'left']:
 		ax.spines[axis].set_linewidth(2)
 
@@ -129,11 +137,8 @@ def date_plot(ycol, dfs_list, title=None, save = False):
 	ax.patch.set_facecolor('gray')
 	ax.patch.set_alpha(0.1)
 
-
 	plt.tick_params(right = False, top = False)
-	plt.grid(b=True, linewidth=1)
-
-
+	plt.grid(b = True, linewidth = 1)
 
 	if save:
 		file_format = 'svg'
@@ -141,6 +146,24 @@ def date_plot(ycol, dfs_list, title=None, save = False):
 		plt.savefig(plots_path + r'\{}'.format(fname), format = file_format, edgecolor = 'b', bbox_inches = 'tight')
 
 	return ax
+
+
+def circle_pie(df, data_col, labels_col, save = False):
+	fig, ax = plt.subplots()
+
+	data = df[data_col]
+	explode = np.ones(data.shape[0]) * 0.05
+	labels = df[labels_col]
+
+	pie = ax.pie(data, labels = labels, autopct = '%1.2f%%', shadow = True, startangle = 90, explode = explode,
+	             pctdistance = 0.85)
+	centre_circle = plt.Circle((0, 0), 0.70, fc = 'white')
+	fig = plt.gcf()
+	fig.gca().add_artist(centre_circle)
+
+	ax.axis('equal')
+
+	return pie
 
 
 if __name__ == '__main__':

@@ -12,7 +12,7 @@ from resources.tables_func import *
 
 
 class Db:
-	def __init__(self, username, password, dbname, host, port = 5432):
+	def __init__(self, username, password, dbname, host, port = 5433):
 		self.username = username
 		self.password = password
 		self.dbname = dbname
@@ -79,8 +79,12 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 	def get_table(self, table):
 		try:
 			if type(table) == str:
-				if not table[0].isupper():
+				if table == 'usa':
+					table = 'USA'
+
+				elif not table[0].isupper():
 					table = table.capitalize()
+
 
 				if self.table_exists(table):
 					table = pd.read_sql(table, con = self.engine)

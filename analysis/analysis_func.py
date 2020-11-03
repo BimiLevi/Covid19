@@ -1,3 +1,5 @@
+import calendar
+
 import pandas as pd
 
 from database.db_config import current_db
@@ -15,11 +17,11 @@ def country_parm(countryName):
 	parm = {'continent_id': continent_id, 'country_id': country_id, 'country': country}
 	return parm
 
-def data_by_month(df, month):
+def data_by_month(df, month, year):
 	if type(month) != int:
 		raise TypeError('Month must be of int type.')
 
-	data = df[df['scrap_date'].dt.month == month]
+	data = df[(df['scrap_date'].dt.month == month) & (df['scrap_date'].dt.year == year)]
 	return data.reset_index(drop = True)
 
 def data_range_date(df, startDate, endDate):
@@ -78,5 +80,8 @@ def get_table_list(names):
 
 	return df_list
 
+def first_day_of_month(date):
+	day = calendar.weekday(date.year, date.month, 1)
+	return calendar.day_name[day]
 
 

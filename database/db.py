@@ -74,6 +74,7 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 
 		else:
 			return False
+
 	# This func returns pandas object.
 	def get_table(self, table):
 		try:
@@ -104,7 +105,7 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 					return table
 
 				else:
-					print("The table that you requested doesn't exists in the DB\n table: {}.".format(table))
+					print("The table that you requested doesn't exists in the DB.\n table: {}.".format(table))
 					return None
 
 			else:
@@ -137,7 +138,6 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 			else:
 				"""Making calculations before loading the data to db - used when loading data from backup"""
 				pd.options.mode.chained_assignment = None  # default='warn'
-
 
 				for header in headers_list:
 					temp_df = df[df[col] == '{}'.format(header)]
@@ -213,6 +213,7 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 
 			else:
 				pass
+
 	def sql_query(self, statement):
 		"""Executes a read query and returns a Prettytable object."""
 		self.engine.connect()
@@ -230,14 +231,3 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 			table.add_row(row)
 
 		return table
-
-
-
-
-
-
-
-
-
-
-

@@ -1,5 +1,4 @@
 # -*- coding: utf-8 -*-
-import time
 from glob import glob
 
 import numpy as np
@@ -9,6 +8,7 @@ from sqlalchemy import create_engine
 
 from resources.paths import *
 from resources.tables_func import *
+from utilities.files_function import calculate_time
 
 
 class Db:
@@ -74,7 +74,6 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 
 		else:
 			return False
-
 	# This func returns pandas object.
 	def get_table(self, table):
 		try:
@@ -82,9 +81,15 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 				if table == 'usa':
 					table = 'USA'
 
+				elif len(table.split()) == 2:
+					word1 = table.split()[0].capitalize()
+					word2 = table.split()[1].capitalize()
+
+					table = word1 + ' ' + word2
+
+
 				elif not table[0].isupper():
 					table = table.capitalize()
-
 
 				if self.table_exists(table):
 					table = pd.read_sql(table, con = self.engine)
@@ -99,7 +104,8 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 					return table
 
 				else:
-					return "The table that you requested doesn't exists in the DB."
+					print("The table that you requested doesn't exists in the DB\n table: {}.".format(table))
+					return None
 
 			else:
 				return 'The input must be of str type.'
@@ -159,11 +165,10 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 		df = df.sort_values(by = ['TotalCases'], ascending = False)
 		return df
 
+	@calculate_time
 	def load_backup(self):
 		import os
 		try:
-			start = time.time()
-
 			print('Creating Countries main table.')
 			countries_table(self.engine)
 
@@ -194,10 +199,6 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 					late_data.to_sql('All continents updated', con = self.engine, if_exists = 'replace', index = False,
 					                 dtype = continents_parm)
 
-			end = time.time()
-			execution_time = (end - start) / 60
-			print('The process executed successfully,the time it took is: {:.3f} minutes.\n'.format(execution_time))
-
 		except Exception as e:
 			print('The following Exception as occurred:\n{}'.format(e))
 
@@ -207,8 +208,11 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 			path = Dtables_path + r'\{}.csv'.format(table)
 
 			temp_table = self.get_table(table)
-			temp_table.to_csv(path, index = False)
+			if not temp_table is None:
+				temp_table.to_csv(path, index = False)
 
+			else:
+				pass
 	def sql_query(self, statement):
 		"""Executes a read query and returns a Prettytable object."""
 		self.engine.connect()

@@ -64,7 +64,6 @@ def make_calc(df, tableName):
 
 
 	except Exception as e:
-		print(e)
 		df['NewCases'] = np.nan
 		df['NewDeaths'] = np.nan
 		df['NewRecovered'] = np.nan

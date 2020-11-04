@@ -1,4 +1,6 @@
 import json
+import time
+
 
 def save_json(data, file_name, file_type = 'json'):
 	try:
@@ -22,3 +24,16 @@ def load_json(file_name):
 
 	finally:
 		return data
+
+def calculate_time(func):
+
+	def execution_time(*args, **kwargs):
+			begin = time.time()
+			func(*args, **kwargs)
+			end = time.time()
+			print("Total time taken in {} function is: {} {}".format(func.__name__, round(end - begin, 3)/60,
+			                                                         'minutes.'))
+
+	return execution_time
+
+

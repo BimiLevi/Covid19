@@ -1,10 +1,10 @@
 from database.db_config import current_db as db
 from resources.tables_func import *
 from scraper.scraper import *
+from utilities.files_function import calculate_time
 
-
+@calculate_time
 def main():
-    start = time.time()
     try:
 
         if not db.table_exists('Countries'):
@@ -36,6 +36,7 @@ def main():
     try:
         # Crating a panda's object out of the data, and manipulating it. returns two dataframes.
         continents, countries = data_to_dfs(data, update_time)
+        print('The data was inserted into pandas DF successfully.')
 
     except Exception as e:
         print("Couldn't convert the data into pandas df object.")
@@ -79,12 +80,6 @@ def main():
     except Exception as e:
         print("Unable to updated the data tables locally.")
         print("The error that occurred is:\n{}".format(e))
-
-
-    end = time.time()
-    execution_time = (end - start) / 60
-    print('The process executed successfully,the time it took is: {:.3f} minutes.'.format(execution_time))
-
 
 if __name__ == '__main__':
     # db.load_backup()

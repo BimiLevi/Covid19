@@ -8,8 +8,6 @@ from utilities.directories import creat_directory
 
 
 def run_scraper():
-	start = time.time()
-
 	counter = 1
 	while counter <= 3:
 		try:
@@ -29,11 +27,6 @@ def run_scraper():
 			print('The process will start again in 30 seconds.\n This is the {} attempt out of 3.\n'.format(str(
 					counter)))
 			time.sleep(30)
-
-	end = time.time()
-	execution_time = (end - start) / 60
-	print('The process executed successfully.\nthe time it took to scrape the data is: {:.3f} minutes.'.format(
-			execution_time))
 
 	return data, update_time
 

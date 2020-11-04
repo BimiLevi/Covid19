@@ -2,6 +2,7 @@ import re
 from datetime import datetime
 
 import matplotlib.dates as mdates
+import matplotlib.pyplot as plt
 import numpy as np
 from matplotlib.ticker import FuncFormatter
 
@@ -184,6 +185,8 @@ class Territory:
 
 		return axs
 
+
+
 class Country(Territory):
 	def __init__(self, name):
 		super().__init__(name)
@@ -231,6 +234,40 @@ Columns: \n{}
 	@data.setter
 	def data(self):
 		self._data = db.get_table(self.name)
+
+	def daily_increase(self, col, save = False):
+		rate = self.__data[col].pct_change()
+
+		fig, ax = plt.subplots(figsize = (19.20, 10.80), tight_layout = True)
+		ax2 = ax.twinx()
+
+		ax2.plot(self.__data['scrap_date'], rate, color = 'lightcoral', marker='o', linestyle = 'dashed',linewidth=3)
+		ax.bar(self.__data['scrap_date'], self.__data['NewDeaths'], color='orange')
+
+		fig.suptitle('{}\nDaily increase of {}'.format(self.name.capitalize(),col), size = 20)
+		ax.set_ylabel(col, size = 20)
+		ax.tick_params(axis = 'both', which = 'major', labelsize = 20)
+		ax.tick_params(axis = 'x', which = 'minor', labelsize = 20)
+
+		ax.xaxis.set_minor_locator(mdates.WeekdayLocator(byweekday = 6, interval = 1))
+		ax.xaxis.set_minor_formatter(mdates.DateFormatter('%d\n%a'))
+
+		ax.xaxis.grid(True, which = "minor")
+		ax.yaxis.grid()
+		ax.xaxis.set_major_locator(mdates.MonthLocator())
+		ax.xaxis.set_major_formatter(mdates.DateFormatter('\n\n\n%b\n%Y'))
+
+		if save:
+			title = 'Daily increase of {} in {}'.format(col,self.name)
+			file_format = 'svg'
+			full_path = os.path.join(plots_path, self.name)
+			if not os.path.isfile(full_path):
+				creat_directory(full_path)
+			fig.savefig('{}\{}.{}'.format(full_path, title, file_format), format = file_format,
+			            edgecolor = 'b',bbox_inches ='tight')
+
+
+		return fig
 
 class Continent(Territory):
 	def __init__(self, name):
@@ -303,7 +340,6 @@ Limit: {}
 	def limit(self, new_limit):
 		self.__limit = new_limit
 
-
 	def sort_limit_data(self, col):
 		sorted_data = self.data.dropna().sort_values(by = col).reset_index(drop = True).tail(self.limit)
 		sorted_data.index = np.arange(1, len(sorted_data) + 1)
@@ -340,24 +376,21 @@ Limit: {}
 			fig.savefig('{}\{}.{}'.format(full_path, title, file_format), format = file_format, edgecolor = 'b',
 			            bbox_inches = 'tight')
 		return bar
+
 if __name__ == '__main__':
 	top = Top('continents')
-	temp = top.top_bar('TotalCases',save = True)
-	temp = top.top_bar('NewCases',save = True)
-	temp = top.top_bar('TotalRecovered',save = True)
-	temp = top.top_bar('ActiveCases',save = True)
-	temp = top.top_bar('SeriousCritical',save = True)
-	temp = top.top_bar('NewDeaths',save = True)
-	# temp = top.top_bar('Deaths_1Mpop',save = True)
-	# temp = top.top_bar('Tests_1Mpop',save = True)
-	# temp = top.top_bar('Tot_Cases_1Mpop',save = True)
+	top.top_bar('TotalCases',save = True)
+	top.top_bar('NewCases',save = True)
+	top.top_bar('TotalRecovered',save = True)
+	top.top_bar('ActiveCases',save = True)
+	top.top_bar('SeriousCritical',save = True)
+	top.top_bar('NewDeaths',save = True)
+	# top.top_bar('Deaths_1Mpop',save = True)
+	# top.top_bar('Tests_1Mpop',save = True)
+	# top.top_bar('Tot_Cases_1Mpop',save = True)
 
 	plt.show()
 
-	new_cols = ['NewCases', 'NewRecovered', 'NewDeaths' ]
-	active_serious = ['ActiveCases', 'SeriousCritical']
-	total_cols = ['TotalCases', 'TotalDeaths', 'TotalRecovered']
-	mpop_cols = ['Tot_Cases_1Mpop', 'Deaths_1Mpop', 'Tests_1Mpop']
 
 
 

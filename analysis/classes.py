@@ -1,73 +1,23 @@
-import re
 from datetime import datetime
-
-import matplotlib.dates as mdates
-import matplotlib.pyplot as plt
-import pandas as pd
 
 from analysis.analysis_func import *
 from analysis.visualization_func import *
 from database.db_config import current_db as db
 from resources.paths import *
+from utilities.directories import creat_directory
 from utilities.files_function import load_json
 
 pd.set_option('display.max_rows', None)
 pd.set_option('display.max_columns', 15)
 
 class Territory:
-	def __init__(self, name, ttype):
-		self.name = name.lower()
-		self.ttype = ttype.lower()
 
-class Country(Territory):
+	def __init__(self, name):
+		self.name = name.lower()
+		self._data = None
+
 	numeric_cols = ['TotalCases', 'NewCases', 'TotalDeaths', 'NewDeaths', 'TotalRecovered', 'NewRecovered', 'ActiveCases',
 	                 'SeriousCritical', 'Tot_Cases_1Mpop', 'Deaths_1Mpop', 'TotalTests', 'Tests_1Mpop']
-
-	def __init__(self, name, ttype):
-		super().__init__(name, ttype)
-
-		self.data = db.get_table(self.name)
-
-		self.id = self.data['Country_id'].unique()[0]
-
-		temp = pd.DataFrame(load_json(countries_path))
-		self.continent_id = int(temp[temp['Country_id'] == self.id]['Continent_id'].unique()[0])
-
-		temp = load_json(continents_path)
-		temp = dict([(value, key) for key, value in temp.items()])
-		self.continent = temp[self.continent_id]
-
-		self.population = self.data['Population'][0]
-		self.last_update = self.data['scrap_date'].max().date()
-		self.first_update = self.data['scrap_date'].min().date()
-
-		self.data = self.data.drop(columns =['Population', 'update_time_GMT', 'Country_id', 'Country'])
-
-		self.size = self.data.shape
-		self.columns = self.data.columns.tolist()
-
-	def __str__(self):
-		return """
-Countries name: {}
-Countries id: {}
-Continent: {}
-Continent id: {}
-Population: {}
-First update: {}
-Last update: {}
-Data number of rows: {}
-Data number of columns: {}
-Columns: \n{}
-		""".format(self.name.capitalize(), self.id, self.continent, self.continent_id, self.population,
-		           self.first_update, self.last_update, self.size[0], self.size[1], self.columns)
-
-
-	def refresh(self):
-		if (type(self.name) is str) and (self.name is not None) :
-			self.data = db.get_table(self.name)
-
-	def get_data(self):
-		return self.data
 
 	def date_plot(self, cols = numeric_cols, start_date = None, end_date = None, save = False):
 		if type(cols) != list:
@@ -77,10 +27,10 @@ Columns: \n{}
 			raise ValueError('cols list is empty.')
 
 		if (start_date is not None) and (end_date is not None):
-			data = data_range_date(self.data, start_date, end_date)
+			data = data_range_date(self._data, start_date, end_date)
 
 		else:
-			data = self.data
+			data = self._data
 
 		fig = plt.figure(figsize = (19.20, 10.80), tight_layout = True)
 		ax = fig.add_subplot()
@@ -119,17 +69,20 @@ Columns: \n{}
 		ax.set_title('{}'.format(self.name.capitalize()), fontsize = 17, fontweight = 'bold')
 
 		if save:
-			title = input('Please enter plots name\n')
+			title = input('For date plot\nPlease enter plots name\n')
 			file_format = 'svg'
-			fig.savefig('{}\{}.{}'.format(plots_path, title, file_format), format = file_format, edgecolor = 'b',
-			bbox_inches ='tight')
+			full_path = os.path.join(plots_path, self.name)
+			if not os.path.isfile(full_path):
+				creat_directory(full_path)
+			fig.savefig('{}\{}\{}.{}'.format(plots_path, self.name, title, file_format), format = file_format,
+			            edgecolor = 'b',bbox_inches ='tight')
 
 		return ax
 
 	def closed_cases_pie(self, save = False):
 		fig, ax = plt.subplots(figsize = (19.20, 10.80), tight_layout = True)
 
-		cases = self.data[self.data['scrap_date'] == self.data['scrap_date'].max()]
+		cases = self._data[self._data['scrap_date'] == self._data['scrap_date'].max()]
 		cases = cases[['TotalCases', 'ActiveCases', 'TotalRecovered', 'TotalDeaths']]
 
 		nclosed = (cases['TotalCases'] - cases['ActiveCases']).tolist()[0]
@@ -159,23 +112,27 @@ Columns: \n{}
 		if save:
 			title = '{} Closed Cases Ratio'.format(self.name.capitalize())
 			file_format = 'svg'
-			fig.savefig('{}\{}.{}'.format(plots_path, title, file_format), format = file_format, edgecolor = 'b',
+			full_path = os.path.join(plots_path, self.name)
+			if not os.path.isfile(full_path):
+				creat_directory(full_path)
+			fig.savefig('{}\{}\{}.{}'.format(plots_path, self.name, title, file_format), format = file_format, \
+			                                                                                    edgecolor = 'b',
 			bbox_inches ='tight')
 
 
 
 		return pie
 
-	def monthly_bar(self, cols, month, year, save = False):
+	def monthly_plot(self, cols, month, year, save = False):
 		if len(cols) > 4:
 			raise ValueError('The maximum amount of columns is 4.')
 
 
 		if month is not None:
-			data = data_by_month(self.data, month,year)
+			data = data_by_month(self._data, month, year)
 
 		else:
-			data = self.data
+			data = self._data
 
 
 		fig, axs = plt.subplots(len(cols), figsize = (19.20, 10.80), tight_layout = True)
@@ -210,12 +167,103 @@ Columns: \n{}
 		fig.suptitle('{} during {}'.format(self.name.capitalize(), month), fontsize=22, fontweight='bold')
 
 		if save:
-			title = input('Please enter plots name\n')
+			title = input('For monthly plot \n Please enter plots name\n'.format())
 			file_format = 'svg'
-			fig.savefig('{}\{}.{}'.format(plots_path, title, file_format), format = file_format, edgecolor = 'b',
+			full_path = os.path.join(plots_path, self.name)
+			if not os.path.isfile(full_path):
+				creat_directory(full_path)
+			fig.savefig('{}\{}\{}.{}'.format(plots_path, self.name,title, file_format), format = file_format, \
+			                                                                                    edgecolor = 'b',
 			bbox_inches ='tight')
 
 		return axs
+
+
+class Country(Territory):
+	def __init__(self, name):
+		super().__init__(name)
+
+		self.ttype = 'country'
+		self._data = db.get_table(self.name)
+
+		self.id = self._data['Country_id'].unique()[0]
+
+		temp = pd.DataFrame(load_json(countries_path))
+		self.continent_id = int(temp[temp['Country_id'] == self.id]['Continent_id'].unique()[0])
+
+		temp = load_json(continents_path)
+		temp = dict([(value, key) for key, value in temp.items()])
+		self.continent = temp[self.continent_id]
+
+		self.population = self._data['Population'][0]
+		self.last_update = self._data['scrap_date'].max().date()
+		self.first_update = self._data['scrap_date'].min().date()
+
+		self._data = self._data.drop(columns =['Population', 'update_time_GMT', 'Country_id', 'Country'])
+
+		self.size = self._data.shape
+		self.columns = self._data.columns.tolist()
+
+	def __str__(self):
+		return """
+Countries name: {}
+Countries id: {}
+Continent: {}
+Continent id: {}
+Population: {}
+First update: {}
+Last update: {}
+Data number of rows: {}
+Data number of columns: {}
+Columns: \n{}
+		""".format(self.name.capitalize(), self.id, self.continent, self.continent_id, self.population,
+		           self.first_update, self.last_update, self.size[0], self.size[1], self.columns)
+
+	@property
+	def data(self):
+		return self._data
+
+	@data.setter
+	def data(self):
+		self._data = db.get_table(self.name)
+
+
+class Continent(Territory):
+	def __init__(self, name):
+		super().__init__(name)
+
+		self.ttype = 'continent'
+
+		self._data = db.get_table(self.name)
+		self.id = self._data['Continent_id'].unique()[0]
+		self.last_update = self._data['scrap_date'].max().date()
+		self.first_update = self._data['scrap_date'].min().date()
+
+		self._data = self._data.drop(columns =['update_time_GMT', 'Continent_id', 'Continent'])
+
+		self.size = self._data.shape
+		self.columns = self._data.columns.tolist()
+
+	def __str__(self):
+		return """
+Continent name: {}
+Continents id: {}
+First update: {}
+Last update: {}
+Data number of rows: {}
+Data number of columns: {}
+Columns: \n{}
+		""".format(self.name.capitalize(), self.id, self.first_update, self.last_update, self.size[0], self.size[1], self.columns)
+
+	@property
+	def data(self):
+		return self._data
+
+	@data.setter
+	def data(self):
+		self._data = db.get_table(self.name)
+
+
 
 
 
@@ -228,12 +276,19 @@ if __name__ == '__main__':
 	total_cols = ['TotalCases', 'TotalDeaths', 'TotalRecovered', 'ActiveCases', 'SeriousCritical']
 	mpop_cols = ['Tot_Cases_1Mpop', 'Deaths_1Mpop', 'Tests_1Mpop']
 
-	country = Country('USA', 'country')
+	# country = Country('USA')
+	# country.date_plot(new_cols + ['SeriousCritical'], save = False)
+	# #
+	# country.closed_cases_pie(save = False)
+	# country.monthly_plot(['NewCases', 'NewDeaths', 'NewRecovered','SeriousCritical'], 10, 2020, save = False)
+	# #
+	#
+	continent = Continent('North America')
+	continent.monthly_plot(['NewCases', 'SeriousCritical', 'NewRecovered'], 10, 2020,save = True)
+	continent.closed_cases_pie(save = True)
+	continent.date_plot(new_cols + ['SeriousCritical'], save = True)
+	print(continent)
 
-	country.date_plot(new_cols + ['SeriousCritical'], save = False)
 
-	country.closed_cases_pie(save = False)
-	country.monthly_bar(['NewCases', 'NewDeaths', 'NewRecovered','SeriousCritical'], 10, 2020, save = False)
 
 	plt.show()
-

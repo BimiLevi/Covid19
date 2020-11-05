@@ -3,7 +3,6 @@ from datetime import datetime
 
 import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
-import numpy as np
 from matplotlib.ticker import FuncFormatter
 
 from analysis.analysis_func import *
@@ -11,7 +10,7 @@ from analysis.visualization_func import *
 from database.db_config import current_db as db
 from resources.paths import *
 from utilities.directories import creat_directory
-from utilities.files_function import load_json
+from utilities.files_function import load_json, calculate_time
 
 plt.style.use('classic')
 plt.rcParams['font.sans-serif'] = 'Constantia'
@@ -27,10 +26,12 @@ class Territory:
 		self.name = name.lower()
 		self.__data = None
 
-	numeric_cols = ['TotalCases', 'NewCases', 'TotalDeaths', 'NewDeaths', 'TotalRecovered', 'NewRecovered', 'ActiveCases',
-	                 'SeriousCritical', 'Tot_Cases_1Mpop', 'Deaths_1Mpop', 'TotalTests', 'Tests_1Mpop']
-
-	def date_plot(self, cols = numeric_cols, start_date = None, end_date = None, save = False):
+	@calculate_time
+	def date_plot(self, cols = [], start_date = None, end_date = None, save = False, ):
+		if cols is None:
+			cols = ['TotalCases', 'NewCases', 'TotalDeaths', 'NewDeaths', 'TotalRecovered', 'NewRecovered',
+		                'ActiveCases', 'SeriousCritical', 'Tot_Cases_1Mpop', 'Deaths_1Mpop', 'TotalTests',
+		                'Tests_1Mpop']
 		if type(cols) != list:
 			raise TypeError('Type must be a list.')
 
@@ -38,10 +39,10 @@ class Territory:
 			raise ValueError('cols list is empty.')
 
 		if (start_date is not None) and (end_date is not None):
-			data = data_range_date(self.__data, start_date, end_date)
+			data = data_range_date(self._data, start_date, end_date)
 
 		else:
-			data = self.__data
+			data = self._data
 
 		fig = plt.figure(figsize = (19.20, 10.80), tight_layout = True)
 		ax = fig.add_subplot()
@@ -90,10 +91,11 @@ class Territory:
 
 		return ax
 
+	@calculate_time
 	def closed_cases_pie(self, save = False):
 		fig, ax = plt.subplots(figsize = (19.20, 10.80), tight_layout = True)
 
-		cases = self.__data[self.__data['scrap_date'] == self.__data['scrap_date'].max()]
+		cases = self._data[self._data['scrap_date'] == self._data['scrap_date'].max()]
 		cases = cases[['TotalCases', 'ActiveCases', 'TotalRecovered', 'TotalDeaths']]
 
 		nclosed = (cases['TotalCases'] - cases['ActiveCases']).tolist()[0]
@@ -132,15 +134,17 @@ class Territory:
 
 		return pie
 
+	@calculate_time
 	def monthly_plot(self, cols, month, year, save = False):
 		if len(cols) > 4:
 			raise ValueError('The maximum amount of columns is 4.')
 
+
 		if month is not None:
-			data = data_by_month(self.__data, month, year)
+			data = data_by_month(self._data, month, year)
 
 		else:
-			data = self.__data
+			data = self._data
 
 
 		fig, axs = plt.subplots(len(cols), figsize = (19.20, 10.80), tight_layout = True)
@@ -151,11 +155,16 @@ class Territory:
 			temp_data = data[['scrap_date', col]]
 			temp_data = temp_data[temp_data[col].notna()]
 
-			ax = axs[i]
+			if len(cols) == 1:
+				ax = axs
+
+			else:
+				ax = axs[i]
+
 			ax.plot(temp_data['scrap_date'], temp_data[col], figure = fig, color=colors[i], linewidth=3)
 
 			first_day = first_day_of_month(datetime(year, month, 1))
-			ax.xaxis.set_minor_locator(mdates.WeekdayLocator(byweekday= week_days[first_day] , interval = 1))
+			ax.xaxis.set_minor_locator(mdates.WeekdayLocator(byweekday= week_days[first_day], interval = 1))
 			ax.xaxis.set_minor_formatter(mdates.DateFormatter('%d\n%a'))
 			ax.xaxis.grid(True, which = "minor")
 			ax.yaxis.grid()
@@ -166,10 +175,6 @@ class Territory:
 			ax.set_title('{}'.format(title),size=20)
 			ax.tick_params(axis = 'both', which = 'major', labelsize = 18)
 			ax.tick_params(axis = 'both', which = 'minor', labelsize = 18)
-
-		for ax in axs:
-			ax.label_outer()
-
 
 		month = datetime(1900, month, 1).strftime('%B')
 		fig.suptitle('{} during {}'.format(self.name.capitalize(), month), fontsize=22, fontweight='bold')
@@ -183,7 +188,45 @@ class Territory:
 			fig.savefig('{}\{}.{}'.format(full_path,title, file_format), format = file_format, edgecolor = 'b',
 			            bbox_inches ='tight')
 
-		return axs
+		return ax
+
+	@calculate_time
+	def daily_increase(self, col, save = False):
+		rate = self._data[col].pct_change()
+
+		fig, ax = plt.subplots(figsize = (19.20, 10.80), tight_layout = True)
+		ax2 = ax.twinx()
+
+		ax2.plot(self._data['scrap_date'], rate, color = 'lightcoral', marker='o', linestyle = 'dashed',linewidth=3)
+		ax.bar(self._data['scrap_date'], self._data['NewDeaths'], color='orange')
+
+		fig.suptitle('{}\nDaily increase of {}'.format(self.name.capitalize(),col), size = 20)
+		ax.set_ylabel(col, size = 20)
+		ax.tick_params(axis = 'both', which = 'major', labelsize = 20)
+		ax.tick_params(axis = 'x', which = 'minor', labelsize = 20)
+
+		ax.xaxis.set_minor_locator(mdates.WeekdayLocator(byweekday = 6, interval = 1))
+		ax.xaxis.set_minor_formatter(mdates.DateFormatter('%d\n%a'))
+
+		ax.xaxis.grid(True, which = "minor")
+		ax.yaxis.grid()
+		ax.xaxis.set_major_locator(mdates.MonthLocator())
+		ax.xaxis.set_major_formatter(mdates.DateFormatter('\n\n\n%b\n%Y'))
+
+		if save:
+			title = 'Daily increase of {} in {}'.format(col,self.name)
+			file_format = 'svg'
+			full_path = os.path.join(plots_path, self.name)
+			if not os.path.isfile(full_path):
+				creat_directory(full_path)
+			fig.savefig('{}\{}.{}'.format(full_path, title, file_format), format = file_format,
+			            edgecolor = 'b', bbox_inches ='tight')
+
+
+		return fig
+
+
+
 
 class Country(Territory):
 	def __init__(self, name):
@@ -227,45 +270,11 @@ Columns: \n{}
 
 	@property
 	def data(self):
-		return self._data
+		return self.__data
 
 	@data.setter
-	def data(self,table):
-		self._data = db.get_table(table)
-
-	def daily_increase(self, col, save = False):
-		rate = self.__data[col].pct_change()
-
-		fig, ax = plt.subplots(figsize = (19.20, 10.80), tight_layout = True)
-		ax2 = ax.twinx()
-
-		ax2.plot(self.__data['scrap_date'], rate, color = 'lightcoral', marker='o', linestyle = 'dashed',linewidth=3)
-		ax.bar(self.__data['scrap_date'], self.__data['NewDeaths'], color='orange')
-
-		fig.suptitle('{}\nDaily increase of {}'.format(self.name.capitalize(),col), size = 20)
-		ax.set_ylabel(col, size = 20)
-		ax.tick_params(axis = 'both', which = 'major', labelsize = 20)
-		ax.tick_params(axis = 'x', which = 'minor', labelsize = 20)
-
-		ax.xaxis.set_minor_locator(mdates.WeekdayLocator(byweekday = 6, interval = 1))
-		ax.xaxis.set_minor_formatter(mdates.DateFormatter('%d\n%a'))
-
-		ax.xaxis.grid(True, which = "minor")
-		ax.yaxis.grid()
-		ax.xaxis.set_major_locator(mdates.MonthLocator())
-		ax.xaxis.set_major_formatter(mdates.DateFormatter('\n\n\n%b\n%Y'))
-
-		if save:
-			title = 'Daily increase of {} in {}'.format(col,self.name)
-			file_format = 'svg'
-			full_path = os.path.join(plots_path, self.name)
-			if not os.path.isfile(full_path):
-				creat_directory(full_path)
-			fig.savefig('{}\{}.{}'.format(full_path, title, file_format), format = file_format,
-			            edgecolor = 'b',bbox_inches ='tight')
-
-
-		return fig
+	def data(self, table):
+		self.__data = db.get_table(table)
 
 class Continent(Territory):
 	def __init__(self, name):
@@ -351,7 +360,7 @@ Limit: {}
 
 		self.set_obj(sorted_data)
 		return sorted_data
-
+	@calculate_time
 	def top_bar(self, col, save = None):
 
 		data = self.sort_limit_data(col)
@@ -384,6 +393,7 @@ Limit: {}
 			 bbox_inches = 'tight')
 		return bar
 
+	@calculate_time
 	def top_line(self, col, save = None):
 		names_list = self.sort_limit_data(col)[self.col_type].to_list()
 
@@ -427,10 +437,33 @@ Limit: {}
 			 bbox_inches = 'tight')
 		return ax
 
+	@calculate_time
+	def get_map(self, col):
+		from analysis.visualization_func import countries_map
+
+		df = self.sort_limit_data(col)[[self.col_type, col]]
+		countries_loc = {}
+
+		for obj_name in self.obj_dict.keys():
+			location = geolocate(obj_name)
+			countries_loc[obj_name] = location
+
+		df['location'] = df[self.col_type].map(countries_loc)
+		df[['Latitude', 'Longitude']] = pd.DataFrame(df['location'].tolist(), index=df.index)
+		df = df.drop(columns = ['location'])
+
+		title = 'Top {} {} With the highest {}'.format(len(df), self.ttype, col)
+
+		countries_map(df, title, col)
+
 if __name__ == '__main__':
-	top = Top('countries')
-	top.top_line('TotalCases',save = False)
-	top.top_bar('TotalCases',save = False)
+	# top = Top('countries')
+	# top.get_map('NewDeaths')
+	# top.get_map('NewRecovered')
+	# top.get_map('TotalDeaths')
+	# top.get_map('TotalRecovered')
+	# top.top_line('TotalCases',save = False)
+	# top.top_bar('TotalCases',save = False)
 	# top.top_line('NewCases',save = True)
 	# top.top_line('TotalRecovered',save = True)
 	# top.top_line('ActiveCases',save = True)

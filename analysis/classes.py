@@ -73,6 +73,7 @@ class Territory:
 		ax.xaxis.set_major_locator(mdates.MonthLocator())
 		ax.xaxis.set_major_formatter(mdates.DateFormatter('\n\n\n%b\n%Y'))
 
+
 		xtitle = 'Date'
 		ytitle = 'Values'
 
@@ -139,13 +140,11 @@ class Territory:
 		if len(cols) > 4:
 			raise ValueError('The maximum amount of columns is 4.')
 
-
 		if month is not None:
 			data = data_by_month(self._data, month, year)
 
 		else:
 			data = self._data
-
 
 		fig, axs = plt.subplots(len(cols), figsize = (19.20, 10.80), tight_layout = True)
 
@@ -155,6 +154,9 @@ class Territory:
 			temp_data = data[['scrap_date', col]]
 			temp_data = temp_data[temp_data[col].notna()]
 
+			# TODO: think about using the 'sma'
+			temp_data['sma'] = temp_data[col].rolling(window = 7).mean()
+
 			if len(cols) == 1:
 				ax = axs
 
@@ -162,6 +164,8 @@ class Territory:
 				ax = axs[i]
 
 			ax.plot(temp_data['scrap_date'], temp_data[col], figure = fig, color=colors[i], linewidth=3)
+			ax.plot(temp_data['scrap_date'], temp_data['sma'], color = 'lightcoral', marker='o', linestyle =
+			'dashed', linewidth=3,figure = fig, label= '7 Days Moving Avg')
 
 			first_day = first_day_of_month(datetime(year, month, 1))
 			ax.xaxis.set_minor_locator(mdates.WeekdayLocator(byweekday= week_days[first_day], interval = 1))
@@ -175,6 +179,11 @@ class Territory:
 			ax.set_title('{}'.format(title),size=20)
 			ax.tick_params(axis = 'both', which = 'major', labelsize = 18)
 			ax.tick_params(axis = 'both', which = 'minor', labelsize = 18)
+
+
+			handles, labels = ax.get_legend_handles_labels()
+			ax.legend(handles, labels, bbox_to_anchor = (1.001, 1), loc = "best", frameon = True, edgecolor = 'black',
+			          fontsize = 15)
 
 		month = datetime(1900, month, 1).strftime('%B')
 		fig.suptitle('{} during {}'.format(self.name.capitalize(), month), fontsize=22, fontweight='bold')
@@ -192,15 +201,17 @@ class Territory:
 
 	@calculate_time
 	def daily_increase(self, col, save = False):
-		rate = self._data[col].pct_change()
+		df = self._data
+		df['sma'] = df[col].rolling(window = 7).mean()
 
 		fig, ax = plt.subplots(figsize = (19.20, 10.80), tight_layout = True)
 		ax2 = ax.twinx()
 
-		ax2.plot(self._data['scrap_date'], rate, color = 'lightcoral', marker='o', linestyle = 'dashed',linewidth=3)
-		ax.bar(self._data['scrap_date'], self._data['NewDeaths'], color='orange')
+		ax2.plot(df['scrap_date'], df['sma'], color = 'lightcoral', marker='o', linestyle = 'dashed', linewidth=3,
+		         label='7 days moving avg')
+		ax.bar(df['scrap_date'], df[col], color='orange')
 
-		fig.suptitle('{}\nDaily increase of {}'.format(self.name.capitalize(),col), size = 20)
+		fig.suptitle('{}\nDaily increase of {}'.format(self.name.capitalize(), col), size = 20)
 		ax.set_ylabel(col, size = 20)
 		ax.tick_params(axis = 'both', which = 'major', labelsize = 20)
 		ax.tick_params(axis = 'x', which = 'minor', labelsize = 20)
@@ -213,6 +224,9 @@ class Territory:
 		ax.xaxis.set_major_locator(mdates.MonthLocator())
 		ax.xaxis.set_major_formatter(mdates.DateFormatter('\n\n\n%b\n%Y'))
 
+		handles, labels = ax2.get_legend_handles_labels()
+		ax.legend(handles, labels, bbox_to_anchor = (1.001, 1), loc = "best", frameon = True, edgecolor = 'black',
+		          fontsize = 15)
 		if save:
 			title = 'Daily increase of {} in {}'.format(col,self.name)
 			file_format = 'svg'
@@ -457,8 +471,9 @@ Limit: {}
 		countries_map(df, title, col)
 
 if __name__ == '__main__':
-	# top = Top('countries')
-	# top.get_map('NewDeaths')
+	top = Top('countries')
+	country = Country('israel')
+	country.monthly_plot(['ActiveCases','SeriousCritical'],10,2020)
 	# top.get_map('NewRecovered')
 	# top.get_map('TotalDeaths')
 	# top.get_map('TotalRecovered')

@@ -19,24 +19,33 @@ print(df.dtypes)
 print('---------------------------------------------------------------------------------------------------------------')
 print("Part 2: Basic exploring")
 
-print("Q1. Find the date of the day with the highest New Cases.")
+print("Q1.Find the date of the day with the highest New Cases.")
 date = df[df['NewCases'] == df['NewCases'].max()]['scrap_date'].dt.date
-print('Answer:\n', date)
+print('Answer:\n', date, '\n')
 
-print("Q2. Find the countries daily increases in death,recoveries,active cases")
+print("Q2.Find the countries daily increases in death,recoveries,active cases")
 death_rate = df['NewDeaths'].pct_change()
-print('Answer:\n', death_rate.head())
-country.daily_increase('NewDeaths',save = True)
+print('Answer:\n', death_rate.head(), '\n')
+country.daily_increase('NewDeaths', save = True)
 
 recovered_rate = df['NewRecovered'].pct_change()
-print('Answer:\n', recovered_rate.head())
-country.daily_increase('NewRecovered',save = True)
+print('Answer:\n', recovered_rate.head(), '\n')
+country.daily_increase('NewRecovered', save = True)
 
 newcase_rate = df['NewCases'].pct_change()
-print('Answer:\n', newcase_rate.head())
-country.daily_increase('NewCases',save = True)
+country.daily_increase('NewCases', save = True)
 
-print("Q3. ")
+print("Q3.Find closed cases ratio (TotalRecovered + TotalDeaths = TotalCases - ActiveCases")
+updated_totals = df[df['scrap_date'].dt.date == country.last_update]\
+    [['TotalCases','ActiveCases','TotalRecovered','TotalDeaths']]
+res = (updated_totals[['TotalRecovered','TotalDeaths']] / (updated_totals['TotalCases']\
+                                             .values[0] - updated_totals[ 'ActiveCases'].values[0])) * 100
+res = round(res, 3).astype(str) + '%'
+print('Answer:\n', res, '\n')
+
+print("Q4.")
+
+
 
 plt.show()
 

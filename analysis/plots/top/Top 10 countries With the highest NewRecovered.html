@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<head>    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://rawcdn.githack.com/python-visualization/folium/master/folium/templates/leaflet.awesome.rotate.css"/>
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_26d978d7b9e0493096e9e834df01892a {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+            </style>
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.Default.css"/>
+</head>
+<body>    
+    
+            <div class="folium-map" id="map_26d978d7b9e0493096e9e834df01892a" ></div>
+        
+</body>
+<script>    
+    
+            var map_26d978d7b9e0493096e9e834df01892a = L.map(
+                "map_26d978d7b9e0493096e9e834df01892a",
+                {
+                    center: [0, 0],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 1,
+                    zoomControl: true,
+                    preferCanvas: false,
+                    titles: "Top 10 countries With the highest NewRecovered",
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_d8aceeab4f454a2197212b4e8eb775ed = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_26d978d7b9e0493096e9e834df01892a);
+        
+    
+            var marker_cluster_3d8c94ee86c94a698266c32ed8a0b817 = L.markerClusterGroup(
+                {}
+            );
+            map_26d978d7b9e0493096e9e834df01892a.addLayer(marker_cluster_3d8c94ee86c94a698266c32ed8a0b817);
+        
+    
+            var circle_marker_e6b3a07cc50147f19cd049962849b4f7 = L.circleMarker(
+                [49.4871968, 31.2718321],
+                {"bubblingMouseEvents": true, "color": "#007849", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#007849", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 20, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_3d8c94ee86c94a698266c32ed8a0b817);
+        
+    
+        var popup_0bba9a617bd14328bf182907ee082448 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_fc66146ea8e34bc58b58ba124b8e203a = $(`<div id="html_fc66146ea8e34bc58b58ba124b8e203a" style="width: 100.0%; height: 100.0%;">Country: Ukraine<br>                         NewRecovered: 7536.0<br>                         Rank: 10<bar></div>`)[0];
+            popup_0bba9a617bd14328bf182907ee082448.setContent(html_fc66146ea8e34bc58b58ba124b8e203a);
+        
+
+        circle_marker_e6b3a07cc50147f19cd049962849b4f7.bindPopup(popup_0bba9a617bd14328bf182907ee082448)
+        ;
+
+        
+    
+    
+            var circle_marker_7d17640e05c24530a06cffcfa5a4ffa0 = L.circleMarker(
+                [2.8894434, -73.783892],
+                {"bubblingMouseEvents": true, "color": "#007849", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#007849", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 20, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_3d8c94ee86c94a698266c32ed8a0b817);
+        
+    
+        var popup_e1f4ac0d92af41e5a6fa56e21458047f = L.popup({"maxWidth": "100%"});
+
+        
+            var html_e37f684819ce427c93d13798fb981029 = $(`<div id="html_e37f684819ce427c93d13798fb981029" style="width: 100.0%; height: 100.0%;">Country: Colombia<br>                         NewRecovered: 8081.0<br>                         Rank: 9<bar></div>`)[0];
+            popup_e1f4ac0d92af41e5a6fa56e21458047f.setContent(html_e37f684819ce427c93d13798fb981029);
+        
+
+        circle_marker_7d17640e05c24530a06cffcfa5a4ffa0.bindPopup(popup_e1f4ac0d92af41e5a6fa56e21458047f)
+        ;
+
+        
+    
+    
+            var circle_marker_f3d7826dad3b4715a86760b7533831b7 = L.circleMarker(
+                [33.0955793, 44.1749775],
+                {"bubblingMouseEvents": true, "color": "#007849", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#007849", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 20, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_3d8c94ee86c94a698266c32ed8a0b817);
+        
+    
+        var popup_09145c15dd6540c38906c72cd0059d1f = L.popup({"maxWidth": "100%"});
+
+        
+            var html_bb0804af9b2f479b8c9270729bb05b31 = $(`<div id="html_bb0804af9b2f479b8c9270729bb05b31" style="width: 100.0%; height: 100.0%;">Country: Iraq<br>                         NewRecovered: 8479.0<br>                         Rank: 8<bar></div>`)[0];
+            popup_09145c15dd6540c38906c72cd0059d1f.setContent(html_bb0804af9b2f479b8c9270729bb05b31);
+        
+
+        circle_marker_f3d7826dad3b4715a86760b7533831b7.bindPopup(popup_09145c15dd6540c38906c72cd0059d1f)
+        ;
+
+        
+    
+    
+            var circle_marker_ea5460bb0c124cd4a58695c0448fe842 = L.circleMarker(
+                [52.215933, 19.134422],
+                {"bubblingMouseEvents": true, "color": "#007849", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#007849", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 20, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_3d8c94ee86c94a698266c32ed8a0b817);
+        
+    
+        var popup_cb09549678794cb1bea4b834f90a710b = L.popup({"maxWidth": "100%"});
+
+        
+            var html_74de54f756bd4ab59647abf05a7fe15f = $(`<div id="html_74de54f756bd4ab59647abf05a7fe15f" style="width: 100.0%; height: 100.0%;">Country: Poland<br>                         NewRecovered: 8974.0<br>                         Rank: 7<bar></div>`)[0];
+            popup_cb09549678794cb1bea4b834f90a710b.setContent(html_74de54f756bd4ab59647abf05a7fe15f);
+        
+
+        circle_marker_ea5460bb0c124cd4a58695c0448fe842.bindPopup(popup_cb09549678794cb1bea4b834f90a710b)
+        ;
+
+        
+    
+    
+            var circle_marker_46ba5f61297c4bf3942fd5db9e951ca5 = L.circleMarker(
+                [-34.9964963, -64.9672817],
+                {"bubblingMouseEvents": true, "color": "#007849", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#007849", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 20, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_3d8c94ee86c94a698266c32ed8a0b817);
+        
+    
+        var popup_1d51ace1f62e45638062737f388d1191 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_017be6297e154051b54747ea46a4b17a = $(`<div id="html_017be6297e154051b54747ea46a4b17a" style="width: 100.0%; height: 100.0%;">Country: Argentina<br>                         NewRecovered: 11262.0<br>                         Rank: 6<bar></div>`)[0];
+            popup_1d51ace1f62e45638062737f388d1191.setContent(html_017be6297e154051b54747ea46a4b17a);
+        
+
+        circle_marker_46ba5f61297c4bf3942fd5db9e951ca5.bindPopup(popup_1d51ace1f62e45638062737f388d1191)
+        ;
+
+        
+    
+    
+            var circle_marker_a9931d1cd70948288dddab6e249c1913 = L.circleMarker(
+                [49.8167003, 15.4749544],
+                {"bubblingMouseEvents": true, "color": "#007849", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#007849", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 20, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_3d8c94ee86c94a698266c32ed8a0b817);
+        
+    
+        var popup_9d46b4200011490d8cab12c455f58d14 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_721998c3bac44839875556803b8288b8 = $(`<div id="html_721998c3bac44839875556803b8288b8" style="width: 100.0%; height: 100.0%;">Country: Czechia<br>                         NewRecovered: 14428.0<br>                         Rank: 5<bar></div>`)[0];
+            popup_9d46b4200011490d8cab12c455f58d14.setContent(html_721998c3bac44839875556803b8288b8);
+        
+
+        circle_marker_a9931d1cd70948288dddab6e249c1913.bindPopup(popup_9d46b4200011490d8cab12c455f58d14)
+        ;
+
+        
+    
+    
+            var circle_marker_5c0222e01ab743e995b672a345727a83 = L.circleMarker(
+                [64.6863136, 97.7453061],
+                {"bubblingMouseEvents": true, "color": "#007849", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#007849", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 20, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_3d8c94ee86c94a698266c32ed8a0b817);
+        
+    
+        var popup_d950ebd483524fa29a089ac1174f93fb = L.popup({"maxWidth": "100%"});
+
+        
+            var html_6431b73a77f34c2f8488690352afb0fe = $(`<div id="html_6431b73a77f34c2f8488690352afb0fe" style="width: 100.0%; height: 100.0%;">Country: Russia<br>                         NewRecovered: 15567.0<br>                         Rank: 4<bar></div>`)[0];
+            popup_d950ebd483524fa29a089ac1174f93fb.setContent(html_6431b73a77f34c2f8488690352afb0fe);
+        
+
+        circle_marker_5c0222e01ab743e995b672a345727a83.bindPopup(popup_d950ebd483524fa29a089ac1174f93fb)
+        ;
+
+        
+    
+    
+            var circle_marker_da1dd13f325c422cbf829e89f09450c8 = L.circleMarker(
+                [-10.3333333, -53.2],
+                {"bubblingMouseEvents": true, "color": "#007849", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#007849", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 20, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_3d8c94ee86c94a698266c32ed8a0b817);
+        
+    
+        var popup_300c003a004147a8bcf7e6b9b33c869b = L.popup({"maxWidth": "100%"});
+
+        
+            var html_1e69f525650e4f9e8df825b1fce2d51b = $(`<div id="html_1e69f525650e4f9e8df825b1fce2d51b" style="width: 100.0%; height: 100.0%;">Country: Brazil<br>                         NewRecovered: 29808.0<br>                         Rank: 3<bar></div>`)[0];
+            popup_300c003a004147a8bcf7e6b9b33c869b.setContent(html_1e69f525650e4f9e8df825b1fce2d51b);
+        
+
+        circle_marker_da1dd13f325c422cbf829e89f09450c8.bindPopup(popup_300c003a004147a8bcf7e6b9b33c869b)
+        ;
+
+        
+    
+    
+            var circle_marker_bcf8dd5b93a844f8a27bd2802a64a0ab = L.circleMarker(
+                [22.3511148, 78.6677428],
+                {"bubblingMouseEvents": true, "color": "#007849", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#007849", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 20, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_3d8c94ee86c94a698266c32ed8a0b817);
+        
+    
+        var popup_449bca6b5c884707b6f135284f6788c0 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_d583ddbd0e164023ac2cfb3e0bb9bf02 = $(`<div id="html_d583ddbd0e164023ac2cfb3e0bb9bf02" style="width: 100.0%; height: 100.0%;">Country: India<br>                         NewRecovered: 55766.0<br>                         Rank: 2<bar></div>`)[0];
+            popup_449bca6b5c884707b6f135284f6788c0.setContent(html_d583ddbd0e164023ac2cfb3e0bb9bf02);
+        
+
+        circle_marker_bcf8dd5b93a844f8a27bd2802a64a0ab.bindPopup(popup_449bca6b5c884707b6f135284f6788c0)
+        ;
+
+        
+    
+    
+            var circle_marker_f7e08a9da4b540dc8e4ff54888eb83fc = L.circleMarker(
+                [39.7837304, -100.4458825],
+                {"bubblingMouseEvents": true, "color": "#007849", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#007849", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 20, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_3d8c94ee86c94a698266c32ed8a0b817);
+        
+    
+        var popup_8bdb454bec544bab9d93f1188211ea7e = L.popup({"maxWidth": "100%"});
+
+        
+            var html_1aeb0cba48ea43509a8e2de176d7e9be = $(`<div id="html_1aeb0cba48ea43509a8e2de176d7e9be" style="width: 100.0%; height: 100.0%;">Country: USA<br>                         NewRecovered: 70186.0<br>                         Rank: 1<bar></div>`)[0];
+            popup_8bdb454bec544bab9d93f1188211ea7e.setContent(html_1aeb0cba48ea43509a8e2de176d7e9be);
+        
+
+        circle_marker_f7e08a9da4b540dc8e4ff54888eb83fc.bindPopup(popup_8bdb454bec544bab9d93f1188211ea7e)
+        ;
+
+        
+    
+</script>

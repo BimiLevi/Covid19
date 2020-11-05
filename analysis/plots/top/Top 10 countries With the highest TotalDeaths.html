@@ -1,0 +1,263 @@
+<!DOCTYPE html>
+<head>    
+    <meta http-equiv="content-type" content="text/html; charset=UTF-8" />
+    
+        <script>
+            L_NO_TOUCH = false;
+            L_DISABLE_3D = false;
+        </script>
+    
+    <script src="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.js"></script>
+    <script src="https://code.jquery.com/jquery-1.12.4.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/js/bootstrap.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/leaflet@1.6.0/dist/leaflet.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap-theme.min.css"/>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/font-awesome/4.6.3/css/font-awesome.min.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/Leaflet.awesome-markers/2.0.2/leaflet.awesome-markers.css"/>
+    <link rel="stylesheet" href="https://rawcdn.githack.com/python-visualization/folium/master/folium/templates/leaflet.awesome.rotate.css"/>
+    <style>html, body {width: 100%;height: 100%;margin: 0;padding: 0;}</style>
+    <style>#map {position:absolute;top:0;bottom:0;right:0;left:0;}</style>
+    
+            <meta name="viewport" content="width=device-width,
+                initial-scale=1.0, maximum-scale=1.0, user-scalable=no" />
+            <style>
+                #map_e2cc63425bb94d65b26a28f3b061db4d {
+                    position: relative;
+                    width: 100.0%;
+                    height: 100.0%;
+                    left: 0.0%;
+                    top: 0.0%;
+                }
+            </style>
+        
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/leaflet.markercluster.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/leaflet.markercluster/1.1.0/MarkerCluster.Default.css"/>
+</head>
+<body>    
+    
+            <div class="folium-map" id="map_e2cc63425bb94d65b26a28f3b061db4d" ></div>
+        
+</body>
+<script>    
+    
+            var map_e2cc63425bb94d65b26a28f3b061db4d = L.map(
+                "map_e2cc63425bb94d65b26a28f3b061db4d",
+                {
+                    center: [0, 0],
+                    crs: L.CRS.EPSG3857,
+                    zoom: 1,
+                    zoomControl: true,
+                    preferCanvas: false,
+                    titles: "Top 10 countries With the highest TotalDeaths",
+                }
+            );
+
+            
+
+        
+    
+            var tile_layer_e28fdf2e88ec4f11816fe18f7778fe95 = L.tileLayer(
+                "https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png",
+                {"attribution": "Data by \u0026copy; \u003ca href=\"http://openstreetmap.org\"\u003eOpenStreetMap\u003c/a\u003e, under \u003ca href=\"http://www.openstreetmap.org/copyright\"\u003eODbL\u003c/a\u003e.", "detectRetina": false, "maxNativeZoom": 18, "maxZoom": 18, "minZoom": 0, "noWrap": false, "opacity": 1, "subdomains": "abc", "tms": false}
+            ).addTo(map_e2cc63425bb94d65b26a28f3b061db4d);
+        
+    
+            var marker_cluster_a35a88e0bf424450a96f3c745f039c54 = L.markerClusterGroup(
+                {}
+            );
+            map_e2cc63425bb94d65b26a28f3b061db4d.addLayer(marker_cluster_a35a88e0bf424450a96f3c745f039c54);
+        
+    
+            var circle_marker_a6834e486da9465d8aef88d06c3a62a0 = L.circleMarker(
+                [2.8894434, -73.783892],
+                {"bubblingMouseEvents": true, "color": "#007849", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#007849", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 20, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_a35a88e0bf424450a96f3c745f039c54);
+        
+    
+        var popup_43080c0852014503b932d747f74b39fb = L.popup({"maxWidth": "100%"});
+
+        
+            var html_462e372b0ad14c30bf31c266aa8820e5 = $(`<div id="html_462e372b0ad14c30bf31c266aa8820e5" style="width: 100.0%; height: 100.0%;">Country: Colombia<br>                         TotalDeaths: 31847.0<br>                         Rank: 10<bar></div>`)[0];
+            popup_43080c0852014503b932d747f74b39fb.setContent(html_462e372b0ad14c30bf31c266aa8820e5);
+        
+
+        circle_marker_a6834e486da9465d8aef88d06c3a62a0.bindPopup(popup_43080c0852014503b932d747f74b39fb)
+        ;
+
+        
+    
+    
+            var circle_marker_21095e73143b436fae9bd410fcc9b490 = L.circleMarker(
+                [-34.9964963, -64.9672817],
+                {"bubblingMouseEvents": true, "color": "#007849", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#007849", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 20, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_a35a88e0bf424450a96f3c745f039c54);
+        
+    
+        var popup_73f126d5b55343128aa7d2932e9a3360 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_e9ed0cbf7f274d1c9c03d5f0cee341f8 = $(`<div id="html_e9ed0cbf7f274d1c9c03d5f0cee341f8" style="width: 100.0%; height: 100.0%;">Country: Argentina<br>                         TotalDeaths: 32052.0<br>                         Rank: 9<bar></div>`)[0];
+            popup_73f126d5b55343128aa7d2932e9a3360.setContent(html_e9ed0cbf7f274d1c9c03d5f0cee341f8);
+        
+
+        circle_marker_21095e73143b436fae9bd410fcc9b490.bindPopup(popup_73f126d5b55343128aa7d2932e9a3360)
+        ;
+
+        
+    
+    
+            var circle_marker_91528e210f644dc3a815f9fa3248b7f0 = L.circleMarker(
+                [-6.8699697, -75.0458515],
+                {"bubblingMouseEvents": true, "color": "#007849", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#007849", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 20, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_a35a88e0bf424450a96f3c745f039c54);
+        
+    
+        var popup_aa4f6c0fa67c439e93f0b1257010db73 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_3cf76239fb6e48c1be4dd51c821c033a = $(`<div id="html_3cf76239fb6e48c1be4dd51c821c033a" style="width: 100.0%; height: 100.0%;">Country: Peru<br>                         TotalDeaths: 34623.0<br>                         Rank: 8<bar></div>`)[0];
+            popup_aa4f6c0fa67c439e93f0b1257010db73.setContent(html_3cf76239fb6e48c1be4dd51c821c033a);
+        
+
+        circle_marker_91528e210f644dc3a815f9fa3248b7f0.bindPopup(popup_aa4f6c0fa67c439e93f0b1257010db73)
+        ;
+
+        
+    
+    
+            var circle_marker_8a4317c86be147c18807d1334821ae78 = L.circleMarker(
+                [32.6475314, 54.5643516],
+                {"bubblingMouseEvents": true, "color": "#007849", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#007849", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 20, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_a35a88e0bf424450a96f3c745f039c54);
+        
+    
+        var popup_6ddb2fe8b74043a6a2343d5dc74bff88 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_9dd65c4bf79a43af833ef8afa8cf3c93 = $(`<div id="html_9dd65c4bf79a43af833ef8afa8cf3c93" style="width: 100.0%; height: 100.0%;">Country: Iran<br>                         TotalDeaths: 36579.0<br>                         Rank: 7<bar></div>`)[0];
+            popup_6ddb2fe8b74043a6a2343d5dc74bff88.setContent(html_9dd65c4bf79a43af833ef8afa8cf3c93);
+        
+
+        circle_marker_8a4317c86be147c18807d1334821ae78.bindPopup(popup_6ddb2fe8b74043a6a2343d5dc74bff88)
+        ;
+
+        
+    
+    
+            var circle_marker_975aa76027774aa7b0051259d2cde8f5 = L.circleMarker(
+                [46.603354, 1.8883335],
+                {"bubblingMouseEvents": true, "color": "#007849", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#007849", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 20, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_a35a88e0bf424450a96f3c745f039c54);
+        
+    
+        var popup_41236d3e53de4729a329ad1950131ed7 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_d268ad118da34505bc92e1dd4d35c8b4 = $(`<div id="html_d268ad118da34505bc92e1dd4d35c8b4" style="width: 100.0%; height: 100.0%;">Country: France<br>                         TotalDeaths: 38674.0<br>                         Rank: 6<bar></div>`)[0];
+            popup_41236d3e53de4729a329ad1950131ed7.setContent(html_d268ad118da34505bc92e1dd4d35c8b4);
+        
+
+        circle_marker_975aa76027774aa7b0051259d2cde8f5.bindPopup(popup_41236d3e53de4729a329ad1950131ed7)
+        ;
+
+        
+    
+    
+            var circle_marker_02568ec0bf9445068cde56036fc695cb = L.circleMarker(
+                [42.6384261, 12.674297],
+                {"bubblingMouseEvents": true, "color": "#007849", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#007849", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 20, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_a35a88e0bf424450a96f3c745f039c54);
+        
+    
+        var popup_4a853c2f3094465284d136e8f596abe6 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_d94a28604b7049608415f077a752a171 = $(`<div id="html_d94a28604b7049608415f077a752a171" style="width: 100.0%; height: 100.0%;">Country: Italy<br>                         TotalDeaths: 39764.0<br>                         Rank: 5<bar></div>`)[0];
+            popup_4a853c2f3094465284d136e8f596abe6.setContent(html_d94a28604b7049608415f077a752a171);
+        
+
+        circle_marker_02568ec0bf9445068cde56036fc695cb.bindPopup(popup_4a853c2f3094465284d136e8f596abe6)
+        ;
+
+        
+    
+    
+            var circle_marker_9711bcea058d4f5988938a49f7d35372 = L.circleMarker(
+                [22.5000485, -100.0000375],
+                {"bubblingMouseEvents": true, "color": "#007849", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#007849", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 20, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_a35a88e0bf424450a96f3c745f039c54);
+        
+    
+        var popup_d4209b8a22644ecd8dcd379276b78e11 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_c6e379e61d7b4189b314b200f9c35776 = $(`<div id="html_c6e379e61d7b4189b314b200f9c35776" style="width: 100.0%; height: 100.0%;">Country: Mexico<br>                         TotalDeaths: 92593.0<br>                         Rank: 4<bar></div>`)[0];
+            popup_d4209b8a22644ecd8dcd379276b78e11.setContent(html_c6e379e61d7b4189b314b200f9c35776);
+        
+
+        circle_marker_9711bcea058d4f5988938a49f7d35372.bindPopup(popup_d4209b8a22644ecd8dcd379276b78e11)
+        ;
+
+        
+    
+    
+            var circle_marker_ec168598075148a98ee69b36d8a145db = L.circleMarker(
+                [22.3511148, 78.6677428],
+                {"bubblingMouseEvents": true, "color": "#007849", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#007849", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 20, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_a35a88e0bf424450a96f3c745f039c54);
+        
+    
+        var popup_858fd7573b204e5a8adbe29dbb28b8b4 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_a446b9ef641f4dbcba29adf2ceeb9249 = $(`<div id="html_a446b9ef641f4dbcba29adf2ceeb9249" style="width: 100.0%; height: 100.0%;">Country: India<br>                         TotalDeaths: 124353.0<br>                         Rank: 3<bar></div>`)[0];
+            popup_858fd7573b204e5a8adbe29dbb28b8b4.setContent(html_a446b9ef641f4dbcba29adf2ceeb9249);
+        
+
+        circle_marker_ec168598075148a98ee69b36d8a145db.bindPopup(popup_858fd7573b204e5a8adbe29dbb28b8b4)
+        ;
+
+        
+    
+    
+            var circle_marker_988ca07f9a094c50846d4815b6a8befe = L.circleMarker(
+                [-10.3333333, -53.2],
+                {"bubblingMouseEvents": true, "color": "#007849", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#007849", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 20, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_a35a88e0bf424450a96f3c745f039c54);
+        
+    
+        var popup_34a9af850d1242688bbb0494bbd5ba34 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_dc78f1de619642a59c0bb0bf34a6b417 = $(`<div id="html_dc78f1de619642a59c0bb0bf34a6b417" style="width: 100.0%; height: 100.0%;">Country: Brazil<br>                         TotalDeaths: 160785.0<br>                         Rank: 2<bar></div>`)[0];
+            popup_34a9af850d1242688bbb0494bbd5ba34.setContent(html_dc78f1de619642a59c0bb0bf34a6b417);
+        
+
+        circle_marker_988ca07f9a094c50846d4815b6a8befe.bindPopup(popup_34a9af850d1242688bbb0494bbd5ba34)
+        ;
+
+        
+    
+    
+            var circle_marker_a4db063cda264929ab73492a50004c0d = L.circleMarker(
+                [39.7837304, -100.4458825],
+                {"bubblingMouseEvents": true, "color": "#007849", "dashArray": null, "dashOffset": null, "fill": true, "fillColor": "#007849", "fillOpacity": 0.2, "fillRule": "evenodd", "lineCap": "round", "lineJoin": "round", "opacity": 1.0, "radius": 20, "stroke": true, "weight": 3}
+            ).addTo(marker_cluster_a35a88e0bf424450a96f3c745f039c54);
+        
+    
+        var popup_ec9321f399c445b8b50373622220d183 = L.popup({"maxWidth": "100%"});
+
+        
+            var html_c86c5cf893ba4b988dd1e4b732233df4 = $(`<div id="html_c86c5cf893ba4b988dd1e4b732233df4" style="width: 100.0%; height: 100.0%;">Country: USA<br>                         TotalDeaths: 239338.0<br>                         Rank: 1<bar></div>`)[0];
+            popup_ec9321f399c445b8b50373622220d183.setContent(html_c86c5cf893ba4b988dd1e4b732233df4);
+        
+
+        circle_marker_a4db063cda264929ab73492a50004c0d.bindPopup(popup_ec9321f399c445b8b50373622220d183)
+        ;
+
+        
+    
+</script>

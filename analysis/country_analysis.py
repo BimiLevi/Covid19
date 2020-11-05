@@ -25,12 +25,15 @@ print('Answer:\n', date)
 
 print("Q2. Find the countries daily increases in death,recoveries,active cases")
 death_rate = df['NewDeaths'].pct_change()
+print('Answer:\n', death_rate.head())
 country.daily_increase('NewDeaths',save = True)
 
 recovered_rate = df['NewRecovered'].pct_change()
+print('Answer:\n', recovered_rate.head())
 country.daily_increase('NewRecovered',save = True)
 
 newcase_rate = df['NewCases'].pct_change()
+print('Answer:\n', newcase_rate.head())
 country.daily_increase('NewCases',save = True)
 
 print("Q3. ")

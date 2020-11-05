@@ -185,8 +185,6 @@ class Territory:
 
 		return axs
 
-
-
 class Country(Territory):
 	def __init__(self, name):
 		super().__init__(name)
@@ -232,8 +230,8 @@ Columns: \n{}
 		return self._data
 
 	@data.setter
-	def data(self):
-		self._data = db.get_table(self.name)
+	def data(self,table):
+		self._data = db.get_table(table)
 
 	def daily_increase(self, col, save = False):
 		rate = self.__data[col].pct_change()
@@ -301,30 +299,28 @@ Columns: \n{}
 		return self.__data
 
 	@data.setter
-	def data(self):
-		self.__data = db.get_table(self.name)
+	def data(self, table):
+		self.__data = db.get_table(table)
 
 class Top:
 	def __init__(self, ttype, limit = 10):
+		self.ttype = ttype
+		self.__limit = limit
+
 		if ttype == 'countries':
 			self.col_type = 'Country'
+			self.data = db.get_table('All countries updated')
+
 
 		elif ttype == 'continents':
 			self.col_type = 'Continent'
-
-		self.ttype = ttype
-
-		self.__limit = limit
-
-		if self.ttype == 'countries':
-			self.data = db.get_table('All countries updated')
-
-		elif self.ttype == 'continents':
 			self.data = db.get_table('All continents updated')
 
 		else:
 			print("Couldn't Identify the requested territory")
 			raise FileNotFoundError()
+
+		self.obj_dict = {}
 
 	def __str__(self):
 		return """
@@ -340,9 +336,20 @@ Limit: {}
 	def limit(self, new_limit):
 		self.__limit = new_limit
 
+	def set_obj(self, df):
+		for name in df[self.col_type]:
+
+			if self.ttype == 'countries':
+				self.obj_dict[name] = Country(name)
+
+			elif self.ttype == 'continents':
+				self.obj_dict[name] = Continent(name)
+
 	def sort_limit_data(self, col):
 		sorted_data = self.data.dropna().sort_values(by = col).reset_index(drop = True).tail(self.limit)
 		sorted_data.index = np.arange(1, len(sorted_data) + 1)
+
+		self.set_obj(sorted_data)
 		return sorted_data
 
 	def top_bar(self, col, save = None):
@@ -357,7 +364,7 @@ Limit: {}
 		min_max = get_minmax(data, col)
 		for index, value in min_max.items():
 			value = round(value, 1)
-			axs.text(index-1, value * 1.005, f'{value:,}', fontsize = 11, ha = 'center', fontweight = 'bold')
+			axs.text(index - 1, value * 1.005, f'{value:,}', fontsize = 14, ha = 'center', fontweight = 'bold')
 
 		formatter = FuncFormatter(MK_formatter)
 		axs.yaxis.set_major_formatter(formatter)
@@ -367,27 +374,71 @@ Limit: {}
 		axs.set_title('Top {} {}\nby {}'.format(self.limit, self.ttype,col))
 
 		if save:
-			title = 'Top {} {} {}'.format(self.data.shape[0],self.ttype,col)
+			title = 'Top {} {} {}'.format(len(data),self.ttype,col)
 			file_format = 'svg'
 			full_path = os.path.join(plots_path, 'top')
 			if not os.path.isfile(full_path):
 				creat_directory(full_path)
 
-			fig.savefig('{}\{}.{}'.format(full_path, title, file_format), format = file_format, edgecolor = 'b',
-			            bbox_inches = 'tight')
+			fig.savefig('{}\{} bar plot.{}'.format(full_path, title, file_format), format = file_format, edgecolor = 'b',
+			 bbox_inches = 'tight')
 		return bar
 
+	def top_line(self, col, save = None):
+		names_list = self.sort_limit_data(col)[self.col_type].to_list()
+
+		fig, ax = plt.subplots(figsize = (19.20, 10.80), tight_layout = True)
+
+		for i, table in enumerate(self.obj_dict.values()):
+			ax.plot(table.data['scrap_date'], table.data[col], linewidth=3, label = table.name.capitalize(),
+			        color=color_palette[i])
+
+		ax.xaxis.set_minor_locator(mdates.WeekdayLocator(byweekday = 6, interval = 1))
+		ax.xaxis.set_minor_formatter(mdates.DateFormatter('%d\n%a'))
+
+		formatter = FuncFormatter(MK_formatter)
+		ax.yaxis.set_major_formatter(formatter)
+
+		ax.xaxis.grid(True, which = "minor")
+		ax.yaxis.grid()
+		ax.xaxis.set_major_locator(mdates.MonthLocator())
+		ax.xaxis.set_major_formatter(mdates.DateFormatter('\n\n\n%b\n%Y'))
+
+		xtitle = 'Date'
+		ytitle = 'Values'
+
+		ax.set_xlabel(xtitle,fontsize = 15, fontweight = 'bold')
+		ax.set_ylabel(ytitle,fontsize = 15, fontweight = 'bold')
+		ax.set_title('Top {} {}\nby {}'.format(self.limit, self.ttype, col))
+
+		handles, labels = ax.get_legend_handles_labels()
+		ax.legend(handles, labels, bbox_to_anchor = (1.001, 1), loc = "best", frameon = True, edgecolor = 'black',
+		          fontsize = 20)
+
+		if save:
+			title = 'Top {} {} {}'.format(len(names_list), self.ttype, col)
+			file_format = 'svg'
+			full_path = os.path.join(plots_path, 'top')
+			if not os.path.isfile(full_path):
+				creat_directory(full_path)
+
+			fig.savefig('{}\{} line plot.{}'.format(full_path, title, file_format), format = file_format, edgecolor =
+			'b',
+			 bbox_inches = 'tight')
+		return ax
+
 if __name__ == '__main__':
-	top = Top('continents')
-	top.top_bar('TotalCases',save = True)
-	top.top_bar('NewCases',save = True)
-	top.top_bar('TotalRecovered',save = True)
-	top.top_bar('ActiveCases',save = True)
-	top.top_bar('SeriousCritical',save = True)
-	top.top_bar('NewDeaths',save = True)
-	# top.top_bar('Deaths_1Mpop',save = True)
-	# top.top_bar('Tests_1Mpop',save = True)
-	# top.top_bar('Tot_Cases_1Mpop',save = True)
+	top = Top('countries')
+	top.top_line('TotalCases',save = False)
+	top.top_bar('TotalCases',save = False)
+	# top.top_line('NewCases',save = True)
+	# top.top_line('TotalRecovered',save = True)
+	# top.top_line('ActiveCases',save = True)
+	# top.top_line('SeriousCritical',save = True)
+	# top.top_line('NewDeaths',save = True)
+	# top.top_line('Deaths_1Mpop',save = True)
+	# top.top_line('Tests_1Mpop',save = True)
+	# top.top_line('Tot_Cases_1Mpop',save = True)
 
 	plt.show()
 

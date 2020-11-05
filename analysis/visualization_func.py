@@ -1,7 +1,8 @@
 import matplotlib._color_data as mcd
 
 color_dict = {'black': '#3D3D3D', 'blue': '#3F5E99', 'red': '#F04A6B', 'green': '#3AB08B'}
-color_palette = ['gold', 'yellowgreen', 'lightcoral', 'lightskyblue', '#3AB08B', '#F04A6B', '#3F5E99', '#3D3D3D']
+color_palette = ['gold', 'yellowgreen', 'lightcoral', 'lightskyblue', '#3AB08B', '#F04A6B', '#3F5E99', '#3D3D3D',
+                 '#FFC107','#651FFF']
 
 week_days = {'Sunday': 1, 'Monday': 2, 'Tuesday': 3, 'Wednesday': 4, 'Thursday': 5, 'Friday': 6, 'Saturday': 7}
 

@@ -170,7 +170,6 @@ def creat_country_df(df):
 		                                          'Deaths/1M pop': 'Deaths_1Mpop',
 		                                          'Serious,Critical': 'SeriousCritical'})
 
-
 		col_list = ['scrap_date', 'scrap_time', 'update_time_GMT', 'Country_id', 'Country',\
 		            'Population', 'TotalCases', 'NewCases', 'TotalDeaths', 'NewDeaths', 'TotalRecovered', 'NewRecovered', 'ActiveCases', 'SeriousCritical',
 		            'Tot_Cases_1Mpop', 'Deaths_1Mpop', 'TotalTests', 'Tests_1Mpop']

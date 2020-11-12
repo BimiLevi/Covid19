@@ -3,6 +3,7 @@ from datetime import datetime
 
 import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
+import pycountry
 from matplotlib.ticker import FuncFormatter
 
 from analysis.analysis_func import *
@@ -239,9 +240,6 @@ class Territory:
 
 		return fig
 
-
-
-
 class Country(Territory):
 	def __init__(self, name):
 		super().__init__(name)
@@ -250,6 +248,7 @@ class Country(Territory):
 		self.__data = db.get_table(self.name)
 
 		self.id = self.__data['Country_id'].unique()[0]
+		self.code = pycountry.countries.get(name = self.name).alpha_3
 
 		temp = pd.DataFrame(load_json(countries_path))
 		self.continent_id = int(temp[temp['Country_id'] == self.id]['Continent_id'].unique()[0])
@@ -289,6 +288,11 @@ Columns: \n{}
 	@data.setter
 	def data(self, table):
 		self.__data = db.get_table(table)
+
+	@staticmethod
+	def world_map(col):
+		df = db.get_table('All countries updated')
+		df['code'] = get_codes(df['Country'])
 
 class Continent(Territory):
 	def __init__(self, name):
@@ -487,6 +491,7 @@ if __name__ == '__main__':
 	# top.top_line('Deaths_1Mpop',save = True)
 	# top.top_line('Tests_1Mpop',save = True)
 	# top.top_line('Tot_Cases_1Mpop',save = True)
+
 
 	plt.show()
 

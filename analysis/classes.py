@@ -3,7 +3,6 @@ from datetime import datetime
 
 import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
-import pycountry
 from matplotlib.ticker import FuncFormatter
 
 from analysis.analysis_func import *
@@ -25,7 +24,7 @@ class Territory:
 
 	def __init__(self, name):
 		self.name = name.lower()
-		self.__data = None
+		self._data = None
 
 	@calculate_time
 	def date_plot(self, cols = [], start_date = None, end_date = None, save = False, ):
@@ -155,7 +154,6 @@ class Territory:
 			temp_data = data[['scrap_date', col]]
 			temp_data = temp_data[temp_data[col].notna()]
 
-			# TODO: think about using the 'sma'
 			temp_data['sma'] = temp_data[col].rolling(window = 7).mean()
 
 			if len(cols) == 1:
@@ -208,28 +206,30 @@ class Territory:
 		fig, ax = plt.subplots(figsize = (19.20, 10.80), tight_layout = True)
 		ax2 = ax.twinx()
 
-		ax2.plot(df['scrap_date'], df['sma'], color = 'lightcoral', marker='o', linestyle = 'dashed', linewidth=3,
-		         label='7 days moving avg')
+		fig.suptitle('{}\nDaily increase of {}'.format(self.name.capitalize(), col), size = 20)
+
 		ax.bar(df['scrap_date'], df[col], color='orange')
 
-		fig.suptitle('{}\nDaily increase of {}'.format(self.name.capitalize(), col), size = 20)
+		ax2.plot(df['scrap_date'], df['sma'], color = 'lightcoral', marker = 'o', linestyle = 'dashed', linewidth = 3,
+		         label = '7 days moving avg')
+
 		ax.set_ylabel(col, size = 20)
 		ax.tick_params(axis = 'both', which = 'major', labelsize = 20)
-		ax.tick_params(axis = 'x', which = 'minor', labelsize = 20)
-
+		ax.tick_params(axis = 'x', which = 'minor', labelsize = 18)
 		ax.xaxis.set_minor_locator(mdates.WeekdayLocator(byweekday = 6, interval = 1))
 		ax.xaxis.set_minor_formatter(mdates.DateFormatter('%d\n%a'))
-
 		ax.xaxis.grid(True, which = "minor")
 		ax.yaxis.grid()
 		ax.xaxis.set_major_locator(mdates.MonthLocator())
 		ax.xaxis.set_major_formatter(mdates.DateFormatter('\n\n\n%b\n%Y'))
 
+		ax2.tick_params(axis = 'y', labelsize = 18)
+		ax2.axis('off')
 		handles, labels = ax2.get_legend_handles_labels()
 		ax.legend(handles, labels, bbox_to_anchor = (1.001, 1), loc = "best", frameon = True, edgecolor = 'black',
 		          fontsize = 15)
 		if save:
-			title = 'Daily increase of {} in {}'.format(col,self.name)
+			title = 'Daily increase of {} in {}'.format(col, self.name)
 			file_format = 'svg'
 			full_path = os.path.join(plots_path, self.name)
 			if not os.path.isfile(full_path):
@@ -240,6 +240,11 @@ class Territory:
 
 		return fig
 
+	def case_fatality_ratio(self):
+		cfr = self._data['TotalDeaths'].sum()/(self._data['TotalDeaths'].sum()+self._data['TotalRecovered'].sum())
+		cfr = round(cfr * 100, 3)
+		return cfr
+
 class Country(Territory):
 	def __init__(self, name):
 		super().__init__(name)
@@ -248,7 +253,6 @@ class Country(Territory):
 		self.__data = db.get_table(self.name)
 
 		self.id = self.__data['Country_id'].unique()[0]
-		self.code = pycountry.countries.get(name = self.name).alpha_3
 
 		temp = pd.DataFrame(load_json(countries_path))
 		self.continent_id = int(temp[temp['Country_id'] == self.id]['Continent_id'].unique()[0])

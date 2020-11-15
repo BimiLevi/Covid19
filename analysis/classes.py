@@ -154,8 +154,6 @@ class Territory:
 			temp_data = data[['scrap_date', col]]
 			temp_data = temp_data[temp_data[col].notna()]
 
-			temp_data['sma'] = temp_data[col].rolling(window = 7).mean()
-
 			if len(cols) == 1:
 				ax = axs
 
@@ -163,8 +161,6 @@ class Territory:
 				ax = axs[i]
 
 			ax.plot(temp_data['scrap_date'], temp_data[col], figure = fig, color=colors[i], linewidth=3)
-			ax.plot(temp_data['scrap_date'], temp_data['sma'], color = 'lightcoral', marker='o', linestyle =
-			'dashed', linewidth=3,figure = fig, label= '7 Days Moving Avg')
 
 			first_day = first_day_of_month(datetime(year, month, 1))
 			ax.xaxis.set_minor_locator(mdates.WeekdayLocator(byweekday= week_days[first_day], interval = 1))
@@ -179,10 +175,8 @@ class Territory:
 			ax.tick_params(axis = 'both', which = 'major', labelsize = 18)
 			ax.tick_params(axis = 'both', which = 'minor', labelsize = 18)
 
-
-			handles, labels = ax.get_legend_handles_labels()
-			ax.legend(handles, labels, bbox_to_anchor = (1.001, 1), loc = "best", frameon = True, edgecolor = 'black',
-			          fontsize = 15)
+			ax.spines['right'].set_visible(False)
+			ax.spines['top'].set_visible(False)
 
 		month = datetime(1900, month, 1).strftime('%B')
 		fig.suptitle('{} during {}'.format(self.name.capitalize(), month), fontsize=22, fontweight='bold')
@@ -481,24 +475,6 @@ Limit: {}
 if __name__ == '__main__':
 	top = Top('countries')
 	country = Country('israel')
-	country.monthly_plot(['ActiveCases','SeriousCritical'],10,2020)
-	# top.get_map('NewRecovered')
-	# top.get_map('TotalDeaths')
-	# top.get_map('TotalRecovered')
-	# top.top_line('TotalCases',save = False)
-	# top.top_bar('TotalCases',save = False)
-	# top.top_line('NewCases',save = True)
-	# top.top_line('TotalRecovered',save = True)
-	# top.top_line('ActiveCases',save = True)
-	# top.top_line('SeriousCritical',save = True)
-	# top.top_line('NewDeaths',save = True)
-	# top.top_line('Deaths_1Mpop',save = True)
-	# top.top_line('Tests_1Mpop',save = True)
-	# top.top_line('Tot_Cases_1Mpop',save = True)
-
-
-	plt.show()
-
 
 
 

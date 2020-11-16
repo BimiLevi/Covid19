@@ -2,10 +2,14 @@ import calendar
 
 import numpy as np
 import pandas as pd
-import pycountry
+import pycountry as pc
 from geopy.geocoders import Nominatim
-from pycountry_convert import country_alpha2_to_continent_code, country_name_to_country_alpha2
 
+from utilities.files_function import load_json
+
+geolocator = Nominatim(user_agent = "https")
+
+from resources.paths import countriesCodes_path
 
 def data_by_month(df, month, year):
 	if type(month) != int:
@@ -63,19 +67,6 @@ def first_day_of_month(date):
 	day = calendar.weekday(date.year, date.month, 1)
 	return calendar.day_name[day]
 
-def get_codes(col):
-	try:
-		cn_a2_code = country_name_to_country_alpha2(col)
-	except:
-		cn_a2_code = 'Unknown'
-	try:
-		cn_continent = country_alpha2_to_continent_code(cn_a2_code)
-	except:
-		cn_continent = 'Unknown'
-	return (cn_a2_code, cn_continent)
-
-geolocator = Nominatim(user_agent = "https")
-
 def geolocate(country):
 	loc = None
 
@@ -89,19 +80,47 @@ def geolocate(country):
 	finally:
 		return loc
 
-def country_code(col):
-	cod = []
-	for country in col:
+def countries_codes(df):
+	countries = {}
+	for country in pc.countries:
+		countries[country.name] = country.alpha_3
+
+	codes = []
+	for country in df['Country']:
+
+		if country in countries.keys():
+			codes.append(countries.get(country))
+
+		elif country in countries.values():
+			codes.append(country)
+
+		else:
+			try:
+				check_res = pc.countries.search_fuzzy(country)[0].alpha_3
+				codes.append(check_res)
+
+			except LookupError:
+				codes.append('Null')
+
+	return codes
+
+def get_alpha_3(country):
+	countries = load_json(countriesCodes_path)
+
+	if country in countries.keys():
+		code = countries.get(country)
+
+	elif country in countries.values():
+		code = country
+
+	else:
 		try:
-			code = pycountry.countries.get(name = country).alpha_3
-			cod.append(code)
+			check_res = pc.countries.search_fuzzy(country)[0].alpha_3
+			code = check_res
 
-		except:
-			cod.append('None')
+		except LookupError:
+			code = np.nan
 
-	return cod
-
-
-
+	return code
 
 

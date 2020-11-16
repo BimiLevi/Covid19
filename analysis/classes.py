@@ -12,6 +12,9 @@ from resources.paths import *
 from utilities.directories import creat_directory
 from utilities.files_function import load_json, calculate_time
 
+# pd.set_option('display.max_rows', None)
+# pd.set_option('display.max_columns', None)
+
 plt.style.use('classic')
 plt.rcParams['font.sans-serif'] = 'Constantia'
 plt.rcParams['savefig.dpi'] = 600
@@ -244,6 +247,7 @@ class Country(Territory):
 		self.__data = db.get_table(self.name)
 
 		self.id = self.__data['Country_id'].unique()[0]
+		self.code = get_alpha_3(self.name)
 
 		temp = pd.DataFrame(load_json(countries_path))
 		self.continent_id = int(temp[temp['Country_id'] == self.id]['Continent_id'].unique()[0])
@@ -251,6 +255,7 @@ class Country(Territory):
 		temp = load_json(continents_path)
 		temp = dict([(value, key) for key, value in temp.items()])
 		self.continent = temp[self.continent_id]
+		del temp
 
 		self.population = self.__data['Population'][0]
 		self.last_update = self.__data['scrap_date'].max().date()
@@ -284,10 +289,11 @@ Columns: \n{}
 	def data(self, table):
 		self.__data = db.get_table(table)
 
+	# TODO: fix the method.
 	@staticmethod
-	def world_map(col):
+	def world_map():
 		df = db.get_table('All countries updated')
-		df['code'] = get_codes(df['Country'])
+		df['iso_alpha'] = df['Country'].map(lambda row: get_alpha_3(row))
 
 class Continent(Territory):
 	def __init__(self, name):
@@ -373,6 +379,7 @@ Limit: {}
 
 		self.set_obj(sorted_data)
 		return sorted_data
+
 	@calculate_time
 	def top_bar(self, col, save = None):
 
@@ -472,6 +479,9 @@ Limit: {}
 if __name__ == '__main__':
 	top = Top('countries')
 	country = Country('israel')
+	country.world_map()
+
+	plt.show()
 
 
 

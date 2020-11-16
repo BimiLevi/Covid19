@@ -5,6 +5,9 @@ import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
 from matplotlib.ticker import FuncFormatter
 
+import plotly.express as px
+
+
 from analysis.analysis_func import *
 from analysis.visualization_func import *
 from database.db_config import current_db as db
@@ -16,9 +19,6 @@ plt.style.use('classic')
 plt.rcParams['font.sans-serif'] = 'Constantia'
 plt.rcParams['savefig.dpi'] = 600
 plt.rcParams["figure.dpi"] = 100
-
-# pd.set_option('display.max_rows', None)
-pd.set_option('display.max_columns', None)
 
 class Territory:
 

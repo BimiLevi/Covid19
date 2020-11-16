@@ -5,9 +5,6 @@ import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
 from matplotlib.ticker import FuncFormatter
 
-import plotly.express as px
-
-
 from analysis.analysis_func import *
 from analysis.visualization_func import *
 from database.db_config import current_db as db

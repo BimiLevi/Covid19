@@ -18,6 +18,8 @@ countries_id = os.path.join(resources_path, 'Countries id')
 analysis_path = os.path.join(project_path, 'analysis')
 plots_path = os.path.join(analysis_path, 'plots')
 
+countriesCodes_path = os.path.join(resources_path, 'countries codes')
+
 def creat_paths():
 	from scraper.process_func import get_date_parm
 

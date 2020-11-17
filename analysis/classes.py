@@ -3,7 +3,12 @@ from datetime import datetime
 
 import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
+import plotly.express as px
+import plotly.io as pio
 from matplotlib.ticker import FuncFormatter
+
+pio.templates.default = "plotly_dark"
+
 
 from analysis.analysis_func import *
 from analysis.visualization_func import *
@@ -132,7 +137,6 @@ class Territory:
 			fig.savefig('{}\{}.{}'.format(full_path, title, file_format), format = file_format, edgecolor = 'b',bbox_inches ='tight')
 
 
-
 		return pie
 
 	@calculate_time
@@ -238,6 +242,12 @@ class Territory:
 		cfr = self._data['TotalDeaths'].sum()/(self._data['TotalDeaths'].sum()+self._data['TotalRecovered'].sum())
 		cfr = round(cfr * 100, 3)
 		return cfr
+
+	def linear_plot(self, y_cols):
+		fig = px.line(self._data, x='scrap_date', y=y_cols,
+		              title="{} Cumulative\Active Cases Over Time".format(self.name.capitalize()),
+		              labels={'scrap_date':'Date'}, color='variable')
+		return fig
 
 class Country(Territory):
 	def __init__(self, name):
@@ -457,6 +467,7 @@ Limit: {}
 			 bbox_inches = 'tight')
 		return ax
 
+	# TODO: Requires another check.
 	@calculate_time
 	def get_map(self, col):
 		from analysis.visualization_func import countries_map
@@ -479,10 +490,10 @@ Limit: {}
 if __name__ == '__main__':
 	top = Top('countries')
 	country = Country('israel')
-	country.world_map()
-
-	plt.show()
-
+	# fig = country.linear_plot()
+	#
+	# fig.show()
+	# plt.show()
 
 
 

@@ -3,10 +3,12 @@ from datetime import datetime
 
 import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
-import plotly.express as px
-import plotly.io as pio
+import plotly.offline as py
 from matplotlib.ticker import FuncFormatter
 
+py.init_notebook_mode(connected=True)
+import plotly.express as px
+import plotly.io as pio
 pio.templates.default = "plotly_dark"
 
 

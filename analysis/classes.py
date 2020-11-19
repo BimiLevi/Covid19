@@ -10,7 +10,6 @@ from matplotlib.ticker import FuncFormatter
 pio.templates.default = "plotly_dark"
 pio.renderers.default = "svg"
 
-
 from analysis.analysis_func import *
 from analysis.visualization_func import *
 from database.db_config import current_db as db
@@ -247,7 +246,7 @@ class Territory:
 	def linear_plot(self, y_cols):
 		fig = px.line(self._data, x='scrap_date', y=y_cols,
 		              title="{} Cumulative\Active Cases Over Time".format(self.name.capitalize()),
-		              labels={'scrap_date':'Date'}, color='variable')
+		              labels={'scrap_date': 'Date'}, color='variable')
 		return fig
 
 class Country(Territory):
@@ -491,9 +490,9 @@ Limit: {}
 if __name__ == '__main__':
 	top = Top('countries')
 	country = Country('israel')
-	# fig = country.linear_plot()
-	#
-	# fig.show()
+	fig = country.linear_plot(['TotalCases', 'TotalDeaths','TotalRecovered','ActiveCases'])
+
+	fig.show()
 	# plt.show()
 
 

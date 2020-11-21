@@ -249,6 +249,29 @@ class Territory:
 		              labels={'scrap_date': 'Date'}, color='variable')
 		return fig
 
+	def boxplot(self, col, save = False):
+		if not col in ['NewCases','NewDeaths', 'NewRecovered']:
+			print('{} is is unknown'.format(col))
+			return False
+
+		elif type(col) != str:
+			raise TypeError('{} must be of str type'.format(col))
+
+		else:
+			fig = px.box(self._data, y= col)
+			fig.update_traces(quartilemethod = "exclusive")
+
+			if save:
+				title = 'Boxplot of {} in {}'.format(col, self.name)
+				file_format = 'svg'
+				full_path = os.path.join(plots_path, self.name)
+				if not os.path.isfile(full_path):
+					creat_directory(full_path)
+				fig.write_image('{}\{}.{}'.format(full_path, title, file_format))
+
+			return fig
+
+
 class Country(Territory):
 	def __init__(self, name):
 		super().__init__(name)
@@ -490,7 +513,8 @@ Limit: {}
 if __name__ == '__main__':
 	top = Top('countries')
 	country = Country('israel')
-	fig = country.linear_plot(['TotalCases', 'TotalDeaths','TotalRecovered','ActiveCases'])
+	# fig = country.linear_plot(['TotalCases', 'TotalDeaths','TotalRecovered','ActiveCases'])
+	fig = country.boxplot('NewCases', save=False)
 
 	fig.show()
 	# plt.show()

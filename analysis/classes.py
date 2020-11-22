@@ -238,13 +238,11 @@ class Territory:
 
 		return fig
 
-	@calculate_time
 	def case_fatality_ratio(self):
 		cfr = self._data['TotalDeaths'].sum()/(self._data['TotalDeaths'].sum()+self._data['TotalRecovered'].sum())
 		cfr = round(cfr * 100, 3)
 		return cfr
 
-	@calculate_time
 	def linear_plot(self, y_cols, save = False):
 		fig = px.line(self._data, x='scrap_date', y=y_cols,
 		              title="{} Cumulative\Active Cases Over Time".format(self.name.capitalize())+"<br>" + "<span " \
@@ -257,13 +255,13 @@ class Territory:
 			if not os.path.isfile(full_path):
 				creat_directory(full_path)
 			fig.write_html('{}\{}.{}'.format(full_path, title, file_format))
+
 		return fig
 
-	@calculate_time
 	def boxplot(self, col, save = False):
-		if not col in ['NewCases', 'NewDeaths', 'NewRecovered']:
+		if not col in ['NewCases', 'NewDeaths', 'NewRecovered','ActiveCases']:
 			print('{} is is unknown'.format(col))
-			return False
+			raise ValueError('{} is unknown'.format(col))
 
 		elif type(col) != str:
 			raise TypeError('{} must be of str type'.format(col))
@@ -273,15 +271,14 @@ class Territory:
 					self.name.capitalize(), col)+"<br>"+"<span style='font-size: 12px;'>Creation date {}</span>".format(
 					date.today()))
 			fig.update_traces(quartilemethod = "exclusive")
-			fig.update_layout(hovermode = 'x unified')
 
-			if save:
-				title = 'Boxplot of {} in {}'.format(col, self.name)
-				file_format = 'html'
-				full_path = os.path.join(plots_path, self.name)
-				if not os.path.isfile(full_path):
-					creat_directory(full_path)
-				fig.write_html('{}\{}.{}'.format(full_path, title, file_format))
+		if save:
+			title = 'Boxplot of {} in {}'.format(col, self.name)
+			file_format = 'html'
+			full_path = os.path.join(plots_path, self.name)
+			if not os.path.isfile(full_path):
+				creat_directory(full_path)
+			fig.write_html('{}\{}.{}'.format(full_path, title, file_format))
 
 			return fig
 
@@ -528,9 +525,8 @@ if __name__ == '__main__':
 	top = Top('countries')
 	country = Country('israel')
 	# fig = country.linear_plot(['TotalCases', 'TotalDeaths','TotalRecovered','ActiveCases'])
-	fig = country.boxplot('NewCases', save=False)
-
-	fig.show()
+	# fig = country.boxplot('NewCases', save=False)
+	# fig.show()
 	# plt.show()
 
 

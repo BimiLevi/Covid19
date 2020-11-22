@@ -1,5 +1,5 @@
 import re
-from datetime import datetime
+from datetime import datetime, date
 
 import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
@@ -8,7 +8,7 @@ import plotly.io as pio
 from matplotlib.ticker import FuncFormatter
 
 pio.templates.default = "plotly_dark"
-pio.renderers.default = "svg"
+# pio.renderers.default = "svg" # Disables the hovermode
 
 from analysis.analysis_func import *
 from analysis.visualization_func import *
@@ -243,14 +243,23 @@ class Territory:
 		cfr = round(cfr * 100, 3)
 		return cfr
 
-	def linear_plot(self, y_cols):
+	def linear_plot(self, y_cols, save = False):
 		fig = px.line(self._data, x='scrap_date', y=y_cols,
-		              title="{} Cumulative\Active Cases Over Time".format(self.name.capitalize()),
+		              title="{} Cumulative\Active Cases Over Time<br>Creation date {}".format(self.name.capitalize(),
+		                                                                                    date.today()),
 		              labels={'scrap_date': 'Date'}, color='variable')
+
+		if save:
+			title = 'Line plot of {} in {}'.format(",".join(y_cols), self.name)
+			file_format = 'html'
+			full_path = os.path.join(plots_path, self.name)
+			if not os.path.isfile(full_path):
+				creat_directory(full_path)
+			fig.write_html('{}\{}.{}'.format(full_path, title, file_format))
 		return fig
 
 	def boxplot(self, col, save = False):
-		if not col in ['NewCases','NewDeaths', 'NewRecovered']:
+		if not col in ['NewCases', 'NewDeaths', 'NewRecovered']:
 			print('{} is is unknown'.format(col))
 			return False
 
@@ -258,16 +267,18 @@ class Territory:
 			raise TypeError('{} must be of str type'.format(col))
 
 		else:
-			fig = px.box(self._data, y= col)
+			fig = px.box(self._data, y= col, width=1920, height=1080, title="{} Boxplot for {}<br>Creation date {}".format(
+					self.name.capitalize(), col, date.today()))
 			fig.update_traces(quartilemethod = "exclusive")
+			fig.update_layout(hovermode = 'x unified')
 
 			if save:
 				title = 'Boxplot of {} in {}'.format(col, self.name)
-				file_format = 'svg'
+				file_format = 'html'
 				full_path = os.path.join(plots_path, self.name)
 				if not os.path.isfile(full_path):
 					creat_directory(full_path)
-				fig.write_image('{}\{}.{}'.format(full_path, title, file_format))
+				fig.write_html('{}\{}.{}'.format(full_path, title, file_format))
 
 			return fig
 

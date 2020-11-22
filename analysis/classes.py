@@ -238,17 +238,18 @@ class Territory:
 
 		return fig
 
+	@calculate_time
 	def case_fatality_ratio(self):
 		cfr = self._data['TotalDeaths'].sum()/(self._data['TotalDeaths'].sum()+self._data['TotalRecovered'].sum())
 		cfr = round(cfr * 100, 3)
 		return cfr
 
+	@calculate_time
 	def linear_plot(self, y_cols, save = False):
 		fig = px.line(self._data, x='scrap_date', y=y_cols,
-		              title="{} Cumulative\Active Cases Over Time<br>Creation date {}".format(self.name.capitalize(),
-		                                                                                    date.today()),
+		              title="{} Cumulative\Active Cases Over Time".format(self.name.capitalize())+"<br>" + "<span " \
+  "style='font-size:12px;'>Creation date {}</span>".format( date.today()),
 		              labels={'scrap_date': 'Date'}, color='variable')
-
 		if save:
 			title = 'Line plot of {} in {}'.format(",".join(y_cols), self.name)
 			file_format = 'html'
@@ -258,6 +259,7 @@ class Territory:
 			fig.write_html('{}\{}.{}'.format(full_path, title, file_format))
 		return fig
 
+	@calculate_time
 	def boxplot(self, col, save = False):
 		if not col in ['NewCases', 'NewDeaths', 'NewRecovered']:
 			print('{} is is unknown'.format(col))
@@ -267,8 +269,9 @@ class Territory:
 			raise TypeError('{} must be of str type'.format(col))
 
 		else:
-			fig = px.box(self._data, y= col, width=1920, height=1080, title="{} Boxplot for {}<br>Creation date {}".format(
-					self.name.capitalize(), col, date.today()))
+			fig = px.box(self._data, y= col, width=1500, height=1080, title="{} Boxplot for {}".format(
+					self.name.capitalize(), col)+"<br>"+"<span style='font-size: 12px;'>Creation date {}</span>".format(
+					date.today()))
 			fig.update_traces(quartilemethod = "exclusive")
 			fig.update_layout(hovermode = 'x unified')
 

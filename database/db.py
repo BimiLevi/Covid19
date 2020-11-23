@@ -231,3 +231,4 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 			table.add_row(row)
 
 		return table
+

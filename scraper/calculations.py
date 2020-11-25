@@ -5,6 +5,7 @@ from database.db_config import current_db as db
 
 
 def get_last_row(tableName):
+	# TODO: Optimization problem the entire Dframe loaded.
 	row = db.get_table(tableName).tail(1)
 	return row
 

@@ -20,6 +20,9 @@ from utilities.files_function import load_json, calculate_time
 # pd.set_option('display.max_rows', None)
 # pd.set_option('display.max_columns', None)
 
+pio.templates.default = "plotly_dark"
+pio.renderers.default = "svg"
+
 plt.style.use('classic')
 plt.rcParams['font.sans-serif'] = 'Constantia'
 plt.rcParams['savefig.dpi'] = 600
@@ -244,7 +247,7 @@ class Territory:
 		return cfr
 
 	def linear_plot(self, y_cols, save = False):
-		fig = px.line(self._data, x='scrap_date', y=y_cols,
+		fig = px.line(self._data, x='scrap_date', y=y_cols, width=1920, height=1080,
 		              title="{} Cumulative\Active Cases Over Time".format(self.name.capitalize())+"<br>" + "<span " \
   "style='font-size:12px;'>Creation date {}</span>".format( date.today()),
 		              labels={'scrap_date': 'Date'}, color='variable')

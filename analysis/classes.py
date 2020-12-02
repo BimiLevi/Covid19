@@ -142,7 +142,6 @@ class Territory:
 
 		return pie
 
-	@calculate_time
 	def monthly_plot(self, cols, month, year, save = False):
 		if len(cols) > 4:
 			raise ValueError('The maximum amount of columns is 4.')
@@ -189,7 +188,7 @@ class Territory:
 		fig.suptitle('{} during {}'.format(self.name.capitalize(), month), fontsize=22, fontweight='bold')
 
 		if save:
-			title = input('For monthly plot \n Please enter plots name\n'.format())
+			title = f'{self.name.capitalize()} in {month}'
 			file_format = 'svg'
 			full_path = os.path.join(plots_path, self.name)
 			if not os.path.isfile(full_path):
@@ -284,6 +283,29 @@ class Territory:
 			fig.write_html('{}\{}.{}'.format(full_path, title, file_format))
 
 			return fig
+
+	def three_months_info(self):
+		group_df = self._data.groupby(by = [self._data['scrap_date'].dt.year,
+		                                        self._data['scrap_date'].dt.month]).agg(
+													ActiveCasesAvg = ('ActiveCases', 'mean'),
+													RecoveredSum = ('NewRecovered', 'sum'),
+													DeathsSum = ('NewDeaths', 'sum'),
+													CasesSum = ('NewCases', 'sum'),
+													CriticalSum = ('SeriousCritical', 'sum'))
+
+		group_df = pd.DataFrame(group_df).tail(4).iloc[:3]
+		group_df = group_df.rename_axis(['Year', 'Month']).reset_index()
+
+		group_df['ActiveCasesAvg'] = group_df['ActiveCasesAvg'].astype('float64')
+		group_df['ActiveCasesAvg'] = group_df['ActiveCasesAvg'].apply(lambda x: "{:,.3f}".format(x))
+		group_df['RecoveredSum'] = group_df['RecoveredSum'].apply(lambda x: "{:,.0f}".format(x))
+		group_df['DeathsSum'] = group_df['DeathsSum'].apply(lambda x: "{:,.0f}".format(x))
+		group_df['CasesSum'] = group_df['CasesSum'].apply(lambda x: "{:,.0f}".format(x))
+		group_df['CriticalSum'] = group_df['CriticalSum'].apply(lambda x: "{:,.0f}".format(x))
+
+		group_df['Month'] = group_df['Month'].apply(lambda x: calendar.month_abbr[x])
+
+		return group_df
 
 
 class Country(Territory):
@@ -527,6 +549,7 @@ Limit: {}
 if __name__ == '__main__':
 	top = Top('countries')
 	country = Country('israel')
+	print(country.three_months_info())
 	# fig = country.linear_plot(['TotalCases', 'TotalDeaths','TotalRecovered','ActiveCases'])
 	# fig = country.boxplot('NewCases', save=False)
 	# fig.show()

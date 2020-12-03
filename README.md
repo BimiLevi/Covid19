@@ -34,6 +34,8 @@ The data is loaded for each country and continent, furthermore, an extra four ta
 
 2. Analysis 
   * Performing SQL queries.
+   * Creating a Jupiter notebook analysis format for countries, including visualizations (Matplotlib, Plotly)
+ 
 
 ## Currently under work:
   * Data visualization using Matplotlib and Tableau.

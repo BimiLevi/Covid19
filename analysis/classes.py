@@ -9,6 +9,7 @@ from matplotlib.ticker import FuncFormatter
 
 pio.templates.default = "plotly_dark"
 # pio.renderers.default = "svg" # Disables the hovermode
+pio.renderers.default = "notebook_connected"
 
 from analysis.analysis_func import *
 from analysis.visualization_func import *
@@ -250,8 +251,6 @@ class Territory:
 		              title="{} Cumulative\Active Cases Over Time".format(self.name.capitalize())+"<br>" + "<span " \
   "style='font-size:12px;'>Creation date {}</span>".format( date.today()),
 		              labels={'scrap_date': 'Date'}, color='variable')
-		fig.update_layout(hovermode = 'closest')
-
 		if save:
 			title = 'Line plot of {} in {}'.format(",".join(y_cols), self.name)
 			file_format = 'html'

@@ -178,8 +178,8 @@ class Territory:
 
 			title = " ".join(re.findall('[A-Z][^A-Z]*', col))
 			ax.set_title('{}'.format(title),size=20)
-			ax.tick_params(axis = 'both', which = 'major', labelsize = 18)
-			ax.tick_params(axis = 'both', which = 'minor', labelsize = 18)
+			ax.tick_params(axis = 'both', which = 'major', labelsize = 16)
+			ax.tick_params(axis = 'both', which = 'minor', labelsize = 16)
 
 			ax.spines['right'].set_visible(False)
 			ax.spines['top'].set_visible(False)

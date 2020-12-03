@@ -251,7 +251,7 @@ class Territory:
   "style='font-size:12px;'>Creation date {}</span>".format( date.today()),
 		              labels={'scrap_date': 'Date'}, color='variable')
 		fig.update_layout(
-				hovermode = 'x unified',
+				hovermode = 'closest',
 				updatemenus = [
 					dict(
 							type = "buttons",

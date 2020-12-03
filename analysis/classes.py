@@ -250,27 +250,8 @@ class Territory:
 		              title="{} Cumulative\Active Cases Over Time".format(self.name.capitalize())+"<br>" + "<span " \
   "style='font-size:12px;'>Creation date {}</span>".format( date.today()),
 		              labels={'scrap_date': 'Date'}, color='variable')
-		fig.update_layout(
-				hovermode = 'closest',
-				updatemenus = [
-					dict(
-							type = "buttons",
-							direction = "left",
-							buttons = list([
-								dict(
-										args = [{"yaxis.type": "linear"}],
-										label = "LINEAR",
-										method = "relayout"
-										),
-								dict(
-										args = [{"yaxis.type": "log"}],
-										label = "LOG",
-										method = "relayout"
-										)
-								]),
-							),
-					]
-				)
+		fig.update_layout(hovermode = 'closest')
+
 		if save:
 			title = 'Line plot of {} in {}'.format(",".join(y_cols), self.name)
 			file_format = 'html'

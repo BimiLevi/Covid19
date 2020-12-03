@@ -10,7 +10,7 @@ The data that is in use in this project has been scraped out of ["World Meter"](
 
 ## Project Description:
 This project is written in python.
-1. ETL
+1. **ETL**
 - Extraction:
   * Scarping the data from the website HTML page, using requests and Beutifullsoup models.
 - Transformation:
@@ -32,13 +32,18 @@ The data is loaded for each country and continent, furthermore, an extra four ta
   **Database Schema**
 ![Alt text](https://github.com/BimiLevi/Covid19/blob/master/Covid%2019%20-%20db%20schema.png) 
 
-2. Analysis 
+2. **Analysis**
   * Performing SQL queries.
-   * Creating a Jupiter notebook analysis format for countries, including visualizations (Matplotlib, Plotly)
+  * Creating a Jupiter notebook analysis format for countries, including visualizations (Matplotlib, Plotly)
+     Notebook:https://nbviewer.jupyter.org/github/BimiLevi/Covid19/blob/master/analysis/country_analysis.ipynb
+     ![Alt text](https://github.com/BimiLevi/Covid19/blob/master/analysis/plots/usa/Line%20plot%20of%20TotalCases%2CTotalDeaths%2CTotalRecovered%2CActiveCases%20in%20usa.png)
+     ![Alt text](https://github.com/BimiLevi/Covid19/blob/master/analysis/plots/usa/Daily%20increase%20of%20NewCases%20in%20usa.svg)
+     ![Alt text](https://github.com/BimiLevi/Covid19/blob/master/analysis/plots/usa/Usa%20in%20November.svg)
+     
  
 
 ## Currently under work:
-  * Data visualization using Matplotlib and Tableau.
+  * Creating continent analysis Jupiter notebook.
   * Preprocessing the data for Ml analysis.
   * Preforming Ml analysis using Scikitlearn.  
   

@@ -261,22 +261,22 @@ class Territory:
 
 		return fig
 
-	def boxplot(self, col, save = False):
-		if not col in ['NewCases', 'NewDeaths', 'NewRecovered','ActiveCases']:
-			print('{} is is unknown'.format(col))
-			raise ValueError('{} is unknown'.format(col))
+	def boxplot(self, cols, save = False):
+		for col in cols:
+			if not col in ['NewCases', 'NewDeaths', 'NewRecovered','ActiveCases']:
+				print('{} is  unknown'.format(cols))
+				raise ValueError('{} is unknown'.format(cols))
 
-		elif type(col) != str:
-			raise TypeError('{} must be of str type'.format(col))
+			elif type(col) != str:
+				raise TypeError('{} must be of str type'.format(cols))
 
-		else:
-			fig = px.box(self._data, y= col, width=1500, height=1080, title="{} Boxplot for {}".format(
-					self.name.capitalize(), col)+"<br>"+"<span style='font-size: 12px;'>Creation date {}</span>".format(
-					date.today()))
-			fig.update_traces(quartilemethod = "exclusive")
+		fig = px.box(self._data, y= cols, width=1500, height=1080, title="{} Boxplot for {}".format(
+				self.name.capitalize(), cols)+"<br>"+"<span style='font-size: 12px;'>Creation date {}</span>".format(
+				date.today()))
+		fig.update_traces(quartilemethod = "exclusive")
 
 		if save:
-			title = 'Boxplot of {} in {}'.format(col, self.name)
+			title = 'Boxplot of {} in {}'.format(cols, self.name)
 			file_format = 'html'
 			full_path = os.path.join(plots_path, self.name)
 			if not os.path.isfile(full_path):
@@ -550,11 +550,10 @@ Limit: {}
 if __name__ == '__main__':
 	top = Top('countries')
 	country = Country('israel')
-	print(country.three_months_info())
-	# fig = country.linear_plot(['TotalCases', 'TotalDeaths','TotalRecovered','ActiveCases'])
-	# fig = country.boxplot('NewCases', save=False)
-	# fig.show()
-	# plt.show()
+	# print(country.three_months_info())
+	measures = ['ActiveCases', 'NewCases', 'NewRecovered', 'NewDeaths']
+	fig = country.boxplot(measures, save = True)
+	fig.show()
 
 
 

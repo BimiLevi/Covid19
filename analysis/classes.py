@@ -4,12 +4,9 @@ from datetime import datetime, date
 import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
 import plotly.express as px
+import plotly.graph_objects as go
 import plotly.io as pio
 from matplotlib.ticker import FuncFormatter
-
-pio.templates.default = "plotly_dark"
-# pio.renderers.default = "svg" # Disables the hovermode
-pio.renderers.default = "notebook_connected"
 
 from analysis.analysis_func import *
 from analysis.visualization_func import *
@@ -22,8 +19,9 @@ from utilities.files_function import load_json, calculate_time
 # pd.set_option('display.max_columns', None)
 
 pio.templates.default = "plotly_dark"
-pio.renderers.default = "svg"
-
+# pio.renderers.default = "svg" # Disables the hovermode
+# pio.renderers.default = "browser"
+color_platte = ['#004358', '#1F8A70','#BEDB39','#FFE11A','#CE543D']
 plt.style.use('classic')
 plt.rcParams['font.sans-serif'] = 'Constantia'
 plt.rcParams['savefig.dpi'] = 600
@@ -97,11 +95,10 @@ class Territory:
 			if not os.path.isfile(full_path):
 				creat_directory(full_path)
 			fig.savefig('{}\{}.{}'.format(full_path, title, file_format), format = file_format,
-			            edgecolor = 'b',bbox_inches ='tight')
+			            edgecolor = 'b', bbox_inches ='tight')
 
 		return ax
 
-	#   TODO: change the colors, and remove the shadow.
 	@calculate_time
 	def closed_cases_pie(self, save = False):
 		fig, ax = plt.subplots(figsize = (19.20, 10.80), tight_layout = True)
@@ -116,21 +113,14 @@ class Territory:
 
 		t_ratio = ratio.T.rename(columns={idx[0]: 'x'})
 
-		explode = np.ones(t_ratio.shape[0]) * 0.05
 		labels = ratio.columns.tolist()
-		colors = ['yellowgreen', 'lightcoral']
+		colors = ['tab:green', 'tab:red']
 
-		pie = ax.pie(t_ratio['x'], labels = labels, shadow = True, startangle = 90, explode =
-		explode, pctdistance = 0.85, colors=colors,normalize=True,textprops={'fontsize': 20})
-
+		wedges, _ = ax.pie(t_ratio['x'], labels = labels, startangle = 90,  pctdistance = 0.85,
+		                   colors=colors, normalize=True, textprops={'fontsize': 20})
+		plt.setp(wedges,width=0.3, edgecolor='black')
 		legend_labels = round(t_ratio['x'] * 100, 3).astype(str) + '%'
-
-		ax.legend(pie[0], legend_labels, loc = "center left", bbox_to_anchor = (1, 0, 0.5, 1),prop={'size': 20})
-
-		centre_circle = plt.Circle((0, 0), 0.70, fc = 'white')
-		fig = plt.gcf()
-		fig.gca().add_artist(centre_circle)
-
+		ax.legend(wedges, legend_labels, loc = "center left", bbox_to_anchor = (1, 0, 0.5, 1),prop={'size': 20})
 		ax.set_title('{} Closed Cases Ratio'.format(self.name.capitalize()), fontsize = 25, fontweight = 'bold')
 
 		if save:
@@ -141,10 +131,8 @@ class Territory:
 				creat_directory(full_path)
 			fig.savefig('{}\{}.{}'.format(full_path, title, file_format), format = file_format, edgecolor = 'b',bbox_inches ='tight')
 
+		return zip(wedges, _)
 
-		return pie
-
-	#  TODO : Expend the height.
 	def monthly_plot(self, cols, month, year, save = False):
 		if len(cols) > 4:
 			raise ValueError('The maximum amount of columns is 4.')
@@ -155,7 +143,7 @@ class Territory:
 		else:
 			data = self._data
 
-		fig, axs = plt.subplots(len(cols), figsize = (19.20, 10.80), tight_layout = True)
+		fig, axs = plt.subplots(len(cols), figsize = (19.20, 13.80), tight_layout = True)
 
 		colors = color_palette
 
@@ -180,7 +168,7 @@ class Territory:
 			ax.xaxis.set_major_formatter(mdates.DateFormatter('\n%b\n%Y'))
 
 			title = " ".join(re.findall('[A-Z][^A-Z]*', col))
-			ax.set_title('{}'.format(title),size=20)
+			ax.set_title('{}'.format(title), size=20)
 			ax.tick_params(axis = 'both', which = 'major', labelsize = 16)
 			ax.tick_params(axis = 'both', which = 'minor', labelsize = 16)
 
@@ -201,8 +189,8 @@ class Territory:
 
 		return ax
 
-	# TODO: better legend, orange and black box dosnt work, same var colors as monthly plot
-	#  @calculate_time
+	# Matplotlib
+	@calculate_time
 	def daily_increase(self, col, save = False):
 		df = self._data
 		df['sma'] = df[col].rolling(window = 7).mean()
@@ -244,16 +232,71 @@ class Territory:
 
 		return fig
 
+	# Plotly
+	def daily_increase2(self, col, save = False):
+		df = self._data[['scrap_date', col]]
+		df['sma'] = df[col].rolling(window = 7).mean()
+		df = df[df[col].isnull() == False]
+
+		fig = go.Figure()
+
+		fig.add_trace(go.Bar(name=f"{col} ", x=df['scrap_date'], y=df[col]))
+		fig.update_traces(marker_color = color_platte[1])
+
+		fig.add_trace(go.Scatter(name='7 Days Moving Avg', x=df['scrap_date'], y=df['sma'], mode='lines+markers',
+		                         line_color= color_platte[4]))
+
+		fig.update_xaxes(type = 'date', tick0=df['scrap_date'].iloc[0], dtick=86400000.0*7, ticklabelmode='period',
+		                  rangeslider_visible=True)
+
+		fig.update_layout(
+				title = '{}\nDaily increase of {}'.format(self.name.capitalize(), col) + '<br>' "<span " \
+                "style='font-size:12px;'>Creation date {}</span>".format(date.today()),
+				autosize = False,
+				width = 1920,
+				height = 1080,
+				xaxis_tickformat = "%d\n%b",
+				xaxis_title = 'Date',
+				yaxis_title = f'{col}',
+				)
+
+		if save:
+			title = f'Daily increase of {col} in {self.name.capitalize()}'
+			file_format = 'html'
+			full_path = os.path.join(plots_path, self.name)
+			if not os.path.isfile(full_path):
+				creat_directory(full_path)
+			fig.write_html('{}\{}.{}'.format(full_path, title, file_format))
+
+		return fig
+
 	def case_fatality_ratio(self):
 		cfr = self._data['TotalDeaths'].sum()/(self._data['TotalDeaths'].sum()+self._data['TotalRecovered'].sum())
 		cfr = round(cfr * 100, 3)
 		return cfr
 
 	def linear_plot(self, y_cols, save = False):
-		fig = px.line(self._data, x='scrap_date', y=y_cols, width=1920, height=1080,
-		              title="{} Cumulative\Active Cases Over Time".format(self.name.capitalize())+"<br>" + "<span " \
-  "style='font-size:12px;'>Creation date {}</span>".format( date.today()),
-		              labels={'scrap_date': 'Date'}, color='variable')
+		fig = px.line(self._data, x='scrap_date', y=y_cols, width=1220, height=680,
+		              labels={'scrap_date': 'Date'}, color_discrete_sequence=[color_platte[3],color_platte[1],
+		                                                                      color_platte[2],color_platte[4]])
+
+		fig.update_xaxes(type = 'date', tick0=self._data['scrap_date'].iloc[0], dtick=86400000.0*7, ticklabelmode='period')
+
+		fig.update_layout(
+				title = f"{self.name.capitalize()} Cumulative\Active Cases Over Time"+"<br>" + "<span " \
+                         f"style='font-size:12px;'>Creation date {date.today()}</span>",
+				autosize = False,
+				width = 1920,
+				height = 1080,
+				xaxis_tickformat = "%d\n%b",
+				xaxis_title = 'Date',
+				yaxis_title = 'Value',
+				hovermode = 'x unified',
+				font = dict(
+						size = 18,
+						)
+				)
+
 		if save:
 			title = 'Line plot of {} in {}'.format(",".join(y_cols), self.name)
 			file_format = 'html'
@@ -553,10 +596,14 @@ Limit: {}
 if __name__ == '__main__':
 	top = Top('countries')
 	country = Country('israel')
-	# print(country.three_months_info())
 	measures = ['ActiveCases', 'NewCases', 'NewRecovered', 'NewDeaths']
-	fig = country.boxplot(measures, save = True)
+
+	# pie = country.closed_cases_pie(save = True)
+	# month = country.monthly_plot(measures,11,2020,save = True)
+	# fig = country.boxplot(measures, save = True)
+	fig = country.daily_increase2('ActiveCases')
 	fig.show()
+	plt.show()
 
 
 

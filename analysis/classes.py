@@ -17,6 +17,7 @@ from utilities.files_function import load_json, calculate_time
 
 # pd.set_option('display.max_rows', None)
 # pd.set_option('display.max_columns', None)
+pd.options.mode.chained_assignment = None
 
 pio.templates.default = "plotly_dark"
 # pio.renderers.default = "svg" # Disables the hovermode
@@ -601,9 +602,9 @@ if __name__ == '__main__':
 	# pie = country.closed_cases_pie(save = True)
 	# month = country.monthly_plot(measures,11,2020,save = True)
 	# fig = country.boxplot(measures, save = True)
-	fig = country.daily_increase2('ActiveCases')
-	fig.show()
-	plt.show()
+	# fig = country.daily_increase2('ActiveCases')
+	# fig.show()
+	# plt.show()
 
 
 

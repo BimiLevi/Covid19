@@ -30,7 +30,7 @@ plt.rcParams['savefig.dpi'] = 600
 plt.rcParams["figure.dpi"] = 100
 
 class Territory:
-
+	# TODO: Change the plots font - advice with Arika.
 	def __init__(self, name):
 		self.name = name.lower()
 		self._data = None
@@ -101,6 +101,7 @@ class Territory:
 
 		return ax
 
+	#   TODO: change the colors, and remove the shadow.
 	@calculate_time
 	def closed_cases_pie(self, save = False):
 		fig, ax = plt.subplots(figsize = (19.20, 10.80), tight_layout = True)
@@ -143,6 +144,7 @@ class Territory:
 
 		return pie
 
+	#  TODO : Expend the height.
 	def monthly_plot(self, cols, month, year, save = False):
 		if len(cols) > 4:
 			raise ValueError('The maximum amount of columns is 4.')
@@ -199,7 +201,8 @@ class Territory:
 
 		return ax
 
-	@calculate_time
+	# TODO: better legend, orange and black box dosnt work, same var colors as monthly plot
+	#  @calculate_time
 	def daily_increase(self, col, save = False):
 		df = self._data
 		df['sma'] = df[col].rolling(window = 7).mean()

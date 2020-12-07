@@ -34,7 +34,7 @@ The data is loaded for each country and continent, furthermore, an extra four ta
 
 2. **Analysis**
   * Performing SQL queries.<br/>
-      https://github.com/BimiLevi/Covid19/blob/master/analysis/sql_queries.py
+     Notebook:https://nbviewer.jupyter.org/github/BimiLevi/Covid19/blob/master/analysis/SQL_queries.ipynb
   * Creating a Jupiter notebook analysis format for countries, including visualizations (Matplotlib, Plotly)
      Notebook:https://nbviewer.jupyter.org/github/BimiLevi/Covid19/blob/master/analysis/country_analysis.ipynb
      ![Alt text](https://github.com/BimiLevi/Covid19/blob/master/analysis/plots/usa/Line%20plot%20of%20TotalCases%2CTotalDeaths%2CTotalRecovered%2CActiveCases%20in%20usa.png)

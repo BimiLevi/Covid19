@@ -29,7 +29,7 @@ plt.rcParams['savefig.dpi'] = 600
 plt.rcParams["figure.dpi"] = 100
 
 class Territory:
-	# TODO: Change the plots font - advice with Arika.
+	# TODO: Change the plots font
 	def __init__(self, name):
 		self.name = name.lower()
 		self._data = None
@@ -254,8 +254,6 @@ class Territory:
 				title = '{}\nDaily increase of {}'.format(self.name.capitalize(), col) + '<br>' "<span " \
                 "style='font-size:12px;'>Creation date {}</span>".format(date.today()),
 				autosize = False,
-				width = 1920,
-				height = 1080,
 				xaxis_tickformat = "%d\n%b",
 				xaxis_title = 'Date',
 				yaxis_title = f'{col}',
@@ -277,9 +275,8 @@ class Territory:
 		return cfr
 
 	def linear_plot(self, y_cols, save = False):
-		fig = px.line(self._data, x='scrap_date', y=y_cols, width=1220, height=680,
-		              labels={'scrap_date': 'Date'}, color_discrete_sequence=[color_platte[3],color_platte[1],
-		                                                                      color_platte[2],color_platte[4]])
+		fig = px.line(self._data, x='scrap_date', y=y_cols,labels={'scrap_date': 'Date'},
+		              color_discrete_sequence=[color_platte[3], color_platte[1], color_platte[2], color_platte[4]])
 
 		fig.update_xaxes(type = 'date', tick0=self._data['scrap_date'].iloc[0], dtick=86400000.0*7, ticklabelmode='period')
 
@@ -287,15 +284,12 @@ class Territory:
 				title = f"{self.name.capitalize()} Cumulative\Active Cases Over Time"+"<br>" + "<span " \
                          f"style='font-size:12px;'>Creation date {date.today()}</span>",
 				autosize = False,
-				width = 1920,
-				height = 1080,
+
 				xaxis_tickformat = "%d\n%b",
 				xaxis_title = 'Date',
 				yaxis_title = 'Value',
 				hovermode = 'x unified',
-				font = dict(
-						size = 18,
-						)
+
 				)
 
 		if save:
@@ -317,7 +311,7 @@ class Territory:
 			elif type(col) != str:
 				raise TypeError('{} must be of str type'.format(cols))
 
-		fig = px.box(self._data, y= cols, width=1500, height=1080, title="{} Boxplot for {}".format(
+		fig = px.box(self._data, y= cols, title="{} Boxplot for {}".format(
 				self.name.capitalize(), cols)+"<br>"+"<span style='font-size: 12px;'>Creation date {}</span>".format(
 				date.today()))
 		fig.update_traces(quartilemethod = "exclusive")

@@ -1,8 +1,11 @@
 import re
-from datetime import datetime
+from datetime import datetime, date
 
 import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
+import plotly.express as px
+import plotly.graph_objects as go
+import plotly.io as pio
 from matplotlib.ticker import FuncFormatter
 
 from analysis.analysis_func import *
@@ -12,19 +15,24 @@ from resources.paths import *
 from utilities.directories import creat_directory
 from utilities.files_function import load_json, calculate_time
 
+# pd.set_option('display.max_rows', None)
+# pd.set_option('display.max_columns', None)
+pd.options.mode.chained_assignment = None
+
+pio.templates.default = "plotly_dark"
+# pio.renderers.default = "svg" # Disables the hovermode
+# pio.renderers.default = "browser"
+color_platte = ['#004358', '#1F8A70','#BEDB39','#FFE11A','#CE543D']
 plt.style.use('classic')
 plt.rcParams['font.sans-serif'] = 'Constantia'
 plt.rcParams['savefig.dpi'] = 600
 plt.rcParams["figure.dpi"] = 100
 
-# pd.set_option('display.max_rows', None)
-pd.set_option('display.max_columns', None)
-
 class Territory:
-
+	# TODO: Change the plots font
 	def __init__(self, name):
 		self.name = name.lower()
-		self.__data = None
+		self._data = None
 
 	@calculate_time
 	def date_plot(self, cols = [], start_date = None, end_date = None, save = False, ):
@@ -73,6 +81,7 @@ class Territory:
 		ax.xaxis.set_major_locator(mdates.MonthLocator())
 		ax.xaxis.set_major_formatter(mdates.DateFormatter('\n\n\n%b\n%Y'))
 
+
 		xtitle = 'Date'
 		ytitle = 'Values'
 
@@ -87,7 +96,7 @@ class Territory:
 			if not os.path.isfile(full_path):
 				creat_directory(full_path)
 			fig.savefig('{}\{}.{}'.format(full_path, title, file_format), format = file_format,
-			            edgecolor = 'b',bbox_inches ='tight')
+			            edgecolor = 'b', bbox_inches ='tight')
 
 		return ax
 
@@ -105,21 +114,14 @@ class Territory:
 
 		t_ratio = ratio.T.rename(columns={idx[0]: 'x'})
 
-		explode = np.ones(t_ratio.shape[0]) * 0.05
 		labels = ratio.columns.tolist()
-		colors = ['yellowgreen', 'lightcoral']
+		colors = ['tab:green', 'tab:red']
 
-		pie = ax.pie(t_ratio['x'], labels = labels, shadow = True, startangle = 90, explode =
-		explode, pctdistance = 0.85, colors=colors,normalize=True,textprops={'fontsize': 20})
-
+		wedges, _ = ax.pie(t_ratio['x'], labels = labels, startangle = 90,  pctdistance = 0.85,
+		                   colors=colors, normalize=True, textprops={'fontsize': 20})
+		plt.setp(wedges,width=0.3, edgecolor='black')
 		legend_labels = round(t_ratio['x'] * 100, 3).astype(str) + '%'
-
-		ax.legend(pie[0], legend_labels, loc = "center left", bbox_to_anchor = (1, 0, 0.5, 1),prop={'size': 20})
-
-		centre_circle = plt.Circle((0, 0), 0.70, fc = 'white')
-		fig = plt.gcf()
-		fig.gca().add_artist(centre_circle)
-
+		ax.legend(wedges, legend_labels, loc = "center left", bbox_to_anchor = (1, 0, 0.5, 1),prop={'size': 20})
 		ax.set_title('{} Closed Cases Ratio'.format(self.name.capitalize()), fontsize = 25, fontweight = 'bold')
 
 		if save:
@@ -130,15 +132,11 @@ class Territory:
 				creat_directory(full_path)
 			fig.savefig('{}\{}.{}'.format(full_path, title, file_format), format = file_format, edgecolor = 'b',bbox_inches ='tight')
 
+		return zip(wedges, _)
 
-
-		return pie
-
-	@calculate_time
 	def monthly_plot(self, cols, month, year, save = False):
 		if len(cols) > 4:
 			raise ValueError('The maximum amount of columns is 4.')
-
 
 		if month is not None:
 			data = data_by_month(self._data, month, year)
@@ -146,8 +144,7 @@ class Territory:
 		else:
 			data = self._data
 
-
-		fig, axs = plt.subplots(len(cols), figsize = (19.20, 10.80), tight_layout = True)
+		fig, axs = plt.subplots(len(cols), figsize = (19.20, 13.80), tight_layout = True)
 
 		colors = color_palette
 
@@ -172,15 +169,18 @@ class Territory:
 			ax.xaxis.set_major_formatter(mdates.DateFormatter('\n%b\n%Y'))
 
 			title = " ".join(re.findall('[A-Z][^A-Z]*', col))
-			ax.set_title('{}'.format(title),size=20)
-			ax.tick_params(axis = 'both', which = 'major', labelsize = 18)
-			ax.tick_params(axis = 'both', which = 'minor', labelsize = 18)
+			ax.set_title('{}'.format(title), size=20)
+			ax.tick_params(axis = 'both', which = 'major', labelsize = 16)
+			ax.tick_params(axis = 'both', which = 'minor', labelsize = 16)
+
+			ax.spines['right'].set_visible(False)
+			ax.spines['top'].set_visible(False)
 
 		month = datetime(1900, month, 1).strftime('%B')
 		fig.suptitle('{} during {}'.format(self.name.capitalize(), month), fontsize=22, fontweight='bold')
 
 		if save:
-			title = input('For monthly plot \n Please enter plots name\n'.format())
+			title = f'{self.name.capitalize()} in {month}'
 			file_format = 'svg'
 			full_path = os.path.join(plots_path, self.name)
 			if not os.path.isfile(full_path):
@@ -190,31 +190,39 @@ class Territory:
 
 		return ax
 
+	# Matplotlib
 	@calculate_time
 	def daily_increase(self, col, save = False):
-		rate = self._data[col].pct_change()
+		df = self._data
+		df['sma'] = df[col].rolling(window = 7).mean()
 
 		fig, ax = plt.subplots(figsize = (19.20, 10.80), tight_layout = True)
 		ax2 = ax.twinx()
 
-		ax2.plot(self._data['scrap_date'], rate, color = 'lightcoral', marker='o', linestyle = 'dashed',linewidth=3)
-		ax.bar(self._data['scrap_date'], self._data['NewDeaths'], color='orange')
+		fig.suptitle('{}\nDaily increase of {}'.format(self.name.capitalize(), col), size = 20)
 
-		fig.suptitle('{}\nDaily increase of {}'.format(self.name.capitalize(),col), size = 20)
+		ax.bar(df['scrap_date'], df[col], color='orange')
+
+		ax2.plot(df['scrap_date'], df['sma'], color = 'lightcoral', marker = 'o', linestyle = 'dashed', linewidth = 3,
+		         label = '7 days moving avg')
+
 		ax.set_ylabel(col, size = 20)
 		ax.tick_params(axis = 'both', which = 'major', labelsize = 20)
-		ax.tick_params(axis = 'x', which = 'minor', labelsize = 20)
-
+		ax.tick_params(axis = 'x', which = 'minor', labelsize = 18)
 		ax.xaxis.set_minor_locator(mdates.WeekdayLocator(byweekday = 6, interval = 1))
 		ax.xaxis.set_minor_formatter(mdates.DateFormatter('%d\n%a'))
-
 		ax.xaxis.grid(True, which = "minor")
 		ax.yaxis.grid()
 		ax.xaxis.set_major_locator(mdates.MonthLocator())
 		ax.xaxis.set_major_formatter(mdates.DateFormatter('\n\n\n%b\n%Y'))
 
+		ax2.tick_params(axis = 'y', labelsize = 18)
+		ax2.axis('off')
+		handles, labels = ax2.get_legend_handles_labels()
+		ax.legend(handles, labels, bbox_to_anchor = (1.001, 1), loc = "best", frameon = True, edgecolor = 'black',
+		          fontsize = 15)
 		if save:
-			title = 'Daily increase of {} in {}'.format(col,self.name)
+			title = 'Daily increase of {} in {}'.format(col, self.name)
 			file_format = 'svg'
 			full_path = os.path.join(plots_path, self.name)
 			if not os.path.isfile(full_path):
@@ -225,7 +233,121 @@ class Territory:
 
 		return fig
 
+	# Plotly
+	def daily_increase2(self, col, save = False):
+		df = self._data[['scrap_date', col]]
+		df['sma'] = df[col].rolling(window = 7).mean()
+		df = df[df[col].isnull() == False]
 
+		fig = go.Figure()
+
+		fig.add_trace(go.Bar(name=f"{col} ", x=df['scrap_date'], y=df[col]))
+		fig.update_traces(marker_color = color_platte[1])
+
+		fig.add_trace(go.Scatter(name='7 Days Moving Avg', x=df['scrap_date'], y=df['sma'], mode='lines+markers',
+		                         line_color= color_platte[4]))
+
+		fig.update_xaxes(type = 'date', tick0=df['scrap_date'].iloc[0], dtick=86400000.0*7, ticklabelmode='period',
+		                  rangeslider_visible=True)
+
+		fig.update_layout(
+				title = '{}\nDaily increase of {}'.format(self.name.capitalize(), col) + '<br>' "<span " \
+                "style='font-size:12px;'>Creation date {}</span>".format(date.today()),
+				autosize = False,
+				xaxis_tickformat = "%d\n%b",
+				xaxis_title = 'Date',
+				yaxis_title = f'{col}',
+				)
+
+		if save:
+			title = f'Daily increase of {col} in {self.name.capitalize()}'
+			file_format = 'html'
+			full_path = os.path.join(plots_path, self.name)
+			if not os.path.isfile(full_path):
+				creat_directory(full_path)
+			fig.write_html('{}\{}.{}'.format(full_path, title, file_format))
+
+		return fig
+
+	def case_fatality_ratio(self):
+		cfr = self._data['TotalDeaths'].sum()/(self._data['TotalDeaths'].sum()+self._data['TotalRecovered'].sum())
+		cfr = round(cfr * 100, 3)
+		return cfr
+
+	def linear_plot(self, y_cols, save = False):
+		fig = px.line(self._data, x='scrap_date', y=y_cols,labels={'scrap_date': 'Date'},
+		              color_discrete_sequence=[color_platte[3], color_platte[1], color_platte[2], color_platte[4]])
+
+		fig.update_xaxes(type = 'date', tick0=self._data['scrap_date'].iloc[0], dtick=86400000.0*7, ticklabelmode='period')
+
+		fig.update_layout(
+				title = f"{self.name.capitalize()} Cumulative\Active Cases Over Time"+"<br>" + "<span " \
+                         f"style='font-size:12px;'>Creation date {date.today()}</span>",
+				autosize = False,
+
+				xaxis_tickformat = "%d\n%b",
+				xaxis_title = 'Date',
+				yaxis_title = 'Value',
+				hovermode = 'x unified',
+
+				)
+
+		if save:
+			title = 'Line plot of {} in {}'.format(",".join(y_cols), self.name)
+			file_format = 'html'
+			full_path = os.path.join(plots_path, self.name)
+			if not os.path.isfile(full_path):
+				creat_directory(full_path)
+			fig.write_html('{}\{}.{}'.format(full_path, title, file_format))
+
+		return fig
+
+	def boxplot(self, cols, save = False):
+		for col in cols:
+			if not col in ['NewCases', 'NewDeaths', 'NewRecovered','ActiveCases']:
+				print('{} is  unknown'.format(cols))
+				raise ValueError('{} is unknown'.format(cols))
+
+			elif type(col) != str:
+				raise TypeError('{} must be of str type'.format(cols))
+
+		fig = px.box(self._data, y= cols, title="{} Boxplot for {}".format(
+				self.name.capitalize(), cols)+"<br>"+"<span style='font-size: 12px;'>Creation date {}</span>".format(
+				date.today()))
+		fig.update_traces(quartilemethod = "exclusive")
+
+		if save:
+			title = 'Boxplot of {} in {}'.format(cols, self.name)
+			file_format = 'html'
+			full_path = os.path.join(plots_path, self.name)
+			if not os.path.isfile(full_path):
+				creat_directory(full_path)
+			fig.write_html('{}\{}.{}'.format(full_path, title, file_format))
+
+			return fig
+
+	def three_months_info(self):
+		group_df = self._data.groupby(by = [self._data['scrap_date'].dt.year,
+		                                        self._data['scrap_date'].dt.month]).agg(
+													ActiveCasesAvg = ('ActiveCases', 'mean'),
+													RecoveredSum = ('NewRecovered', 'sum'),
+													DeathsSum = ('NewDeaths', 'sum'),
+													CasesSum = ('NewCases', 'sum'),
+													CriticalSum = ('SeriousCritical', 'sum'))
+
+		group_df = pd.DataFrame(group_df).tail(4).iloc[:3]
+		group_df = group_df.rename_axis(['Year', 'Month']).reset_index()
+
+		group_df['ActiveCasesAvg'] = group_df['ActiveCasesAvg'].astype('float64')
+		group_df['ActiveCasesAvg'] = group_df['ActiveCasesAvg'].apply(lambda x: "{:,.3f}".format(x))
+		group_df['RecoveredSum'] = group_df['RecoveredSum'].apply(lambda x: "{:,.0f}".format(x))
+		group_df['DeathsSum'] = group_df['DeathsSum'].apply(lambda x: "{:,.0f}".format(x))
+		group_df['CasesSum'] = group_df['CasesSum'].apply(lambda x: "{:,.0f}".format(x))
+		group_df['CriticalSum'] = group_df['CriticalSum'].apply(lambda x: "{:,.0f}".format(x))
+
+		group_df['Month'] = group_df['Month'].apply(lambda x: calendar.month_abbr[x])
+
+		return group_df
 
 
 class Country(Territory):
@@ -236,6 +358,7 @@ class Country(Territory):
 		self.__data = db.get_table(self.name)
 
 		self.id = self.__data['Country_id'].unique()[0]
+		self.code = get_alpha_3(self.name)
 
 		temp = pd.DataFrame(load_json(countries_path))
 		self.continent_id = int(temp[temp['Country_id'] == self.id]['Continent_id'].unique()[0])
@@ -243,6 +366,7 @@ class Country(Territory):
 		temp = load_json(continents_path)
 		temp = dict([(value, key) for key, value in temp.items()])
 		self.continent = temp[self.continent_id]
+		del temp
 
 		self.population = self.__data['Population'][0]
 		self.last_update = self.__data['scrap_date'].max().date()
@@ -275,6 +399,12 @@ Columns: \n{}
 	@data.setter
 	def data(self, table):
 		self.__data = db.get_table(table)
+
+	# TODO: fix the method.
+	@staticmethod
+	def world_map():
+		df = db.get_table('All countries updated')
+		df['iso_alpha'] = df['Country'].map(lambda row: get_alpha_3(row))
 
 class Continent(Territory):
 	def __init__(self, name):
@@ -360,6 +490,7 @@ Limit: {}
 
 		self.set_obj(sorted_data)
 		return sorted_data
+
 	@calculate_time
 	def top_bar(self, col, save = None):
 
@@ -437,6 +568,7 @@ Limit: {}
 			 bbox_inches = 'tight')
 		return ax
 
+	# TODO: Requires another check.
 	@calculate_time
 	def get_map(self, col):
 		from analysis.visualization_func import countries_map
@@ -457,25 +589,16 @@ Limit: {}
 		countries_map(df, title, col)
 
 if __name__ == '__main__':
-	# top = Top('countries')
-	# top.get_map('NewDeaths')
-	# top.get_map('NewRecovered')
-	# top.get_map('TotalDeaths')
-	# top.get_map('TotalRecovered')
-	# top.top_line('TotalCases',save = False)
-	# top.top_bar('TotalCases',save = False)
-	# top.top_line('NewCases',save = True)
-	# top.top_line('TotalRecovered',save = True)
-	# top.top_line('ActiveCases',save = True)
-	# top.top_line('SeriousCritical',save = True)
-	# top.top_line('NewDeaths',save = True)
-	# top.top_line('Deaths_1Mpop',save = True)
-	# top.top_line('Tests_1Mpop',save = True)
-	# top.top_line('Tot_Cases_1Mpop',save = True)
+	top = Top('countries')
+	country = Country('israel')
+	measures = ['ActiveCases', 'NewCases', 'NewRecovered', 'NewDeaths']
 
-	plt.show()
-
-
+	# pie = country.closed_cases_pie(save = True)
+	# month = country.monthly_plot(measures,11,2020,save = True)
+	# fig = country.boxplot(measures, save = True)
+	# fig = country.daily_increase2('ActiveCases')
+	# fig.show()
+	# plt.show()
 
 
 

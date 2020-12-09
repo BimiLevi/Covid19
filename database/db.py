@@ -231,3 +231,12 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 			table.add_row(row)
 
 		return table
+
+	def execute_ddl(self, statement):
+		try:
+			self.engine.execute(statement)
+			print('DDL executed successfully.')
+
+		except Exception as e:
+			print(f'The following exception has occurred:\n{e}')
+

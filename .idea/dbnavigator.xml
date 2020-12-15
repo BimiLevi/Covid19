@@ -72,7 +72,7 @@ from  "public"."Africa""]]></console>
           <description value="Covid 19 -DB" />
           <database-type value="POSTGRES" />
           <config-type value="BASIC" />
-          <database-version value="12.4" />
+          <database-version value="13.1" />
           <driver-source value="BUILTIN" />
           <driver-library value="" />
           <driver value="" />

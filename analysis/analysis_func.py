@@ -123,4 +123,6 @@ def get_alpha_3(country):
 
 	return code
 
+# def report(territory_name):
+
 

@@ -12,7 +12,7 @@ from utilities.files_function import calculate_time
 
 
 class Db:
-	def __init__(self, username, password, dbname, host, port = 5433):
+	def __init__(self, username, password, dbname, host, port = 5432):
 		self.username = username
 		self.password = password
 		self.dbname = dbname

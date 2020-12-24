@@ -1,4 +1,4 @@
-scrap_date,scrap_time,update_time_GMT,Continent_id,Continent,TotalCases,NewCases,TotalDeaths,NewDeaths,TotalRecovered,NewRecovered,ActiveCases,SeriousCritical
+Date,Scrap_time,Update_time_GMT,Continent_id,Continent,TotalCases,NewCases,TotalDeaths,NewDeaths,TotalRecovered,NewRecovered,ActiveCases,SeriousCritical
 2020-10-12,23:10,,1,North America,9624481,41233,327024,472.0,6338660,42517,2958797,18063
 2020-10-12,23:10,,3,Asia,11919381,89162,214647,1415.0,10255507,109223,1449227,20945
 2020-10-12,23:10,,2,South America,8673698,3150,271570,153.0,7534749,1470,867379,17572

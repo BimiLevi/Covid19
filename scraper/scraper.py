@@ -35,10 +35,10 @@ def data_to_dfs(data, update_time):
 
 	scrap_date = datetime.now().strftime('%Y-%m-%d')
 	scrap_time = datetime.now().strftime('%H:%M')
-	df['scrap_date'] = scrap_date
-	df['scrap_time'] = scrap_time
+	df['Date'] = scrap_date
+	df['Scrap_time'] = scrap_time
 
-	df['update_time_GMT'] = update_time
+	df['Update_time_GMT'] = update_time
 
 	try:
 		drop_cols = ['1 Caseevery X ppl', '1 Deathevery X ppl', '1 Testevery X ppl']

@@ -17,6 +17,14 @@ def get_html(url = site_url):
 
 		return html_page
 
+	except req.exceptions.ConnectionError as e:
+		print(f'The following Error had occur:\n{e}')
+		print('Trying to get the HTML using without verification')
+		html_page = req.get(url,verify=False)
+		print('Html page retrieved.\n')
+
+		return html_page
+
 	except req.exceptions.RequestException as e:
 		print('Unable to get html page.')
 		print("The error that occurred is:\n{}\n".format(e))
@@ -46,6 +54,7 @@ def latest_update(soup_obj):
 
 def process_table(table):
 	print('Starting to process the data from the table.')
+
 	def get_headers_list(table_headers):
 		header_list = []
 		for header in table_headers:
@@ -125,7 +134,7 @@ def creat_continent_df(df):
 
 	try:
 		continent_df = continent_df.rename(columns = {'Serious,Critical': 'SeriousCritical',})
-		col_list = ['scrap_date', 'scrap_time', 'update_time_GMT', 'Continent_id', 'Continent',
+		col_list = ['Date', 'Scrap_time', 'Update_time_GMT', 'Continent_id', 'Continent',
 		            'TotalCases', 'NewCases', 'TotalDeaths', 'NewDeaths', 'TotalRecovered',
 		            'NewRecovered', 'ActiveCases', 'SeriousCritical']
 
@@ -170,7 +179,7 @@ def creat_country_df(df):
 		                                          'Deaths/1M pop': 'Deaths_1Mpop',
 		                                          'Serious,Critical': 'SeriousCritical'})
 
-		col_list = ['scrap_date', 'scrap_time', 'update_time_GMT', 'Country_id', 'Country',\
+		col_list = ['Date', 'Scrap_time', 'Update_time_GMT', 'Country_id', 'Country',\
 		            'Population', 'TotalCases', 'NewCases', 'TotalDeaths', 'NewDeaths', 'TotalRecovered', 'NewRecovered', 'ActiveCases', 'SeriousCritical',
 		            'Tot_Cases_1Mpop', 'Deaths_1Mpop', 'TotalTests', 'Tests_1Mpop']
 

@@ -1,4 +1,4 @@
-scrap_date,scrap_time,update_time_GMT,Continent_id,Continent,TotalCases,NewCases,TotalDeaths,NewDeaths,TotalRecovered,NewRecovered,ActiveCases,SeriousCritical
+Date,Scrap_time,Update_time_GMT,Continent_id,Continent,TotalCases,NewCases,TotalDeaths,NewDeaths,TotalRecovered,NewRecovered,ActiveCases,SeriousCritical
 2020-08-27,23:00,,1,North America,7133435,41009,265227,1442,4077577,21262,2790631,20736
 2020-08-27,23:00,,2,South America,5986465,12566,195309,552,4590130,8985,1201026,14999
 2020-08-27,23:00,,3,Asia,6680411,101579,136532,1634,5323647,81478,1220232,18867

@@ -1,4 +1,4 @@
-scrap_date,scrap_time,update_time_GMT,Country_id,Country,Population,TotalCases,NewCases,TotalDeaths,NewDeaths,TotalRecovered,NewRecovered,ActiveCases,SeriousCritical,Tot_Cases_1Mpop,Deaths_1Mpop,TotalTests,Tests_1Mpop
+Date,Scrap_time,Update_time_GMT,Country_id,Country,Population,TotalCases,NewCases,TotalDeaths,NewDeaths,TotalRecovered,NewRecovered,ActiveCases,SeriousCritical,Tot_Cases_1Mpop,Deaths_1Mpop,TotalTests,Tests_1Mpop
 2020-10-01,21:31,,1,USA,331489264.0,7471839,24557.0,212184.0,444.0,4716143.0,16437.0,2543512.0,14192.0,22540.0,640.0,107928169.0,325586.0
 2020-10-01,21:31,,3,India,1383382213.0,6368363,58096.0,99298.0,590.0,5323669.0,53662.0,945396.0,8944.0,4603.0,72.0,75619781.0,54663.0
 2020-10-01,21:31,,2,Brazil,212937402.0,4820116,6530.0,144103.0,141.0,4180376.0,,495637.0,8318.0,22636.0,677.0,17900000.0,84062.0

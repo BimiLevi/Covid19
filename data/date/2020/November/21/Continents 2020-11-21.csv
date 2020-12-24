@@ -1,4 +1,4 @@
-scrap_date,scrap_time,update_time_GMT,Continent_id,Continent,TotalCases,NewCases,TotalDeaths,NewDeaths,TotalRecovered,NewRecovered,ActiveCases,SeriousCritical
+Date,Scrap_time,Update_time_GMT,Continent_id,Continent,TotalCases,NewCases,TotalDeaths,NewDeaths,TotalRecovered,NewRecovered,ActiveCases,SeriousCritical
 2020-11-21,23:00,20:58,1,North America,14511299,207396.0,390080,2668.0,8977725,112512.0,5143494,26894
 2020-11-21,23:00,20:58,3,Asia,15679126,104026.0,276436,1901.0,14066178,88617.0,1336512,25640
 2020-11-21,23:00,20:58,2,South America,10626486,56445.0,315870,1029.0,9576975,36415.0,733641,17262

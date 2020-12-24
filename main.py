@@ -3,6 +3,19 @@ from resources.tables_func import *
 from scraper.scraper import *
 from utilities.files_function import calculate_time
 
+def schedule_run(time):
+    """ Complexity time O(minute^n)
+        Checks every minute if the current time is equal the function 'time' input.
+        Time is by the 24-hour clock: hh:mm:ss """
+
+    if type(time) is int:
+        time = str(time)
+
+    schedule.every().day.at(time).do(main)
+    while True:
+        schedule.run_pending()
+        time.sleep(60)  # Wait one minute
+
 @calculate_time
 def main():
     try:
@@ -82,11 +95,8 @@ def main():
         print("The error that occurred is:\n{}".format(e))
 
 if __name__ == '__main__':
-    # db.load_backup()
+    # db.restart()
+    # schedule_run('23:00')
 
     main()
 
-    # schedule.every().day.at("22:00").do(main)
-    # while True:
-    #     schedule.run_pending()
-    #     time.sleep(60)  # Wait one minute

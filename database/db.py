@@ -4,8 +4,8 @@ from glob import glob
 import numpy as np
 import psycopg2
 from prettytable import PrettyTable
-from sqlalchemy import create_engine
-
+from sqlalchemy import create_engine, MetaData
+import contextlib
 from resources.paths import *
 from resources.tables_func import *
 from utilities.files_function import calculate_time
@@ -161,7 +161,7 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 
 	@staticmethod
 	def get_latest_data(df):
-		df = df[df['scrap_date'].max() == df['scrap_date']]
+		df = df[df['Date'].max() == df['Date']]
 		df = df.sort_values(by = ['TotalCases'], ascending = False)
 		return df
 
@@ -185,7 +185,7 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 						all_csv_files.append(df)
 
 				frame = pd.concat(all_csv_files, axis = 0, ignore_index = True)
-				frame = frame.sort_values('scrap_date')
+				frame = frame.sort_values('Date')
 
 				if ext == "*Countries*":
 					self.df_to_db('Country', frame, calc = True)
@@ -239,4 +239,19 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 
 		except Exception as e:
 			print(f'The following exception has occurred:\n{e}')
+	
+	def restart(self):
+		""" Complexity Time O(n).
+			Drop all the tables in db, and creates new public schema, using SQL query.
+		        Afterwards loading the data back for csv file in the Data directory. """
+		try:
+			print('Dropping all tables')
+			con = self.engine.connect()
+			con.execute('DROP SCHEMA public CASCADE;'
+			            'CREATE SCHEMA public;')
 
+			print('Loading all of the data to DB')
+			self.load_backup()
+
+		except Exception as e:
+			print(f'Unable to complete the restart\nThe following Error occurred\n{e}')

@@ -15,12 +15,12 @@ def data_by_month(df, month, year):
 	if type(month) != int:
 		raise TypeError('Month must be of int type.')
 
-	data = df[(df['scrap_date'].dt.month == month) & (df['scrap_date'].dt.year == year)]
+	data = df[(df['Date'].dt.month == month) & (df['Date'].dt.year == year)]
 	return data.reset_index(drop = True)
 
 def data_range_date(df, startDate, endDate):
-	firstDate = df['scrap_date'].min().date()
-	lastDate = df['scrap_date'].max().date()
+	firstDate = df['Date'].min().date()
+	lastDate = df['Date'].max().date()
 
 	startDate = pd.to_datetime(startDate).date()
 	endDate = pd.to_datetime(endDate).date()
@@ -28,7 +28,7 @@ def data_range_date(df, startDate, endDate):
 	if (startDate < firstDate) or (endDate > lastDate) or (startDate > endDate):
 		raise ValueError('One of the dates surpass boundaries')
 
-	data = df[(str(startDate) <= df['scrap_date']) & (df['scrap_date'] <= str(endDate))].reset_index(drop = True)
+	data = df[(str(startDate) <= df['Date']) & (df['Date'] <= str(endDate))].reset_index(drop = True)
 	return data
 
 def get_minmax(df, col):

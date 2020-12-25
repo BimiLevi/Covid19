@@ -61,7 +61,7 @@ class Territory:
 			values = data[col]
 			col_title = " ".join(re.findall('[A-Z][^A-Z]*', col))
 
-			ax.plot(data['scrap_date'], values, linewidth = 3, label = col_title, color = color_palette[i])
+			ax.plot(data['Date'], values, linewidth = 3, label = col_title, color = color_palette[i])
 
 			handles, labels = ax.get_legend_handles_labels()
 			if '_' in col_title:
@@ -103,7 +103,7 @@ class Territory:
 	def closed_cases_pie(self, save = False):
 		fig, ax = plt.subplots(figsize = (19.20, 10.80), tight_layout = True)
 
-		cases = self._data[self._data['scrap_date'] == self._data['scrap_date'].max()]
+		cases = self._data[self._data['Date'] == self._data['Date'].max()]
 		cases = cases[['TotalCases', 'ActiveCases', 'TotalRecovered', 'TotalDeaths']]
 
 		nclosed = (cases['TotalCases'] - cases['ActiveCases']).tolist()[0]
@@ -149,7 +149,7 @@ class Territory:
 		colors = color_palette
 
 		for i, col in enumerate(cols):
-			temp_data = data[['scrap_date', col]]
+			temp_data = data[['Date', col]]
 			temp_data = temp_data[temp_data[col].notna()]
 
 			if len(cols) == 1:
@@ -158,7 +158,7 @@ class Territory:
 			else:
 				ax = axs[i]
 
-			ax.plot(temp_data['scrap_date'], temp_data[col], figure = fig, color = colors[i], linewidth = 3)
+			ax.plot(temp_data['Date'], temp_data[col], figure = fig, color = colors[i], linewidth = 3)
 
 			first_day = first_day_of_month(datetime(year, month, 1))
 			ax.xaxis.set_minor_locator(mdates.WeekdayLocator(byweekday = week_days[first_day], interval = 1))
@@ -201,9 +201,9 @@ class Territory:
 
 		fig.suptitle('{}\nDaily increase of {}'.format(self.name.capitalize(), col), size = 20)
 
-		ax.bar(df['scrap_date'], df[col], color = 'orange')
+		ax.bar(df['Date'], df[col], color = 'orange')
 
-		ax2.plot(df['scrap_date'], df['sma'], color = 'lightcoral', marker = 'o', linestyle = 'dashed', linewidth = 3,
+		ax2.plot(df['Date'], df['sma'], color = 'lightcoral', marker = 'o', linestyle = 'dashed', linewidth = 3,
 		         label = '7 days moving avg')
 
 		ax.set_ylabel(col, size = 20)
@@ -234,20 +234,20 @@ class Territory:
 
 	# Plotly
 	def daily_increase2(self, col, save = False):
-		df = self._data[['scrap_date', col]]
+		df = self._data[['Date', col]]
 		df['sma'] = df[col].rolling(window = 7).mean()
 		df = df[df[col].isnull() == False]
 
 		fig = go.Figure()
 
-		fig.add_trace(go.Bar(name = f"{col} ", x = df['scrap_date'], y = df[col]))
+		fig.add_trace(go.Bar(name = f"{col} ", x = df['Date'], y = df[col]))
 		fig.update_traces(marker_color = color_platte_dark["purple"])
 
 		fig.add_trace(
-			go.Scatter(name = '7 Days Moving Avg', x = df['scrap_date'], y = df['sma'], mode = 'lines+markers',
+			go.Scatter(name = '7 Days Moving Avg', x = df['Date'], y = df['sma'], mode = 'lines+markers',
 			           line_color = color_platte_dark['orange']))
 
-		fig.update_xaxes(type = 'date', tick0 = df['scrap_date'].iloc[0], dtick = 86400000.0 * 7,
+		fig.update_xaxes(type = 'date', tick0 = df['Date'].iloc[0], dtick = 86400000.0 * 7,
 		                 ticklabelmode = 'period',
 		                 rangeslider_visible = True)
 
@@ -277,7 +277,7 @@ class Territory:
 		df['NewCases_sma'] = df['NewCases'].rolling(window = 7).mean()
 		df['NewDeaths_sma'] = df['NewDeaths'].rolling(window = 7).mean()
 		df['NewRecovered_sma'] = df['NewRecovered'].rolling(window = 7).mean()
-		x = self._data['scrap_date']
+		x = self._data['Date']
 
 		fig = go.Figure(data = [
 			go.Bar(
@@ -352,7 +352,7 @@ class Territory:
 				)
 		fig.layout.update(go.Layout(barmode = 'overlay', ))
 
-		fig.update_xaxes(type = 'date', tick0 = df['scrap_date'].iloc[0], dtick = 86400000.0 * 7,
+		fig.update_xaxes(type = 'date', tick0 = df['Date'].iloc[0], dtick = 86400000.0 * 7,
 		                 ticklabelmode = 'period',
 		                 rangeslider_visible = True,
 		                 tickangle = 0)
@@ -373,7 +373,7 @@ class Territory:
 		return cfr
 
 	def linear_plot(self, y_cols, save = False):
-		x = self._data['scrap_date']
+		x = self._data['Date']
 		fig = go.Figure(data = [
 			go.Scatter(
 					name = 'Active Cases',
@@ -403,7 +403,7 @@ class Territory:
 					)
 			])
 
-		fig.update_xaxes(type = 'date', tick0 = self._data['scrap_date'].iloc[0], dtick = 86400000.0 * 7,
+		fig.update_xaxes(type = 'date', tick0 = self._data['Date'].iloc[0], dtick = 86400000.0 * 7,
 		                 ticklabelmode = 'period')
 
 		fig.update_layout(
@@ -497,8 +497,8 @@ class Territory:
 			return fig
 
 	def three_months_info(self):
-		group_df = self._data.groupby(by = [self._data['scrap_date'].dt.year,
-		                                    self._data['scrap_date'].dt.month]).agg(
+		group_df = self._data.groupby(by = [self._data['Date'].dt.year,
+		                                    self._data['Date'].dt.month]).agg(
 				ActiveCasesAvg = ('ActiveCases', 'mean'),
 				RecoveredSum = ('NewRecovered', 'sum'),
 				DeathsSum = ('NewDeaths', 'sum'),
@@ -539,10 +539,10 @@ class Country(Territory):
 		del temp
 
 		self.population = self.__data['Population'][0]
-		self.last_update = self.__data['scrap_date'].max().date()
-		self.first_update = self.__data['scrap_date'].min().date()
+		self.last_update = self.__data['Date'].max().date()
+		self.first_update = self.__data['Date'].min().date()
 
-		self._data = self.__data.drop(columns = ['Population', 'update_time_GMT', 'Country_id', 'Country'])
+		self._data = self.__data.drop(columns = ['Population', 'Update_time_GMT', 'Country_id', 'Country'])
 
 		self.size = self.__data.shape
 		self.columns = self.__data.columns.tolist()
@@ -585,10 +585,10 @@ class Continent(Territory):
 
 		self.__data = db.get_table(self.name)
 		self.id = self.__data['Continent_id'].unique()[0]
-		self.last_update = self.__data['scrap_date'].max().date()
-		self.first_update = self.__data['scrap_date'].min().date()
+		self.last_update = self.__data['Date'].max().date()
+		self.first_update = self.__data['Date'].min().date()
 
-		self.__data = self.__data.drop(columns = ['update_time_GMT', 'Continent_id', 'Continent'])
+		self.__data = self.__data.drop(columns = ['Update_time_GMT', 'Continent_id', 'Continent'])
 
 		self.size = self.__data.shape
 		self.columns = self.__data.columns.tolist()
@@ -704,7 +704,7 @@ Limit: {}
 		fig, ax = plt.subplots(figsize = (19.20, 10.80), tight_layout = True)
 
 		for i, table in enumerate(self.obj_dict.values()):
-			ax.plot(table.data['scrap_date'], table.data[col], linewidth = 3, label = table.name.capitalize(),
+			ax.plot(table.data['Date'], table.data[col], linewidth = 3, label = table.name.capitalize(),
 			        color = color_palette[i])
 
 		ax.xaxis.set_minor_locator(mdates.WeekdayLocator(byweekday = 6, interval = 1))

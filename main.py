@@ -1,3 +1,5 @@
+import schedule
+
 from database.db_config import current_db as db
 from resources.tables_func import *
 from scraper.scraper import *
@@ -99,4 +101,5 @@ if __name__ == '__main__':
     # schedule_run('23:00')
 
     main()
+
 

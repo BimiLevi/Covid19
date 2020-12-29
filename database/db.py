@@ -82,6 +82,9 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 				if table == 'usa':
 					table = 'USA'
 
+				elif (table == 'uk') or (table=='Uk'):
+					table = 'UK'
+
 				elif len(table.split()) == 2:
 					word1 = table.split()[0].capitalize()
 					word2 = table.split()[1].capitalize()
@@ -239,16 +242,19 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 
 		except Exception as e:
 			print(f'The following exception has occurred:\n{e}')
+
+	def drop_schema(self):
+		print('Dropping all tables')
+		con = self.engine.connect()
+		con.execute('DROP SCHEMA public CASCADE;'
+		            'CREATE SCHEMA public;')
 	
 	def restart(self):
 		""" Complexity Time O(n).
 			Drop all the tables in db, and creates new public schema, using SQL query.
 		        Afterwards loading the data back for csv file in the Data directory. """
 		try:
-			print('Dropping all tables')
-			con = self.engine.connect()
-			con.execute('DROP SCHEMA public CASCADE;'
-			            'CREATE SCHEMA public;')
+			self.drop_schema()
 
 			print('Loading all of the data to DB')
 			self.load_backup()

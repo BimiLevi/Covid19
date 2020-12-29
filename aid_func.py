@@ -17,22 +17,22 @@ def iterate_countries_csv():
 		for csv_path in glob(os.path.join(path, "*Countries*")):
 			df = pd.read_csv(csv_path, index_col = None, header = 0)
 			''' add the relevant action here~'''
-			df = df.drop(columns = ['update date', 'Continent_id'])
-			df = df.rename(columns = {'update time-GMT': 'update_time_GMT', 'Deaths/1M pop': 'Deaths_1Mpop',
-			                           'Tests_1M_pop': 'Tests_1Mpop','Serious,Critical': 'SeriousCritical',
-			                          'Tot_Cases_1M_pop': 'Tot_Cases_1Mpop'})
-			# df.to_csv(r'C:\Users\talle\PycharmProjects\Covid19\test\ ' + os.path.basename(csv_path) , index =False)
-			# df.to_csv(csv_path, index =False)
+			# df = df.drop(columns = ['update date', 'Continent_id'])
+			df = df.rename(columns = {'scrap_date': 'Date', 'scrap_time': 'Scrap_time',
+			                           'update_time_GMT': 'Update_time_GMT'})
+			# df.to_csv(r'C:\Users\talle\PycharmProjects\Covid19\ ' + os.path.basename(csv_path), index =False)
+			df.to_csv(csv_path, index =False)
 
 def iterate_continents_csv():
 	for path, subdir, files in os.walk(Ddate_path):
 		for csv_path in glob(os.path.join(path, '*Continents*')):
 			df = pd.read_csv(csv_path, index_col = None, header = 0)
 			''' add the relevant action here~'''
-			df = df.drop(columns = ['update date'])
-			df = df.rename(columns = {'update time-GMT': 'update_time_GMT', 'Serious,Critical': 'SeriousCritical'})
-			# df.to_csv(r'C:\Users\talle\PycharmProjects\Covid19\test\ ' + os.path.basename(csv_path) , index =False)
-			# df.to_csv(csv_path, index =False)
+			# df = df.drop(columns = ['update date'])
+			df = df.rename(columns = {'scrap_date': 'Date', 'scrap_time': 'Scrap_time',
+			                           'update_time_GMT': 'Update_time_GMT'})
+			# df.to_csv(r'C:\Users\talle\PycharmProjects\Covid19\ ' + os.path.basename(csv_path), index =False)
+			df.to_csv(csv_path, index =False)
 
 def get_last_row(tableName):
 	row = db.get_table(tableName).tail(1)
@@ -95,7 +95,12 @@ def calculations(df, tableName):
 		print(e)
 
 if __name__ == '__main__':
-	israel = db.get_table('Israel')
+	pass
+
+	# iterate_countries_csv()
+	# iterate_continents_csv()
+
+	# israel = db.get_table('Israel')
 
 	# print(israel[['NewCases', 'NewDeaths', 'NewRecovered']].head(10))
 	# print(israel[['TotalCases', 'TotalDeaths', 'TotalRecovered']].head(10))

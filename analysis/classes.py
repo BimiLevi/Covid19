@@ -29,6 +29,12 @@ plt.rcParams['font.sans-serif'] = 'Constantia'
 plt.rcParams['savefig.dpi'] = 600
 plt.rcParams["figure.dpi"] = 100
 
+headers_list = ['Population', 'TotalCases', 'NewCases', 'TotalDeaths', 'NewDeaths', 'TotalRecovered', 'NewRecovered',
+                'ActiveCases', 'SeriousCritical']
+
+all_headers_list = headers_list + ['Date', 'Scrap_time', 'Update_time_GMT', 'Tot_Cases_1Mpop',
+                                   'Deaths_1Mpop', 'TotalTests', 'Tests_1Mpop']
+
 
 class Territory:
 	# TODO: Change the plots font
@@ -135,6 +141,9 @@ class Territory:
 		return zip(wedges, _)
 
 	def monthly_plot(self, cols, month, year, save = False):
+		if datetime.now().day <= 7:
+			return
+
 		if len(cols) > 4:
 			raise ValueError('The maximum amount of columns is 4.')
 
@@ -244,8 +253,8 @@ class Territory:
 		fig.update_traces(marker_color = color_platte_dark["purple"])
 
 		fig.add_trace(
-			go.Scatter(name = '7 Days Moving Avg', x = df['Date'], y = df['sma'], mode = 'lines+markers',
-			           line_color = color_platte_dark['orange']))
+				go.Scatter(name = '7 Days Moving Avg', x = df['Date'], y = df['sma'], mode = 'lines+markers',
+				           line_color = color_platte_dark['orange']))
 
 		fig.update_xaxes(type = 'date', tick0 = df['Date'].iloc[0], dtick = 86400000.0 * 7,
 		                 ticklabelmode = 'period',
@@ -254,7 +263,7 @@ class Territory:
 		fig.update_layout(
 				title = '{}\nDaily increase of {}'.format(self.name.capitalize(), col) + '<br>' "<span " \
 				                                                                         "style='font-size:12px;'>Creation date {}</span>".format(
-					date.today()),
+						date.today()),
 				autosize = False,
 				xaxis_tickformat = "%d\n%b",
 				xaxis_title = 'Date',
@@ -341,8 +350,8 @@ class Territory:
 			])
 
 		fig.update_layout(
-				title = f"{self.name.capitalize()}  Daily increase of Active Cases" + "<br>" + "<span " \
-				                                                                               f"style='font-size:12px;'>Creation date {date.today()}</span>",
+				title = f"{self.name.capitalize()}  Daily increase " + "<br>" + "<span " \
+				                                                                f"style='font-size:12px;'>Creation date {date.today()}</span>",
 				autosize = False,
 				xaxis_tickformat = "%d\n%b",
 				xaxis_title = 'Date',
@@ -615,30 +624,37 @@ Columns: \n{}
 
 
 class Top:
-	def __init__(self, ttype, limit = 10):
+	def __init__(self, ttype, limit = 10, def_sort = 'TotalCases'):
 		self.ttype = ttype
 		self.__limit = limit
+		self.sort_by = def_sort
 
 		if ttype == 'countries':
 			self.col_type = 'Country'
-			self.data = db.get_table('All countries updated')
 
+			self.__AllData = db.get_table('All countries updated').sort_values(by = [self.sort_by], ascending = False)
+			self.__data = self.__AllData.head(self.limit)
 
 		elif ttype == 'continents':
 			self.col_type = 'Continent'
-			self.data = db.get_table('All continents updated')
+
+			self.__AllData = db.get_table('All continents updated').sort_values(by = [self.sort_by], ascending = False)
+			self.__data = self.__AllData.head(self.limit)
 
 		else:
 			print("Couldn't Identify the requested territory")
 			raise FileNotFoundError()
 
-		self.obj_dict = {}
+		self.head = self.data.head(self.limit)
+		self.obj_dict = self.get_obj_dict()
 
 	def __str__(self):
-		return """
-Territory type: {}
-Limit: {}
-		""".format(self.ttype, self.limit)
+		return f"""
+Territory type: {self.ttype}
+Sort By: {self.sort_by}
+Limit: {self.limit}
+Data Frame:\n{self.data}
+		"""
 
 	@property
 	def limit(self):
@@ -647,129 +663,149 @@ Limit: {}
 	@limit.setter
 	def limit(self, new_limit):
 		self.__limit = new_limit
+		self.data = self.__AllData.sort_values(by = [self.sort_by], ascending = False).head(self.__limit)
 
-	def set_obj(self, df):
-		for name in df[self.col_type]:
+	@property
+	def data(self):
+		return self.__data
 
-			if self.ttype == 'countries':
-				self.obj_dict[name] = Country(name)
+	@data.setter
+	def data(self, data):
+		self.__data = data
 
-			elif self.ttype == 'continents':
-				self.obj_dict[name] = Continent(name)
+	@property
+	def sort(self):
+		return self.sort_by
 
-	def sort_limit_data(self, col):
-		sorted_data = self.data.dropna().sort_values(by = col).reset_index(drop = True).tail(self.limit)
-		sorted_data.index = np.arange(1, len(sorted_data) + 1)
+	@sort.setter
+	def sort(self, header):
+		if header in headers_list:
+			self.sort_by = header
+			self.data = self.__AllData.sort_values(by = [self.sort_by], ascending = False).head(
+					self.limit).reset_index()
 
-		self.set_obj(sorted_data)
-		return sorted_data
+		else:
+			raise ValueError(f'Header {header} is not valid \n Please select one of the following headers')
 
-	@calculate_time
-	def top_bar(self, col, save = None):
+	def get_obj_dict(self, sort = None):
+		""" This function  retrieves a dictionary that it's key is the default sort by value or if submitted a new
+		sort parameter. The value of the dict is a list which contains the DF's of the relevant territories  by
+		the sort parameter and limit attribute. """
+		""" Complexity time O(n) """
 
-		data = self.sort_limit_data(col)
-		colors = color_minmax(data, col)
+		obj_dict = {}
+		df_list = []
 
-		fig, axs = plt.subplots(figsize = (19.20, 10.80), tight_layout = True)
-		bar = axs.bar(data[self.col_type], data[col], width = 0.8, color = colors)
+		if self.ttype == 'countries':
 
-		min_max = get_minmax(data, col)
-		for index, value in min_max.items():
-			value = round(value, 1)
-			axs.text(index - 1, value * 1.005, f'{value:,}', fontsize = 14, ha = 'center', fontweight = 'bold')
+			if (sort is not None) and (sort in headers_list):
+				data = self.__AllData.sort_values(by = [sort], ascending = False).head(self.limit)
+				for country in data[self.col_type].tolist():
+					df_list.append(Country(country).data)
+				df = pd.concat(df_list, ignore_index = True)
+				df.set_index(['Date'], inplace=True)
 
-		formatter = FuncFormatter(MK_formatter)
-		axs.yaxis.set_major_formatter(formatter)
+			else:
+				sort = self.sort_by
+				for country in self.data[self.col_type]:
+					df_list.append(Country(country).data)
+				df = pd.concat(df_list, ignore_index = True)
+				df.set_index(['Date'], inplace=True)
 
-		axs.set_xlabel(self.col_type)
-		axs.set_ylabel('Values')
-		axs.set_title('Top {} {}\nby {}'.format(self.limit, self.ttype, col))
 
-		if save:
-			title = 'Top {} {} {}'.format(len(data), self.ttype, col)
-			file_format = 'svg'
-			full_path = os.path.join(plots_path, 'top')
-			if not os.path.isfile(full_path):
-				creat_directory(full_path)
+		elif self.ttype == 'continents':
 
-			fig.savefig('{}\{} bar plot.{}'.format(full_path, title, file_format), format = file_format,
-			            edgecolor = 'b',
-			            bbox_inches = 'tight')
-		return bar
+			if (sort is not None) and (sort in headers_list):
+				data = self.__AllData.sort_values(by = [sort], ascending = False).head(self.limit)
+				for continent in data[self.col_type].tolist():
+					df_list.append(Continent(continent).data)
+				df = pd.concat(df_list, ignore_index = True)
+				df.set_index(['Date'], inplace=True)
 
-	@calculate_time
-	def top_line(self, col, save = None):
-		names_list = self.sort_limit_data(col)[self.col_type].to_list()
 
-		fig, ax = plt.subplots(figsize = (19.20, 10.80), tight_layout = True)
+			else:
+				sort = self.sort_by
+				for continent in self.data[self.col_type]:
+					df_list.append(Continent(continent).data)
+				df = pd.concat(df_list, ignore_index = True)
+				df.set_index(['Date'], inplace=True)
 
-		for i, table in enumerate(self.obj_dict.values()):
-			ax.plot(table.data['Date'], table.data[col], linewidth = 3, label = table.name.capitalize(),
-			        color = color_palette[i])
+		obj_dict[self.sort_by] = df[sort]
 
-		ax.xaxis.set_minor_locator(mdates.WeekdayLocator(byweekday = 6, interval = 1))
-		ax.xaxis.set_minor_formatter(mdates.DateFormatter('%d\n%a'))
+		return obj_dict
 
-		formatter = FuncFormatter(MK_formatter)
-		ax.yaxis.set_major_formatter(formatter)
+	def line(self):
+		""" This function creates as line plot by the topped territories"""
+		# TODO: think of an operation to deal with the case that the DF isn't sorted.
 
-		ax.xaxis.grid(True, which = "minor")
-		ax.yaxis.grid()
-		ax.xaxis.set_major_locator(mdates.MonthLocator())
-		ax.xaxis.set_major_formatter(mdates.DateFormatter('\n\n\n%b\n%Y'))
+		fig = go.Figure()
+		headers_dict = {}
+		for header in headers_list:
+			df = list(self.get_obj_dict(sort = header).values())[0]
 
-		xtitle = 'Date'
-		ytitle = 'Values'
+			headers_dict[header] = df
 
-		ax.set_xlabel(xtitle, fontsize = 15, fontweight = 'bold')
-		ax.set_ylabel(ytitle, fontsize = 15, fontweight = 'bold')
-		ax.set_title('Top {} {}\nby {}'.format(self.limit, self.ttype, col))
+		# for column in df_of_dfs.columns.to_list():
+		# 	fig.add_trace(
+		# 			go.Scatter(
+		# 					x = df_of_dfsd,
+		# 					y = df_of_dfs[column],
+		# 					name = column
+		# 					)
+		# 			)
 
-		handles, labels = ax.get_legend_handles_labels()
-		ax.legend(handles, labels, bbox_to_anchor = (1.001, 1), loc = "best", frameon = True, edgecolor = 'black',
-		          fontsize = 20)
+		# fig.update_layout(
+		# 		updatemenus = [go.layout.Updatemenu(
+		# 				active = 0,
+		# 				buttons = list(
+		# 						[dict(label = 'All',
+		# 						      method = 'update',
+		# 						      args = [{'visible': [True, True, True, True]},
+		# 						              {'title': 'All',
+		# 						               'showlegend': True}]),
+		# 						 dict(label = 'MSFT',
+		# 						      method = 'update',
+		# 						      args = [{'visible': [True, False, False, False]},
+		# 						              # the index of True aligns with the indices of plot traces
+		# 						              {'title': 'MSFT',
+		# 						               'showlegend': True}]),
+		# 						 dict(label = 'AAPL',
+		# 						      method = 'update',
+		# 						      args = [{'visible': [False, True, False, False]},
+		# 						              {'title': 'AAPL',
+		# 						               'showlegend': True}]),
+		# 						 dict(label = 'AMZN',
+		# 						      method = 'update',
+		# 						      args = [{'visible': [False, False, True, False]},
+		# 						              {'title': 'AMZN',
+		# 						               'showlegend': True}]),
+		# 						 dict(label = 'GOOGL',
+		# 						      method = 'update',
+		# 						      args = [{'visible': [False, False, False, True]},
+		# 						              {'title': 'GOOGL',
+		# 						               'showlegend': True}]),
+		# 						 ])
+		# 				)
+		# 			])
 
-		if save:
-			title = 'Top {} {} {}'.format(len(names_list), self.ttype, col)
-			file_format = 'svg'
-			full_path = os.path.join(plots_path, 'top')
-			if not os.path.isfile(full_path):
-				creat_directory(full_path)
+		# fig.show()
 
-			fig.savefig('{}\{} line plot.{}'.format(full_path, title, file_format), format = file_format, edgecolor =
-			'b',
-			            bbox_inches = 'tight')
-		return ax
 
-	# TODO: Requires another check.
-	@calculate_time
-	def get_map(self, col):
-		from analysis.visualization_func import countries_map
 
-		df = self.sort_limit_data(col)[[self.col_type, col]]
-		countries_loc = {}
 
-		for obj_name in self.obj_dict.keys():
-			location = geolocate(obj_name)
-			countries_loc[obj_name] = location
 
-		df['location'] = df[self.col_type].map(countries_loc)
-		df[['Latitude', 'Longitude']] = pd.DataFrame(df['location'].tolist(), index = df.index)
-		df = df.drop(columns = ['location'])
 
-		title = 'Top {} {} With the highest {}'.format(len(df), self.ttype, col)
-
-		countries_map(df, title, col)
+		# return fig
 
 
 if __name__ == '__main__':
 	top = Top('countries')
-	country = Country('israel')
-	measures = ['ActiveCases', 'NewCases', 'NewRecovered', 'NewDeaths']
+	# print(top.data['Country'])
+	# print('-------------------------------')
+	top.limit = 5
+	# top.sort = 'NewDeaths'
+	# print(top.data['Country'])
+	# print(top.get_obj_dict())
 
-# pie = country.closed_cases_pie(save = True)
-# month = country.monthly_plot(measures,11,2020,save = True)
-# fig = country.boxplot(measures, save = True)
-# fig = country.daily_increase2('ActiveCases')
-# fig.show()
-# plt.show()
+	fig = top.line()
+	# fig.show()

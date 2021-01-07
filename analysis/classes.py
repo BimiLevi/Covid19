@@ -434,7 +434,6 @@ class Territory:
 								             {
 									             "title": f"{self.name.capitalize()} Cumulative\Active Cases Over Time" + "<br>" + "<span " \
 									                                                                                               f"style='font-size:12px;'>Creation date {date.today()}</span>"}]),
-
 								dict(label = "Active Cases",
 								     method = "update",
 								     args = [{"visible": [True, False, False, False]},
@@ -688,12 +687,10 @@ Data Frame:\n{self.data}
 			raise ValueError(f'Header {header} is not valid \n Please select one of the following headers')
 
 	def get_obj_dict(self, sort = None):
-		""" This function  retrieves a dictionary that it's key is the default sort by value or if submitted a new
-		sort parameter. The value of the dict is a list which contains the DF's of the relevant territories  by
+		""" This function  retrieves a list that it's value of the  is a list which contains the DF's of the relevant territories  by
 		the sort parameter and limit attribute. """
-		""" Complexity time O(n) """
 
-		obj_dict = {}
+		""" Complexity time O(n) """
 		df_list = []
 
 		if self.ttype == 'countries':
@@ -703,14 +700,12 @@ Data Frame:\n{self.data}
 				for country in data[self.col_type].tolist():
 					df_list.append(Country(country).data)
 				df = pd.concat(df_list, ignore_index = True)
-				df.set_index(['Date'], inplace=True)
 
 			else:
 				sort = self.sort_by
 				for country in self.data[self.col_type]:
 					df_list.append(Country(country).data)
 				df = pd.concat(df_list, ignore_index = True)
-				df.set_index(['Date'], inplace=True)
 
 
 		elif self.ttype == 'continents':
@@ -720,82 +715,62 @@ Data Frame:\n{self.data}
 				for continent in data[self.col_type].tolist():
 					df_list.append(Continent(continent).data)
 				df = pd.concat(df_list, ignore_index = True)
-				df.set_index(['Date'], inplace=True)
-
 
 			else:
 				sort = self.sort_by
 				for continent in self.data[self.col_type]:
 					df_list.append(Continent(continent).data)
 				df = pd.concat(df_list, ignore_index = True)
-				df.set_index(['Date'], inplace=True)
 
-		obj_dict[self.sort_by] = df[sort]
-
-		return obj_dict
+		return df[['Date', self.col_type, sort]]
 
 	def line(self):
 		""" This function creates as line plot by the topped territories"""
-		# TODO: think of an operation to deal with the case that the DF isn't sorted.
+		""" Complexity time O(n^2) """
 
-		fig = go.Figure()
-		headers_dict = {}
+		# TODO: edge case: DF isn't sorted.
+		data = []
 		for header in headers_list:
-			df = list(self.get_obj_dict(sort = header).values())[0]
+			df = self.get_obj_dict(sort = header)
 
-			headers_dict[header] = df
+			for terri in df[self.col_type].unique():
+				temp_df = df[df[self.col_type] == terri]
 
-		# for column in df_of_dfs.columns.to_list():
-		# 	fig.add_trace(
-		# 			go.Scatter(
-		# 					x = df_of_dfsd,
-		# 					y = df_of_dfs[column],
-		# 					name = column
-		# 					)
-		# 			)
+				trace = (dict(visible = False,
+				                          type = 'scatter',
+							              name = terri,
+							              x = temp_df['Date'],
+							              y = temp_df[header],
+							              mode = 'lines',
+							              ))
+				data.append(trace)
 
-		# fig.update_layout(
-		# 		updatemenus = [go.layout.Updatemenu(
-		# 				active = 0,
-		# 				buttons = list(
-		# 						[dict(label = 'All',
-		# 						      method = 'update',
-		# 						      args = [{'visible': [True, True, True, True]},
-		# 						              {'title': 'All',
-		# 						               'showlegend': True}]),
-		# 						 dict(label = 'MSFT',
-		# 						      method = 'update',
-		# 						      args = [{'visible': [True, False, False, False]},
-		# 						              # the index of True aligns with the indices of plot traces
-		# 						              {'title': 'MSFT',
-		# 						               'showlegend': True}]),
-		# 						 dict(label = 'AAPL',
-		# 						      method = 'update',
-		# 						      args = [{'visible': [False, True, False, False]},
-		# 						              {'title': 'AAPL',
-		# 						               'showlegend': True}]),
-		# 						 dict(label = 'AMZN',
-		# 						      method = 'update',
-		# 						      args = [{'visible': [False, False, True, False]},
-		# 						              {'title': 'AMZN',
-		# 						               'showlegend': True}]),
-		# 						 dict(label = 'GOOGL',
-		# 						      method = 'update',
-		# 						      args = [{'visible': [False, False, False, True]},
-		# 						              {'title': 'GOOGL',
-		# 						               'showlegend': True}]),
-		# 						 ])
-		# 				)
-		# 			])
+		### Create buttons for drop down menu
+		# buttons = []
+		# for i, label in enumerate(headers_list):
+		# 	visibility = [i == j for j in range(len(headers_list))]
+		# 	button = dict(
+		# 			label = label,
+		# 			method = 'update',
+		# 			args = [{'visible': visibility},
+		# 			        {'title': label}])
+		# 	buttons.append(button)
+		#
+		# updatemenus = list([
+		# 	dict(active = -1,
+		# 	     x = -0.15,
+		# 	     buttons = buttons
+		# 	     )
+		# 	])
 
-		# fig.show()
+		fig = go.Figure(data)
+		# fig['layout']['showlegend'] = False
+		# fig['layout']['updatemenus'] = updatemenus
+
+		fig.show()
 
 
-
-
-
-
-		# return fig
+# return fig
 
 
 if __name__ == '__main__':
@@ -808,4 +783,4 @@ if __name__ == '__main__':
 	# print(top.get_obj_dict())
 
 	fig = top.line()
-	# fig.show()
+# fig.show()

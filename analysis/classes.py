@@ -142,7 +142,7 @@ class Territory:
 
 	def monthly_plot(self, cols, month, year, save = False):
 		if datetime.now().day <= 7:
-			return
+			return f'Not enough data for {month}'
 
 		if len(cols) > 4:
 			raise ValueError('The maximum amount of columns is 4.')
@@ -724,80 +724,88 @@ Data Frame:\n{self.data}
 
 		return df[['Date', self.col_type, sort]]
 
-	def line(self):
-		""" This function creates as line plot by the topped territories"""
-		""" Complexity time O(n^2) """
-
-		# TODO: edge case: DF isn't sorted.
-		traces = {}
-		for header in headers_list:
-			data = []
-			df = self.get_obj_dict(sort = header).dropna()
-			territories_list = df[self.col_type].tolist()
-			# traces[header] = go.Scatter(x=df['Date'], y=df[header], name = header)
-
-			data = [dict(
-					type = 'scatter',
-					x = df['Date'].tolist(),
-					y = df[header].tolist(),
-					mode = 'lines',
-					transforms = [dict(
-							type = 'groupby',
-							groups = subject,
-							styles = [
-								dict(target = 'Moe', value = dict(marker = dict(color = 'blue'))),
-								dict(target = 'Larry', value = dict(marker = dict(color = 'red'))),
-								dict(target = 'Curly', value = dict(marker = dict(color = 'black')))
-								]
-							)]
-					)]
-			traces[header] = data
-
-		data = [traces.values()]
-
-
-
-			# for terri in df[self.col_type].unique():
-			# 	temp_df = df[df[self.col_type] == terri].dropna()
-			# 	data.append(go.Scatter(x=temp_df['Date'], y=temp_df[header], name = terri, legendgroup = header))
-			# traces[header] =
-
-		# data = list(traces.values())
-
-		## Create buttons for drop down menu
-		buttons = []
-		for i, label in enumerate(traces.keys()):
-			visibility = [i == j for j in range(len(headers_list))]
-			button = dict(
-					label = label,
-					method = 'update',
-					args = [{'visible': visibility},
-					        {'title': label}])
-			buttons.append(button)
-
-		updatemenus = list([
-			dict(active = -1,
-			     x = -0.15,
-			     buttons = buttons
-			     )
-			])
-
-		fig = go.Figure(data)
-		# fig = go.Figure(data)
-		fig['layout']['showlegend'] = False
-		fig['layout']['updatemenus'] = updatemenus
-
-		return fig
+# def line(self):
+# 	""" This function creates as line plot by the topped territories"""
+# 	""" Complexity time O(n^2) """
+#
+# 	# TODO: edge case: DF isn't sorted.
+# 	traces = {}
+# 	for header in headers_list:
+# 		data = []
+# 		df = self.get_obj_dict(sort = header).dropna()
+# 		territories_list = df[self.col_type].tolist()
+# 		# traces[header] = go.Scatter(x=df['Date'], y=df[header], name = header)
+#
+# 		data = [dict(
+# 				type = 'scatter',
+# 				x = df['Date'].tolist(),
+# 				y = df[header].tolist(),
+# 				mode = 'lines',
+# 				transforms = [dict(
+# 						type = 'groupby',
+# 						groups = subject,
+# 						styles = [
+# 							dict(target = 'Moe', value = dict(marker = dict(color = 'blue'))),
+# 							dict(target = 'Larry', value = dict(marker = dict(color = 'red'))),
+# 							dict(target = 'Curly', value = dict(marker = dict(color = 'black')))
+# 							]
+# 						)]
+# 				)]
+# 		traces[header] = data
+#
+# 	data = [traces.values()]
+#
+#
+#
+# 		# for terri in df[self.col_type].unique():
+# 		# 	temp_df = df[df[self.col_type] == terri].dropna()
+# 		# 	data.append(go.Scatter(x=temp_df['Date'], y=temp_df[header], name = terri, legendgroup = header))
+# 		# traces[header] =
+#
+# 	# data = list(traces.values())
+#
+# 	## Create buttons for drop down menu
+# 	buttons = []
+# 	for i, label in enumerate(traces.keys()):
+# 		visibility = [i == j for j in range(len(headers_list))]
+# 		button = dict(
+# 				label = label,
+# 				method = 'update',
+# 				args = [{'visible': visibility},
+# 				        {'title': label}])
+# 		buttons.append(button)
+#
+# 	updatemenus = list([
+# 		dict(active = -1,
+# 		     x = -0.15,
+# 		     buttons = buttons
+# 		     )
+# 		])
+#
+# 	fig = go.Figure(data)
+# 	# fig = go.Figure(data)
+# 	fig['layout']['showlegend'] = False
+# 	fig['layout']['updatemenus'] = updatemenus
+#
+# 	return fig
 
 
 if __name__ == '__main__':
 	top = Top('countries')
-	# print(top.data['Country'])
-	# print('-------------------------------')
-	top.limit = 5
-	# top.sort = 'NewDeaths'
-	# print(top.data['Country'])
-	# print(top.get_obj_dict())
+	country = Country('israel')
+	months_info = country.three_months_info()
 
-	fig = top.line()
+	for month,year in zip(months_info['Month'].tolist(), months_info['Year'].tolist()):
+		month_num = datetime.strptime(month[:3], "%b").month
+		country.monthly_plot(['ActiveCases', 'NewCases', 'NewRecovered', 'NewDeaths'], month_num, year,
+		                     save = True)
+
+# print(top.data['Country'])
+# print('-------------------------------')
+# top.limit = 5
+# top.sort = 'NewDeaths'
+# print(top.data['Country'])
+# print(top.get_obj_dict())
+
+# fig = top.line()
 # fig.show()

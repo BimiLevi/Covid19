@@ -729,48 +729,65 @@ Data Frame:\n{self.data}
 		""" Complexity time O(n^2) """
 
 		# TODO: edge case: DF isn't sorted.
-		data = []
+		traces = {}
 		for header in headers_list:
-			df = self.get_obj_dict(sort = header)
+			data = []
+			df = self.get_obj_dict(sort = header).dropna()
+			territories_list = df[self.col_type].tolist()
+			# traces[header] = go.Scatter(x=df['Date'], y=df[header], name = header)
 
-			for terri in df[self.col_type].unique():
-				temp_df = df[df[self.col_type] == terri]
+			data = [dict(
+					type = 'scatter',
+					x = df['Date'].tolist(),
+					y = df[header].tolist(),
+					mode = 'lines',
+					transforms = [dict(
+							type = 'groupby',
+							groups = subject,
+							styles = [
+								dict(target = 'Moe', value = dict(marker = dict(color = 'blue'))),
+								dict(target = 'Larry', value = dict(marker = dict(color = 'red'))),
+								dict(target = 'Curly', value = dict(marker = dict(color = 'black')))
+								]
+							)]
+					)]
+			traces[header] = data
 
-				trace = (dict(visible = False,
-				                          type = 'scatter',
-							              name = terri,
-							              x = temp_df['Date'],
-							              y = temp_df[header],
-							              mode = 'lines',
-							              ))
-				data.append(trace)
+		data = [traces.values()]
 
-		### Create buttons for drop down menu
-		# buttons = []
-		# for i, label in enumerate(headers_list):
-		# 	visibility = [i == j for j in range(len(headers_list))]
-		# 	button = dict(
-		# 			label = label,
-		# 			method = 'update',
-		# 			args = [{'visible': visibility},
-		# 			        {'title': label}])
-		# 	buttons.append(button)
-		#
-		# updatemenus = list([
-		# 	dict(active = -1,
-		# 	     x = -0.15,
-		# 	     buttons = buttons
-		# 	     )
-		# 	])
+
+
+			# for terri in df[self.col_type].unique():
+			# 	temp_df = df[df[self.col_type] == terri].dropna()
+			# 	data.append(go.Scatter(x=temp_df['Date'], y=temp_df[header], name = terri, legendgroup = header))
+			# traces[header] =
+
+		# data = list(traces.values())
+
+		## Create buttons for drop down menu
+		buttons = []
+		for i, label in enumerate(traces.keys()):
+			visibility = [i == j for j in range(len(headers_list))]
+			button = dict(
+					label = label,
+					method = 'update',
+					args = [{'visible': visibility},
+					        {'title': label}])
+			buttons.append(button)
+
+		updatemenus = list([
+			dict(active = -1,
+			     x = -0.15,
+			     buttons = buttons
+			     )
+			])
 
 		fig = go.Figure(data)
-		# fig['layout']['showlegend'] = False
-		# fig['layout']['updatemenus'] = updatemenus
+		# fig = go.Figure(data)
+		fig['layout']['showlegend'] = False
+		fig['layout']['updatemenus'] = updatemenus
 
-		fig.show()
-
-
-# return fig
+		return fig
 
 
 if __name__ == '__main__':

@@ -97,7 +97,7 @@ def main():
         print("The error that occurred is:\n{}".format(e))
 
 if __name__ == '__main__':
-    # db.restart()
+    # db.restart(tablesCsv = True)
     # schedule_run('23:00')
 
     main()

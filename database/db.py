@@ -249,7 +249,7 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 		con.execute('DROP SCHEMA public CASCADE;'
 		            'CREATE SCHEMA public;')
 	
-	def restart(self):
+	def restart(self, tablesCsv = False):
 		""" Complexity Time O(n).
 			Drop all the tables in db, and creates new public schema, using SQL query.
 		        Afterwards loading the data back for csv file in the Data directory. """
@@ -258,6 +258,10 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 
 			print('Loading all of the data to DB')
 			self.load_backup()
+
+			if tablesCsv:
+				self.tables_to_csv()
+				print("Tables csv files generated")
 
 		except Exception as e:
 			print(f'Unable to complete the restart\nThe following Error occurred\n{e}')

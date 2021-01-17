@@ -2,16 +2,16 @@
 <!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN"
   "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
 <!-- Created with matplotlib (https://matplotlib.org/) -->
-<svg height="977.328pt" version="1.1" viewBox="0 0 1374.980227 977.328" width="1374.980227pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
+<svg height="975.168pt" version="1.1" viewBox="0 0 1370.88 975.168" width="1370.88pt" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink">
  <metadata>
   <rdf:RDF xmlns:cc="http://creativecommons.org/ns#" xmlns:dc="http://purl.org/dc/elements/1.1/" xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#">
    <cc:Work>
     <dc:type rdf:resource="http://purl.org/dc/dcmitype/StillImage"/>
-    <dc:date>2020-12-29T16:33:13.168974</dc:date>
+    <dc:date>2021-01-16T22:59:56.813289</dc:date>
     <dc:format>image/svg+xml</dc:format>
     <dc:creator>
      <cc:Agent>
-      <dc:title>Matplotlib v3.3.2, https://matplotlib.org/</dc:title>
+      <dc:title>Matplotlib v3.3.3, https://matplotlib.org/</dc:title>
      </cc:Agent>
     </dc:creator>
    </cc:Work>
@@ -22,39 +22,92 @@
  </defs>
  <g id="figure_1">
   <g id="patch_1">
-   <path d="M 0 977.328 
-L 1374.980227 977.328 
-L 1374.980227 0 
-L 0 0 
+   <path d="M -0 975.168 
+L 1370.88 975.168 
+L 1370.88 0 
+L -0 0 
 z
-" style="fill:none;"/>
+" style="fill:#ffffff;"/>
   </g>
   <g id="axes_1">
    <g id="patch_2">
-    <path d="M 65.945 198.997594 
-L 1367.780227 198.997594 
-L 1367.780227 51.36175 
-L 65.945 51.36175 
+    <path d="M 63.03 203.077594 
+L 1352.9375 203.077594 
+L 1352.9375 54.68175 
+L 63.03 54.68175 
 z
 " style="fill:#ffffff;"/>
    </g>
+   <g id="line2d_1">
+    <path clip-path="url(#p11b024a6a6)" d="M 63.03 56.389786 
+L 106.026917 56.19613 
+L 149.023833 58.811235 
+L 192.02075 57.001548 
+L 235.017667 65.563988 
+L 278.014583 70.139032 
+L 321.0115 72.140892 
+L 364.008417 75.426747 
+L 407.005333 79.147402 
+L 450.00225 79.308411 
+L 535.996083 95.924665 
+L 578.993 100.027068 
+L 621.989917 105.265812 
+L 664.986833 104.993135 
+L 707.98375 111.732532 
+L 750.980667 116.168084 
+L 793.977583 119.592689 
+L 836.9745 129.359361 
+L 879.971417 132.099491 
+L 922.968333 141.136056 
+L 965.96525 148.495747 
+L 1008.962167 154.06764 
+L 1051.959083 158.669767 
+L 1094.956 163.743049 
+L 1137.952917 174.295107 
+L 1180.949833 180.222779 
+L 1223.94675 183.322026 
+L 1266.943667 186.376755 
+L 1309.940583 190.621989 
+L 1352.9375 195.090558 
+" style="fill:none;stroke:#ffd700;stroke-linecap:square;stroke-width:3;"/>
+   </g>
+   <g id="patch_3">
+    <path d="M 63.03 203.077594 
+L 63.03 54.68175 
+" style="fill:none;stroke:#000000;stroke-linecap:square;stroke-linejoin:miter;"/>
+   </g>
+   <g id="patch_4">
+    <path d="M 63.03 203.077594 
+L 1352.9375 203.077594 
+" style="fill:none;stroke:#000000;stroke-linecap:square;stroke-linejoin:miter;"/>
+   </g>
    <g id="matplotlib.axis_1">
     <g id="xtick_1">
-     <g id="line2d_1">
+     <g id="line2d_2">
       <defs>
        <path d="M 0 0 
-L 0 3.5 
-" id="mde5eb9b6a6" style="stroke:#000000;stroke-width:0.8;"/>
+L 0 -4 
+" id="mfee044b381" style="stroke:#000000;stroke-width:0.5;"/>
       </defs>
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="125.119329" xlink:href="#mde5eb9b6a6" y="198.997594"/>
+       <use style="stroke:#000000;stroke-width:0.5;" x="63.03" xlink:href="#mfee044b381" y="203.077594"/>
+      </g>
+     </g>
+     <g id="line2d_3">
+      <defs>
+       <path d="M 0 0 
+L 0 4 
+" id="ma0711d10d3" style="stroke:#000000;stroke-width:0.5;"/>
+      </defs>
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="63.03" xlink:href="#ma0711d10d3" y="54.68175"/>
       </g>
      </g>
      <g id="text_1">
       <!--  -->
-      <g transform="translate(125.119329 217.770094)scale(0.16 -0.16)"/>
+      <g transform="translate(63.03 218.850094)scale(0.16 -0.16)"/>
       <!-- Oct -->
-      <g transform="translate(112.170579 235.694594)scale(0.16 -0.16)">
+      <g transform="translate(50.08125 236.774594)scale(0.16 -0.16)">
        <defs>
         <path d="M 15.578125 35.015625 
 Q 15.578125 19.09375 22.015625 10.625 
@@ -124,7 +177,7 @@ z
        <use x="126.5625" xlink:href="#Constantia-116"/>
       </g>
       <!-- 2020 -->
-      <g transform="translate(108.751829 253.619094)scale(0.16 -0.16)">
+      <g transform="translate(46.6625 254.699094)scale(0.16 -0.16)">
        <defs>
         <path d="M 42.390625 15.484375 
 L 44.53125 15.875 
@@ -184,131 +237,34 @@ z
      </g>
     </g>
     <g id="xtick_2">
-     <g id="line2d_2">
-      <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="1348.055451" xlink:href="#mde5eb9b6a6" y="198.997594"/>
-      </g>
-     </g>
-     <g id="text_2">
-      <!--  -->
-      <g transform="translate(1348.055451 217.770094)scale(0.16 -0.16)"/>
-      <!-- Nov -->
-      <g transform="translate(1333.995451 235.694594)scale(0.16 -0.16)">
-       <defs>
-        <path d="M 16.65625 54.4375 
-L 16.65625 14.984375 
-Q 16.65625 9.234375 16.75 5.421875 
-Q 16.796875 4.046875 17.96875 3.765625 
-L 23.78125 2.046875 
-L 23.875 -0.140625 
-Q 17.78125 0 13.875 0 
-Q 10.0625 0 3.765625 -0.140625 
-L 3.5625 1.953125 
-L 9.578125 3.765625 
-Q 10.84375 4.15625 10.890625 5.28125 
-Q 10.984375 9.234375 10.984375 14.984375 
-L 10.984375 54.59375 
-Q 10.984375 59.46875 10.890625 62.703125 
-Q 10.84375 63.96875 9.71875 64.359375 
-L 3.65625 66.265625 
-L 3.5625 68.359375 
-Q 9.859375 68.171875 13.53125 68.171875 
-Q 15.71875 68.171875 17.96875 68.359375 
-L 58.984375 17.140625 
-L 58.984375 54.78125 
-Q 58.984375 59.515625 58.890625 62.9375 
-Q 58.84375 64.0625 57.625 64.453125 
-L 51.859375 66.109375 
-L 51.765625 68.359375 
-Q 58.015625 68.171875 61.859375 68.171875 
-Q 65.765625 68.171875 71.875 68.359375 
-L 72.078125 66.265625 
-L 65.921875 64.359375 
-Q 64.796875 63.96875 64.75 62.703125 
-Q 64.65625 59.46875 64.65625 54.59375 
-L 64.65625 0 
-L 60.546875 -0.390625 
-z
-" id="Constantia-78"/>
-        <path d="M 13.71875 23.046875 
-Q 13.71875 13.921875 17.140625 8.171875 
-Q 20.5625 2.4375 27.296875 2.4375 
-Q 33.59375 2.4375 36.890625 7.484375 
-Q 40.1875 12.546875 40.1875 22.46875 
-Q 40.1875 31.78125 36.71875 37.15625 
-Q 33.25 42.53125 26.65625 42.53125 
-Q 20.40625 42.53125 17.0625 37.6875 
-Q 13.71875 32.859375 13.71875 23.046875 
-z
-M 50.140625 23.484375 
-Q 50.140625 12.359375 43.421875 5.484375 
-Q 36.71875 -1.375 26.375 -1.375 
-Q 16.265625 -1.375 10.03125 5.09375 
-Q 3.8125 11.578125 3.8125 22.015625 
-Q 3.8125 32.765625 10.328125 39.578125 
-Q 16.84375 46.390625 27.59375 46.390625 
-Q 37.75 46.390625 43.9375 40.109375 
-Q 50.140625 33.84375 50.140625 23.484375 
-z
-" id="Constantia-111"/>
-        <path d="M -1.515625 45.265625 
-Q 4.640625 45.125 9.421875 45.125 
-Q 13.8125 45.125 19.96875 45.265625 
-L 20.171875 43.265625 
-L 14.5 41.703125 
-Q 18.5 30.328125 23.78125 17.53125 
-Q 25.140625 14.15625 26.21875 11.078125 
-Q 27.296875 14.15625 28.71875 17.484375 
-Q 33.15625 28.421875 38.03125 41.703125 
-L 32.46875 43.265625 
-L 32.28125 45.265625 
-Q 36.234375 45.125 40.53125 45.125 
-Q 44.921875 45.125 49.03125 45.265625 
-L 49.21875 43.265625 
-L 44.34375 41.84375 
-Q 43.21875 41.453125 42.4375 39.9375 
-Q 38.578125 31 33.46875 18.671875 
-Q 28.375 6.34375 25.78125 -0.34375 
-L 21.625 -0.78125 
-Q 18.953125 6.296875 13.890625 18.59375 
-Q 8.84375 30.90625 5.21875 39.703125 
-Q 4.4375 41.40625 3.078125 41.890625 
-L -1.421875 43.265625 
-z
-" id="Constantia-118"/>
-       </defs>
-       <use xlink:href="#Constantia-78"/>
-       <use x="73.402344" xlink:href="#Constantia-111"/>
-       <use x="127.455078" xlink:href="#Constantia-118"/>
-      </g>
-      <!-- 2020 -->
-      <g transform="translate(1331.687951 253.619094)scale(0.16 -0.16)">
-       <use xlink:href="#Constantia-50"/>
-       <use x="48.4375" xlink:href="#Constantia-48"/>
-       <use x="102.294922" xlink:href="#Constantia-50"/>
-       <use x="150.732422" xlink:href="#Constantia-48"/>
-      </g>
-     </g>
-    </g>
-    <g id="xtick_3">
-     <g id="line2d_3">
-      <path clip-path="url(#p7a126c6539)" d="M 204.018433 198.997594 
-L 204.018433 51.36175 
-" style="fill:none;stroke:#b0b0b0;stroke-linecap:square;stroke-width:0.8;"/>
-     </g>
      <g id="line2d_4">
+      <path clip-path="url(#p11b024a6a6)" d="M 149.023833 203.077594 
+L 149.023833 54.68175 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
+     </g>
+     <g id="line2d_5">
+      <defs>
+       <path d="M 0 0 
+L 0 -2 
+" id="mbe20696d92" style="stroke:#000000;stroke-width:0.5;"/>
+      </defs>
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="149.023833" xlink:href="#mbe20696d92" y="203.077594"/>
+      </g>
+     </g>
+     <g id="line2d_6">
       <defs>
        <path d="M 0 0 
 L 0 2 
-" id="m533c336f89" style="stroke:#000000;stroke-width:0.6;"/>
+" id="mf441b09c32" style="stroke:#000000;stroke-width:0.5;"/>
       </defs>
       <g>
-       <use style="stroke:#000000;stroke-width:0.6;" x="204.018433" xlink:href="#m533c336f89" y="198.997594"/>
+       <use style="stroke:#000000;stroke-width:0.5;" x="149.023833" xlink:href="#mf441b09c32" y="54.68175"/>
       </g>
      </g>
-     <g id="text_3">
+     <g id="text_2">
       <!-- 03 -->
-      <g transform="translate(196.057183 216.170094)scale(0.16 -0.16)">
+      <g transform="translate(141.062583 218.850094)scale(0.16 -0.16)">
        <defs>
         <path d="M 10.25 16.21875 
 Q 19 17.140625 24.265625 20.75 
@@ -339,7 +295,7 @@ z
        <use x="53.857422" xlink:href="#Constantia-51"/>
       </g>
       <!-- Sat -->
-      <g transform="translate(193.275933 234.094594)scale(0.16 -0.16)">
+      <g transform="translate(138.281333 236.774594)scale(0.16 -0.16)">
        <defs>
         <path d="M 37.109375 63.921875 
 Q 31.984375 65.625 27.6875 65.625 
@@ -417,20 +373,25 @@ z
       </g>
      </g>
     </g>
-    <g id="xtick_4">
-     <g id="line2d_5">
-      <path clip-path="url(#p7a126c6539)" d="M 480.1653 198.997594 
-L 480.1653 51.36175 
-" style="fill:none;stroke:#b0b0b0;stroke-linecap:square;stroke-width:0.8;"/>
+    <g id="xtick_3">
+     <g id="line2d_7">
+      <path clip-path="url(#p11b024a6a6)" d="M 450.00225 203.077594 
+L 450.00225 54.68175 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
      </g>
-     <g id="line2d_6">
+     <g id="line2d_8">
       <g>
-       <use style="stroke:#000000;stroke-width:0.6;" x="480.1653" xlink:href="#m533c336f89" y="198.997594"/>
+       <use style="stroke:#000000;stroke-width:0.5;" x="450.00225" xlink:href="#mbe20696d92" y="203.077594"/>
       </g>
      </g>
-     <g id="text_4">
+     <g id="line2d_9">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="450.00225" xlink:href="#mf441b09c32" y="54.68175"/>
+      </g>
+     </g>
+     <g id="text_3">
       <!-- 10 -->
-      <g transform="translate(473.3528 216.170094)scale(0.16 -0.16)">
+      <g transform="translate(443.18975 218.850094)scale(0.16 -0.16)">
        <defs>
         <path d="M 1.703125 40.625 
 L 1.46875 42.671875 
@@ -457,27 +418,32 @@ z
        <use x="31.298828" xlink:href="#Constantia-48"/>
       </g>
       <!-- Sat -->
-      <g transform="translate(469.4228 234.094594)scale(0.16 -0.16)">
+      <g transform="translate(439.25975 236.774594)scale(0.16 -0.16)">
        <use xlink:href="#Constantia-83"/>
        <use x="50.976562" xlink:href="#Constantia-97"/>
        <use x="98.974609" xlink:href="#Constantia-116"/>
       </g>
      </g>
     </g>
-    <g id="xtick_5">
-     <g id="line2d_7">
-      <path clip-path="url(#p7a126c6539)" d="M 756.312166 198.997594 
-L 756.312166 51.36175 
-" style="fill:none;stroke:#b0b0b0;stroke-linecap:square;stroke-width:0.8;"/>
+    <g id="xtick_4">
+     <g id="line2d_10">
+      <path clip-path="url(#p11b024a6a6)" d="M 750.980667 203.077594 
+L 750.980667 54.68175 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
      </g>
-     <g id="line2d_8">
+     <g id="line2d_11">
       <g>
-       <use style="stroke:#000000;stroke-width:0.6;" x="756.312166" xlink:href="#m533c336f89" y="198.997594"/>
+       <use style="stroke:#000000;stroke-width:0.5;" x="750.980667" xlink:href="#mbe20696d92" y="203.077594"/>
       </g>
      </g>
-     <g id="text_5">
+     <g id="line2d_12">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="750.980667" xlink:href="#mf441b09c32" y="54.68175"/>
+      </g>
+     </g>
+     <g id="text_4">
       <!-- 17 -->
-      <g transform="translate(749.940916 216.170094)scale(0.16 -0.16)">
+      <g transform="translate(744.609417 218.850094)scale(0.16 -0.16)">
        <defs>
         <path d="M 10.9375 -19.671875 
 L 39.5 37.546875 
@@ -506,27 +472,32 @@ z
        <use x="31.298828" xlink:href="#Constantia-55"/>
       </g>
       <!-- Sat -->
-      <g transform="translate(745.569666 234.094594)scale(0.16 -0.16)">
+      <g transform="translate(740.238167 236.774594)scale(0.16 -0.16)">
        <use xlink:href="#Constantia-83"/>
        <use x="50.976562" xlink:href="#Constantia-97"/>
        <use x="98.974609" xlink:href="#Constantia-116"/>
       </g>
      </g>
     </g>
-    <g id="xtick_6">
-     <g id="line2d_9">
-      <path clip-path="url(#p7a126c6539)" d="M 1032.459032 198.997594 
-L 1032.459032 51.36175 
-" style="fill:none;stroke:#b0b0b0;stroke-linecap:square;stroke-width:0.8;"/>
+    <g id="xtick_5">
+     <g id="line2d_13">
+      <path clip-path="url(#p11b024a6a6)" d="M 1051.959083 203.077594 
+L 1051.959083 54.68175 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
      </g>
-     <g id="line2d_10">
+     <g id="line2d_14">
       <g>
-       <use style="stroke:#000000;stroke-width:0.6;" x="1032.459032" xlink:href="#m533c336f89" y="198.997594"/>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1051.959083" xlink:href="#mbe20696d92" y="203.077594"/>
       </g>
      </g>
-     <g id="text_6">
+     <g id="line2d_15">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1051.959083" xlink:href="#mf441b09c32" y="54.68175"/>
+      </g>
+     </g>
+     <g id="text_5">
       <!-- 24 -->
-      <g transform="translate(1024.337782 216.170094)scale(0.16 -0.16)">
+      <g transform="translate(1043.837833 218.850094)scale(0.16 -0.16)">
        <defs>
         <path d="M 30.953125 35.015625 
 Q 25.4375 28.8125 19.890625 21.78125 
@@ -557,32 +528,37 @@ z
        <use x="48.4375" xlink:href="#Constantia-52"/>
       </g>
       <!-- Sat -->
-      <g transform="translate(1021.716532 234.094594)scale(0.16 -0.16)">
+      <g transform="translate(1041.216583 236.774594)scale(0.16 -0.16)">
        <use xlink:href="#Constantia-83"/>
        <use x="50.976562" xlink:href="#Constantia-97"/>
        <use x="98.974609" xlink:href="#Constantia-116"/>
       </g>
      </g>
     </g>
-    <g id="xtick_7">
-     <g id="line2d_11">
-      <path clip-path="url(#p7a126c6539)" d="M 1308.605899 198.997594 
-L 1308.605899 51.36175 
-" style="fill:none;stroke:#b0b0b0;stroke-linecap:square;stroke-width:0.8;"/>
+    <g id="xtick_6">
+     <g id="line2d_16">
+      <path clip-path="url(#p11b024a6a6)" d="M 1352.9375 203.077594 
+L 1352.9375 54.68175 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
      </g>
-     <g id="line2d_12">
+     <g id="line2d_17">
       <g>
-       <use style="stroke:#000000;stroke-width:0.6;" x="1308.605899" xlink:href="#m533c336f89" y="198.997594"/>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1352.9375" xlink:href="#mbe20696d92" y="203.077594"/>
       </g>
      </g>
-     <g id="text_7">
+     <g id="line2d_18">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1352.9375" xlink:href="#mf441b09c32" y="54.68175"/>
+      </g>
+     </g>
+     <g id="text_6">
       <!-- 31 -->
-      <g transform="translate(1302.449649 216.170094)scale(0.16 -0.16)">
+      <g transform="translate(1346.78125 218.850094)scale(0.16 -0.16)">
        <use xlink:href="#Constantia-51"/>
        <use x="45.654297" xlink:href="#Constantia-49"/>
       </g>
       <!-- Sat -->
-      <g transform="translate(1297.863399 234.094594)scale(0.16 -0.16)">
+      <g transform="translate(1342.195 236.774594)scale(0.16 -0.16)">
        <use xlink:href="#Constantia-83"/>
        <use x="50.976562" xlink:href="#Constantia-97"/>
        <use x="98.974609" xlink:href="#Constantia-116"/>
@@ -592,24 +568,85 @@ L 1308.605899 51.36175
    </g>
    <g id="matplotlib.axis_2">
     <g id="ytick_1">
-     <g id="line2d_13">
-      <path clip-path="url(#p7a126c6539)" d="M 65.945 182.080328 
-L 1367.780227 182.080328 
-" style="fill:none;stroke:#b0b0b0;stroke-linecap:square;stroke-width:0.8;"/>
+     <g id="line2d_19">
+      <path clip-path="url(#p11b024a6a6)" d="M 63.03 203.077594 
+L 1352.9375 203.077594 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
      </g>
-     <g id="line2d_14">
+     <g id="line2d_20">
       <defs>
        <path d="M 0 0 
-L -3.5 0 
-" id="ma883839cf8" style="stroke:#000000;stroke-width:0.8;"/>
+L 4 0 
+" id="maa28008739" style="stroke:#000000;stroke-width:0.5;"/>
       </defs>
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="65.945" xlink:href="#ma883839cf8" y="182.080328"/>
+       <use style="stroke:#000000;stroke-width:0.5;" x="63.03" xlink:href="#maa28008739" y="203.077594"/>
+      </g>
+     </g>
+     <g id="line2d_21">
+      <defs>
+       <path d="M 0 0 
+L -4 0 
+" id="m3177973d38" style="stroke:#000000;stroke-width:0.5;"/>
+      </defs>
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1352.9375" xlink:href="#m3177973d38" y="203.077594"/>
+      </g>
+     </g>
+     <g id="text_7">
+      <!-- 550000 -->
+      <g transform="translate(9.34 207.065094)scale(0.16 -0.16)">
+       <defs>
+        <path d="M 6.453125 16.796875 
+L 9.28125 45.3125 
+Q 15.375 45.125 23.875 45.125 
+Q 33.6875 45.125 42.28125 45.3125 
+L 42.578125 44.921875 
+L 41.359375 36.859375 
+L 13.1875 37.546875 
+L 11.8125 23.78125 
+Q 15.96875 24.46875 19.625 24.46875 
+Q 30.8125 24.46875 37.46875 19.046875 
+Q 44.140625 13.625 44.140625 4.15625 
+Q 44.140625 -7.953125 32.984375 -15.15625 
+Q 21.828125 -22.359375 4.890625 -22.46875 
+L 4.390625 -18.84375 
+Q 17.71875 -18.359375 26.09375 -12.796875 
+Q 34.46875 -7.234375 34.46875 2.203125 
+Q 34.46875 9.46875 29.5625 13.46875 
+Q 24.65625 17.484375 15.765625 17.484375 
+Q 11.328125 17.484375 6.734375 16.453125 
+z
+" id="Constantia-53"/>
+       </defs>
+       <use xlink:href="#Constantia-53"/>
+       <use x="47.558594" xlink:href="#Constantia-53"/>
+       <use x="95.117188" xlink:href="#Constantia-48"/>
+       <use x="148.974609" xlink:href="#Constantia-48"/>
+       <use x="202.832031" xlink:href="#Constantia-48"/>
+       <use x="256.689453" xlink:href="#Constantia-48"/>
+      </g>
+     </g>
+    </g>
+    <g id="ytick_2">
+     <g id="line2d_22">
+      <path clip-path="url(#p11b024a6a6)" d="M 63.03 184.528113 
+L 1352.9375 184.528113 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
+     </g>
+     <g id="line2d_23">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="63.03" xlink:href="#maa28008739" y="184.528113"/>
+      </g>
+     </g>
+     <g id="line2d_24">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1352.9375" xlink:href="#m3177973d38" y="184.528113"/>
       </g>
      </g>
      <g id="text_8">
       <!-- 600000 -->
-      <g transform="translate(7.2 187.966578)scale(0.16 -0.16)">
+      <g transform="translate(7.285 188.515613)scale(0.16 -0.16)">
        <defs>
         <path d="M 47.125 64.546875 
 Q 32.03125 61.53125 24.515625 53.9375 
@@ -646,20 +683,109 @@ z
       </g>
      </g>
     </g>
-    <g id="ytick_2">
-     <g id="line2d_15">
-      <path clip-path="url(#p7a126c6539)" d="M 65.945 110.382493 
-L 1367.780227 110.382493 
-" style="fill:none;stroke:#b0b0b0;stroke-linecap:square;stroke-width:0.8;"/>
+    <g id="ytick_3">
+     <g id="line2d_25">
+      <path clip-path="url(#p11b024a6a6)" d="M 63.03 165.978633 
+L 1352.9375 165.978633 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
      </g>
-     <g id="line2d_16">
+     <g id="line2d_26">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="65.945" xlink:href="#ma883839cf8" y="110.382493"/>
+       <use style="stroke:#000000;stroke-width:0.5;" x="63.03" xlink:href="#maa28008739" y="165.978633"/>
+      </g>
+     </g>
+     <g id="line2d_27">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1352.9375" xlink:href="#m3177973d38" y="165.978633"/>
       </g>
      </g>
      <g id="text_9">
+      <!-- 650000 -->
+      <g transform="translate(8.2925 169.966133)scale(0.16 -0.16)">
+       <use xlink:href="#Constantia-54"/>
+       <use x="54.101562" xlink:href="#Constantia-53"/>
+       <use x="101.660156" xlink:href="#Constantia-48"/>
+       <use x="155.517578" xlink:href="#Constantia-48"/>
+       <use x="209.375" xlink:href="#Constantia-48"/>
+       <use x="263.232422" xlink:href="#Constantia-48"/>
+      </g>
+     </g>
+    </g>
+    <g id="ytick_4">
+     <g id="line2d_28">
+      <path clip-path="url(#p11b024a6a6)" d="M 63.03 147.429152 
+L 1352.9375 147.429152 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
+     </g>
+     <g id="line2d_29">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="63.03" xlink:href="#maa28008739" y="147.429152"/>
+      </g>
+     </g>
+     <g id="line2d_30">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1352.9375" xlink:href="#m3177973d38" y="147.429152"/>
+      </g>
+     </g>
+     <g id="text_10">
+      <!-- 700000 -->
+      <g transform="translate(8.2075 151.416652)scale(0.16 -0.16)">
+       <use xlink:href="#Constantia-55"/>
+       <use x="48.339844" xlink:href="#Constantia-48"/>
+       <use x="102.197266" xlink:href="#Constantia-48"/>
+       <use x="156.054688" xlink:href="#Constantia-48"/>
+       <use x="209.912109" xlink:href="#Constantia-48"/>
+       <use x="263.769531" xlink:href="#Constantia-48"/>
+      </g>
+     </g>
+    </g>
+    <g id="ytick_5">
+     <g id="line2d_31">
+      <path clip-path="url(#p11b024a6a6)" d="M 63.03 128.879672 
+L 1352.9375 128.879672 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
+     </g>
+     <g id="line2d_32">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="63.03" xlink:href="#maa28008739" y="128.879672"/>
+      </g>
+     </g>
+     <g id="line2d_33">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1352.9375" xlink:href="#m3177973d38" y="128.879672"/>
+      </g>
+     </g>
+     <g id="text_11">
+      <!-- 750000 -->
+      <g transform="translate(9.215 132.867172)scale(0.16 -0.16)">
+       <use xlink:href="#Constantia-55"/>
+       <use x="48.339844" xlink:href="#Constantia-53"/>
+       <use x="95.898438" xlink:href="#Constantia-48"/>
+       <use x="149.755859" xlink:href="#Constantia-48"/>
+       <use x="203.613281" xlink:href="#Constantia-48"/>
+       <use x="257.470703" xlink:href="#Constantia-48"/>
+      </g>
+     </g>
+    </g>
+    <g id="ytick_6">
+     <g id="line2d_34">
+      <path clip-path="url(#p11b024a6a6)" d="M 63.03 110.330191 
+L 1352.9375 110.330191 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
+     </g>
+     <g id="line2d_35">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="63.03" xlink:href="#maa28008739" y="110.330191"/>
+      </g>
+     </g>
+     <g id="line2d_36">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1352.9375" xlink:href="#m3177973d38" y="110.330191"/>
+      </g>
+     </g>
+     <g id="text_12">
       <!-- 800000 -->
-      <g transform="translate(7.2725 116.268743)scale(0.16 -0.16)">
+      <g transform="translate(7.3575 114.317691)scale(0.16 -0.16)">
        <defs>
         <path d="M 19.09375 34.234375 
 Q 12.0625 37.890625 9.5 41.546875 
@@ -706,53 +832,121 @@ z
       </g>
      </g>
     </g>
+    <g id="ytick_7">
+     <g id="line2d_37">
+      <path clip-path="url(#p11b024a6a6)" d="M 63.03 91.780711 
+L 1352.9375 91.780711 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
+     </g>
+     <g id="line2d_38">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="63.03" xlink:href="#maa28008739" y="91.780711"/>
+      </g>
+     </g>
+     <g id="line2d_39">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1352.9375" xlink:href="#m3177973d38" y="91.780711"/>
+      </g>
+     </g>
+     <g id="text_13">
+      <!-- 850000 -->
+      <g transform="translate(8.365 95.768211)scale(0.16 -0.16)">
+       <use xlink:href="#Constantia-56"/>
+       <use x="53.662109" xlink:href="#Constantia-53"/>
+       <use x="101.220703" xlink:href="#Constantia-48"/>
+       <use x="155.078125" xlink:href="#Constantia-48"/>
+       <use x="208.935547" xlink:href="#Constantia-48"/>
+       <use x="262.792969" xlink:href="#Constantia-48"/>
+      </g>
+     </g>
+    </g>
+    <g id="ytick_8">
+     <g id="line2d_40">
+      <path clip-path="url(#p11b024a6a6)" d="M 63.03 73.23123 
+L 1352.9375 73.23123 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
+     </g>
+     <g id="line2d_41">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="63.03" xlink:href="#maa28008739" y="73.23123"/>
+      </g>
+     </g>
+     <g id="line2d_42">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1352.9375" xlink:href="#m3177973d38" y="73.23123"/>
+      </g>
+     </g>
+     <g id="text_14">
+      <!-- 900000 -->
+      <g transform="translate(7.2 77.21873)scale(0.16 -0.16)">
+       <defs>
+        <path d="M 8.640625 -19 
+Q 20.90625 -16.796875 28.984375 -9.671875 
+Q 37.0625 -2.546875 40.375 10.109375 
+L 40.28125 10.15625 
+Q 34.578125 3.65625 25.4375 3.65625 
+Q 16.3125 3.65625 10.234375 9.484375 
+Q 4.15625 15.328125 4.15625 24.3125 
+Q 4.15625 33.6875 10.796875 40.03125 
+Q 17.4375 46.390625 27.046875 46.390625 
+Q 37.546875 46.390625 44.265625 38.75 
+Q 50.984375 31.109375 50.984375 19.1875 
+Q 50.984375 2.828125 39.578125 -8.59375 
+Q 28.171875 -20.015625 9.328125 -22.46875 
+z
+M 14.0625 27.25 
+Q 14.0625 18.5625 18.015625 13.28125 
+Q 21.96875 8.015625 28.125 8.015625 
+Q 34.234375 8.015625 37.453125 11.9375 
+Q 40.671875 15.875 40.671875 22.90625 
+Q 40.671875 31.453125 36.421875 37.15625 
+Q 32.171875 42.875 26.21875 42.875 
+Q 20.953125 42.875 17.5 38.640625 
+Q 14.0625 34.421875 14.0625 27.25 
+z
+" id="Constantia-57"/>
+       </defs>
+       <use xlink:href="#Constantia-57"/>
+       <use x="54.638672" xlink:href="#Constantia-48"/>
+       <use x="108.496094" xlink:href="#Constantia-48"/>
+       <use x="162.353516" xlink:href="#Constantia-48"/>
+       <use x="216.210938" xlink:href="#Constantia-48"/>
+       <use x="270.068359" xlink:href="#Constantia-48"/>
+      </g>
+     </g>
+    </g>
+    <g id="ytick_9">
+     <g id="line2d_43">
+      <path clip-path="url(#p11b024a6a6)" d="M 63.03 54.68175 
+L 1352.9375 54.68175 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
+     </g>
+     <g id="line2d_44">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="63.03" xlink:href="#maa28008739" y="54.68175"/>
+      </g>
+     </g>
+     <g id="line2d_45">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1352.9375" xlink:href="#m3177973d38" y="54.68175"/>
+      </g>
+     </g>
+     <g id="text_15">
+      <!-- 950000 -->
+      <g transform="translate(8.2075 58.66925)scale(0.16 -0.16)">
+       <use xlink:href="#Constantia-57"/>
+       <use x="54.638672" xlink:href="#Constantia-53"/>
+       <use x="102.197266" xlink:href="#Constantia-48"/>
+       <use x="156.054688" xlink:href="#Constantia-48"/>
+       <use x="209.912109" xlink:href="#Constantia-48"/>
+       <use x="263.769531" xlink:href="#Constantia-48"/>
+      </g>
+     </g>
+    </g>
    </g>
-   <g id="line2d_17">
-    <path clip-path="url(#p7a126c6539)" d="M 125.119329 58.259602 
-L 164.568881 58.07247 
-L 204.018433 60.59946 
-L 243.467986 58.85075 
-L 282.917538 67.12468 
-L 322.36709 71.545569 
-L 361.816643 73.479976 
-L 401.266195 76.655115 
-L 440.715747 80.250403 
-L 480.1653 80.405987 
-L 559.064404 96.462359 
-L 598.513957 100.426532 
-L 637.963509 105.488758 
-L 677.413061 105.225268 
-L 716.862614 111.737583 
-L 756.312166 116.023679 
-L 795.761718 119.332893 
-L 835.211271 128.770479 
-L 874.660823 131.41828 
-L 914.110375 140.150359 
-L 953.559928 147.262067 
-L 993.00948 152.646216 
-L 1032.459032 157.093274 
-L 1071.908585 161.995614 
-L 1111.358137 172.192121 
-L 1150.807689 177.920061 
-L 1190.257242 180.91488 
-L 1229.706794 183.86668 
-L 1269.156346 187.968871 
-L 1308.605899 192.286874 
-" style="fill:none;stroke:#ffd700;stroke-linecap:square;stroke-width:3;"/>
-   </g>
-   <g id="patch_3">
-    <path d="M 65.945 198.997594 
-L 65.945 51.36175 
-" style="fill:none;stroke:#000000;stroke-linecap:square;stroke-linejoin:miter;stroke-width:0.8;"/>
-   </g>
-   <g id="patch_4">
-    <path d="M 65.945 198.997594 
-L 1367.780227 198.997594 
-" style="fill:none;stroke:#000000;stroke-linecap:square;stroke-linejoin:miter;stroke-width:0.8;"/>
-   </g>
-   <g id="text_10">
+   <g id="text_16">
     <!-- Active Cases -->
-    <g transform="translate(662.911051 45.36175)scale(0.2 -0.2)">
+    <g transform="translate(654.032187 49.68175)scale(0.2 -0.2)">
      <defs>
       <path d="M 36.8125 69.390625 
 L 58.5 9.671875 
@@ -820,6 +1014,31 @@ Q 9.765625 34.125 9.578125 39.546875
 L 3.078125 41.3125 
 z
 " id="Constantia-105"/>
+      <path d="M -1.515625 45.265625 
+Q 4.640625 45.125 9.421875 45.125 
+Q 13.8125 45.125 19.96875 45.265625 
+L 20.171875 43.265625 
+L 14.5 41.703125 
+Q 18.5 30.328125 23.78125 17.53125 
+Q 25.140625 14.15625 26.21875 11.078125 
+Q 27.296875 14.15625 28.71875 17.484375 
+Q 33.15625 28.421875 38.03125 41.703125 
+L 32.46875 43.265625 
+L 32.28125 45.265625 
+Q 36.234375 45.125 40.53125 45.125 
+Q 44.921875 45.125 49.03125 45.265625 
+L 49.21875 43.265625 
+L 44.34375 41.84375 
+Q 43.21875 41.453125 42.4375 39.9375 
+Q 38.578125 31 33.46875 18.671875 
+Q 28.375 6.34375 25.78125 -0.34375 
+L 21.625 -0.78125 
+Q 18.953125 6.296875 13.890625 18.59375 
+Q 8.84375 30.90625 5.21875 39.703125 
+Q 4.4375 41.40625 3.078125 41.890625 
+L -1.421875 43.265625 
+z
+" id="Constantia-118"/>
       <path d="M 44.046875 3.46875 
 Q 39.890625 0.875 35.5 -0.25 
 Q 31.109375 -1.375 27.34375 -1.375 
@@ -911,31 +1130,79 @@ z
   </g>
   <g id="axes_2">
    <g id="patch_5">
-    <path d="M 65.945 436.568062 
-L 1367.780227 436.568062 
-L 1367.780227 288.932219 
-L 65.945 288.932219 
+    <path d="M 63.03 439.568062 
+L 1352.9375 439.568062 
+L 1352.9375 291.172219 
+L 63.03 291.172219 
 z
 " style="fill:#ffffff;"/>
    </g>
+   <g id="line2d_46">
+    <path clip-path="url(#pf93a407b62)" d="M 63.03 373.086724 
+L 106.026917 329.997871 
+L 149.023833 359.350569 
+L 192.02075 411.727942 
+L 235.017667 324.799777 
+L 278.014583 363.010647 
+L 321.0115 356.11978 
+L 364.008417 364.416167 
+L 407.005333 361.976116 
+L 450.00225 375.242704 
+L 535.996083 295.78203 
+L 578.993 372.100952 
+L 621.989917 370.640313 
+L 664.986833 431.998814 
+L 707.98375 312.298487 
+L 750.980667 372.266307 
+L 793.977583 382.16537 
+L 836.9745 389.630741 
+L 879.971417 381.927937 
+L 922.968333 380.182166 
+L 965.96525 381.996835 
+L 1008.962167 381.318454 
+L 1051.959083 386.711583 
+L 1094.956 391.322454 
+L 1137.952917 400.637473 
+L 1180.949833 393.908781 
+L 1223.94675 386.662824 
+L 1266.943667 387.331666 
+L 1309.940583 388.562291 
+L 1352.9375 390.051549 
+" style="fill:none;stroke:#9acd32;stroke-linecap:square;stroke-width:3;"/>
+   </g>
+   <g id="patch_6">
+    <path d="M 63.03 439.568062 
+L 63.03 291.172219 
+" style="fill:none;stroke:#000000;stroke-linecap:square;stroke-linejoin:miter;"/>
+   </g>
+   <g id="patch_7">
+    <path d="M 63.03 439.568062 
+L 1352.9375 439.568062 
+" style="fill:none;stroke:#000000;stroke-linecap:square;stroke-linejoin:miter;"/>
+   </g>
    <g id="matplotlib.axis_3">
-    <g id="xtick_8">
-     <g id="line2d_18">
+    <g id="xtick_7">
+     <g id="line2d_47">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="125.119329" xlink:href="#mde5eb9b6a6" y="436.568062"/>
+       <use style="stroke:#000000;stroke-width:0.5;" x="63.03" xlink:href="#mfee044b381" y="439.568062"/>
       </g>
      </g>
-     <g id="text_11">
+     <g id="line2d_48">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="63.03" xlink:href="#ma0711d10d3" y="291.172219"/>
+      </g>
+     </g>
+     <g id="text_17">
       <!--  -->
-      <g transform="translate(125.119329 455.340562)scale(0.16 -0.16)"/>
+      <g transform="translate(63.03 455.340562)scale(0.16 -0.16)"/>
       <!-- Oct -->
-      <g transform="translate(112.170579 473.265062)scale(0.16 -0.16)">
+      <g transform="translate(50.08125 473.265062)scale(0.16 -0.16)">
        <use xlink:href="#Constantia-79"/>
        <use x="80.419922" xlink:href="#Constantia-99"/>
        <use x="126.5625" xlink:href="#Constantia-116"/>
       </g>
       <!-- 2020 -->
-      <g transform="translate(108.751829 491.189562)scale(0.16 -0.16)">
+      <g transform="translate(46.6625 491.189562)scale(0.16 -0.16)">
        <use xlink:href="#Constantia-50"/>
        <use x="48.4375" xlink:href="#Constantia-48"/>
        <use x="102.294922" xlink:href="#Constantia-50"/>
@@ -943,49 +1210,90 @@ z
       </g>
      </g>
     </g>
-    <g id="xtick_9">
-     <g id="line2d_19">
+    <g id="xtick_8">
+     <g id="line2d_49">
+      <path clip-path="url(#pf93a407b62)" d="M 149.023833 439.568062 
+L 149.023833 291.172219 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
+     </g>
+     <g id="line2d_50">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="1348.055451" xlink:href="#mde5eb9b6a6" y="436.568062"/>
+       <use style="stroke:#000000;stroke-width:0.5;" x="149.023833" xlink:href="#mbe20696d92" y="439.568062"/>
       </g>
      </g>
-     <g id="text_12">
-      <!--  -->
-      <g transform="translate(1348.055451 455.340562)scale(0.16 -0.16)"/>
-      <!-- Nov -->
-      <g transform="translate(1333.995451 473.265062)scale(0.16 -0.16)">
-       <use xlink:href="#Constantia-78"/>
-       <use x="73.402344" xlink:href="#Constantia-111"/>
-       <use x="127.455078" xlink:href="#Constantia-118"/>
-      </g>
-      <!-- 2020 -->
-      <g transform="translate(1331.687951 491.189562)scale(0.16 -0.16)">
-       <use xlink:href="#Constantia-50"/>
-       <use x="48.4375" xlink:href="#Constantia-48"/>
-       <use x="102.294922" xlink:href="#Constantia-50"/>
-       <use x="150.732422" xlink:href="#Constantia-48"/>
-      </g>
-     </g>
-    </g>
-    <g id="xtick_10">
-     <g id="line2d_20">
-      <path clip-path="url(#pe6f8f93a5f)" d="M 204.018433 436.568062 
-L 204.018433 288.932219 
-" style="fill:none;stroke:#b0b0b0;stroke-linecap:square;stroke-width:0.8;"/>
-     </g>
-     <g id="line2d_21">
+     <g id="line2d_51">
       <g>
-       <use style="stroke:#000000;stroke-width:0.6;" x="204.018433" xlink:href="#m533c336f89" y="436.568062"/>
+       <use style="stroke:#000000;stroke-width:0.5;" x="149.023833" xlink:href="#mf441b09c32" y="291.172219"/>
       </g>
      </g>
-     <g id="text_13">
+     <g id="text_18">
       <!-- 03 -->
-      <g transform="translate(196.057183 453.740562)scale(0.16 -0.16)">
+      <g transform="translate(141.062583 455.340562)scale(0.16 -0.16)">
        <use xlink:href="#Constantia-48"/>
        <use x="53.857422" xlink:href="#Constantia-51"/>
       </g>
       <!-- Sat -->
-      <g transform="translate(193.275933 471.665062)scale(0.16 -0.16)">
+      <g transform="translate(138.281333 473.265062)scale(0.16 -0.16)">
+       <use xlink:href="#Constantia-83"/>
+       <use x="50.976562" xlink:href="#Constantia-97"/>
+       <use x="98.974609" xlink:href="#Constantia-116"/>
+      </g>
+     </g>
+    </g>
+    <g id="xtick_9">
+     <g id="line2d_52">
+      <path clip-path="url(#pf93a407b62)" d="M 450.00225 439.568062 
+L 450.00225 291.172219 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
+     </g>
+     <g id="line2d_53">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="450.00225" xlink:href="#mbe20696d92" y="439.568062"/>
+      </g>
+     </g>
+     <g id="line2d_54">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="450.00225" xlink:href="#mf441b09c32" y="291.172219"/>
+      </g>
+     </g>
+     <g id="text_19">
+      <!-- 10 -->
+      <g transform="translate(443.18975 455.340562)scale(0.16 -0.16)">
+       <use xlink:href="#Constantia-49"/>
+       <use x="31.298828" xlink:href="#Constantia-48"/>
+      </g>
+      <!-- Sat -->
+      <g transform="translate(439.25975 473.265062)scale(0.16 -0.16)">
+       <use xlink:href="#Constantia-83"/>
+       <use x="50.976562" xlink:href="#Constantia-97"/>
+       <use x="98.974609" xlink:href="#Constantia-116"/>
+      </g>
+     </g>
+    </g>
+    <g id="xtick_10">
+     <g id="line2d_55">
+      <path clip-path="url(#pf93a407b62)" d="M 750.980667 439.568062 
+L 750.980667 291.172219 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
+     </g>
+     <g id="line2d_56">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="750.980667" xlink:href="#mbe20696d92" y="439.568062"/>
+      </g>
+     </g>
+     <g id="line2d_57">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="750.980667" xlink:href="#mf441b09c32" y="291.172219"/>
+      </g>
+     </g>
+     <g id="text_20">
+      <!-- 17 -->
+      <g transform="translate(744.609417 455.340562)scale(0.16 -0.16)">
+       <use xlink:href="#Constantia-49"/>
+       <use x="31.298828" xlink:href="#Constantia-55"/>
+      </g>
+      <!-- Sat -->
+      <g transform="translate(740.238167 473.265062)scale(0.16 -0.16)">
        <use xlink:href="#Constantia-83"/>
        <use x="50.976562" xlink:href="#Constantia-97"/>
        <use x="98.974609" xlink:href="#Constantia-116"/>
@@ -993,24 +1301,29 @@ L 204.018433 288.932219
      </g>
     </g>
     <g id="xtick_11">
-     <g id="line2d_22">
-      <path clip-path="url(#pe6f8f93a5f)" d="M 480.1653 436.568062 
-L 480.1653 288.932219 
-" style="fill:none;stroke:#b0b0b0;stroke-linecap:square;stroke-width:0.8;"/>
+     <g id="line2d_58">
+      <path clip-path="url(#pf93a407b62)" d="M 1051.959083 439.568062 
+L 1051.959083 291.172219 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
      </g>
-     <g id="line2d_23">
+     <g id="line2d_59">
       <g>
-       <use style="stroke:#000000;stroke-width:0.6;" x="480.1653" xlink:href="#m533c336f89" y="436.568062"/>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1051.959083" xlink:href="#mbe20696d92" y="439.568062"/>
       </g>
      </g>
-     <g id="text_14">
-      <!-- 10 -->
-      <g transform="translate(473.3528 453.740562)scale(0.16 -0.16)">
-       <use xlink:href="#Constantia-49"/>
-       <use x="31.298828" xlink:href="#Constantia-48"/>
+     <g id="line2d_60">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1051.959083" xlink:href="#mf441b09c32" y="291.172219"/>
+      </g>
+     </g>
+     <g id="text_21">
+      <!-- 24 -->
+      <g transform="translate(1043.837833 455.340562)scale(0.16 -0.16)">
+       <use xlink:href="#Constantia-50"/>
+       <use x="48.4375" xlink:href="#Constantia-52"/>
       </g>
       <!-- Sat -->
-      <g transform="translate(469.4228 471.665062)scale(0.16 -0.16)">
+      <g transform="translate(1041.216583 473.265062)scale(0.16 -0.16)">
        <use xlink:href="#Constantia-83"/>
        <use x="50.976562" xlink:href="#Constantia-97"/>
        <use x="98.974609" xlink:href="#Constantia-116"/>
@@ -1018,74 +1331,29 @@ L 480.1653 288.932219
      </g>
     </g>
     <g id="xtick_12">
-     <g id="line2d_24">
-      <path clip-path="url(#pe6f8f93a5f)" d="M 756.312166 436.568062 
-L 756.312166 288.932219 
-" style="fill:none;stroke:#b0b0b0;stroke-linecap:square;stroke-width:0.8;"/>
+     <g id="line2d_61">
+      <path clip-path="url(#pf93a407b62)" d="M 1352.9375 439.568062 
+L 1352.9375 291.172219 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
      </g>
-     <g id="line2d_25">
+     <g id="line2d_62">
       <g>
-       <use style="stroke:#000000;stroke-width:0.6;" x="756.312166" xlink:href="#m533c336f89" y="436.568062"/>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1352.9375" xlink:href="#mbe20696d92" y="439.568062"/>
       </g>
      </g>
-     <g id="text_15">
-      <!-- 17 -->
-      <g transform="translate(749.940916 453.740562)scale(0.16 -0.16)">
-       <use xlink:href="#Constantia-49"/>
-       <use x="31.298828" xlink:href="#Constantia-55"/>
-      </g>
-      <!-- Sat -->
-      <g transform="translate(745.569666 471.665062)scale(0.16 -0.16)">
-       <use xlink:href="#Constantia-83"/>
-       <use x="50.976562" xlink:href="#Constantia-97"/>
-       <use x="98.974609" xlink:href="#Constantia-116"/>
-      </g>
-     </g>
-    </g>
-    <g id="xtick_13">
-     <g id="line2d_26">
-      <path clip-path="url(#pe6f8f93a5f)" d="M 1032.459032 436.568062 
-L 1032.459032 288.932219 
-" style="fill:none;stroke:#b0b0b0;stroke-linecap:square;stroke-width:0.8;"/>
-     </g>
-     <g id="line2d_27">
+     <g id="line2d_63">
       <g>
-       <use style="stroke:#000000;stroke-width:0.6;" x="1032.459032" xlink:href="#m533c336f89" y="436.568062"/>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1352.9375" xlink:href="#mf441b09c32" y="291.172219"/>
       </g>
      </g>
-     <g id="text_16">
-      <!-- 24 -->
-      <g transform="translate(1024.337782 453.740562)scale(0.16 -0.16)">
-       <use xlink:href="#Constantia-50"/>
-       <use x="48.4375" xlink:href="#Constantia-52"/>
-      </g>
-      <!-- Sat -->
-      <g transform="translate(1021.716532 471.665062)scale(0.16 -0.16)">
-       <use xlink:href="#Constantia-83"/>
-       <use x="50.976562" xlink:href="#Constantia-97"/>
-       <use x="98.974609" xlink:href="#Constantia-116"/>
-      </g>
-     </g>
-    </g>
-    <g id="xtick_14">
-     <g id="line2d_28">
-      <path clip-path="url(#pe6f8f93a5f)" d="M 1308.605899 436.568062 
-L 1308.605899 288.932219 
-" style="fill:none;stroke:#b0b0b0;stroke-linecap:square;stroke-width:0.8;"/>
-     </g>
-     <g id="line2d_29">
-      <g>
-       <use style="stroke:#000000;stroke-width:0.6;" x="1308.605899" xlink:href="#m533c336f89" y="436.568062"/>
-      </g>
-     </g>
-     <g id="text_17">
+     <g id="text_22">
       <!-- 31 -->
-      <g transform="translate(1302.449649 453.740562)scale(0.16 -0.16)">
+      <g transform="translate(1346.78125 455.340562)scale(0.16 -0.16)">
        <use xlink:href="#Constantia-51"/>
        <use x="45.654297" xlink:href="#Constantia-49"/>
       </g>
       <!-- Sat -->
-      <g transform="translate(1297.863399 471.665062)scale(0.16 -0.16)">
+      <g transform="translate(1342.195 473.265062)scale(0.16 -0.16)">
        <use xlink:href="#Constantia-83"/>
        <use x="50.976562" xlink:href="#Constantia-97"/>
        <use x="98.974609" xlink:href="#Constantia-116"/>
@@ -1094,65 +1362,156 @@ L 1308.605899 288.932219
     </g>
    </g>
    <g id="matplotlib.axis_4">
-    <g id="ytick_3">
-     <g id="line2d_30">
-      <path clip-path="url(#pe6f8f93a5f)" d="M 65.945 385.095883 
-L 1367.780227 385.095883 
-" style="fill:none;stroke:#b0b0b0;stroke-linecap:square;stroke-width:0.8;"/>
+    <g id="ytick_10">
+     <g id="line2d_64">
+      <path clip-path="url(#pf93a407b62)" d="M 63.03 439.568062 
+L 1352.9375 439.568062 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
      </g>
-     <g id="line2d_31">
+     <g id="line2d_65">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="65.945" xlink:href="#ma883839cf8" y="385.095883"/>
+       <use style="stroke:#000000;stroke-width:0.5;" x="63.03" xlink:href="#maa28008739" y="439.568062"/>
       </g>
      </g>
-     <g id="text_18">
-      <!-- 50000 -->
-      <g transform="translate(16.865 390.982133)scale(0.16 -0.16)">
-       <defs>
-        <path d="M 6.453125 16.796875 
-L 9.28125 45.3125 
-Q 15.375 45.125 23.875 45.125 
-Q 33.6875 45.125 42.28125 45.3125 
-L 42.578125 44.921875 
-L 41.359375 36.859375 
-L 13.1875 37.546875 
-L 11.8125 23.78125 
-Q 15.96875 24.46875 19.625 24.46875 
-Q 30.8125 24.46875 37.46875 19.046875 
-Q 44.140625 13.625 44.140625 4.15625 
-Q 44.140625 -7.953125 32.984375 -15.15625 
-Q 21.828125 -22.359375 4.890625 -22.46875 
-L 4.390625 -18.84375 
-Q 17.71875 -18.359375 26.09375 -12.796875 
-Q 34.46875 -7.234375 34.46875 2.203125 
-Q 34.46875 9.46875 29.5625 13.46875 
-Q 24.65625 17.484375 15.765625 17.484375 
-Q 11.328125 17.484375 6.734375 16.453125 
-z
-" id="Constantia-53"/>
-       </defs>
-       <use xlink:href="#Constantia-53"/>
-       <use x="47.558594" xlink:href="#Constantia-48"/>
-       <use x="101.416016" xlink:href="#Constantia-48"/>
-       <use x="155.273438" xlink:href="#Constantia-48"/>
-       <use x="209.130859" xlink:href="#Constantia-48"/>
+     <g id="line2d_66">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1352.9375" xlink:href="#m3177973d38" y="439.568062"/>
+      </g>
+     </g>
+     <g id="text_23">
+      <!-- 0 -->
+      <g transform="translate(50.4125 443.555562)scale(0.16 -0.16)">
+       <use xlink:href="#Constantia-48"/>
       </g>
      </g>
     </g>
-    <g id="ytick_4">
-     <g id="line2d_32">
-      <path clip-path="url(#pe6f8f93a5f)" d="M 65.945 332.876444 
-L 1367.780227 332.876444 
-" style="fill:none;stroke:#b0b0b0;stroke-linecap:square;stroke-width:0.8;"/>
+    <g id="ytick_11">
+     <g id="line2d_67">
+      <path clip-path="url(#pf93a407b62)" d="M 63.03 418.368656 
+L 1352.9375 418.368656 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
      </g>
-     <g id="line2d_33">
+     <g id="line2d_68">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="65.945" xlink:href="#ma883839cf8" y="332.876444"/>
+       <use style="stroke:#000000;stroke-width:0.5;" x="63.03" xlink:href="#maa28008739" y="418.368656"/>
       </g>
      </g>
-     <g id="text_19">
+     <g id="line2d_69">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1352.9375" xlink:href="#m3177973d38" y="418.368656"/>
+      </g>
+     </g>
+     <g id="text_24">
+      <!-- 20000 -->
+      <g transform="translate(16.81 422.356156)scale(0.16 -0.16)">
+       <use xlink:href="#Constantia-50"/>
+       <use x="48.4375" xlink:href="#Constantia-48"/>
+       <use x="102.294922" xlink:href="#Constantia-48"/>
+       <use x="156.152344" xlink:href="#Constantia-48"/>
+       <use x="210.009766" xlink:href="#Constantia-48"/>
+      </g>
+     </g>
+    </g>
+    <g id="ytick_12">
+     <g id="line2d_70">
+      <path clip-path="url(#pf93a407b62)" d="M 63.03 397.16925 
+L 1352.9375 397.16925 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
+     </g>
+     <g id="line2d_71">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="63.03" xlink:href="#maa28008739" y="397.16925"/>
+      </g>
+     </g>
+     <g id="line2d_72">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1352.9375" xlink:href="#m3177973d38" y="397.16925"/>
+      </g>
+     </g>
+     <g id="text_25">
+      <!-- 40000 -->
+      <g transform="translate(16.0675 401.15675)scale(0.16 -0.16)">
+       <use xlink:href="#Constantia-52"/>
+       <use x="53.076172" xlink:href="#Constantia-48"/>
+       <use x="106.933594" xlink:href="#Constantia-48"/>
+       <use x="160.791016" xlink:href="#Constantia-48"/>
+       <use x="214.648438" xlink:href="#Constantia-48"/>
+      </g>
+     </g>
+    </g>
+    <g id="ytick_13">
+     <g id="line2d_73">
+      <path clip-path="url(#pf93a407b62)" d="M 63.03 375.969844 
+L 1352.9375 375.969844 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
+     </g>
+     <g id="line2d_74">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="63.03" xlink:href="#maa28008739" y="375.969844"/>
+      </g>
+     </g>
+     <g id="line2d_75">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1352.9375" xlink:href="#m3177973d38" y="375.969844"/>
+      </g>
+     </g>
+     <g id="text_26">
+      <!-- 60000 -->
+      <g transform="translate(15.9025 379.957344)scale(0.16 -0.16)">
+       <use xlink:href="#Constantia-54"/>
+       <use x="54.101562" xlink:href="#Constantia-48"/>
+       <use x="107.958984" xlink:href="#Constantia-48"/>
+       <use x="161.816406" xlink:href="#Constantia-48"/>
+       <use x="215.673828" xlink:href="#Constantia-48"/>
+      </g>
+     </g>
+    </g>
+    <g id="ytick_14">
+     <g id="line2d_76">
+      <path clip-path="url(#pf93a407b62)" d="M 63.03 354.770437 
+L 1352.9375 354.770437 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
+     </g>
+     <g id="line2d_77">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="63.03" xlink:href="#maa28008739" y="354.770437"/>
+      </g>
+     </g>
+     <g id="line2d_78">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1352.9375" xlink:href="#m3177973d38" y="354.770437"/>
+      </g>
+     </g>
+     <g id="text_27">
+      <!-- 80000 -->
+      <g transform="translate(15.975 358.757937)scale(0.16 -0.16)">
+       <use xlink:href="#Constantia-56"/>
+       <use x="53.662109" xlink:href="#Constantia-48"/>
+       <use x="107.519531" xlink:href="#Constantia-48"/>
+       <use x="161.376953" xlink:href="#Constantia-48"/>
+       <use x="215.234375" xlink:href="#Constantia-48"/>
+      </g>
+     </g>
+    </g>
+    <g id="ytick_15">
+     <g id="line2d_79">
+      <path clip-path="url(#pf93a407b62)" d="M 63.03 333.571031 
+L 1352.9375 333.571031 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
+     </g>
+     <g id="line2d_80">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="63.03" xlink:href="#maa28008739" y="333.571031"/>
+      </g>
+     </g>
+     <g id="line2d_81">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1352.9375" xlink:href="#m3177973d38" y="333.571031"/>
+      </g>
+     </g>
+     <g id="text_28">
       <!-- 100000 -->
-      <g transform="translate(10.85 338.762694)scale(0.16 -0.16)">
+      <g transform="translate(10.935 337.558531)scale(0.16 -0.16)">
        <use xlink:href="#Constantia-49"/>
        <use x="31.298828" xlink:href="#Constantia-48"/>
        <use x="85.15625" xlink:href="#Constantia-48"/>
@@ -1162,54 +1521,102 @@ L 1367.780227 332.876444
       </g>
      </g>
     </g>
+    <g id="ytick_16">
+     <g id="line2d_82">
+      <path clip-path="url(#pf93a407b62)" d="M 63.03 312.371625 
+L 1352.9375 312.371625 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
+     </g>
+     <g id="line2d_83">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="63.03" xlink:href="#maa28008739" y="312.371625"/>
+      </g>
+     </g>
+     <g id="line2d_84">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1352.9375" xlink:href="#m3177973d38" y="312.371625"/>
+      </g>
+     </g>
+     <g id="text_29">
+      <!-- 120000 -->
+      <g transform="translate(11.8025 316.359125)scale(0.16 -0.16)">
+       <use xlink:href="#Constantia-49"/>
+       <use x="31.298828" xlink:href="#Constantia-50"/>
+       <use x="79.736328" xlink:href="#Constantia-48"/>
+       <use x="133.59375" xlink:href="#Constantia-48"/>
+       <use x="187.451172" xlink:href="#Constantia-48"/>
+       <use x="241.308594" xlink:href="#Constantia-48"/>
+      </g>
+     </g>
+    </g>
+    <g id="ytick_17">
+     <g id="line2d_85">
+      <path clip-path="url(#pf93a407b62)" d="M 63.03 291.172219 
+L 1352.9375 291.172219 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
+     </g>
+     <g id="line2d_86">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="63.03" xlink:href="#maa28008739" y="291.172219"/>
+      </g>
+     </g>
+     <g id="line2d_87">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1352.9375" xlink:href="#m3177973d38" y="291.172219"/>
+      </g>
+     </g>
+     <g id="text_30">
+      <!-- 140000 -->
+      <g transform="translate(11.06 295.159719)scale(0.16 -0.16)">
+       <use xlink:href="#Constantia-49"/>
+       <use x="31.298828" xlink:href="#Constantia-52"/>
+       <use x="84.375" xlink:href="#Constantia-48"/>
+       <use x="138.232422" xlink:href="#Constantia-48"/>
+       <use x="192.089844" xlink:href="#Constantia-48"/>
+       <use x="245.947266" xlink:href="#Constantia-48"/>
+      </g>
+     </g>
+    </g>
    </g>
-   <g id="line2d_34">
-    <path clip-path="url(#pe6f8f93a5f)" d="M 125.119329 371.811258 
-L 164.568881 329.355809 
-L 204.018433 358.277023 
-L 243.467986 409.884451 
-L 282.917538 324.234126 
-L 322.36709 361.883298 
-L 361.816643 355.093726 
-L 401.266195 363.268157 
-L 440.715747 360.863974 
-L 480.1653 373.935545 
-L 559.064404 295.642939 
-L 598.513957 370.839976 
-L 637.963509 369.400808 
-L 677.413061 429.857342 
-L 716.862614 311.916605 
-L 756.312166 371.002901 
-L 795.761718 380.756448 
-L 835.211271 388.112078 
-L 874.660823 380.522505 
-L 914.110375 378.802396 
-L 953.559928 380.59039 
-L 993.00948 379.921981 
-L 1032.459032 385.235831 
-L 1071.908585 389.778923 
-L 1111.358137 398.957011 
-L 1150.807689 392.327231 
-L 1190.257242 385.187789 
-L 1229.706794 385.846799 
-L 1269.156346 387.059334 
-L 1308.605899 388.5267 
-" style="fill:none;stroke:#9acd32;stroke-linecap:square;stroke-width:3;"/>
-   </g>
-   <g id="patch_6">
-    <path d="M 65.945 436.568062 
-L 65.945 288.932219 
-" style="fill:none;stroke:#000000;stroke-linecap:square;stroke-linejoin:miter;stroke-width:0.8;"/>
-   </g>
-   <g id="patch_7">
-    <path d="M 65.945 436.568062 
-L 1367.780227 436.568062 
-" style="fill:none;stroke:#000000;stroke-linecap:square;stroke-linejoin:miter;stroke-width:0.8;"/>
-   </g>
-   <g id="text_20">
+   <g id="text_31">
     <!-- New Cases -->
-    <g transform="translate(670.701676 282.932219)scale(0.2 -0.2)">
+    <g transform="translate(661.822812 286.172219)scale(0.2 -0.2)">
      <defs>
+      <path d="M 16.65625 54.4375 
+L 16.65625 14.984375 
+Q 16.65625 9.234375 16.75 5.421875 
+Q 16.796875 4.046875 17.96875 3.765625 
+L 23.78125 2.046875 
+L 23.875 -0.140625 
+Q 17.78125 0 13.875 0 
+Q 10.0625 0 3.765625 -0.140625 
+L 3.5625 1.953125 
+L 9.578125 3.765625 
+Q 10.84375 4.15625 10.890625 5.28125 
+Q 10.984375 9.234375 10.984375 14.984375 
+L 10.984375 54.59375 
+Q 10.984375 59.46875 10.890625 62.703125 
+Q 10.84375 63.96875 9.71875 64.359375 
+L 3.65625 66.265625 
+L 3.5625 68.359375 
+Q 9.859375 68.171875 13.53125 68.171875 
+Q 15.71875 68.171875 17.96875 68.359375 
+L 58.984375 17.140625 
+L 58.984375 54.78125 
+Q 58.984375 59.515625 58.890625 62.9375 
+Q 58.84375 64.0625 57.625 64.453125 
+L 51.859375 66.109375 
+L 51.765625 68.359375 
+Q 58.015625 68.171875 61.859375 68.171875 
+Q 65.765625 68.171875 71.875 68.359375 
+L 72.078125 66.265625 
+L 65.921875 64.359375 
+Q 64.796875 63.96875 64.75 62.703125 
+Q 64.65625 59.46875 64.65625 54.59375 
+L 64.65625 0 
+L 60.546875 -0.390625 
+z
+" id="Constantia-78"/>
       <path d="M -0.828125 45.265625 
 Q 6.15625 45.125 9.515625 45.125 
 Q 14.359375 45.125 20.453125 45.265625 
@@ -1264,31 +1671,79 @@ z
   </g>
   <g id="axes_3">
    <g id="patch_8">
-    <path d="M 65.945 674.138531 
-L 1367.780227 674.138531 
-L 1367.780227 526.502687 
-L 65.945 526.502687 
+    <path d="M 63.03 676.058531 
+L 1352.9375 676.058531 
+L 1352.9375 527.662687 
+L 63.03 527.662687 
 z
 " style="fill:#ffffff;"/>
    </g>
+   <g id="line2d_88">
+    <path clip-path="url(#p8e684a33b1)" d="M 63.03 626.606441 
+L 106.026917 592.566083 
+L 149.023833 608.629933 
+L 192.02075 658.57915 
+L 235.017667 569.088212 
+L 278.014583 607.164112 
+L 321.0115 607.498003 
+L 364.008417 611.131228 
+L 407.005333 608.179799 
+L 450.00225 626.162078 
+L 535.996083 528.822648 
+L 578.993 615.063717 
+L 621.989917 611.350524 
+L 664.986833 670.826753 
+L 707.98375 563.467307 
+L 750.980667 614.731476 
+L 793.977583 624.260962 
+L 836.9745 616.019222 
+L 879.971417 625.720188 
+L 922.968333 610.36534 
+L 965.96525 615.495714 
+L 1008.962167 618.917063 
+L 1051.959083 625.188436 
+L 1094.956 627.648509 
+L 1137.952917 622.745676 
+L 1180.949833 627.801852 
+L 1223.94675 628.442427 
+L 1266.943667 629.110208 
+L 1309.940583 627.406954 
+L 1352.9375 628.001362 
+" style="fill:none;stroke:#f08080;stroke-linecap:square;stroke-width:3;"/>
+   </g>
+   <g id="patch_9">
+    <path d="M 63.03 676.058531 
+L 63.03 527.662687 
+" style="fill:none;stroke:#000000;stroke-linecap:square;stroke-linejoin:miter;"/>
+   </g>
+   <g id="patch_10">
+    <path d="M 63.03 676.058531 
+L 1352.9375 676.058531 
+" style="fill:none;stroke:#000000;stroke-linecap:square;stroke-linejoin:miter;"/>
+   </g>
    <g id="matplotlib.axis_5">
-    <g id="xtick_15">
-     <g id="line2d_35">
+    <g id="xtick_13">
+     <g id="line2d_89">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="125.119329" xlink:href="#mde5eb9b6a6" y="674.138531"/>
+       <use style="stroke:#000000;stroke-width:0.5;" x="63.03" xlink:href="#mfee044b381" y="676.058531"/>
       </g>
      </g>
-     <g id="text_21">
+     <g id="line2d_90">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="63.03" xlink:href="#ma0711d10d3" y="527.662687"/>
+      </g>
+     </g>
+     <g id="text_32">
       <!--  -->
-      <g transform="translate(125.119329 692.911031)scale(0.16 -0.16)"/>
+      <g transform="translate(63.03 691.831031)scale(0.16 -0.16)"/>
       <!-- Oct -->
-      <g transform="translate(112.170579 710.835531)scale(0.16 -0.16)">
+      <g transform="translate(50.08125 709.755531)scale(0.16 -0.16)">
        <use xlink:href="#Constantia-79"/>
        <use x="80.419922" xlink:href="#Constantia-99"/>
        <use x="126.5625" xlink:href="#Constantia-116"/>
       </g>
       <!-- 2020 -->
-      <g transform="translate(108.751829 728.760031)scale(0.16 -0.16)">
+      <g transform="translate(46.6625 727.680031)scale(0.16 -0.16)">
        <use xlink:href="#Constantia-50"/>
        <use x="48.4375" xlink:href="#Constantia-48"/>
        <use x="102.294922" xlink:href="#Constantia-50"/>
@@ -1296,49 +1751,120 @@ z
       </g>
      </g>
     </g>
-    <g id="xtick_16">
-     <g id="line2d_36">
+    <g id="xtick_14">
+     <g id="line2d_91">
+      <path clip-path="url(#p8e684a33b1)" d="M 149.023833 676.058531 
+L 149.023833 527.662687 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
+     </g>
+     <g id="line2d_92">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="1348.055451" xlink:href="#mde5eb9b6a6" y="674.138531"/>
+       <use style="stroke:#000000;stroke-width:0.5;" x="149.023833" xlink:href="#mbe20696d92" y="676.058531"/>
       </g>
      </g>
-     <g id="text_22">
-      <!--  -->
-      <g transform="translate(1348.055451 692.911031)scale(0.16 -0.16)"/>
-      <!-- Nov -->
-      <g transform="translate(1333.995451 710.835531)scale(0.16 -0.16)">
-       <use xlink:href="#Constantia-78"/>
-       <use x="73.402344" xlink:href="#Constantia-111"/>
-       <use x="127.455078" xlink:href="#Constantia-118"/>
-      </g>
-      <!-- 2020 -->
-      <g transform="translate(1331.687951 728.760031)scale(0.16 -0.16)">
-       <use xlink:href="#Constantia-50"/>
-       <use x="48.4375" xlink:href="#Constantia-48"/>
-       <use x="102.294922" xlink:href="#Constantia-50"/>
-       <use x="150.732422" xlink:href="#Constantia-48"/>
-      </g>
-     </g>
-    </g>
-    <g id="xtick_17">
-     <g id="line2d_37">
-      <path clip-path="url(#pe910c934c4)" d="M 204.018433 674.138531 
-L 204.018433 526.502687 
-" style="fill:none;stroke:#b0b0b0;stroke-linecap:square;stroke-width:0.8;"/>
-     </g>
-     <g id="line2d_38">
+     <g id="line2d_93">
       <g>
-       <use style="stroke:#000000;stroke-width:0.6;" x="204.018433" xlink:href="#m533c336f89" y="674.138531"/>
+       <use style="stroke:#000000;stroke-width:0.5;" x="149.023833" xlink:href="#mf441b09c32" y="527.662687"/>
       </g>
      </g>
-     <g id="text_23">
+     <g id="text_33">
       <!-- 03 -->
-      <g transform="translate(196.057183 691.311031)scale(0.16 -0.16)">
+      <g transform="translate(141.062583 691.831031)scale(0.16 -0.16)">
        <use xlink:href="#Constantia-48"/>
        <use x="53.857422" xlink:href="#Constantia-51"/>
       </g>
       <!-- Sat -->
-      <g transform="translate(193.275933 709.235531)scale(0.16 -0.16)">
+      <g transform="translate(138.281333 709.755531)scale(0.16 -0.16)">
+       <use xlink:href="#Constantia-83"/>
+       <use x="50.976562" xlink:href="#Constantia-97"/>
+       <use x="98.974609" xlink:href="#Constantia-116"/>
+      </g>
+     </g>
+    </g>
+    <g id="xtick_15">
+     <g id="line2d_94">
+      <path clip-path="url(#p8e684a33b1)" d="M 450.00225 676.058531 
+L 450.00225 527.662687 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
+     </g>
+     <g id="line2d_95">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="450.00225" xlink:href="#mbe20696d92" y="676.058531"/>
+      </g>
+     </g>
+     <g id="line2d_96">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="450.00225" xlink:href="#mf441b09c32" y="527.662687"/>
+      </g>
+     </g>
+     <g id="text_34">
+      <!-- 10 -->
+      <g transform="translate(443.18975 691.831031)scale(0.16 -0.16)">
+       <use xlink:href="#Constantia-49"/>
+       <use x="31.298828" xlink:href="#Constantia-48"/>
+      </g>
+      <!-- Sat -->
+      <g transform="translate(439.25975 709.755531)scale(0.16 -0.16)">
+       <use xlink:href="#Constantia-83"/>
+       <use x="50.976562" xlink:href="#Constantia-97"/>
+       <use x="98.974609" xlink:href="#Constantia-116"/>
+      </g>
+     </g>
+    </g>
+    <g id="xtick_16">
+     <g id="line2d_97">
+      <path clip-path="url(#p8e684a33b1)" d="M 750.980667 676.058531 
+L 750.980667 527.662687 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
+     </g>
+     <g id="line2d_98">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="750.980667" xlink:href="#mbe20696d92" y="676.058531"/>
+      </g>
+     </g>
+     <g id="line2d_99">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="750.980667" xlink:href="#mf441b09c32" y="527.662687"/>
+      </g>
+     </g>
+     <g id="text_35">
+      <!-- 17 -->
+      <g transform="translate(744.609417 691.831031)scale(0.16 -0.16)">
+       <use xlink:href="#Constantia-49"/>
+       <use x="31.298828" xlink:href="#Constantia-55"/>
+      </g>
+      <!-- Sat -->
+      <g transform="translate(740.238167 709.755531)scale(0.16 -0.16)">
+       <use xlink:href="#Constantia-83"/>
+       <use x="50.976562" xlink:href="#Constantia-97"/>
+       <use x="98.974609" xlink:href="#Constantia-116"/>
+      </g>
+     </g>
+    </g>
+    <g id="xtick_17">
+     <g id="line2d_100">
+      <path clip-path="url(#p8e684a33b1)" d="M 1051.959083 676.058531 
+L 1051.959083 527.662687 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
+     </g>
+     <g id="line2d_101">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1051.959083" xlink:href="#mbe20696d92" y="676.058531"/>
+      </g>
+     </g>
+     <g id="line2d_102">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1051.959083" xlink:href="#mf441b09c32" y="527.662687"/>
+      </g>
+     </g>
+     <g id="text_36">
+      <!-- 24 -->
+      <g transform="translate(1043.837833 691.831031)scale(0.16 -0.16)">
+       <use xlink:href="#Constantia-50"/>
+       <use x="48.4375" xlink:href="#Constantia-52"/>
+      </g>
+      <!-- Sat -->
+      <g transform="translate(1041.216583 709.755531)scale(0.16 -0.16)">
        <use xlink:href="#Constantia-83"/>
        <use x="50.976562" xlink:href="#Constantia-97"/>
        <use x="98.974609" xlink:href="#Constantia-116"/>
@@ -1346,99 +1872,29 @@ L 204.018433 526.502687
      </g>
     </g>
     <g id="xtick_18">
-     <g id="line2d_39">
-      <path clip-path="url(#pe910c934c4)" d="M 480.1653 674.138531 
-L 480.1653 526.502687 
-" style="fill:none;stroke:#b0b0b0;stroke-linecap:square;stroke-width:0.8;"/>
+     <g id="line2d_103">
+      <path clip-path="url(#p8e684a33b1)" d="M 1352.9375 676.058531 
+L 1352.9375 527.662687 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
      </g>
-     <g id="line2d_40">
+     <g id="line2d_104">
       <g>
-       <use style="stroke:#000000;stroke-width:0.6;" x="480.1653" xlink:href="#m533c336f89" y="674.138531"/>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1352.9375" xlink:href="#mbe20696d92" y="676.058531"/>
       </g>
      </g>
-     <g id="text_24">
-      <!-- 10 -->
-      <g transform="translate(473.3528 691.311031)scale(0.16 -0.16)">
-       <use xlink:href="#Constantia-49"/>
-       <use x="31.298828" xlink:href="#Constantia-48"/>
-      </g>
-      <!-- Sat -->
-      <g transform="translate(469.4228 709.235531)scale(0.16 -0.16)">
-       <use xlink:href="#Constantia-83"/>
-       <use x="50.976562" xlink:href="#Constantia-97"/>
-       <use x="98.974609" xlink:href="#Constantia-116"/>
-      </g>
-     </g>
-    </g>
-    <g id="xtick_19">
-     <g id="line2d_41">
-      <path clip-path="url(#pe910c934c4)" d="M 756.312166 674.138531 
-L 756.312166 526.502687 
-" style="fill:none;stroke:#b0b0b0;stroke-linecap:square;stroke-width:0.8;"/>
-     </g>
-     <g id="line2d_42">
+     <g id="line2d_105">
       <g>
-       <use style="stroke:#000000;stroke-width:0.6;" x="756.312166" xlink:href="#m533c336f89" y="674.138531"/>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1352.9375" xlink:href="#mf441b09c32" y="527.662687"/>
       </g>
      </g>
-     <g id="text_25">
-      <!-- 17 -->
-      <g transform="translate(749.940916 691.311031)scale(0.16 -0.16)">
-       <use xlink:href="#Constantia-49"/>
-       <use x="31.298828" xlink:href="#Constantia-55"/>
-      </g>
-      <!-- Sat -->
-      <g transform="translate(745.569666 709.235531)scale(0.16 -0.16)">
-       <use xlink:href="#Constantia-83"/>
-       <use x="50.976562" xlink:href="#Constantia-97"/>
-       <use x="98.974609" xlink:href="#Constantia-116"/>
-      </g>
-     </g>
-    </g>
-    <g id="xtick_20">
-     <g id="line2d_43">
-      <path clip-path="url(#pe910c934c4)" d="M 1032.459032 674.138531 
-L 1032.459032 526.502687 
-" style="fill:none;stroke:#b0b0b0;stroke-linecap:square;stroke-width:0.8;"/>
-     </g>
-     <g id="line2d_44">
-      <g>
-       <use style="stroke:#000000;stroke-width:0.6;" x="1032.459032" xlink:href="#m533c336f89" y="674.138531"/>
-      </g>
-     </g>
-     <g id="text_26">
-      <!-- 24 -->
-      <g transform="translate(1024.337782 691.311031)scale(0.16 -0.16)">
-       <use xlink:href="#Constantia-50"/>
-       <use x="48.4375" xlink:href="#Constantia-52"/>
-      </g>
-      <!-- Sat -->
-      <g transform="translate(1021.716532 709.235531)scale(0.16 -0.16)">
-       <use xlink:href="#Constantia-83"/>
-       <use x="50.976562" xlink:href="#Constantia-97"/>
-       <use x="98.974609" xlink:href="#Constantia-116"/>
-      </g>
-     </g>
-    </g>
-    <g id="xtick_21">
-     <g id="line2d_45">
-      <path clip-path="url(#pe910c934c4)" d="M 1308.605899 674.138531 
-L 1308.605899 526.502687 
-" style="fill:none;stroke:#b0b0b0;stroke-linecap:square;stroke-width:0.8;"/>
-     </g>
-     <g id="line2d_46">
-      <g>
-       <use style="stroke:#000000;stroke-width:0.6;" x="1308.605899" xlink:href="#m533c336f89" y="674.138531"/>
-      </g>
-     </g>
-     <g id="text_27">
+     <g id="text_37">
       <!-- 31 -->
-      <g transform="translate(1302.449649 691.311031)scale(0.16 -0.16)">
+      <g transform="translate(1346.78125 691.831031)scale(0.16 -0.16)">
        <use xlink:href="#Constantia-51"/>
        <use x="45.654297" xlink:href="#Constantia-49"/>
       </g>
       <!-- Sat -->
-      <g transform="translate(1297.863399 709.235531)scale(0.16 -0.16)">
+      <g transform="translate(1342.195 709.755531)scale(0.16 -0.16)">
        <use xlink:href="#Constantia-83"/>
        <use x="50.976562" xlink:href="#Constantia-97"/>
        <use x="98.974609" xlink:href="#Constantia-116"/>
@@ -1447,60 +1903,156 @@ L 1308.605899 526.502687
     </g>
    </g>
    <g id="matplotlib.axis_6">
-    <g id="ytick_5">
-     <g id="line2d_47">
-      <path clip-path="url(#pe910c934c4)" d="M 65.945 672.372597 
-L 1367.780227 672.372597 
-" style="fill:none;stroke:#b0b0b0;stroke-linecap:square;stroke-width:0.8;"/>
+    <g id="ytick_18">
+     <g id="line2d_106">
+      <path clip-path="url(#p8e684a33b1)" d="M 63.03 676.058531 
+L 1352.9375 676.058531 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
      </g>
-     <g id="line2d_48">
+     <g id="line2d_107">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="65.945" xlink:href="#ma883839cf8" y="672.372597"/>
+       <use style="stroke:#000000;stroke-width:0.5;" x="63.03" xlink:href="#maa28008739" y="676.058531"/>
       </g>
      </g>
-     <g id="text_28">
+     <g id="line2d_108">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1352.9375" xlink:href="#m3177973d38" y="676.058531"/>
+      </g>
+     </g>
+     <g id="text_38">
       <!-- 0 -->
-      <g transform="translate(50.3275 678.258847)scale(0.16 -0.16)">
+      <g transform="translate(50.4125 680.046031)scale(0.16 -0.16)">
        <use xlink:href="#Constantia-48"/>
       </g>
      </g>
     </g>
-    <g id="ytick_6">
-     <g id="line2d_49">
-      <path clip-path="url(#pe910c934c4)" d="M 65.945 633.412731 
-L 1367.780227 633.412731 
-" style="fill:none;stroke:#b0b0b0;stroke-linecap:square;stroke-width:0.8;"/>
+    <g id="ytick_19">
+     <g id="line2d_109">
+      <path clip-path="url(#p8e684a33b1)" d="M 63.03 659.570104 
+L 1352.9375 659.570104 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
      </g>
-     <g id="line2d_50">
+     <g id="line2d_110">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="65.945" xlink:href="#ma883839cf8" y="633.412731"/>
+       <use style="stroke:#000000;stroke-width:0.5;" x="63.03" xlink:href="#maa28008739" y="659.570104"/>
       </g>
      </g>
-     <g id="text_29">
-      <!-- 50000 -->
-      <g transform="translate(16.865 639.298981)scale(0.16 -0.16)">
-       <use xlink:href="#Constantia-53"/>
-       <use x="47.558594" xlink:href="#Constantia-48"/>
-       <use x="101.416016" xlink:href="#Constantia-48"/>
-       <use x="155.273438" xlink:href="#Constantia-48"/>
-       <use x="209.130859" xlink:href="#Constantia-48"/>
+     <g id="line2d_111">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1352.9375" xlink:href="#m3177973d38" y="659.570104"/>
+      </g>
+     </g>
+     <g id="text_39">
+      <!-- 20000 -->
+      <g transform="translate(16.81 663.557604)scale(0.16 -0.16)">
+       <use xlink:href="#Constantia-50"/>
+       <use x="48.4375" xlink:href="#Constantia-48"/>
+       <use x="102.294922" xlink:href="#Constantia-48"/>
+       <use x="156.152344" xlink:href="#Constantia-48"/>
+       <use x="210.009766" xlink:href="#Constantia-48"/>
       </g>
      </g>
     </g>
-    <g id="ytick_7">
-     <g id="line2d_51">
-      <path clip-path="url(#pe910c934c4)" d="M 65.945 594.452864 
-L 1367.780227 594.452864 
-" style="fill:none;stroke:#b0b0b0;stroke-linecap:square;stroke-width:0.8;"/>
+    <g id="ytick_20">
+     <g id="line2d_112">
+      <path clip-path="url(#p8e684a33b1)" d="M 63.03 643.081677 
+L 1352.9375 643.081677 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
      </g>
-     <g id="line2d_52">
+     <g id="line2d_113">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="65.945" xlink:href="#ma883839cf8" y="594.452864"/>
+       <use style="stroke:#000000;stroke-width:0.5;" x="63.03" xlink:href="#maa28008739" y="643.081677"/>
       </g>
      </g>
-     <g id="text_30">
+     <g id="line2d_114">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1352.9375" xlink:href="#m3177973d38" y="643.081677"/>
+      </g>
+     </g>
+     <g id="text_40">
+      <!-- 40000 -->
+      <g transform="translate(16.0675 647.069177)scale(0.16 -0.16)">
+       <use xlink:href="#Constantia-52"/>
+       <use x="53.076172" xlink:href="#Constantia-48"/>
+       <use x="106.933594" xlink:href="#Constantia-48"/>
+       <use x="160.791016" xlink:href="#Constantia-48"/>
+       <use x="214.648438" xlink:href="#Constantia-48"/>
+      </g>
+     </g>
+    </g>
+    <g id="ytick_21">
+     <g id="line2d_115">
+      <path clip-path="url(#p8e684a33b1)" d="M 63.03 626.59325 
+L 1352.9375 626.59325 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
+     </g>
+     <g id="line2d_116">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="63.03" xlink:href="#maa28008739" y="626.59325"/>
+      </g>
+     </g>
+     <g id="line2d_117">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1352.9375" xlink:href="#m3177973d38" y="626.59325"/>
+      </g>
+     </g>
+     <g id="text_41">
+      <!-- 60000 -->
+      <g transform="translate(15.9025 630.58075)scale(0.16 -0.16)">
+       <use xlink:href="#Constantia-54"/>
+       <use x="54.101562" xlink:href="#Constantia-48"/>
+       <use x="107.958984" xlink:href="#Constantia-48"/>
+       <use x="161.816406" xlink:href="#Constantia-48"/>
+       <use x="215.673828" xlink:href="#Constantia-48"/>
+      </g>
+     </g>
+    </g>
+    <g id="ytick_22">
+     <g id="line2d_118">
+      <path clip-path="url(#p8e684a33b1)" d="M 63.03 610.104823 
+L 1352.9375 610.104823 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
+     </g>
+     <g id="line2d_119">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="63.03" xlink:href="#maa28008739" y="610.104823"/>
+      </g>
+     </g>
+     <g id="line2d_120">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1352.9375" xlink:href="#m3177973d38" y="610.104823"/>
+      </g>
+     </g>
+     <g id="text_42">
+      <!-- 80000 -->
+      <g transform="translate(15.975 614.092323)scale(0.16 -0.16)">
+       <use xlink:href="#Constantia-56"/>
+       <use x="53.662109" xlink:href="#Constantia-48"/>
+       <use x="107.519531" xlink:href="#Constantia-48"/>
+       <use x="161.376953" xlink:href="#Constantia-48"/>
+       <use x="215.234375" xlink:href="#Constantia-48"/>
+      </g>
+     </g>
+    </g>
+    <g id="ytick_23">
+     <g id="line2d_121">
+      <path clip-path="url(#p8e684a33b1)" d="M 63.03 593.616396 
+L 1352.9375 593.616396 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
+     </g>
+     <g id="line2d_122">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="63.03" xlink:href="#maa28008739" y="593.616396"/>
+      </g>
+     </g>
+     <g id="line2d_123">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1352.9375" xlink:href="#m3177973d38" y="593.616396"/>
+      </g>
+     </g>
+     <g id="text_43">
       <!-- 100000 -->
-      <g transform="translate(10.85 600.339114)scale(0.16 -0.16)">
+      <g transform="translate(10.935 597.603896)scale(0.16 -0.16)">
        <use xlink:href="#Constantia-49"/>
        <use x="31.298828" xlink:href="#Constantia-48"/>
        <use x="85.15625" xlink:href="#Constantia-48"/>
@@ -1510,76 +2062,122 @@ L 1367.780227 594.452864
       </g>
      </g>
     </g>
-    <g id="ytick_8">
-     <g id="line2d_53">
-      <path clip-path="url(#pe910c934c4)" d="M 65.945 555.492997 
-L 1367.780227 555.492997 
-" style="fill:none;stroke:#b0b0b0;stroke-linecap:square;stroke-width:0.8;"/>
+    <g id="ytick_24">
+     <g id="line2d_124">
+      <path clip-path="url(#p8e684a33b1)" d="M 63.03 577.127969 
+L 1352.9375 577.127969 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
      </g>
-     <g id="line2d_54">
+     <g id="line2d_125">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="65.945" xlink:href="#ma883839cf8" y="555.492997"/>
+       <use style="stroke:#000000;stroke-width:0.5;" x="63.03" xlink:href="#maa28008739" y="577.127969"/>
       </g>
      </g>
-     <g id="text_31">
-      <!-- 150000 -->
-      <g transform="translate(11.8575 561.379247)scale(0.16 -0.16)">
+     <g id="line2d_126">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1352.9375" xlink:href="#m3177973d38" y="577.127969"/>
+      </g>
+     </g>
+     <g id="text_44">
+      <!-- 120000 -->
+      <g transform="translate(11.8025 581.115469)scale(0.16 -0.16)">
        <use xlink:href="#Constantia-49"/>
-       <use x="31.298828" xlink:href="#Constantia-53"/>
-       <use x="78.857422" xlink:href="#Constantia-48"/>
-       <use x="132.714844" xlink:href="#Constantia-48"/>
-       <use x="186.572266" xlink:href="#Constantia-48"/>
-       <use x="240.429688" xlink:href="#Constantia-48"/>
+       <use x="31.298828" xlink:href="#Constantia-50"/>
+       <use x="79.736328" xlink:href="#Constantia-48"/>
+       <use x="133.59375" xlink:href="#Constantia-48"/>
+       <use x="187.451172" xlink:href="#Constantia-48"/>
+       <use x="241.308594" xlink:href="#Constantia-48"/>
+      </g>
+     </g>
+    </g>
+    <g id="ytick_25">
+     <g id="line2d_127">
+      <path clip-path="url(#p8e684a33b1)" d="M 63.03 560.639542 
+L 1352.9375 560.639542 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
+     </g>
+     <g id="line2d_128">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="63.03" xlink:href="#maa28008739" y="560.639542"/>
+      </g>
+     </g>
+     <g id="line2d_129">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1352.9375" xlink:href="#m3177973d38" y="560.639542"/>
+      </g>
+     </g>
+     <g id="text_45">
+      <!-- 140000 -->
+      <g transform="translate(11.06 564.627042)scale(0.16 -0.16)">
+       <use xlink:href="#Constantia-49"/>
+       <use x="31.298828" xlink:href="#Constantia-52"/>
+       <use x="84.375" xlink:href="#Constantia-48"/>
+       <use x="138.232422" xlink:href="#Constantia-48"/>
+       <use x="192.089844" xlink:href="#Constantia-48"/>
+       <use x="245.947266" xlink:href="#Constantia-48"/>
+      </g>
+     </g>
+    </g>
+    <g id="ytick_26">
+     <g id="line2d_130">
+      <path clip-path="url(#p8e684a33b1)" d="M 63.03 544.151115 
+L 1352.9375 544.151115 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
+     </g>
+     <g id="line2d_131">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="63.03" xlink:href="#maa28008739" y="544.151115"/>
+      </g>
+     </g>
+     <g id="line2d_132">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1352.9375" xlink:href="#m3177973d38" y="544.151115"/>
+      </g>
+     </g>
+     <g id="text_46">
+      <!-- 160000 -->
+      <g transform="translate(10.895 548.138615)scale(0.16 -0.16)">
+       <use xlink:href="#Constantia-49"/>
+       <use x="31.298828" xlink:href="#Constantia-54"/>
+       <use x="85.400391" xlink:href="#Constantia-48"/>
+       <use x="139.257812" xlink:href="#Constantia-48"/>
+       <use x="193.115234" xlink:href="#Constantia-48"/>
+       <use x="246.972656" xlink:href="#Constantia-48"/>
+      </g>
+     </g>
+    </g>
+    <g id="ytick_27">
+     <g id="line2d_133">
+      <path clip-path="url(#p8e684a33b1)" d="M 63.03 527.662687 
+L 1352.9375 527.662687 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
+     </g>
+     <g id="line2d_134">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="63.03" xlink:href="#maa28008739" y="527.662687"/>
+      </g>
+     </g>
+     <g id="line2d_135">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1352.9375" xlink:href="#m3177973d38" y="527.662687"/>
+      </g>
+     </g>
+     <g id="text_47">
+      <!-- 180000 -->
+      <g transform="translate(10.9675 531.650187)scale(0.16 -0.16)">
+       <use xlink:href="#Constantia-49"/>
+       <use x="31.298828" xlink:href="#Constantia-56"/>
+       <use x="84.960938" xlink:href="#Constantia-48"/>
+       <use x="138.818359" xlink:href="#Constantia-48"/>
+       <use x="192.675781" xlink:href="#Constantia-48"/>
+       <use x="246.533203" xlink:href="#Constantia-48"/>
       </g>
      </g>
     </g>
    </g>
-   <g id="line2d_55">
-    <path clip-path="url(#pe910c934c4)" d="M 125.119329 625.633224 
-L 164.568881 593.460166 
-L 204.018433 608.642827 
-L 243.467986 655.852055 
-L 282.917538 571.270185 
-L 322.36709 607.257414 
-L 361.816643 607.572989 
-L 401.266195 611.006911 
-L 440.715747 608.217385 
-L 480.1653 625.213237 
-L 559.064404 533.213408 
-L 598.513957 614.723683 
-L 637.963509 611.214178 
-L 677.413061 667.427811 
-L 716.862614 565.957617 
-L 756.312166 614.409666 
-L 795.761718 623.416408 
-L 835.211271 615.626772 
-L 874.660823 624.795587 
-L 914.110375 610.283037 
-L 953.559928 615.131982 
-L 993.00948 618.365651 
-L 1032.459032 624.293005 
-L 1071.908585 626.61813 
-L 1111.358137 621.984243 
-L 1150.807689 626.763061 
-L 1190.257242 627.368497 
-L 1229.706794 627.999647 
-L 1269.156346 626.389825 
-L 1308.605899 626.951626 
-" style="fill:none;stroke:#f08080;stroke-linecap:square;stroke-width:3;"/>
-   </g>
-   <g id="patch_9">
-    <path d="M 65.945 674.138531 
-L 65.945 526.502687 
-" style="fill:none;stroke:#000000;stroke-linecap:square;stroke-linejoin:miter;stroke-width:0.8;"/>
-   </g>
-   <g id="patch_10">
-    <path d="M 65.945 674.138531 
-L 1367.780227 674.138531 
-" style="fill:none;stroke:#000000;stroke-linecap:square;stroke-linejoin:miter;stroke-width:0.8;"/>
-   </g>
-   <g id="text_32">
+   <g id="text_48">
     <!-- New Recovered -->
-    <g transform="translate(650.012614 520.502687)scale(0.2 -0.2)">
+    <g transform="translate(641.13375 522.662687)scale(0.2 -0.2)">
      <defs>
       <path d="M 21.78125 14.984375 
 Q 21.78125 12.0625 21.796875 9.71875 
@@ -1643,6 +2241,27 @@ Q 26.703125 64.546875 25.140625 64.453125
 Q 23.578125 64.359375 21.78125 64.15625 
 z
 " id="Constantia-82"/>
+      <path d="M 13.71875 23.046875 
+Q 13.71875 13.921875 17.140625 8.171875 
+Q 20.5625 2.4375 27.296875 2.4375 
+Q 33.59375 2.4375 36.890625 7.484375 
+Q 40.1875 12.546875 40.1875 22.46875 
+Q 40.1875 31.78125 36.71875 37.15625 
+Q 33.25 42.53125 26.65625 42.53125 
+Q 20.40625 42.53125 17.0625 37.6875 
+Q 13.71875 32.859375 13.71875 23.046875 
+z
+M 50.140625 23.484375 
+Q 50.140625 12.359375 43.421875 5.484375 
+Q 36.71875 -1.375 26.375 -1.375 
+Q 16.265625 -1.375 10.03125 5.09375 
+Q 3.8125 11.578125 3.8125 22.015625 
+Q 3.8125 32.765625 10.328125 39.578125 
+Q 16.84375 46.390625 27.59375 46.390625 
+Q 37.75 46.390625 43.9375 40.109375 
+Q 50.140625 33.84375 50.140625 23.484375 
+z
+" id="Constantia-111"/>
       <path d="M 2.828125 42.96875 
 Q 10.984375 44.53125 18.3125 46.390625 
 L 18.796875 46.046875 
@@ -1721,31 +2340,79 @@ z
   </g>
   <g id="axes_4">
    <g id="patch_11">
-    <path d="M 65.945 911.709 
-L 1367.780227 911.709 
-L 1367.780227 764.073156 
-L 65.945 764.073156 
+    <path d="M 63.03 912.549 
+L 1352.9375 912.549 
+L 1352.9375 764.153156 
+L 63.03 764.153156 
 z
 " style="fill:#ffffff;"/>
    </g>
+   <g id="line2d_136">
+    <path clip-path="url(#pc225e691b3)" d="M 63.03 861.946017 
+L 106.026917 795.687273 
+L 149.023833 842.877151 
+L 192.02075 898.822384 
+L 235.017667 793.609731 
+L 278.014583 839.018859 
+L 321.0115 841.244797 
+L 364.008417 838.202682 
+L 407.005333 846.067662 
+L 450.00225 868.252841 
+L 535.996083 775.505438 
+L 578.993 858.903902 
+L 621.989917 863.578372 
+L 664.986833 908.097125 
+L 707.98375 789.00946 
+L 750.980667 833.750807 
+L 793.977583 871.220758 
+L 836.9745 867.139872 
+L 879.971417 860.165267 
+L 922.968333 860.610455 
+L 965.96525 861.278236 
+L 1008.962167 863.429976 
+L 1051.959083 870.478778 
+L 1094.956 877.601779 
+L 1137.952917 875.153247 
+L 1180.949833 873.966081 
+L 1223.94675 874.782258 
+L 1266.943667 870.40458 
+L 1309.940583 871.740143 
+L 1352.9375 877.824373 
+" style="fill:none;stroke:#87cefa;stroke-linecap:square;stroke-width:3;"/>
+   </g>
+   <g id="patch_12">
+    <path d="M 63.03 912.549 
+L 63.03 764.153156 
+" style="fill:none;stroke:#000000;stroke-linecap:square;stroke-linejoin:miter;"/>
+   </g>
+   <g id="patch_13">
+    <path d="M 63.03 912.549 
+L 1352.9375 912.549 
+" style="fill:none;stroke:#000000;stroke-linecap:square;stroke-linejoin:miter;"/>
+   </g>
    <g id="matplotlib.axis_7">
-    <g id="xtick_22">
-     <g id="line2d_56">
+    <g id="xtick_19">
+     <g id="line2d_137">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="125.119329" xlink:href="#mde5eb9b6a6" y="911.709"/>
+       <use style="stroke:#000000;stroke-width:0.5;" x="63.03" xlink:href="#mfee044b381" y="912.549"/>
       </g>
      </g>
-     <g id="text_33">
+     <g id="line2d_138">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="63.03" xlink:href="#ma0711d10d3" y="764.153156"/>
+      </g>
+     </g>
+     <g id="text_49">
       <!--  -->
-      <g transform="translate(125.119329 930.4815)scale(0.16 -0.16)"/>
+      <g transform="translate(63.03 928.3215)scale(0.16 -0.16)"/>
       <!-- Oct -->
-      <g transform="translate(112.170579 948.406)scale(0.16 -0.16)">
+      <g transform="translate(50.08125 946.246)scale(0.16 -0.16)">
        <use xlink:href="#Constantia-79"/>
        <use x="80.419922" xlink:href="#Constantia-99"/>
        <use x="126.5625" xlink:href="#Constantia-116"/>
       </g>
       <!-- 2020 -->
-      <g transform="translate(108.751829 966.3305)scale(0.16 -0.16)">
+      <g transform="translate(46.6625 964.1705)scale(0.16 -0.16)">
        <use xlink:href="#Constantia-50"/>
        <use x="48.4375" xlink:href="#Constantia-48"/>
        <use x="102.294922" xlink:href="#Constantia-50"/>
@@ -1753,149 +2420,150 @@ z
       </g>
      </g>
     </g>
-    <g id="xtick_23">
-     <g id="line2d_57">
+    <g id="xtick_20">
+     <g id="line2d_139">
+      <path clip-path="url(#pc225e691b3)" d="M 149.023833 912.549 
+L 149.023833 764.153156 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
+     </g>
+     <g id="line2d_140">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="1348.055451" xlink:href="#mde5eb9b6a6" y="911.709"/>
+       <use style="stroke:#000000;stroke-width:0.5;" x="149.023833" xlink:href="#mbe20696d92" y="912.549"/>
       </g>
      </g>
-     <g id="text_34">
-      <!--  -->
-      <g transform="translate(1348.055451 930.4815)scale(0.16 -0.16)"/>
-      <!-- Nov -->
-      <g transform="translate(1333.995451 948.406)scale(0.16 -0.16)">
-       <use xlink:href="#Constantia-78"/>
-       <use x="73.402344" xlink:href="#Constantia-111"/>
-       <use x="127.455078" xlink:href="#Constantia-118"/>
-      </g>
-      <!-- 2020 -->
-      <g transform="translate(1331.687951 966.3305)scale(0.16 -0.16)">
-       <use xlink:href="#Constantia-50"/>
-       <use x="48.4375" xlink:href="#Constantia-48"/>
-       <use x="102.294922" xlink:href="#Constantia-50"/>
-       <use x="150.732422" xlink:href="#Constantia-48"/>
-      </g>
-     </g>
-    </g>
-    <g id="xtick_24">
-     <g id="line2d_58">
-      <path clip-path="url(#p4d1cc50570)" d="M 204.018433 911.709 
-L 204.018433 764.073156 
-" style="fill:none;stroke:#b0b0b0;stroke-linecap:square;stroke-width:0.8;"/>
-     </g>
-     <g id="line2d_59">
+     <g id="line2d_141">
       <g>
-       <use style="stroke:#000000;stroke-width:0.6;" x="204.018433" xlink:href="#m533c336f89" y="911.709"/>
+       <use style="stroke:#000000;stroke-width:0.5;" x="149.023833" xlink:href="#mf441b09c32" y="764.153156"/>
       </g>
      </g>
-     <g id="text_35">
+     <g id="text_50">
       <!-- 03 -->
-      <g transform="translate(196.057183 928.8815)scale(0.16 -0.16)">
+      <g transform="translate(141.062583 928.3215)scale(0.16 -0.16)">
        <use xlink:href="#Constantia-48"/>
        <use x="53.857422" xlink:href="#Constantia-51"/>
       </g>
       <!-- Sat -->
-      <g transform="translate(193.275933 946.806)scale(0.16 -0.16)">
+      <g transform="translate(138.281333 946.246)scale(0.16 -0.16)">
        <use xlink:href="#Constantia-83"/>
        <use x="50.976562" xlink:href="#Constantia-97"/>
        <use x="98.974609" xlink:href="#Constantia-116"/>
       </g>
      </g>
     </g>
-    <g id="xtick_25">
-     <g id="line2d_60">
-      <path clip-path="url(#p4d1cc50570)" d="M 480.1653 911.709 
-L 480.1653 764.073156 
-" style="fill:none;stroke:#b0b0b0;stroke-linecap:square;stroke-width:0.8;"/>
+    <g id="xtick_21">
+     <g id="line2d_142">
+      <path clip-path="url(#pc225e691b3)" d="M 450.00225 912.549 
+L 450.00225 764.153156 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
      </g>
-     <g id="line2d_61">
+     <g id="line2d_143">
       <g>
-       <use style="stroke:#000000;stroke-width:0.6;" x="480.1653" xlink:href="#m533c336f89" y="911.709"/>
+       <use style="stroke:#000000;stroke-width:0.5;" x="450.00225" xlink:href="#mbe20696d92" y="912.549"/>
       </g>
      </g>
-     <g id="text_36">
+     <g id="line2d_144">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="450.00225" xlink:href="#mf441b09c32" y="764.153156"/>
+      </g>
+     </g>
+     <g id="text_51">
       <!-- 10 -->
-      <g transform="translate(473.3528 928.8815)scale(0.16 -0.16)">
+      <g transform="translate(443.18975 928.3215)scale(0.16 -0.16)">
        <use xlink:href="#Constantia-49"/>
        <use x="31.298828" xlink:href="#Constantia-48"/>
       </g>
       <!-- Sat -->
-      <g transform="translate(469.4228 946.806)scale(0.16 -0.16)">
+      <g transform="translate(439.25975 946.246)scale(0.16 -0.16)">
        <use xlink:href="#Constantia-83"/>
        <use x="50.976562" xlink:href="#Constantia-97"/>
        <use x="98.974609" xlink:href="#Constantia-116"/>
       </g>
      </g>
     </g>
-    <g id="xtick_26">
-     <g id="line2d_62">
-      <path clip-path="url(#p4d1cc50570)" d="M 756.312166 911.709 
-L 756.312166 764.073156 
-" style="fill:none;stroke:#b0b0b0;stroke-linecap:square;stroke-width:0.8;"/>
+    <g id="xtick_22">
+     <g id="line2d_145">
+      <path clip-path="url(#pc225e691b3)" d="M 750.980667 912.549 
+L 750.980667 764.153156 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
      </g>
-     <g id="line2d_63">
+     <g id="line2d_146">
       <g>
-       <use style="stroke:#000000;stroke-width:0.6;" x="756.312166" xlink:href="#m533c336f89" y="911.709"/>
+       <use style="stroke:#000000;stroke-width:0.5;" x="750.980667" xlink:href="#mbe20696d92" y="912.549"/>
       </g>
      </g>
-     <g id="text_37">
+     <g id="line2d_147">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="750.980667" xlink:href="#mf441b09c32" y="764.153156"/>
+      </g>
+     </g>
+     <g id="text_52">
       <!-- 17 -->
-      <g transform="translate(749.940916 928.8815)scale(0.16 -0.16)">
+      <g transform="translate(744.609417 928.3215)scale(0.16 -0.16)">
        <use xlink:href="#Constantia-49"/>
        <use x="31.298828" xlink:href="#Constantia-55"/>
       </g>
       <!-- Sat -->
-      <g transform="translate(745.569666 946.806)scale(0.16 -0.16)">
+      <g transform="translate(740.238167 946.246)scale(0.16 -0.16)">
        <use xlink:href="#Constantia-83"/>
        <use x="50.976562" xlink:href="#Constantia-97"/>
        <use x="98.974609" xlink:href="#Constantia-116"/>
       </g>
      </g>
     </g>
-    <g id="xtick_27">
-     <g id="line2d_64">
-      <path clip-path="url(#p4d1cc50570)" d="M 1032.459032 911.709 
-L 1032.459032 764.073156 
-" style="fill:none;stroke:#b0b0b0;stroke-linecap:square;stroke-width:0.8;"/>
+    <g id="xtick_23">
+     <g id="line2d_148">
+      <path clip-path="url(#pc225e691b3)" d="M 1051.959083 912.549 
+L 1051.959083 764.153156 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
      </g>
-     <g id="line2d_65">
+     <g id="line2d_149">
       <g>
-       <use style="stroke:#000000;stroke-width:0.6;" x="1032.459032" xlink:href="#m533c336f89" y="911.709"/>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1051.959083" xlink:href="#mbe20696d92" y="912.549"/>
       </g>
      </g>
-     <g id="text_38">
+     <g id="line2d_150">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1051.959083" xlink:href="#mf441b09c32" y="764.153156"/>
+      </g>
+     </g>
+     <g id="text_53">
       <!-- 24 -->
-      <g transform="translate(1024.337782 928.8815)scale(0.16 -0.16)">
+      <g transform="translate(1043.837833 928.3215)scale(0.16 -0.16)">
        <use xlink:href="#Constantia-50"/>
        <use x="48.4375" xlink:href="#Constantia-52"/>
       </g>
       <!-- Sat -->
-      <g transform="translate(1021.716532 946.806)scale(0.16 -0.16)">
+      <g transform="translate(1041.216583 946.246)scale(0.16 -0.16)">
        <use xlink:href="#Constantia-83"/>
        <use x="50.976562" xlink:href="#Constantia-97"/>
        <use x="98.974609" xlink:href="#Constantia-116"/>
       </g>
      </g>
     </g>
-    <g id="xtick_28">
-     <g id="line2d_66">
-      <path clip-path="url(#p4d1cc50570)" d="M 1308.605899 911.709 
-L 1308.605899 764.073156 
-" style="fill:none;stroke:#b0b0b0;stroke-linecap:square;stroke-width:0.8;"/>
+    <g id="xtick_24">
+     <g id="line2d_151">
+      <path clip-path="url(#pc225e691b3)" d="M 1352.9375 912.549 
+L 1352.9375 764.153156 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
      </g>
-     <g id="line2d_67">
+     <g id="line2d_152">
       <g>
-       <use style="stroke:#000000;stroke-width:0.6;" x="1308.605899" xlink:href="#m533c336f89" y="911.709"/>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1352.9375" xlink:href="#mbe20696d92" y="912.549"/>
       </g>
      </g>
-     <g id="text_39">
+     <g id="line2d_153">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1352.9375" xlink:href="#mf441b09c32" y="764.153156"/>
+      </g>
+     </g>
+     <g id="text_54">
       <!-- 31 -->
-      <g transform="translate(1302.449649 928.8815)scale(0.16 -0.16)">
+      <g transform="translate(1346.78125 928.3215)scale(0.16 -0.16)">
        <use xlink:href="#Constantia-51"/>
        <use x="45.654297" xlink:href="#Constantia-49"/>
       </g>
       <!-- Sat -->
-      <g transform="translate(1297.863399 946.806)scale(0.16 -0.16)">
+      <g transform="translate(1342.195 946.246)scale(0.16 -0.16)">
        <use xlink:href="#Constantia-83"/>
        <use x="50.976562" xlink:href="#Constantia-97"/>
        <use x="98.974609" xlink:href="#Constantia-116"/>
@@ -1904,58 +2572,73 @@ L 1308.605899 764.073156
     </g>
    </g>
    <g id="matplotlib.axis_8">
-    <g id="ytick_9">
-     <g id="line2d_68">
-      <path clip-path="url(#p4d1cc50570)" d="M 65.945 909.504639 
-L 1367.780227 909.504639 
-" style="fill:none;stroke:#b0b0b0;stroke-linecap:square;stroke-width:0.8;"/>
+    <g id="ytick_28">
+     <g id="line2d_154">
+      <path clip-path="url(#pc225e691b3)" d="M 63.03 912.549 
+L 1352.9375 912.549 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
      </g>
-     <g id="line2d_69">
+     <g id="line2d_155">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="65.945" xlink:href="#ma883839cf8" y="909.504639"/>
+       <use style="stroke:#000000;stroke-width:0.5;" x="63.03" xlink:href="#maa28008739" y="912.549"/>
       </g>
      </g>
-     <g id="text_40">
+     <g id="line2d_156">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1352.9375" xlink:href="#m3177973d38" y="912.549"/>
+      </g>
+     </g>
+     <g id="text_55">
       <!-- 0 -->
-      <g transform="translate(50.3275 915.390889)scale(0.16 -0.16)">
+      <g transform="translate(50.4125 916.5365)scale(0.16 -0.16)">
        <use xlink:href="#Constantia-48"/>
       </g>
      </g>
     </g>
-    <g id="ytick_10">
-     <g id="line2d_70">
-      <path clip-path="url(#p4d1cc50570)" d="M 65.945 871.951644 
-L 1367.780227 871.951644 
-" style="fill:none;stroke:#b0b0b0;stroke-linecap:square;stroke-width:0.8;"/>
+    <g id="ytick_29">
+     <g id="line2d_157">
+      <path clip-path="url(#pc225e691b3)" d="M 63.03 875.450039 
+L 1352.9375 875.450039 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
      </g>
-     <g id="line2d_71">
+     <g id="line2d_158">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="65.945" xlink:href="#ma883839cf8" y="871.951644"/>
+       <use style="stroke:#000000;stroke-width:0.5;" x="63.03" xlink:href="#maa28008739" y="875.450039"/>
       </g>
      </g>
-     <g id="text_41">
+     <g id="line2d_159">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1352.9375" xlink:href="#m3177973d38" y="875.450039"/>
+      </g>
+     </g>
+     <g id="text_56">
       <!-- 500 -->
-      <g transform="translate(34.1 877.837894)scale(0.16 -0.16)">
+      <g transform="translate(34.185 879.437539)scale(0.16 -0.16)">
        <use xlink:href="#Constantia-53"/>
        <use x="47.558594" xlink:href="#Constantia-48"/>
        <use x="101.416016" xlink:href="#Constantia-48"/>
       </g>
      </g>
     </g>
-    <g id="ytick_11">
-     <g id="line2d_72">
-      <path clip-path="url(#p4d1cc50570)" d="M 65.945 834.39865 
-L 1367.780227 834.39865 
-" style="fill:none;stroke:#b0b0b0;stroke-linecap:square;stroke-width:0.8;"/>
+    <g id="ytick_30">
+     <g id="line2d_160">
+      <path clip-path="url(#pc225e691b3)" d="M 63.03 838.351078 
+L 1352.9375 838.351078 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
      </g>
-     <g id="line2d_73">
+     <g id="line2d_161">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="65.945" xlink:href="#ma883839cf8" y="834.39865"/>
+       <use style="stroke:#000000;stroke-width:0.5;" x="63.03" xlink:href="#maa28008739" y="838.351078"/>
       </g>
      </g>
-     <g id="text_42">
+     <g id="line2d_162">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1352.9375" xlink:href="#m3177973d38" y="838.351078"/>
+      </g>
+     </g>
+     <g id="text_57">
       <!-- 1000 -->
-      <g transform="translate(28.085 840.2849)scale(0.16 -0.16)">
+      <g transform="translate(28.17 842.338578)scale(0.16 -0.16)">
        <use xlink:href="#Constantia-49"/>
        <use x="31.298828" xlink:href="#Constantia-48"/>
        <use x="85.15625" xlink:href="#Constantia-48"/>
@@ -1963,20 +2646,25 @@ L 1367.780227 834.39865
       </g>
      </g>
     </g>
-    <g id="ytick_12">
-     <g id="line2d_74">
-      <path clip-path="url(#p4d1cc50570)" d="M 65.945 796.845655 
-L 1367.780227 796.845655 
-" style="fill:none;stroke:#b0b0b0;stroke-linecap:square;stroke-width:0.8;"/>
+    <g id="ytick_31">
+     <g id="line2d_163">
+      <path clip-path="url(#pc225e691b3)" d="M 63.03 801.252117 
+L 1352.9375 801.252117 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
      </g>
-     <g id="line2d_75">
+     <g id="line2d_164">
       <g>
-       <use style="stroke:#000000;stroke-width:0.8;" x="65.945" xlink:href="#ma883839cf8" y="796.845655"/>
+       <use style="stroke:#000000;stroke-width:0.5;" x="63.03" xlink:href="#maa28008739" y="801.252117"/>
       </g>
      </g>
-     <g id="text_43">
+     <g id="line2d_165">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1352.9375" xlink:href="#m3177973d38" y="801.252117"/>
+      </g>
+     </g>
+     <g id="text_58">
       <!-- 1500 -->
-      <g transform="translate(29.0925 802.731905)scale(0.16 -0.16)">
+      <g transform="translate(29.1775 805.239617)scale(0.16 -0.16)">
        <use xlink:href="#Constantia-49"/>
        <use x="31.298828" xlink:href="#Constantia-53"/>
        <use x="78.857422" xlink:href="#Constantia-48"/>
@@ -1984,53 +2672,36 @@ L 1367.780227 796.845655
       </g>
      </g>
     </g>
+    <g id="ytick_32">
+     <g id="line2d_166">
+      <path clip-path="url(#pc225e691b3)" d="M 63.03 764.153156 
+L 1352.9375 764.153156 
+" style="fill:none;stroke:#000000;stroke-dasharray:1,3;stroke-dashoffset:0;stroke-width:0.5;"/>
+     </g>
+     <g id="line2d_167">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="63.03" xlink:href="#maa28008739" y="764.153156"/>
+      </g>
+     </g>
+     <g id="line2d_168">
+      <g>
+       <use style="stroke:#000000;stroke-width:0.5;" x="1352.9375" xlink:href="#m3177973d38" y="764.153156"/>
+      </g>
+     </g>
+     <g id="text_59">
+      <!-- 2000 -->
+      <g transform="translate(25.4275 768.140656)scale(0.16 -0.16)">
+       <use xlink:href="#Constantia-50"/>
+       <use x="48.4375" xlink:href="#Constantia-48"/>
+       <use x="102.294922" xlink:href="#Constantia-48"/>
+       <use x="156.152344" xlink:href="#Constantia-48"/>
+      </g>
+     </g>
+    </g>
    </g>
-   <g id="line2d_76">
-    <path clip-path="url(#p4d1cc50570)" d="M 125.119329 858.282354 
-L 164.568881 791.212706 
-L 204.018433 838.980115 
-L 243.467986 895.610031 
-L 282.917538 789.109738 
-L 322.36709 835.074604 
-L 361.816643 837.327783 
-L 401.266195 834.248438 
-L 440.715747 842.209673 
-L 480.1653 864.666363 
-L 559.064404 770.783876 
-L 598.513957 855.203009 
-L 637.963509 859.934686 
-L 677.413061 904.99828 
-L 716.862614 784.453167 
-L 756.312166 829.742078 
-L 795.761718 867.670603 
-L 835.211271 863.539774 
-L 874.660823 856.479811 
-L 914.110375 856.930446 
-L 953.559928 857.6064 
-L 993.00948 859.784474 
-L 1032.459032 866.919543 
-L 1071.908585 874.129718 
-L 1111.358137 871.65122 
-L 1150.807689 870.449525 
-L 1190.257242 871.275691 
-L 1229.706794 866.844437 
-L 1269.156346 868.196345 
-L 1308.605899 874.355036 
-" style="fill:none;stroke:#87cefa;stroke-linecap:square;stroke-width:3;"/>
-   </g>
-   <g id="patch_12">
-    <path d="M 65.945 911.709 
-L 65.945 764.073156 
-" style="fill:none;stroke:#000000;stroke-linecap:square;stroke-linejoin:miter;stroke-width:0.8;"/>
-   </g>
-   <g id="patch_13">
-    <path d="M 65.945 911.709 
-L 1367.780227 911.709 
-" style="fill:none;stroke:#000000;stroke-linecap:square;stroke-linejoin:miter;stroke-width:0.8;"/>
-   </g>
-   <g id="text_44">
+   <g id="text_60">
     <!-- New Deaths -->
-    <g transform="translate(664.429801 758.073156)scale(0.2 -0.2)">
+    <g transform="translate(655.550937 759.153156)scale(0.2 -0.2)">
      <defs>
       <path d="M 17.09375 0 
 Q 11.1875 0 4.984375 -0.140625 
@@ -2120,9 +2791,9 @@ z
     </g>
    </g>
   </g>
-  <g id="text_45">
+  <g id="text_61">
    <!-- India during October -->
-   <g transform="translate(576.940938 23.387187)scale(0.22 -0.22)">
+   <g transform="translate(574.865937 23.387187)scale(0.22 -0.22)">
     <defs>
      <path d="M 26.859375 15.328125 
 Q 26.859375 12.40625 26.875 10.015625 
@@ -2544,17 +3215,17 @@ z
   </g>
  </g>
  <defs>
-  <clipPath id="p7a126c6539">
-   <rect height="147.635844" width="1301.835227" x="65.945" y="51.36175"/>
+  <clipPath id="p11b024a6a6">
+   <rect height="148.395844" width="1289.9075" x="63.03" y="54.68175"/>
   </clipPath>
-  <clipPath id="pe6f8f93a5f">
-   <rect height="147.635844" width="1301.835227" x="65.945" y="288.932219"/>
+  <clipPath id="pf93a407b62">
+   <rect height="148.395844" width="1289.9075" x="63.03" y="291.172219"/>
   </clipPath>
-  <clipPath id="pe910c934c4">
-   <rect height="147.635844" width="1301.835227" x="65.945" y="526.502687"/>
+  <clipPath id="p8e684a33b1">
+   <rect height="148.395844" width="1289.9075" x="63.03" y="527.662687"/>
   </clipPath>
-  <clipPath id="p4d1cc50570">
-   <rect height="147.635844" width="1301.835227" x="65.945" y="764.073156"/>
+  <clipPath id="pc225e691b3">
+   <rect height="148.395844" width="1289.9075" x="63.03" y="764.153156"/>
   </clipPath>
  </defs>
 </svg>

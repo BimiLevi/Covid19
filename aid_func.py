@@ -17,22 +17,29 @@ def iterate_countries_csv():
 		for csv_path in glob(os.path.join(path, "*Countries*")):
 			df = pd.read_csv(csv_path, index_col = None, header = 0)
 			''' add the relevant action here~'''
-			# df = df.drop(columns = ['update date', 'Continent_id'])
-			df = df.rename(columns = {'scrap_date': 'Date', 'scrap_time': 'Scrap_time',
-			                           'update_time_GMT': 'Update_time_GMT'})
-			# df.to_csv(r'C:\Users\talle\PycharmProjects\Covid19\ ' + os.path.basename(csv_path), index =False)
-			df.to_csv(csv_path, index =False)
+			df['Scrap_time'] = df['Date'] + ' ' + df['Scrap_time']
+			col_list = ['Scrap_time', 'Update_time_GMT', 'Date', 'Country_id', 'Country', \
+			            'Population', 'TotalCases', 'NewCases', 'TotalDeaths', 'NewDeaths', 'TotalRecovered',
+			            'NewRecovered', 'ActiveCases', 'SeriousCritical',
+			            'Tot_Cases_1Mpop', 'Deaths_1Mpop', 'TotalTests', 'Tests_1Mpop']
+			
+			df = df.reindex(columns=col_list)
+			# df.to_csv(r'C:\Users\talle\PycharmProjects\Covid19\test\ ' + os.path.basename(csv_path), index= False)
+			df.to_csv(csv_path, index = False)
 
 def iterate_continents_csv():
 	for path, subdir, files in os.walk(Ddate_path):
 		for csv_path in glob(os.path.join(path, '*Continents*')):
 			df = pd.read_csv(csv_path, index_col = None, header = 0)
 			''' add the relevant action here~'''
-			# df = df.drop(columns = ['update date'])
-			df = df.rename(columns = {'scrap_date': 'Date', 'scrap_time': 'Scrap_time',
-			                           'update_time_GMT': 'Update_time_GMT'})
-			# df.to_csv(r'C:\Users\talle\PycharmProjects\Covid19\ ' + os.path.basename(csv_path), index =False)
-			df.to_csv(csv_path, index =False)
+			df['Scrap_time'] = df['Date'] + ' ' + df['Scrap_time']
+			col_list = ['Scrap_time', 'Update_time_GMT', 'Date', 'Continent_id', 'Continent',
+			            'TotalCases', 'NewCases', 'TotalDeaths', 'NewDeaths', 'TotalRecovered',
+			            'NewRecovered', 'ActiveCases', 'SeriousCritical']
+
+			df = df.reindex(columns = col_list)
+			# df.to_csv(r'C:\Users\talle\PycharmProjects\Covid19\test\ ' + os.path.basename(csv_path), index = False)
+			df.to_csv(csv_path, index = False)
 
 def get_last_row(tableName):
 	row = db.get_table(tableName).tail(1)
@@ -97,8 +104,8 @@ def calculations(df, tableName):
 if __name__ == '__main__':
 	pass
 
-	# iterate_countries_csv()
-	# iterate_continents_csv()
+	iterate_countries_csv()
+	iterate_continents_csv()
 
 	# israel = db.get_table('Israel')
 

@@ -12,7 +12,7 @@ from analysis.analysis_func import *
 from analysis.visualization_func import *
 from database.db_config import current_db as db
 from resources.paths import *
-from utilities.directories import creat_directory
+from utilities.directories import create_directory
 from utilities.files_function import load_json, calculate_time
 
 # pd.set_option('display.max_rows', None)
@@ -99,7 +99,7 @@ class Territory:
 			file_format = 'svg'
 			full_path = os.path.join(plots_path, self.name)
 			if not os.path.isfile(full_path):
-				creat_directory(full_path)
+				create_directory(full_path)
 			fig.savefig('{}\{}.{}'.format(full_path, title, file_format), format = file_format,
 			            edgecolor = 'b', bbox_inches = 'tight')
 
@@ -134,7 +134,7 @@ class Territory:
 			file_format = 'svg'
 			full_path = os.path.join(plots_path, self.name)
 			if not os.path.isfile(full_path):
-				creat_directory(full_path)
+				create_directory(full_path)
 			fig.savefig('{}\{}.{}'.format(full_path, title, file_format), format = file_format, edgecolor = 'b',
 			            bbox_inches = 'tight')
 
@@ -193,7 +193,7 @@ class Territory:
 			file_format = 'svg'
 			full_path = os.path.join(plots_path, self.name)
 			if not os.path.isfile(full_path):
-				creat_directory(full_path)
+				create_directory(full_path)
 			fig.savefig('{}\{}.{}'.format(full_path, title, file_format), format = file_format, edgecolor = 'b',
 			            bbox_inches = 'tight')
 
@@ -235,7 +235,7 @@ class Territory:
 			file_format = 'svg'
 			full_path = os.path.join(plots_path, self.name)
 			if not os.path.isfile(full_path):
-				creat_directory(full_path)
+				create_directory(full_path)
 			fig.savefig('{}\{}.{}'.format(full_path, title, file_format), format = file_format,
 			            edgecolor = 'b', bbox_inches = 'tight')
 
@@ -275,7 +275,7 @@ class Territory:
 			file_format = 'html'
 			full_path = os.path.join(plots_path, self.name)
 			if not os.path.isfile(full_path):
-				creat_directory(full_path)
+				create_directory(full_path)
 			fig.write_html('{}\{}.{}'.format(full_path, title, file_format))
 
 		return fig
@@ -371,7 +371,7 @@ class Territory:
 			file_format = 'html'
 			full_path = os.path.join(plots_path, self.name)
 			if not os.path.isfile(full_path):
-				creat_directory(full_path)
+				create_directory(full_path)
 			fig.write_html('{}\{}.{}'.format(full_path, title, file_format))
 
 		return fig
@@ -474,7 +474,7 @@ class Territory:
 			file_format = 'html'
 			full_path = os.path.join(plots_path, self.name)
 			if not os.path.isfile(full_path):
-				creat_directory(full_path)
+				create_directory(full_path)
 			fig.write_html('{}\{}.{}'.format(full_path, title, file_format))
 
 		return fig
@@ -499,7 +499,7 @@ class Territory:
 			file_format = 'html'
 			full_path = os.path.join(plots_path, self.name)
 			if not os.path.isfile(full_path):
-				creat_directory(full_path)
+				create_directory(full_path)
 			fig.write_html('{}\{}.{}'.format(full_path, title, file_format))
 
 			return fig

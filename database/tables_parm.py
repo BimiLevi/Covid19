@@ -2,7 +2,7 @@ import sqlalchemy as sa
 
 # Types for PostgresSQL db - dumping.
 countries_parm = {'Date': sa.Date(),
-                  'Scrap_time': sa.Time(),
+                  'Scrap_time': sa.String(),
                   'Update_time_GMT': sa.Time(),
                   'Country_id': sa.Integer(),
                   'Country': sa.String(),
@@ -23,7 +23,7 @@ countries_parm = {'Date': sa.Date(),
                   }
 
 continents_parm = {'Date': sa.Date(),
-                   'Scrap_time': sa.Time(),
+                   'Scrap_time': sa.String(),
                    'Update_time_GMT': sa.Time(),
                    'Continent_id': sa.Integer(),
                    'Continent': sa.String(),
@@ -39,7 +39,7 @@ continents_parm = {'Date': sa.Date(),
 
 # For loading the table from the DB to pandas DF.
 general_parm = {'Date': 'datetime64[ns]',
-                'Scrap_time': 'datetime64[ns]',
+                'Scrap_time': 'object',
                 'Update date': 'datetime64[ns]',
                 'Update_time_GMT': 'datetime64[ns]',
                 'Country_id': 'int64',
@@ -59,3 +59,4 @@ general_parm = {'Date': 'datetime64[ns]',
                 'Tests_1Mpop': 'int64',
                 'Continent_id': 'int64',
                 'Continent': 'object'}
+

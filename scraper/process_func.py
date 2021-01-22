@@ -8,7 +8,6 @@ from tqdm import tqdm
 from resources.paths import continents_path, countries_id, site_url
 from utilities.files_function import load_json
 
-
 def get_html(url = site_url):
 	try:
 		print('Getting html page.')
@@ -38,17 +37,29 @@ def html_parser(html_page):
 		print('Unable to parse the html page.')
 		print("The error that occurred is:\n{}\n".format(e))
 
-def get_table(soup_obj):
+def get_table(soup_obj, yesterday = False):
 	print('Finding the table with the data.')
-	table = soup_obj.find('table')
-	print('Table found.\n')
+	try:
+		if yesterday:
+			table = soup_obj.find('table', id="main_table_countries_yesterday")
+		else:
+			table = soup_obj.find('table')
+
+		print('Table found.\n')
+
+	except Exception as e:
+		print(f'Unable to get the table, the following Error had occur:\n{e}')
+
 	return table
 
-def latest_update(soup_obj):
-	import re
+def latest_update(soup_obj, yesterday = False):
+	if yesterday:
+		time = "00:00:00"
 
-	last_updated = soup_obj.find("div", text = re.compile('Last updated')).text.strip().split(" ")
-	time = last_updated[5]
+	else:
+		import re
+		last_updated = soup_obj.find("div", text = re.compile('Last updated')).text.strip().split(" ")
+		time = last_updated[5]
 
 	return time
 
@@ -94,7 +105,7 @@ def process_table(table):
 	print('The data was extracted from the table.\n')
 	return records
 
-def creat_continent_df(df):
+def create_continent_df(df):
 	try:
 		possible_continents = load_json(continents_path)
 
@@ -134,12 +145,14 @@ def creat_continent_df(df):
 
 	try:
 		continent_df = continent_df.rename(columns = {'Serious,Critical': 'SeriousCritical',})
-		col_list = ['Date', 'Scrap_time', 'Update_time_GMT', 'Continent_id', 'Continent',
+		col_list = ['Scrap_time', 'Update_time_GMT', 'Date', 'Continent_id', 'Continent',
 		            'TotalCases', 'NewCases', 'TotalDeaths', 'NewDeaths', 'TotalRecovered',
 		            'NewRecovered', 'ActiveCases', 'SeriousCritical']
 
+
 		continent_df = continent_df.reindex(columns = col_list)
-		continent_df = continent_df.reset_index(drop = True)
+		continent_df['TotalCases'] = continent_df['TotalCases'].astype('int64')
+		continent_df = continent_df.sort_values(by = ['TotalCases'], ascending = False).reset_index(drop = True)
 
 	except Exception as e:
 		print("Couldn't rename columns names.")
@@ -147,7 +160,7 @@ def creat_continent_df(df):
 
 	return continent_df
 
-def creat_country_df(df):
+def create_country_df(df):
 	try:
 		countryId_dict = load_json(countries_id)
 
@@ -179,11 +192,14 @@ def creat_country_df(df):
 		                                          'Deaths/1M pop': 'Deaths_1Mpop',
 		                                          'Serious,Critical': 'SeriousCritical'})
 
-		col_list = ['Date', 'Scrap_time', 'Update_time_GMT', 'Country_id', 'Country',\
+		col_list = ['Scrap_time', 'Update_time_GMT', 'Date', 'Country_id', 'Country',\
 		            'Population', 'TotalCases', 'NewCases', 'TotalDeaths', 'NewDeaths', 'TotalRecovered', 'NewRecovered', 'ActiveCases', 'SeriousCritical',
 		            'Tot_Cases_1Mpop', 'Deaths_1Mpop', 'TotalTests', 'Tests_1Mpop']
 
+
 		country_df = country_df.reindex(columns = col_list)
+		country_df['TotalCases'] = country_df['TotalCases'].astype('int64')
+		country_df = country_df.sort_values(by = ['TotalCases'], ascending = False).reset_index(drop = True)
 
 
 	except Exception as e:
@@ -192,10 +208,6 @@ def creat_country_df(df):
 
 	return country_df
 
-def get_date_parm():
-	year = datetime.now().strftime("%Y")
-	month = datetime.now().strftime("%B")
-	day = datetime.now().strftime("%d")
-	return day, month, year
+
 
 

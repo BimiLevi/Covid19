@@ -10,7 +10,7 @@ def check_dir(path):
         # print("Directory {} dose not exists.".format(dir_name))
         return dir_name
 
-def creat_directory(path):
+def create_directory(path):
         temp = check_dir(path)
         if temp is None:
             pass

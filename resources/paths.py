@@ -1,4 +1,5 @@
 import os
+import datetime
 
 project_path = os.path.dirname(os.path.dirname(__file__))
 
@@ -20,16 +21,20 @@ plots_path = os.path.join(analysis_path, 'plots')
 
 countriesCodes_path = os.path.join(resources_path, 'countries codes')
 
-def creat_paths():
-	from scraper.process_func import get_date_parm
+def create_paths(yesterday = False):
+	today = datetime.datetime.today().date()
+	if yesterday:
+		date = today - datetime.timedelta(days = 1)
 
-	day, month, year = get_date_parm()
+	else:
+		date = today
 
 	# Crating directories to save the scraped data in them.
-	#  Crating path for each directory.
-	dateYea_path = Ddate_path + '/' + year
-	dateMon_path = dateYea_path + '/' + month
-	dateDay_path = dateMon_path + '/' + day
+	# Crating path for each directory.
+	dateYea_path = Ddate_path + '/' + date.strftime("%Y")
+	dateMon_path = dateYea_path + '/' + date.strftime("%B")
+	dateDay_path = dateMon_path + '/' + date.strftime("%d")
+
 
 	dir_paths = [Ddate_path, dateYea_path, dateMon_path, dateDay_path]
 

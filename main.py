@@ -14,12 +14,13 @@ def schedule_run(time):
         time = str(time)
 
     schedule.every().day.at(time).do(main)
+
     while True:
         schedule.run_pending()
         time.sleep(60)  # Wait one minute
 
 @calculate_time
-def main():
+def main(yesterday = None):
     try:
 
         if not db.table_exists('Countries'):
@@ -42,7 +43,7 @@ def main():
 
     try:
         # Getting the data out of the website, inserting the data into a dict and returns the dict.
-        data, update_time = run_scraper()
+        data, update_time = run_scraper(yesterday = yesterday)
 
     except Exception as e:
         print('Cannot fetch the data from the website.')
@@ -50,7 +51,7 @@ def main():
 
     try:
         # Crating a panda's object out of the data, and manipulating it. returns two dataframes.
-        continents, countries = data_to_dfs(data, update_time)
+        continents, countries = data_to_dfs(data, update_time,yesterday = yesterday)
         print('The data was inserted into pandas DF successfully.')
 
     except Exception as e:
@@ -59,7 +60,7 @@ def main():
 
     try:
         # Creates csv from the newly scraped data, and saves it by date inside the project directory.
-        data_to_csvs(countries, continents)
+        data_to_csvs(countries, continents, yesterday = yesterday)
 
     except Exception as e:
         print("An error has occurred when trying to save the data to csv's")
@@ -100,6 +101,8 @@ if __name__ == '__main__':
     # db.restart(tablesCsv = True)
     # schedule_run('23:00')
 
-    main()
+    main(yesterday = True)
+    # main(yesterday = False)
+
 
 

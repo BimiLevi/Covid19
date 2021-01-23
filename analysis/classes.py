@@ -791,9 +791,11 @@ Data Frame:\n{self.data}
 
 
 if __name__ == '__main__':
-	pass
+
 	# top = Top('countries')
-	# country = Country('israel')
+	country = Country('israel')
+	fig = country.closed_cases_pie()
+	fig.show()
 	# months_info = country.three_months_info()
 	#
 	# for month,year in zip(months_info['Month'].tolist(), months_info['Year'].tolist()):

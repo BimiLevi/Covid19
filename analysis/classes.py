@@ -1,5 +1,5 @@
 import re
-from datetime import datetime, date
+from datetime import datetime as dt, date
 
 import matplotlib.dates as mdates
 import matplotlib.pyplot as plt
@@ -141,7 +141,7 @@ class Territory:
 		return zip(wedges, _)
 
 	def monthly_plot(self, cols, month, year, save = False):
-		if datetime.now().day <= 7:
+		if dt.now().day <= 7:
 			return f'Not enough data for {month}'
 
 		if len(cols) > 4:
@@ -169,7 +169,7 @@ class Territory:
 
 			ax.plot(temp_data['Date'], temp_data[col], figure = fig, color = colors[i], linewidth = 3)
 
-			first_day = first_day_of_month(datetime(year, month, 1))
+			first_day = first_day_of_month(dt(year, month, 1))
 			ax.xaxis.set_minor_locator(mdates.WeekdayLocator(byweekday = week_days[first_day], interval = 1))
 			ax.xaxis.set_minor_formatter(mdates.DateFormatter('%d\n%a'))
 			ax.xaxis.grid(True, which = "minor")
@@ -185,7 +185,7 @@ class Territory:
 			ax.spines['right'].set_visible(False)
 			ax.spines['top'].set_visible(False)
 
-		month = datetime(1900, month, 1).strftime('%B')
+		month = dt(1900, month, 1).strftime('%B')
 		fig.suptitle('{} during {}'.format(self.name.capitalize(), month), fontsize = 22, fontweight = 'bold')
 
 		if save:
@@ -791,14 +791,16 @@ Data Frame:\n{self.data}
 
 
 if __name__ == '__main__':
-	top = Top('countries')
-	country = Country('israel')
-	months_info = country.three_months_info()
-
-	for month,year in zip(months_info['Month'].tolist(), months_info['Year'].tolist()):
-		month_num = datetime.strptime(month[:3], "%b").month
-		country.monthly_plot(['ActiveCases', 'NewCases', 'NewRecovered', 'NewDeaths'], month_num, year,
-		                     save = True)
+	pass
+	# top = Top('countries')
+	# country = Country('israel')
+	# months_info = country.three_months_info()
+	#
+	# for month,year in zip(months_info['Month'].tolist(), months_info['Year'].tolist()):
+	# 	month_num = dt.strptime(month[:3], "%b").month
+	# 	fig = country.monthly_plot(['ActiveCases', 'NewCases', 'NewRecovered', 'NewDeaths'], month_num, year,
+	# 	                     save = False)
+	# 	fig.show()
 
 # print(top.data['Country'])
 # print('-------------------------------')

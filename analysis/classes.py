@@ -293,35 +293,44 @@ class Territory:
 					name = 'Active Cases',
 					x = x,
 					y = self._data['ActiveCases'],
-					marker_color = color_platte_dark['yellow']
-					),
+					marker_color = color_platte_dark['yellow'],
+					hovertemplate = 'Date: %{x} <br>Active Cases: %{y}'
+
+		),
 			go.Bar(
 					name = 'New Cases',
 					x = x,
 					y = self._data['NewCases'],
 					marker_color = color_platte_dark['orange'],
-					visible = 'legendonly'
+					visible = 'legendonly',
+					hovertemplate = 'Date: %{x} <br>New Cases: %{y}'
+
 					),
 			go.Bar(
 					name = 'New Deaths',
 					x = x,
 					y = self._data['NewDeaths'],
 					marker_color = color_platte_dark['red'],
-					visible = 'legendonly'
+					visible = 'legendonly',
+					hovertemplate = 'Date: %{x} <br>New Deaths: %{y}'
+
 					),
 			go.Bar(
 					name = 'New Recovered',
 					x = x,
 					y = self._data['NewRecovered'],
 					marker_color = color_platte_dark['green'],
-					visible = 'legendonly'
+					visible = 'legendonly',
+					hovertemplate = 'Date: %{x} <br>New Recovered: %{y}'
+
 					),
 			go.Scatter(
 					name = 'Active Cases 7 days moving avg',
 					x = x,
 					y = self._data['activeCases_sma'],
 					line = dict(color = color_platte_dark['purple']),
-					mode = 'lines+markers'
+					mode = 'lines+markers',
+					hovertemplate = 'Date: %{x} <br>Active Cases SMA: %{y}'
 					),
 			go.Scatter(
 					name = 'New Cases 7 days moving avg',
@@ -329,7 +338,9 @@ class Territory:
 					y = self._data['NewCases_sma'],
 					line = dict(color = color_platte_dark['pink']),
 					mode = 'lines+markers',
-					visible = 'legendonly'
+					visible = 'legendonly',
+					hovertemplate = 'Date: %{x} <br>New Cases SMA: %{y}'
+
 					),
 			go.Scatter(
 					name = 'New Deaths 7 days moving avg',
@@ -337,7 +348,9 @@ class Territory:
 					y = self._data['NewDeaths_sma'],
 					line = dict(color = color_platte_dark['blue']),
 					mode = 'lines+markers',
-					visible = 'legendonly'
+					visible = 'legendonly',
+					hovertemplate = 'Date: %{x} <br>New Deaths SMA: %{y}'
+
 					),
 			go.Scatter(
 					name = 'New Recovered 7 days moving avg',
@@ -345,9 +358,12 @@ class Territory:
 					y = self._data['NewRecovered_sma'],
 					line = dict(color = color_platte_dark['white']),
 					mode = 'lines+markers',
-					visible = 'legendonly'
+					visible = 'legendonly',
+					hovertemplate = 'Date: %{x} <br>New Recovered SMA: %{y}'
+
 					)
 			])
+
 
 		fig.update_layout(
 				title = f"{self.name.capitalize()}  Daily increase " + "<br>" + "<span " \
@@ -388,32 +404,39 @@ class Territory:
 					name = 'Active Cases',
 					x = x,
 					y = self._data['ActiveCases'],
-					line = dict(color = color_platte_dark['yellow'])
+					line = dict(color = color_platte_dark['yellow']),
+					hovertemplate = 'Date: %{x} <br>Active Cases: %{y}'
+
 					),
 			go.Scatter(
 					name = 'Total Cases',
 					x = x,
 					y = self._data['TotalCases'],
-					line = dict(color = color_platte_dark['orange'])
+					line = dict(color = color_platte_dark['orange']),
+					hovertemplate = 'Date: %{x} <br>Total Cases: %{y}'
+
 					),
 			go.Scatter(
 					name = 'Total Deaths',
 					x = x,
 					y = self._data['TotalDeaths'],
-					line = dict(color = color_platte_dark['red'])
+					line = dict(color = color_platte_dark['red']),
+					hovertemplate = 'Date: %{x} <br>Total Deaths: %{y}'
 
 					),
 			go.Scatter(
 					name = 'Total Recovered',
 					x = x,
 					y = self._data['TotalRecovered'],
-					line = dict(color = color_platte_dark['green'])
-
+					line = dict(color = color_platte_dark['green']),
+					hovertemplate = 'Date: %{x} <br>Total Recovered: %{y}'
 					)
 			])
 
-		fig.update_xaxes(type = 'date', tick0 = self._data['Date'].iloc[0], dtick = 86400000.0 * 7,
-		                 ticklabelmode = 'period')
+		fig.update_xaxes(type = 'date', tick0 = x.iloc[0], dtick = 86400000.0 * 7,
+		                 ticklabelmode = 'period',
+		                 rangeslider_visible = True,
+		                 tickangle = 0)
 
 		fig.update_layout(
 				title = f"{self.name.capitalize()} Cumulative\Active Cases Over Time" + "<br>" + "<span " \
@@ -423,7 +446,6 @@ class Territory:
 				xaxis_tickformat = "%d\n%b",
 				xaxis_title = 'Date',
 				yaxis_title = 'Value',
-				hovermode = 'x unified',
 				updatemenus = [
 					dict(
 							active = 0,

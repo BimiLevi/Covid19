@@ -109,7 +109,7 @@ class Territory:
 	def closed_cases_pie(self, save = False):
 		fig, ax = plt.subplots(figsize = (19.20, 10.80), tight_layout = True)
 
-		cases = self._data[self._data['Date'] == self._data['Date'].max()]
+		cases = self.data[self.data['Date'] == self.data['Date'].max()]
 		cases = cases[['TotalCases', 'ActiveCases', 'TotalRecovered', 'TotalDeaths']]
 
 		nclosed = (cases['TotalCases'] - cases['ActiveCases']).tolist()[0]
@@ -148,10 +148,10 @@ class Territory:
 			raise ValueError('The maximum amount of columns is 4.')
 
 		if month is not None:
-			data = data_by_month(self._data, month, year)
+			data = data_by_month(self.data, month, year)
 
 		else:
-			data = self._data
+			data = self.data
 
 		fig, axs = plt.subplots(len(cols), figsize = (19.20, 13.80), tight_layout = True)
 
@@ -281,73 +281,89 @@ class Territory:
 		return fig
 
 	def daily_increase3(self, save = False):
-		df = self._data
+		df = self.data
 		df['activeCases_sma'] = df['ActiveCases'].rolling(window = 7).mean()
 		df['NewCases_sma'] = df['NewCases'].rolling(window = 7).mean()
 		df['NewDeaths_sma'] = df['NewDeaths'].rolling(window = 7).mean()
 		df['NewRecovered_sma'] = df['NewRecovered'].rolling(window = 7).mean()
-		x = self._data['Date']
+		x = self.data['Date']
 
 		fig = go.Figure(data = [
 			go.Bar(
 					name = 'Active Cases',
 					x = x,
-					y = self._data['ActiveCases'],
-					marker_color = color_platte_dark['yellow']
-					),
+					y = self.data['ActiveCases'],
+					marker_color = color_platte_dark['yellow'],
+					hovertemplate = 'Date: %{x} <br>Active Cases: %{y}'
+
+		),
 			go.Bar(
 					name = 'New Cases',
 					x = x,
-					y = self._data['NewCases'],
+					y = self.data['NewCases'],
 					marker_color = color_platte_dark['orange'],
-					visible = 'legendonly'
+					visible = 'legendonly',
+					hovertemplate = 'Date: %{x} <br>New Cases: %{y}'
+
 					),
 			go.Bar(
 					name = 'New Deaths',
 					x = x,
-					y = self._data['NewDeaths'],
+					y = self.data['NewDeaths'],
 					marker_color = color_platte_dark['red'],
-					visible = 'legendonly'
+					visible = 'legendonly',
+					hovertemplate = 'Date: %{x} <br>New Deaths: %{y}'
+
 					),
 			go.Bar(
 					name = 'New Recovered',
 					x = x,
-					y = self._data['NewRecovered'],
+					y = self.data['NewRecovered'],
 					marker_color = color_platte_dark['green'],
-					visible = 'legendonly'
+					visible = 'legendonly',
+					hovertemplate = 'Date: %{x} <br>New Recovered: %{y}'
+
 					),
 			go.Scatter(
 					name = 'Active Cases 7 days moving avg',
 					x = x,
-					y = self._data['activeCases_sma'],
+					y = self.data['activeCases_sma'],
 					line = dict(color = color_platte_dark['purple']),
-					mode = 'lines+markers'
+					mode = 'lines+markers',
+					hovertemplate = 'Date: %{x} <br>Active Cases SMA: %{y}'
 					),
 			go.Scatter(
 					name = 'New Cases 7 days moving avg',
 					x = x,
-					y = self._data['NewCases_sma'],
+					y = self.data['NewCases_sma'],
 					line = dict(color = color_platte_dark['pink']),
 					mode = 'lines+markers',
-					visible = 'legendonly'
+					visible = 'legendonly',
+					hovertemplate = 'Date: %{x} <br>New Cases SMA: %{y}'
+
 					),
 			go.Scatter(
 					name = 'New Deaths 7 days moving avg',
 					x = x,
-					y = self._data['NewDeaths_sma'],
+					y = self.data['NewDeaths_sma'],
 					line = dict(color = color_platte_dark['blue']),
 					mode = 'lines+markers',
-					visible = 'legendonly'
+					visible = 'legendonly',
+					hovertemplate = 'Date: %{x} <br>New Deaths SMA: %{y}'
+
 					),
 			go.Scatter(
 					name = 'New Recovered 7 days moving avg',
 					x = x,
-					y = self._data['NewRecovered_sma'],
+					y = self.data['NewRecovered_sma'],
 					line = dict(color = color_platte_dark['white']),
 					mode = 'lines+markers',
-					visible = 'legendonly'
+					visible = 'legendonly',
+					hovertemplate = 'Date: %{x} <br>New Recovered SMA: %{y}'
+
 					)
 			])
+
 
 		fig.update_layout(
 				title = f"{self.name.capitalize()}  Daily increase " + "<br>" + "<span " \
@@ -377,43 +393,50 @@ class Territory:
 		return fig
 
 	def case_fatality_ratio(self):
-		cfr = self._data['TotalDeaths'].sum() / (self._data['TotalDeaths'].sum() + self._data['TotalRecovered'].sum())
+		cfr = self.data['TotalDeaths'].sum() / (self.data['TotalDeaths'].sum() + self.data['TotalRecovered'].sum())
 		cfr = round(cfr * 100, 3)
 		return cfr
 
 	def linear_plot(self, y_cols, save = False):
-		x = self._data['Date']
+		x = self.data['Date']
 		fig = go.Figure(data = [
 			go.Scatter(
 					name = 'Active Cases',
 					x = x,
-					y = self._data['ActiveCases'],
-					line = dict(color = color_platte_dark['yellow'])
+					y = self.data['ActiveCases'],
+					line = dict(color = color_platte_dark['yellow']),
+					hovertemplate = 'Date: %{x} <br>Active Cases: %{y}'
+
 					),
 			go.Scatter(
 					name = 'Total Cases',
 					x = x,
-					y = self._data['TotalCases'],
-					line = dict(color = color_platte_dark['orange'])
+					y = self.data['TotalCases'],
+					line = dict(color = color_platte_dark['orange']),
+					hovertemplate = 'Date: %{x} <br>Total Cases: %{y}'
+
 					),
 			go.Scatter(
 					name = 'Total Deaths',
 					x = x,
-					y = self._data['TotalDeaths'],
-					line = dict(color = color_platte_dark['red'])
+					y = self.data['TotalDeaths'],
+					line = dict(color = color_platte_dark['red']),
+					hovertemplate = 'Date: %{x} <br>Total Deaths: %{y}'
 
 					),
 			go.Scatter(
 					name = 'Total Recovered',
 					x = x,
-					y = self._data['TotalRecovered'],
-					line = dict(color = color_platte_dark['green'])
-
+					y = self.data['TotalRecovered'],
+					line = dict(color = color_platte_dark['green']),
+					hovertemplate = 'Date: %{x} <br>Total Recovered: %{y}'
 					)
 			])
 
-		fig.update_xaxes(type = 'date', tick0 = self._data['Date'].iloc[0], dtick = 86400000.0 * 7,
-		                 ticklabelmode = 'period')
+		fig.update_xaxes(type = 'date', tick0 = x.iloc[0], dtick = 86400000.0 * 7,
+		                 ticklabelmode = 'period',
+		                 rangeslider_visible = True,
+		                 tickangle = 0)
 
 		fig.update_layout(
 				title = f"{self.name.capitalize()} Cumulative\Active Cases Over Time" + "<br>" + "<span " \
@@ -423,7 +446,6 @@ class Territory:
 				xaxis_tickformat = "%d\n%b",
 				xaxis_title = 'Date',
 				yaxis_title = 'Value',
-				hovermode = 'x unified',
 				updatemenus = [
 					dict(
 							active = 0,
@@ -488,7 +510,7 @@ class Territory:
 			elif type(col) != str:
 				raise TypeError('{} must be of str type'.format(cols))
 
-		fig = px.box(self._data, y = cols, title = "{} Boxplot for {}".format(
+		fig = px.box(self.data, y = cols, title = "{} Boxplot for {}".format(
 				self.name.capitalize(),
 				cols) + "<br>" + "<span style='font-size: 12px;'>Creation date {}</span>".format(
 				date.today()))
@@ -505,8 +527,8 @@ class Territory:
 			return fig
 
 	def three_months_info(self):
-		group_df = self._data.groupby(by = [self._data['Date'].dt.year,
-		                                    self._data['Date'].dt.month]).agg(
+		group_df = self.data.groupby(by = [self.data['Date'].dt.year,
+		                                    self.data['Date'].dt.month]).agg(
 				ActiveCasesAvg = ('ActiveCases', 'mean'),
 				RecoveredSum = ('NewRecovered', 'sum'),
 				DeathsSum = ('NewDeaths', 'sum'),
@@ -550,7 +572,7 @@ class Country(Territory):
 		self.last_update = self.__data['Date'].max().date()
 		self.first_update = self.__data['Date'].min().date()
 
-		self._data = self.__data.drop(columns = ['Population', 'Update_time_GMT', 'Country_id', 'Country'])
+		self._data = self.__data.drop(columns = ['Update_time_GMT'])
 
 		self.size = self.__data.shape
 		self.columns = self.__data.columns.tolist()
@@ -791,25 +813,9 @@ Data Frame:\n{self.data}
 
 
 if __name__ == '__main__':
-
 	# top = Top('countries')
-	country = Country('israel')
-	fig = country.closed_cases_pie()
-	fig.show()
-	# months_info = country.three_months_info()
-	#
-	# for month,year in zip(months_info['Month'].tolist(), months_info['Year'].tolist()):
-	# 	month_num = dt.strptime(month[:3], "%b").month
-	# 	fig = country.monthly_plot(['ActiveCases', 'NewCases', 'NewRecovered', 'NewDeaths'], month_num, year,
-	# 	                     save = False)
-	# 	fig.show()
-
-# print(top.data['Country'])
-# print('-------------------------------')
-# top.limit = 5
-# top.sort = 'NewDeaths'
-# print(top.data['Country'])
-# print(top.get_obj_dict())
-
-# fig = top.line()
-# fig.show()
+	# country = Country('israel')
+	# fig = country.closed_cases_pie()
+	# fig.show()
+	continent = Continent('North America')
+	continent.linear_plot(['ActiveCases', 'NewCases', 'NewRecovered', 'NewDeaths'])

@@ -296,7 +296,7 @@ class Territory:
 					marker_color = color_platte_dark['yellow'],
 					hovertemplate = 'Date: %{x} <br>Active Cases: %{y}'
 
-		),
+					),
 			go.Bar(
 					name = 'New Cases',
 					x = x,
@@ -363,11 +363,9 @@ class Territory:
 
 					)
 			])
-
-
 		fig.update_layout(
-				title = f"{self.name.capitalize()}  Daily increase " + "<br>" + "<span " \
-				                                                                f"style='font-size:12px;'>Creation date {date.today()}</span>",
+				title = f"{self.name.capitalize()} Daily increase" + "<br>" + "<span " \
+				                                                              f"style='font-size:12px;'>Creation date {date.today()}</span>",
 				autosize = False,
 				xaxis_tickformat = "%d\n%b",
 				xaxis_title = 'Date',
@@ -502,7 +500,7 @@ class Territory:
 		return fig
 
 	def boxplot(self, cols, save = False):
-		for col in cols:
+		for idx, col in enumerate(cols):
 			if not col in ['NewCases', 'NewDeaths', 'NewRecovered', 'ActiveCases']:
 				print('{} is  unknown'.format(cols))
 				raise ValueError('{} is unknown'.format(cols))
@@ -513,7 +511,8 @@ class Territory:
 		fig = px.box(self.data, y = cols, title = "{} Boxplot for {}".format(
 				self.name.capitalize(),
 				cols) + "<br>" + "<span style='font-size: 12px;'>Creation date {}</span>".format(
-				date.today()))
+				date.today()),
+		             )
 		fig.update_traces(quartilemethod = "exclusive")
 
 		if save:
@@ -528,7 +527,7 @@ class Territory:
 
 	def three_months_info(self):
 		group_df = self.data.groupby(by = [self.data['Date'].dt.year,
-		                                    self.data['Date'].dt.month]).agg(
+		                                   self.data['Date'].dt.month]).agg(
 				ActiveCasesAvg = ('ActiveCases', 'mean'),
 				RecoveredSum = ('NewRecovered', 'sum'),
 				DeathsSum = ('NewDeaths', 'sum'),
@@ -746,6 +745,7 @@ Data Frame:\n{self.data}
 
 		return df[['Date', self.col_type, sort]]
 
+
 # def line(self):
 # 	""" This function creates as line plot by the topped territories"""
 # 	""" Complexity time O(n^2) """
@@ -818,4 +818,5 @@ if __name__ == '__main__':
 	# fig = country.closed_cases_pie()
 	# fig.show()
 	continent = Continent('North America')
-	continent.linear_plot(['ActiveCases', 'NewCases', 'NewRecovered', 'NewDeaths'])
+	# continent.linear_plot(['ActiveCases', 'NewCases', 'NewRecovered', 'NewDeaths'])
+	continent.boxplot(['ActiveCases'])

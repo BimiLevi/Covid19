@@ -53,7 +53,7 @@ The data is loaded for each country and continent, furthermore, an extra four ta
 **The earliest data is dated to Aug. 02, 2020** (not all days are accounted for in the data). <br/>
 The data that is loaded into this repository is of CSV type, and it is separated into two:
   * Daily - for each day there are two CSV's (countries and continents).
-  * Table - one CSV for each table that exists in the DB.  
+  * Table - CSV table for each country/continent that exists in the DB.  
 
 
 

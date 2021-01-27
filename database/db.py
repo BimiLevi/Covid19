@@ -85,6 +85,10 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 				elif (table == 'uk') or (table=='Uk'):
 					table = 'UK'
 
+				elif (table == "UAE") or (table == "Uae") or (table == 'uae'):
+					table = 'UAE'
+
+
 				elif len(table.split()) == 2:
 					word1 = table.split()[0].capitalize()
 					word2 = table.split()[1].capitalize()

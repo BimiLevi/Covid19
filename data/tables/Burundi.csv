@@ -1,3 +1,5 @@
 Scrap_time,Update_time_GMT,Date,Country_id,Country,Population,TotalCases,NewCases,TotalDeaths,NewDeaths,TotalRecovered,NewRecovered,ActiveCases,SeriousCritical,Tot_Cases_1Mpop,Deaths_1Mpop,TotalTests,Tests_1Mpop
 2021-01-29 12:00:10,00:00:00,2021-01-28,169,Burundi,12092281,1584,,2,,773,,809,,131,0.2,90019,7444
 2021-01-30 13:07:16,00:00:00,2021-01-29,169,Burundi,12093253,1604,20.0,2,0.0,773,0.0,829,,133,0.2,90019,7444
+2021-01-30 13:08:13,00:00:00,2021-01-29,169,Burundi,12093253,1604,0.0,2,0.0,773,0.0,829,,133,0.2,90019,7444
+2021-01-31 12:00:16,00:00:00,2021-01-30,169,Burundi,12094224,1613,9.0,2,0.0,773,0.0,838,,133,0.2,90019,7443

@@ -1,3 +1,5 @@
 Scrap_time,Update_time_GMT,Date,Country_id,Country,Population,TotalCases,NewCases,TotalDeaths,NewDeaths,TotalRecovered,NewRecovered,ActiveCases,SeriousCritical,Tot_Cases_1Mpop,Deaths_1Mpop,TotalTests,Tests_1Mpop
 2021-01-29 12:00:10,00:00:00,2021-01-28,187,Bhutan,776503,857,,1,,776,,80,,1104,1.0,454693,585565
 2021-01-30 13:07:16,00:00:00,2021-01-29,187,Bhutan,776526,858,1.0,1,0.0,780,4.0,77,,1105,1.0,465414,599354
+2021-01-30 13:08:13,00:00:00,2021-01-29,187,Bhutan,776526,858,0.0,1,0.0,780,0.0,77,,1105,1.0,465414,599354
+2021-01-31 12:00:16,00:00:00,2021-01-30,187,Bhutan,776550,858,0.0,1,0.0,782,2.0,75,,1105,1.0,472123,607975

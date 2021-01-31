@@ -1,3 +1,5 @@
 Scrap_time,Update_time_GMT,Date,Country_id,Country,Population,TotalCases,NewCases,TotalDeaths,NewDeaths,TotalRecovered,NewRecovered,ActiveCases,SeriousCritical,Tot_Cases_1Mpop,Deaths_1Mpop,TotalTests,Tests_1Mpop
 2021-01-29 12:00:10,00:00:00,2021-01-28,110,Nicaragua,6669938,6253,,169,,4225,,1859,,937,25.0,,
 2021-01-30 13:07:16,00:00:00,2021-01-29,110,Nicaragua,6670153,6253,0.0,169,0.0,4225,0.0,1859,,937,25.0,,
+2021-01-30 13:08:13,00:00:00,2021-01-29,110,Nicaragua,6670153,6253,0.0,169,0.0,4225,0.0,1859,,937,25.0,,
+2021-01-31 12:00:16,00:00:00,2021-01-30,110,Nicaragua,6670368,6253,0.0,169,0.0,4225,0.0,1859,,937,25.0,,

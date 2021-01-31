@@ -1,3 +1,5 @@
 Scrap_time,Update_time_GMT,Date,Country_id,Country,Population,TotalCases,NewCases,TotalDeaths,NewDeaths,TotalRecovered,NewRecovered,ActiveCases,SeriousCritical,Tot_Cases_1Mpop,Deaths_1Mpop,TotalTests,Tests_1Mpop
 2021-01-29 12:00:10,00:00:00,2021-01-28,174,Papua New Guinea,9044169,851,,9,,812,,30,,94,1.0,41652,4605
 2021-01-30 13:07:16,00:00:00,2021-01-29,174,Papua New Guinea,9044633,851,0.0,9,0.0,812,0.0,30,,94,1.0,41652,4605
+2021-01-30 13:08:13,00:00:00,2021-01-29,174,Papua New Guinea,9044633,851,0.0,9,0.0,812,0.0,30,,94,1.0,41652,4605
+2021-01-31 12:00:16,00:00:00,2021-01-30,174,Papua New Guinea,9045096,851,0.0,9,0.0,812,0.0,30,,94,1.0,41652,4605

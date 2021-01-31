@@ -1,3 +1,5 @@
 Scrap_time,Update_time_GMT,Date,Country_id,Country,Population,TotalCases,NewCases,TotalDeaths,NewDeaths,TotalRecovered,NewRecovered,ActiveCases,SeriousCritical,Tot_Cases_1Mpop,Deaths_1Mpop,TotalTests,Tests_1Mpop
 2021-01-29 12:00:10,00:00:00,2021-01-28,214,Anguilla,15080,16,,,,15,,1,,1061,,7326,485809
 2021-01-30 13:07:16,00:00:00,2021-01-29,214,Anguilla,15081,16,0.0,,,15,0.0,1,,1061,,7326,485777
+2021-01-30 13:08:13,00:00:00,2021-01-29,214,Anguilla,15081,16,0.0,,,15,0.0,1,,1061,,7326,485777
+2021-01-31 12:00:16,00:00:00,2021-01-30,214,Anguilla,15081,16,0.0,,,15,0.0,1,,1061,,7326,485777

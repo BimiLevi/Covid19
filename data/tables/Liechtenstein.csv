@@ -1,3 +1,5 @@
 Scrap_time,Update_time_GMT,Date,Country_id,Country,Population,TotalCases,NewCases,TotalDeaths,NewDeaths,TotalRecovered,NewRecovered,ActiveCases,SeriousCritical,Tot_Cases_1Mpop,Deaths_1Mpop,TotalTests,Tests_1Mpop
 2021-01-29 12:00:10,00:00:00,2021-01-28,191,Liechtenstein,38191,2475,,52,,2352,,71,4,64806,1362.0,23956,627268
 2021-01-30 13:07:16,00:00:00,2021-01-29,191,Liechtenstein,38192,2484,9.0,52,0.0,2352,0.0,80,4,65040,1362.0,24235,634557
+2021-01-30 13:08:13,00:00:00,2021-01-29,191,Liechtenstein,38192,2484,0.0,52,0.0,2352,0.0,80,4,65040,1362.0,24235,634557
+2021-01-31 12:00:16,00:00:00,2021-01-30,191,Liechtenstein,38192,2493,9.0,52,0.0,2352,0.0,89,4,65275,1362.0,24235,634557

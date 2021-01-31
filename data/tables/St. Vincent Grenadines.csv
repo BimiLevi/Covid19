@@ -1,3 +1,5 @@
 Scrap_time,Update_time_GMT,Date,Country_id,Country,Population,TotalCases,NewCases,TotalDeaths,NewDeaths,TotalRecovered,NewRecovered,ActiveCases,SeriousCritical,Tot_Cases_1Mpop,Deaths_1Mpop,TotalTests,Tests_1Mpop
 2021-01-29 12:00:10,00:00:00,2021-01-28,193,St. Vincent Grenadines,111144,827,,2,,174,,651,2,7441,18.0,28138,253167
 2021-01-30 13:07:16,00:00:00,2021-01-29,193,St. Vincent Grenadines,111145,896,69.0,2,0.0,232,58.0,662,2,8062,18.0,28138,253165
+2021-01-30 13:08:13,00:00:00,2021-01-29,193,St. Vincent Grenadines,111145,896,0.0,2,0.0,232,0.0,662,2,8062,18.0,28138,253165
+2021-01-31 12:00:16,00:00:00,2021-01-30,193,St. Vincent Grenadines,111146,896,0.0,2,0.0,232,0.0,662,2,8061,18.0,28138,253163

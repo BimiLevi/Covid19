@@ -1,3 +1,5 @@
 Scrap_time,Update_time_GMT,Date,Country_id,Country,Population,TotalCases,NewCases,TotalDeaths,NewDeaths,TotalRecovered,NewRecovered,ActiveCases,SeriousCritical,Tot_Cases_1Mpop,Deaths_1Mpop,TotalTests,Tests_1Mpop
 2021-01-29 12:00:10,00:00:00,2021-01-28,176,Isle of Man,85293,432,,25,,379,,28,1,5065,293.0,27591,323485
 2021-01-30 13:07:16,00:00:00,2021-01-29,176,Isle of Man,85294,434,2.0,25,0.0,380,1.0,29,1,5088,293.0,27591,323481
+2021-01-30 13:08:13,00:00:00,2021-01-29,176,Isle of Man,85294,434,0.0,25,0.0,380,0.0,29,1,5088,293.0,27591,323481
+2021-01-31 12:00:16,00:00:00,2021-01-30,176,Isle of Man,85296,434,0.0,25,0.0,383,3.0,26,1,5088,293.0,27870,326745

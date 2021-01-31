@@ -1,3 +1,5 @@
 Scrap_time,Update_time_GMT,Date,Country_id,Country,Population,TotalCases,NewCases,TotalDeaths,NewDeaths,TotalRecovered,NewRecovered,ActiveCases,SeriousCritical,Tot_Cases_1Mpop,Deaths_1Mpop,TotalTests,Tests_1Mpop
 2021-01-29 12:00:10,00:00:00,2021-01-28,170,Comoros,880202,2598,,85,,1538,,975,,2952,97.0,,
 2021-01-30 13:07:16,00:00:00,2021-01-29,170,Comoros,880253,2646,48.0,89,4.0,1637,99.0,920,,3006,101.0,,
+2021-01-30 13:08:13,00:00:00,2021-01-29,170,Comoros,880253,2646,0.0,89,0.0,1637,0.0,920,,3006,101.0,,
+2021-01-31 12:00:16,00:00:00,2021-01-30,170,Comoros,880303,2718,72.0,90,1.0,1678,41.0,950,,3088,102.0,,

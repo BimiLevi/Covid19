@@ -1,3 +1,5 @@
 Scrap_time,Update_time_GMT,Date,Country_id,Country,Population,TotalCases,NewCases,TotalDeaths,NewDeaths,TotalRecovered,NewRecovered,ActiveCases,SeriousCritical,Tot_Cases_1Mpop,Deaths_1Mpop,TotalTests,Tests_1Mpop
 2021-01-29 12:00:10,00:00:00,2021-01-28,202,British Virgin Islands,30347,114,,1,,95,,18,,3757,33.0,13223,435727
 2021-01-30 13:07:16,00:00:00,2021-01-29,202,British Virgin Islands,30348,114,0.0,1,0.0,95,0.0,18,,3756,33.0,13223,435712
+2021-01-30 13:08:13,00:00:00,2021-01-29,202,British Virgin Islands,30348,114,0.0,1,0.0,95,0.0,18,,3756,33.0,13223,435712
+2021-01-31 12:00:16,00:00:00,2021-01-30,202,British Virgin Islands,30348,114,0.0,1,0.0,95,0.0,18,,3756,33.0,13223,435712

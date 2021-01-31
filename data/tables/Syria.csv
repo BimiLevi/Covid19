@@ -1,3 +1,5 @@
 Scrap_time,Update_time_GMT,Date,Country_id,Country,Population,TotalCases,NewCases,TotalDeaths,NewDeaths,TotalRecovered,NewRecovered,ActiveCases,SeriousCritical,Tot_Cases_1Mpop,Deaths_1Mpop,TotalTests,Tests_1Mpop
 2021-01-29 12:00:10,00:00:00,2021-01-28,132,Syria,17743462,13885,,906,,7329,,5650,,783,51.0,,
 2021-01-30 13:07:16,00:00:00,2021-01-29,132,Syria,17744627,13944,59.0,911,5.0,7406,77.0,5627,,786,51.0,,
+2021-01-30 13:08:13,00:00:00,2021-01-29,132,Syria,17744627,13944,0.0,911,0.0,7406,0.0,5627,,786,51.0,,
+2021-01-31 12:00:16,00:00:00,2021-01-30,132,Syria,17745792,13998,54.0,916,5.0,7481,75.0,5601,,789,52.0,,

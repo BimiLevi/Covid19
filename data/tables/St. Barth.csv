@@ -1,3 +1,5 @@
 Scrap_time,Update_time_GMT,Date,Country_id,Country,Population,TotalCases,NewCases,TotalDeaths,NewDeaths,TotalRecovered,NewRecovered,ActiveCases,SeriousCritical,Tot_Cases_1Mpop,Deaths_1Mpop,TotalTests,Tests_1Mpop
 2021-01-29 12:00:10,00:00:00,2021-01-28,205,St. Barth,9894,360,,1,,247,,112,,36386,101.0,8518,860926
 2021-01-30 13:07:16,00:00:00,2021-01-29,205,St. Barth,9895,360,0.0,1,0.0,247,0.0,112,,36382,101.0,8518,860839
+2021-01-30 13:08:13,00:00:00,2021-01-29,205,St. Barth,9895,360,0.0,1,0.0,247,0.0,112,,36382,101.0,8518,860839
+2021-01-31 12:00:16,00:00:00,2021-01-30,205,St. Barth,9895,360,0.0,1,0.0,247,0.0,112,,36382,101.0,8518,860839

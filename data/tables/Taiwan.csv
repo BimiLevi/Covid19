@@ -1,3 +1,5 @@
 Scrap_time,Update_time_GMT,Date,Country_id,Country,Population,TotalCases,NewCases,TotalDeaths,NewDeaths,TotalRecovered,NewRecovered,ActiveCases,SeriousCritical,Tot_Cases_1Mpop,Deaths_1Mpop,TotalTests,Tests_1Mpop
 2021-01-29 12:00:10,00:00:00,2021-01-28,167,Taiwan,23841748,895,,7,,809,,79,,38,0.3,150239,6302
 2021-01-30 13:07:16,00:00:00,2021-01-29,167,Taiwan,23841866,899,4.0,7,0.0,813,4.0,79,,38,0.3,151837,6369
+2021-01-30 13:08:13,00:00:00,2021-01-29,167,Taiwan,23841866,899,0.0,7,0.0,813,0.0,79,,38,0.3,151837,6369
+2021-01-31 12:00:16,00:00:00,2021-01-30,167,Taiwan,23841983,909,10.0,8,1.0,823,10.0,78,,38,0.3,153716,6447

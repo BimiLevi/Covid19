@@ -1,3 +1,5 @@
 Scrap_time,Update_time_GMT,Date,Country_id,Country,Population,TotalCases,NewCases,TotalDeaths,NewDeaths,TotalRecovered,NewRecovered,ActiveCases,SeriousCritical,Tot_Cases_1Mpop,Deaths_1Mpop,TotalTests,Tests_1Mpop
 2021-01-29 12:00:10,00:00:00,2021-01-28,165,Channel Islands,174787,3554,,79,,3227,,248,4,20333,452.0,308955,1767609
 2021-01-30 13:07:16,00:00:00,2021-01-29,165,Channel Islands,174792,3592,38.0,82,3.0,3271,44.0,239,4,20550,469.0,316109,1808487
+2021-01-30 13:08:13,00:00:00,2021-01-29,165,Channel Islands,174792,3592,0.0,82,0.0,3271,0.0,239,4,20550,469.0,316109,1808487
+2021-01-31 12:00:16,00:00:00,2021-01-30,165,Channel Islands,174796,3639,47.0,82,0.0,3271,0.0,286,4,20819,469.0,316109,1808445

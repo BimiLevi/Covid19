@@ -1,3 +1,5 @@
 Scrap_time,Update_time_GMT,Date,Country_id,Country,Population,TotalCases,NewCases,TotalDeaths,NewDeaths,TotalRecovered,NewRecovered,ActiveCases,SeriousCritical,Tot_Cases_1Mpop,Deaths_1Mpop,TotalTests,Tests_1Mpop
 2021-01-29 12:00:10,00:00:00,2021-01-28,160,Sao Tome and Principe,221492,1232,,17,,1011,,204,,5562,77.0,11243,50760
 2021-01-30 13:07:16,00:00:00,2021-01-29,160,Sao Tome and Principe,221503,1245,13.0,17,0.0,1019,8.0,209,,5621,77.0,11592,52333
+2021-01-30 13:08:13,00:00:00,2021-01-29,160,Sao Tome and Principe,221503,1245,0.0,17,0.0,1019,0.0,209,,5621,77.0,11592,52333
+2021-01-31 12:00:16,00:00:00,2021-01-30,160,Sao Tome and Principe,221515,1256,11.0,17,0.0,1023,4.0,216,,5670,77.0,11592,52331

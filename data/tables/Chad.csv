@@ -1,3 +1,5 @@
 Scrap_time,Update_time_GMT,Date,Country_id,Country,Population,TotalCases,NewCases,TotalDeaths,NewDeaths,TotalRecovered,NewRecovered,ActiveCases,SeriousCritical,Tot_Cases_1Mpop,Deaths_1Mpop,TotalTests,Tests_1Mpop
 2021-01-29 12:00:10,00:00:00,2021-01-28,157,Chad,16694245,3296,,118,,2364,,814,,197,7.0,,
 2021-01-30 13:07:16,00:00:00,2021-01-29,157,Chad,16695538,3321,25.0,118,0.0,2374,10.0,829,,199,7.0,,
+2021-01-30 13:08:13,00:00:00,2021-01-29,157,Chad,16695538,3321,0.0,118,0.0,2374,0.0,829,,199,7.0,,
+2021-01-31 12:00:16,00:00:00,2021-01-30,157,Chad,16696831,3347,26.0,118,0.0,2442,68.0,787,,200,7.0,,

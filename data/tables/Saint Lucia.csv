@@ -1,3 +1,5 @@
 Scrap_time,Update_time_GMT,Date,Country_id,Country,Population,TotalCases,NewCases,TotalDeaths,NewDeaths,TotalRecovered,NewRecovered,ActiveCases,SeriousCritical,Tot_Cases_1Mpop,Deaths_1Mpop,TotalTests,Tests_1Mpop
 2021-01-29 12:00:10,00:00:00,2021-01-28,197,Saint Lucia,184112,1029,,13,,523,,493,1,5589,71.0,23541,127862
 2021-01-30 13:07:16,00:00:00,2021-01-29,197,Saint Lucia,184115,1106,77.0,13,0.0,586,63.0,507,1,6007,71.0,23599,128175
+2021-01-30 13:08:13,00:00:00,2021-01-29,197,Saint Lucia,184115,1106,0.0,13,0.0,586,0.0,507,1,6007,71.0,23599,128175
+2021-01-31 12:00:16,00:00:00,2021-01-30,197,Saint Lucia,184117,1195,89.0,13,0.0,618,32.0,564,1,6490,71.0,23955,130107

@@ -1,3 +1,5 @@
 Scrap_time,Update_time_GMT,Date,Country_id,Country,Population,TotalCases,NewCases,TotalDeaths,NewDeaths,TotalRecovered,NewRecovered,ActiveCases,SeriousCritical,Tot_Cases_1Mpop,Deaths_1Mpop,TotalTests,Tests_1Mpop
 2021-01-29 12:00:10,00:00:00,2021-01-28,190,Seychelles,98699,1149,,3,,854,,292,,11641,30.0,5200,52685
 2021-01-30 13:07:16,00:00:00,2021-01-29,190,Seychelles,98700,1162,13.0,3,0.0,928,74.0,231,,11773,30.0,5200,52685
+2021-01-30 13:08:13,00:00:00,2021-01-29,190,Seychelles,98700,1162,0.0,3,0.0,928,0.0,231,,11773,30.0,5200,52685
+2021-01-31 12:00:16,00:00:00,2021-01-30,190,Seychelles,98702,1186,24.0,4,1.0,987,59.0,195,,12016,41.0,5200,52684

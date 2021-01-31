@@ -1,3 +1,5 @@
 Scrap_time,Update_time_GMT,Date,Country_id,Country,Population,TotalCases,NewCases,TotalDeaths,NewDeaths,TotalRecovered,NewRecovered,ActiveCases,SeriousCritical,Tot_Cases_1Mpop,Deaths_1Mpop,TotalTests,Tests_1Mpop
 2021-01-29 12:00:10,00:00:00,2021-01-28,196,Fiji,900196,55,,2,,53,,0,,61,2.0,24545,27266
 2021-01-30 13:07:16,00:00:00,2021-01-29,196,Fiji,900214,55,0.0,2,0.0,53,0.0,0,,61,2.0,24545,27266
+2021-01-30 13:08:13,00:00:00,2021-01-29,196,Fiji,900214,55,0.0,2,0.0,53,0.0,0,,61,2.0,24545,27266
+2021-01-31 12:00:16,00:00:00,2021-01-30,196,Fiji,900232,55,0.0,2,0.0,53,0.0,0,,61,2.0,24545,27265

@@ -1,3 +1,5 @@
 Scrap_time,Update_time_GMT,Date,Country_id,Country,Population,TotalCases,NewCases,TotalDeaths,NewDeaths,TotalRecovered,NewRecovered,ActiveCases,SeriousCritical,Tot_Cases_1Mpop,Deaths_1Mpop,TotalTests,Tests_1Mpop
 2021-01-29 12:00:10,00:00:00,2021-01-28,208,Caribbean Netherlands,26364,360,,3,,244,,113,,13655,114.0,5145,195152
 2021-01-30 13:07:16,00:00:00,2021-01-29,208,Caribbean Netherlands,26364,360,0.0,3,0.0,244,0.0,113,,13655,114.0,5145,195152
+2021-01-30 13:08:13,00:00:00,2021-01-29,208,Caribbean Netherlands,26364,360,0.0,3,0.0,244,0.0,113,,13655,114.0,5145,195152
+2021-01-31 12:00:16,00:00:00,2021-01-30,208,Caribbean Netherlands,26365,360,0.0,3,0.0,244,0.0,113,,13654,114.0,5145,195145

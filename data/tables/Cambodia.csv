@@ -1,3 +1,5 @@
 Scrap_time,Update_time_GMT,Date,Country_id,Country,Population,TotalCases,NewCases,TotalDeaths,NewDeaths,TotalRecovered,NewRecovered,ActiveCases,SeriousCritical,Tot_Cases_1Mpop,Deaths_1Mpop,TotalTests,Tests_1Mpop
 2021-01-29 12:00:10,00:00:00,2021-01-28,181,Cambodia,16852035,461,,,,428,,33,,27,,389799,23131
 2021-01-30 13:07:16,00:00:00,2021-01-29,181,Cambodia,16852667,463,2.0,,,438,10.0,25,,27,,389799,23130
+2021-01-30 13:08:13,00:00:00,2021-01-29,181,Cambodia,16852667,463,0.0,,,438,0.0,25,,27,,389799,23130
+2021-01-31 12:00:16,00:00:00,2021-01-30,181,Cambodia,16853300,464,1.0,,,443,5.0,21,,28,,389799,23129

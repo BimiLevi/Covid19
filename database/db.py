@@ -33,7 +33,7 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 
 	def create_url(self):
 		url = 'postgresql+psycopg2://{}:{}@{}:{}/{}'.format(self.username, self.password, self.host, self.port,
-		                                                    self.dbname)
+															self.dbname)
 		return url
 
 	def set_port(self, port):
@@ -138,7 +138,7 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 				for header in headers_list:
 					temp_df = df[df[col] == '{}'.format(header)]
 					temp_df.to_sql('{}'.format(header), con = self.engine, if_exists = 'append', index = False,
-					               dtype = dtype_parm)
+								   dtype = dtype_parm)
 
 				print('{} DB was successfully Updated.'.format(col))
 
@@ -154,7 +154,7 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 					temp_df['NewRecovered'] = temp_df['TotalRecovered'].diff()
 
 					temp_df.to_sql('{}'.format(header), con = self.engine, if_exists = 'append', index = False,
-					               dtype = dtype_parm)
+								   dtype = dtype_parm)
 
 				print('{} DB was successfully Updated.'.format(col))
 
@@ -198,13 +198,13 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 					self.df_to_db('Country', frame, calc = True)
 					late_data = self.get_latest_data(frame)
 					late_data.to_sql('All countries updated', con = self.engine, if_exists = 'replace', index = False,
-					                 dtype = countries_parm)
+									 dtype = countries_parm)
 
 				elif ext == '*Continents*':
 					self.df_to_db('Continent', frame, calc = True)
 					late_data = self.get_latest_data(frame)
 					late_data.to_sql('All continents updated', con = self.engine, if_exists = 'replace', index = False,
-					                 dtype = continents_parm)
+									 dtype = continents_parm)
 
 		except Exception as e:
 			print('The following Exception as occurred:\n{}'.format(e))
@@ -251,12 +251,12 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 		print('Dropping all tables')
 		con = self.engine.connect()
 		con.execute('DROP SCHEMA public CASCADE;'
-		            'CREATE SCHEMA public;')
-	
+					'CREATE SCHEMA public;')
+
 	def restart(self, tablesCsv = False):
 		""" Complexity Time O(n).
 			Drop all the tables in db, and creates new public schema, using SQL query.
-		        Afterwards loading the data back for csv file in the Data directory. """
+				Afterwards loading the data back for csv file in the Data directory. """
 		try:
 			self.drop_schema()
 
@@ -269,3 +269,4 @@ url: {}'''.format(self.username, self.password, self.dbname, self.host, self.por
 
 		except Exception as e:
 			print(f'Unable to complete the restart\nThe following Error occurred\n{e}')
+

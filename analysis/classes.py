@@ -142,7 +142,8 @@ class Territory:
 
 	def monthly_plot(self, cols, month, year, save = False):
 		if dt.now().day <= 7:
-			return f'Not enough data for {month}'
+			print(f'Not enough data for {month}')
+			return
 
 		if len(cols) > 4:
 			raise ValueError('The maximum amount of columns is 4.')
@@ -395,7 +396,7 @@ class Territory:
 		cfr = round(cfr * 100, 3)
 		return cfr
 
-	def linear_plot(self, y_cols, save = False):
+	def linear_plot(self, save = False):
 		x = self.data['Date']
 		fig = go.Figure(data = [
 			go.Scatter(
@@ -490,7 +491,7 @@ class Territory:
 					])
 
 		if save:
-			title = 'Line plot of {} in {}'.format(",".join(y_cols), self.name)
+			title = 'Line plot of {} in {}'.format(",".join(['TotalCases', 'TotalDeaths','TotalRecovered','ActiveCases']), self.name)
 			file_format = 'html'
 			full_path = os.path.join(plots_path, self.name)
 			if not os.path.isfile(full_path):
@@ -819,4 +820,5 @@ if __name__ == '__main__':
 	# fig.show()
 	continent = Continent('North America')
 	# continent.linear_plot(['ActiveCases', 'NewCases', 'NewRecovered', 'NewDeaths'])
-	continent.boxplot(['ActiveCases'])
+	# continent.boxplot(['ActiveCases'])
+	continent.linear_plot(['TotalCases', 'TotalDeaths','TotalRecovered','ActiveCases'])
